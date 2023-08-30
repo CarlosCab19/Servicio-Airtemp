@@ -1,0 +1,94 @@
+/*  establece que los elementos <body> y <html> deben ocupar el 100% de la
+ altura del navegador y elimina los márgenes y rellenos para
+ evitar espacios no deseados en la página web. */
+ body,
+ html {
+   height: 100%;
+   margin: 0;
+   padding: 0;
+ }
+
+ /* se aplica a elementos con la clase .row y establece su altura al 100%
+ de la altura visible del navegador (vh),
+ asegurando que ocupen todo el espacio vertical disponible sin importar su contenido. */
+ .row {
+   height: 100vh;
+ }
+
+
+
+ /* ==================Contenedor con la imagen===================================== */
+ .image-container {
+   flex: 2;
+   /*  los elementos con flex-grow de 2 ocuparán el doble del espacio disponible.*/
+   align-items: center;
+   /*alinea verticalmente los elementos*/
+   justify-content: center;
+   /*alinea Horizontalmente los elementos*/
+   padding: 0;
+   /*elimina los rellenos predeterminados*/
+   margin: 0;
+   /*elimina los margenes predeterminados*/
+ }
+
+ .image-container img {
+   /*hace que las imágenes ocupen el 100% del ancho y alto disponibles dentro del contenedor*/
+   width: 100%;
+   height: 100%;
+   /*ajusta la imagen para cubrir completamente el contenedor, sin distorsionar la relación de aspecto. */
+   object-fit: cover;
+ }
+
+ /* ==========Contenedor con el formulario para inicio de sesion===================================== */
+
+ .main-content-container {
+   flex: 1;
+   /*hace que este contenedor ocupe todo el espacio disponible en el contenedor principal*/
+   background-color: #005ba2;
+   /*establece el color de fondo del contenedor*/
+   display: flex;
+   /*establece el contenedor como un contenedor flexible*/
+   align-items: center;
+   /*alinea verticalmente los elementos*/
+   justify-content: center;
+   /*alinea Horizontalmente los elementos*/
+
+ }
+
+ .logo {
+   max-width: 57%;
+   /*El valor del 57% significa que el ancho máximo será el 57% del ancho de su contenedor.*/
+   height: auto;
+   /*la altura se ajusta automaticamente*/
+   margin-bottom: 30px;
+   /*Agrega un espacio de 30 píxeles en la parte inferior entre el elemento .logo y el elemento siguiente*/
+   margin-top: 30px;
+   /*Agrega un espacio de 30 píxeles en la parte superior entre el elemento .logo y el elemento siguiente*/
+ }
+
+ .inputContainer {
+   display: flex;
+   /*establece el contenedor como un contenedor flexible*/
+   flex-direction: column;
+   /*los elementos se colocarán en una columna*/
+   position: relative;
+
+ }
+
+ /* MEDIA QUERY */
+
+ /* Media query para tamaños de pantalla menores o iguales a 768 píxeles */
+ @media (max-width: 768px) {
+
+
+   /* Establece la propiedad "flex" de los elementos con la clase .image-container a su valor inicial */
+   .image-container {
+     flex: initial;
+   }
+
+   /* Establece la propiedad "flex" de los elementos con la clase .main-content-container a su valor inicial */
+   .main-content-container {
+     flex: initial;
+   }
+
+ }
