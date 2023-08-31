@@ -1,23 +1,4 @@
 <body>
-  <!--<header class="header">
-    <div class="logo">
-      <img src="assets/img-logo/Letras_Airtemp.png">
-    </div>
-    <nav class="nav">
-      <ul>
-        <li><a routerLink="/inicio"><i class="fas fa-home"></i><h4>Inicio</h4></a></li>
-        <li class="submenu">
-          <a (click)="toggleSubMenu()"  routerLink=""><i class="fas fa-sign-in-alt"></i><h4>Ingresar</h4></a>
-          <ul *ngIf="showSubMenu" class="submenu-content">
-            <li><a (click)="selectUserType('usuario')" routerLink=""><i class="fas fa-user" ></i>Usuario</a></li>
-            <li><a (click)="selectUserType('administrador')" routerLink=""><i class="fa-solid fa-users-between-lines" style="color: #ffffff;"></i>Administrador</a></li>
-            <li><a (click)="selectUserType('director')" routerLink=""><i class="fa-solid fa-users-rectangle" style="color: #ffffff;"></i>Director</a></li>
-            <li><a (click)="selectUserType('ti')" routerLink=""><i class="fa-solid fa-users-gear" style="color: #ffffff;"></i>Soporte</a></li>
-          </ul>
-        </li>
-      </ul>
-    </nav>
-  </header>-->
 
   <main>
     <div class="container-fluid">
@@ -29,7 +10,7 @@
             </div>
             <!-- CONTENEDOR DERECHO -->
             <div class="col-md-12 main-content-container">
-              <button class="btn">
+              <button class="btn" (click)="toggleSubMenu()">
                 <span class="icon">
                     <svg viewBox="0 0 175 80" width="40" height="40">
                         <rect width="80" height="15" fill="#f0f0f0" rx="10"></rect>
@@ -38,33 +19,47 @@
                     </svg>
                 </span>
                 <span class="text">MENU</span>
-            </button>
-                <!-- Formulario del contenedor derecho para iniciar sesion
-                <form  class="h-100 d-flex flex-column justify-content-center">
-                     Logo de la empresa
-                    <div class="text-center">-->
-                        <!-- Imagen del logo de la empresa
-                        <img src="assets/img-logo/Letras_Airtemp.png" class="logo">
-                    </div>
-
-                </form>-->
+              </button>
+              <div class="input" *ngIf="showSubMenu">
+                <button class="value" (click)="selectUserType('usuario')">
+                  <i class="fas fa-user" ></i>
+                  Usuario
+                </button>
+                <button class="value" (click)="selectUserType('administrador')">
+                  <i class="fa-solid fa-users-between-lines" style="color: #ffffff;"></i>
+                  Administrador
+                </button>
+                <button class="value" (click)="selectUserType('director')">
+                  <i class="fa-solid fa-users-rectangle" style="color: #ffffff;"></i>
+                  Director
+                </button>
+                <button class="value" (click)="selectUserType('ti')">
+                  <i class="fa-solid fa-users-gear" style="color: #ffffff;"></i>
+                  Desarrollo TI
+                </button>
+              </div>
+              <!--Login para cada tipo de inicio-->
+              <div class="right">
+                <div *ngIf="selectedUserType === ''">
+                  <app-login-usuario></app-login-usuario>
+                </div>
+                <div *ngIf="selectedUserType === 'usuario'">
+                  <app-login-usuario></app-login-usuario>
+                </div>
+                <div *ngIf="selectedUserType === 'administrador'">
+                  <app-login-administrador></app-login-administrador>
+                </div>
+                <div *ngIf="selectedUserType === 'director'">
+                  <app-login-director></app-login-director>
+                </div>
+                <div *ngIf="selectedUserType === 'ti'">
+                  <app-login-ti></app-login-ti>
+                </div>
+              </div>
             </div>
         </div>
     </div>
 </main>
 </body>
 
-<div class="right">
-  <div *ngIf="selectedUserType === 'usuario'">
-    <app-login-usuario></app-login-usuario>
-  </div>
-  <div *ngIf="selectedUserType === 'administrador'">
-    <app-login-administrador></app-login-administrador>
-  </div>
-  <div *ngIf="selectedUserType === 'director'">
-    <app-login-director></app-login-director>
-  </div>
-  <div *ngIf="selectedUserType === 'ti'">
-    <app-login-ti></app-login-ti>
-  </div>
-</div>
+

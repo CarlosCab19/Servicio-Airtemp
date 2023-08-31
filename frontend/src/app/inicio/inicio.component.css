@@ -2,61 +2,6 @@
 /* Importa Font Awesome */
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  background-color:  #005ba2;
-  color: white;
-}
-
-.logo img {
-  height: 70px;
-  /* Altura de la imagen de 70px */
-  width: 160px;
-  /* Ancho de la imagen de 160px */
-  position: relative;
-  /* Posicionamiento relativo */
-  top: 0px;
-}
-
-.nav ul {
-  list-style-type: none;
-  padding: 0;
-  display: flex;
-}
-
-.nav li {
-  margin-right: 25px;
-
-}
-
-.nav a {
-  color: white;
-  text-decoration: none;
-
-}
-
-@media (max-width: 768px) {
-  .header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .nav {
-    margin-top: 20px;
-  }
-
-  .nav ul {
-    flex-direction: column;
-  }
-
-  .nav li {
-    margin-right: 0;
-    margin-bottom: 10px;
-  }
-}
 /*------Para el main-------*/
 /*  establece que los elementos <body> y <html> deben ocupar el 100% de la
  altura del navegador y elimina los márgenes y rellenos para
@@ -168,6 +113,7 @@
   justify-content: center;
   align-items: center;
   transition: all 0.5s;
+
 }
 
 .btn .text {
@@ -189,4 +135,86 @@
 
 .btn:active .icon {
   transform: scale(0.85);
+}
+
+/*aqui pongo mis estilos del submenu*/
+.input {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  background-color: #c2c2c2;
+  justify-content: center;
+  border-radius: 5px;
+  position: absolute; /* Cambiamos la posición a "absolute" */
+  top: 25px; /* Ajustamos la distancia desde la parte superior */
+  right: 90px; /* Ajustamos la distancia desde la derecha si es necesario */
+}
+
+.value {
+  background-color: transparent;
+  border: none;
+  padding: 10px;
+  color: white;
+  display: flex;
+  position: relative;
+  gap: 5px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.value:not(:active):hover,
+.value:focus {
+  background-color: #c2c2c2;
+}
+
+.value:focus,
+.value:active {
+  background-color: #c2c2c2;
+  outline: none;
+}
+
+.value::before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: -10px;
+  width: 5px;
+  height: 80%;
+  background-color: #ffffff;
+  border-radius: 5px;
+  opacity: 0;
+}
+
+.value:focus::before,
+.value:active::before {
+  opacity: 1;
+}
+
+.value svg {
+  width: 15px
+}
+
+.input:hover > :not(.value:hover) {
+  transition: 300ms;
+  filter: blur(1px);
+  transform: scale(0.95,0.95);
+}
+
+/* MEDIA QUERY */
+
+ /* Media query para tamaños de pantalla menores o iguales a 768 píxeles */
+ @media (max-width: 768px) {
+
+
+  /* Establece la propiedad "flex" de los elementos con la clase .image-container a su valor inicial */
+  .image-container {
+    flex: initial;
+  }
+
+  /* Establece la propiedad "flex" de los elementos con la clase .main-content-container a su valor inicial */
+  .main-content-container {
+    flex: initial;
+  }
+
 }
