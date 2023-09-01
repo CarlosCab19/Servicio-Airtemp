@@ -1,6 +1,3 @@
-/* app-header*/
-/* Importa Font Awesome */
-@import "~@fortawesome/fontawesome-free/css/all.min.css";
 
 /*------Para el main-------*/
 /*  establece que los elementos <body> y <html> deben ocupar el 100% de la
@@ -57,149 +54,115 @@
    /*alinea verticalmente los elementos*/
    justify-content: center;
    /*alinea Horizontalmente los elementos*/
-
  }
 
- .logo {
-   max-width: 57%;
-   /*El valor del 57% significa que el ancho máximo será el 57% del ancho de su contenedor.*/
-   height: auto;
-   /*la altura se ajusta automaticamente*/
-   margin-bottom: 30px;
-   /*Agrega un espacio de 30 píxeles en la parte inferior entre el elemento .logo y el elemento siguiente*/
-   margin-top: 30px;
-   /*Agrega un espacio de 30 píxeles en la parte superior entre el elemento .logo y el elemento siguiente*/
+
+ .letrasAirtemp{
+  width: 25% ;
+  height: 20%;
+  position: absolute; /* Establece la posición absoluta para la imagen dentro del contenedor */
+  top: 10%; /* Mueve la imagen hacia la parte superior del contenedor */
+  left: 70%; /* Centra la imagen horizontalmente en el contenedor (ajusta según tus necesidades) */
+  transform: translateX(-5%);  /*Corrige la posición horizontal centrada */
  }
 
- .inputContainer {
-   display: flex;
-   /*establece el contenedor como un contenedor flexible*/
-   flex-direction: column;
-   /*los elementos se colocarán en una columna*/
-   position: relative;
-
- }
-
- /*para el boton menu*/
- .btn {
-  width: 150px;
-  height: 50px;
-  border-radius: 5px;
-  border: none;
-  transition: all 0.5s ease-in-out;
-  font-size: 20px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  background: #c2c2c2;
-  color: #f5f5f5;
-  position: absolute; /* Cambiamos la posición a "absolute" */
-  top: 25px; /* Ajustamos la distancia desde la parte superior */
-  right: 300px; /* Ajustamos la distancia desde la derecha si es necesario */
-}
-
-
-
-.btn:hover {
-  box-shadow: 0 0 20px 0px #2e2e2e3a;
-}
-
-.btn .icon {
-  position: absolute;
-  height: 40px;
-  width: 70px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: all 0.5s;
-
-}
-
-.btn .text {
-  transform: translateX(55px);
-}
-
-.btn:hover .icon {
-  width: 175px;
-}
-
-.btn:hover .text {
-  transition: all 0.5s;
-  opacity: 0;
-}
-
-.btn:focus {
-  outline: none;
-}
-
-.btn:active .icon {
-  transform: scale(0.85);
-}
-
-/*aqui pongo mis estilos del submenu*/
-.input {
-  display: flex;
-  flex-direction: column;
-  width: 200px;
-  background-color: #c2c2c2;
-  justify-content: center;
-  border-radius: 5px;
-  position: absolute; /* Cambiamos la posición a "absolute" */
-  top: 25px; /* Ajustamos la distancia desde la parte superior */
-  right: 90px; /* Ajustamos la distancia desde la derecha si es necesario */
-}
-
-.value {
-  background-color: transparent;
-  border: none;
-  padding: 10px;
-  color: white;
-  display: flex;
-  position: relative;
-  gap: 5px;
-  cursor: pointer;
-  border-radius: 4px;
+ /*Estilos para el formulario login*/
+ .login {
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  display: block;
   font-weight: bold;
+  font-size: x-large;
 }
 
-.value:not(:active):hover,
-.value:focus {
-  background-color: #c2c2c2;
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 350px;
+  width: 300px;
+  flex-direction: column;
+  gap: 35px;
+  background: #dbdada;
+  box-shadow: 5px 5px 10px #c2c2c2,
+        -5px -5px 10px #fefefe;
+  border-radius: 30px;
+  top: 10%;
 }
 
-.value:focus,
-.value:active {
-  background-color: #c2c2c2;
+.inputBox {
+  position: relative;
+  width: 250px;
+}
+
+.inputBox input {
+  width: 100%;
+  padding: 10px;
   outline: none;
+  border: none;
+  color: #000;
+  font-size: 1em;
+  background: transparent;
+  border-left: 2px solid #000;
+  border-bottom: 2px solid #000;
+  transition: 0.1s;
+  border-bottom-left-radius: 8px;
 }
 
-.value::before {
-  content: "";
+.inputBox span {
+  margin-top: 5px;
   position: absolute;
-  top: 5px;
-  left: -10px;
-  width: 5px;
-  height: 80%;
-  background-color: #ffffff;
+  left: 0;
+  transform: translateY(-4px);
+  margin-left: 10px;
+  padding: 10px;
+  pointer-events: none;
+  font-size: 12px;
+  color: #000;
+  text-transform: uppercase;
+  transition: 0.5s;
+  letter-spacing: 3px;
+  border-radius: 8px;
+}
+
+.inputBox input:valid~span,
+.inputBox input:focus~span {
+  transform: translateX(113px) translateY(-15px);
+  font-size: 0.8em;
+  padding: 5px 10px;
+  background: #000;
+  letter-spacing: 0.2em;
+  color: #fff;
+  border: 2px;
+}
+
+.inputBox input:valid,
+.inputBox input:focus {
+  border: 2px solid #000;
+  border-radius: 8px;
+}
+
+.enter {
+  height: 45px;
+  width: 100px;
   border-radius: 5px;
-  opacity: 0;
+  border: 2px solid #000;
+  cursor: pointer;
+  background-color: transparent;
+  transition: 0.5s;
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 2px;
+  margin-bottom: 1em;
 }
 
-.value:focus::before,
-.value:active::before {
-  opacity: 1;
+.enter:hover {
+  background-color: rgb(0, 0, 0);
+  color: white;
 }
 
-.value svg {
-  width: 15px
-}
 
-.input:hover > :not(.value:hover) {
-  transition: 300ms;
-  filter: blur(1px);
-  transform: scale(0.95,0.95);
-}
 
 /* MEDIA QUERY */
 
@@ -215,6 +178,16 @@
   /* Establece la propiedad "flex" de los elementos con la clase .main-content-container a su valor inicial */
   .main-content-container {
     flex: initial;
+    height:70%;
   }
+
+  .letrasAirtemp{
+    width: 50% ;
+    height: 15%;
+    position: absolute; /* Establece la posición absoluta para la imagen dentro del contenedor */
+    top: 52%; /* Mueve la imagen hacia la parte superior del contenedor */
+    left: 25%; /* Centra la imagen horizontalmente en el contenedor (ajusta según tus necesidades) */
+
+   }
 
 }

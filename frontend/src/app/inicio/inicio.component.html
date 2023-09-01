@@ -10,52 +10,21 @@
             </div>
             <!-- CONTENEDOR DERECHO -->
             <div class="col-md-12 main-content-container">
-              <button class="btn" (click)="toggleSubMenu()">
-                <span class="icon">
-                    <svg viewBox="0 0 175 80" width="40" height="40">
-                        <rect width="80" height="15" fill="#f0f0f0" rx="10"></rect>
-                        <rect y="30" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
-                        <rect y="60" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
-                    </svg>
-                </span>
-                <span class="text">MENU</span>
-              </button>
-              <div class="input" *ngIf="showSubMenu">
-                <button class="value" (click)="selectUserType('usuario')">
-                  <i class="fas fa-user" ></i>
-                  Usuario
-                </button>
-                <button class="value" (click)="selectUserType('administrador')">
-                  <i class="fa-solid fa-users-between-lines" style="color: #ffffff;"></i>
-                  Administrador
-                </button>
-                <button class="value" (click)="selectUserType('director')">
-                  <i class="fa-solid fa-users-rectangle" style="color: #ffffff;"></i>
-                  Director
-                </button>
-                <button class="value" (click)="selectUserType('ti')">
-                  <i class="fa-solid fa-users-gear" style="color: #ffffff;"></i>
-                  Desarrollo TI
-                </button>
-              </div>
-              <!--Login para cada tipo de inicio-->
-              <div class="right">
-                <div *ngIf="selectedUserType === ''">
-                  <app-login-usuario></app-login-usuario>
+                  <img class="letrasAirtemp" src="assets/img-logo/Letras_Airtemp.png">
+                <div class="card">
+                    <a class="login">Log in</a>
+                    <div class="inputBox">
+                        <input type="text" required="required">
+                        <span class="user">Username</span>
+                    </div>
+
+                    <div class="inputBox">
+                        <input type="password" required="required">
+                        <span>Password</span>
+                    </div>
+
+                    <button class="enter" routerLink="/vistaUsuario">Enter</button>
                 </div>
-                <div *ngIf="selectedUserType === 'usuario'">
-                  <app-login-usuario></app-login-usuario>
-                </div>
-                <div *ngIf="selectedUserType === 'administrador'">
-                  <app-login-administrador></app-login-administrador>
-                </div>
-                <div *ngIf="selectedUserType === 'director'">
-                  <app-login-director></app-login-director>
-                </div>
-                <div *ngIf="selectedUserType === 'ti'">
-                  <app-login-ti></app-login-ti>
-                </div>
-              </div>
             </div>
         </div>
     </div>

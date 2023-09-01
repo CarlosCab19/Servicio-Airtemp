@@ -1,18 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { InicioComponent } from './inicio/inicio.component';
-import { LoginUsuarioComponent } from './inicio/login-usuario/login-usuario.component';
-import { LoginAdministradorComponent } from './inicio/login-administrador/login-administrador.component';
-import { LoginDirectorComponent } from './inicio/login-director/login-director.component';
-import { LoginTiComponent } from './inicio/login-ti/login-ti.component';
+import { VistaUsuarioComponent } from './vista-usuario/vista-usuario.component';
+import { FormSolicitudCComponent } from './vista-usuario/form-solicitud-c/form-solicitud-c.component';
 
 const routes: Routes = [
   {path:'',component:InicioComponent},
   {path:'inicio',component:InicioComponent},
-  {path:'login/usuario',component:LoginUsuarioComponent},
-  {path:'login/administrador',component:LoginAdministradorComponent},
-  {path:'login/director',component:LoginDirectorComponent},
-  {path:'login/ti',component:LoginTiComponent},
+  {path:'vistaUsuario',component:VistaUsuarioComponent},
+  {path:'formSolicitud',component:FormSolicitudCComponent},
 ];
 
 @NgModule({
