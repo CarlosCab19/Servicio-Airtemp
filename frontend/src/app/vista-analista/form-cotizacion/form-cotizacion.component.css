@@ -64,21 +64,49 @@ header {
       margin-bottom: 10px;
 
   }
+  .container{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;;
+  }
+  .form-group{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .form-groups{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap:20px;
+  }
+
 }
 
 
 /*Formulario de solicitud*/
 
 .container {
-  max-width: 600px;
+  width: 100%;
+  max-width: 1200px;
+  display: 	grid;
+  grid-template-columns: repeat(2,1fr);
   margin: 0 auto;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   /*background-color: #ccc;*/
   background-color: #f1ebeb;
-  border-radius: 30px;
+  /*border-radius: 30px;*/
   margin-top: 10px;
+  margin-block-end: 10px;
+  gap: 50px;
 }
+.formdere{
+  margin-top: 80px;
+}
+
+
+/*este podria ser el del formulario de solicitud*/
+
 .gridform{
   display: grid;
   grid-template-columns: 1fr; /* Una columna*/
@@ -140,23 +168,6 @@ button {
 
 button:hover {
   background-color: #555;
-}
-
-/*Estilos para la fecha*/
- /* Estilos para el input de fecha */
- input[type="date"] {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-  background-color: #f5f5f5;
-  outline: none; /* Elimina el borde de enfoque */
-}
-
-/* Estilo para el texto del label */
-label {
-  font-weight: bold;
-  margin-right: 10px;
 }
 
 

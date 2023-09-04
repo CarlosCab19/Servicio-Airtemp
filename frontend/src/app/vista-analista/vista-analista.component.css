@@ -47,25 +47,66 @@ header {
   color: black;
 
 }
+
+/* Estilos para el submenu */
+.submenu {
+  display: none;
+  position: absolute;
+  background-color: #005ba2;
+  list-style: none;
+  padding:0;
+  margin: 0;
+  z-index: 1;
+  border-radius: 5%;
+  width: max-content;
+}
+.submenu li{
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.menu li:hover .submenu {
+  display: block;
+
+}
+
+/*.submenu li {
+  display: block;
+}*/
+
+/*.submenu li a {
+  color: white;
+  text-decoration: none;
+}*/
+
 /* Estilos responsivos */
 @media screen and (max-width: 768px) {
   header {
       flex-direction: column;
       align-items: flex-start;
   }
-
   .menu {
       margin-top: 10px;
   }
-
   .menu li {
       margin: 20px;
       margin-bottom: 10px;
 
   }
+
+
 }
 
 /*Estilos para la tabla*/
+.card{
+  height: 50%;
+  width: 90%;
+  /*margin: 25px 60px;
+  background-color: #005ba2;*/
+  margin: auto;
+  margin-top: 20px;
+  margin-block-end: 20px;
+}
 
 .responsive-table {
   width: 100%;
@@ -97,6 +138,45 @@ header {
   background-color: #ddd;
 }
 
+/*Estilos para el boton de cotizar*/
+.button {
+  position: relative;
+  overflow: hidden;
+  height: 3rem;
+  padding: 0 2rem;
+  border-radius: 1.5rem;
+  background: #005ba2;
+  background-size: 400%;
+  color: #fff;
+  border: none;
+}
+
+.button:hover::before {
+  transform: scaleX(1);
+}
+
+.button-content {
+  position: relative;
+  z-index: 1;
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  width: 100%;
+  height: inherit;
+  border-radius: inherit;
+  background: linear-gradient(
+    82.3deg,
+    rgb(29, 153, 184) 10.8%,
+    rgb(35, 116, 182) 94.3%
+  );
+  transition: all 0.475s;
+}
 
 /* FOOTER */
 
