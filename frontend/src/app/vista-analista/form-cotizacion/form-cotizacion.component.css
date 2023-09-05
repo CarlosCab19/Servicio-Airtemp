@@ -64,100 +64,112 @@ header {
       margin-bottom: 10px;
 
   }
-  .container{
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;;
-  }
-  .form-group{
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  .form-groups{
-    display: grid;
-    grid-template-columns: 1fr;
-    gap:20px;
-  }
+
 
 }
-
 
 /*Formulario de solicitud*/
-
-.container {
+.container{
   width: 100%;
-  max-width: 1200px;
-  display: 	grid;
-  grid-template-columns: repeat(2,1fr);
-  margin: 0 auto;
-  padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  /*background-color: #ccc;*/
-  background-color: #f1ebeb;
-  /*border-radius: 30px;*/
-  margin-top: 10px;
-  margin-block-end: 10px;
-  gap: 50px;
-}
-.formdere{
-  margin-top: 80px;
-}
-
-
-/*este podria ser el del formulario de solicitud*/
-
-.gridform{
+  max-width: 1000px;
   display: grid;
-  grid-template-columns: 1fr; /* Una columna*/
-  grid-template-rows: repeat(2, auto); /* Dos filas */
-  gap: 0px; /* Espacio entre las celdas */
-}
-.campos{
-  /*background-color: #f1ebeb;*/
-  border-radius: 5px;
-  display: grid;
-  grid-template-columns: max-content auto;
-  align-items: center;
-
+  grid-template-rows: 1fr;
+  margin-top: 20px;
+  margin-block-end: 20px;
+  background-color: rgb(194, 201, 206);
+  border-radius: 20px;
+  gap:5px
 }
 .delinear{
   text-decoration: underline;
-
-}
-h2 {
-  text-align: center;
-}
-
-/* Estilos para el formulario */
-.form-group {
-  margin-bottom: 20px;
-  display: grid;
-  grid-template-columns: repeat(2,1fr); /*dos columnas*/
-  grid-template-rows: repeat(2,auto); /*dos filas*/
-  gap: 10px;
-}
-.form-groups{
-  margin-bottom: 20px;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap:10px;
-}
-
-label {
-  display: block;
   font-weight: bold;
 }
-
-input[type="text"],
-textarea {
+input{
   width: 100%;
-  padding: 10px;
+  padding: 5px;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
+input[type="text1"],
+textarea {
+  width: 25%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.title{
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  text-align: center;
+  background-color: #005ba2;
+  border-radius: 20px;
+  color: white;
+}
+h2{
+  font-weight: bold;
+  margin-top: 10px;
+}
+.encabezado{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  font-weight: bold;
+  /*background-color: blueviolet;*/
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-block-end: 10px;
+}
+.solicitud{
+  /*background-color: aqua;*/
+  font-weight: bold;
 
+}
+.campos{
+  display: grid;
+  grid-template-columns: 160px 500px;
+  gap: 10px;
+
+}
+.campos6{
+  display: grid;
+  grid-template-columns: auto 200px auto 200px auto 200px auto;
+  gap:10px;
+}
+.campos4{
+  display: grid;
+  grid-template-columns: 100px 200px 80px 200px;
+  gap: 10px;
+}
+.fechas{
+ /*background-color: blue;*/
+  font-weight: bold;
+}
+.responsables{
+  /*background-color: aqua;*/
+  font-weight: bold;
+}
+.proveedor{
+  /*background-color: #333;*/
+  font-weight: bold;
+  display: grid;
+  grid-template-rows: 1fr;
+  gap:10px
+}
+.material{
+  /*background-color: aquamarine;*/
+  font-weight: bold;
+}
+.precios{
+  /*background-color:brown;*/
+  font-weight: bold;
+}
+.boton{
+
+  margin-top: 20px;
+  margin-block-end: 20px;
+}
 button {
+  width: 30%;
   background-color: #333;
   color: #fff;
   border: none;
@@ -169,8 +181,6 @@ button {
 button:hover {
   background-color: #555;
 }
-
-
 
 /* FOOTER */
 

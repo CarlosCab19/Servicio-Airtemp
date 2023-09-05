@@ -14,146 +14,90 @@
   </header>
    <!--formulario de solicitus-->
    <div class="container">
-    <div class="formizq">
-       <!--formulario de solicitus-->
-    <div class="container2">
-      <i class="fa-solid fa-dollar-sign fa-flip fa-2xl"></i><h2>FORMULARIO DE COTIZACIÓN</h2>
-      <form action="#" method="POST" class="gridform">
-          <div class="form-group">
-              <div class="camposs">
-                <label for="nombre">COTIZACIÓN:</label>
-                <input type="text" id="nombre" name="nombre" required>
-              </div>
-              <div class="camposs">
-                <label for="nombre">FOLIO:</label>
-                <input type="text" id="nombre" name="nombre" required>
-              </div>
-          </div>
-          <div class="form-group">
-            <div class="camposs">
-              <label for="nombre">SOLICITUD:</label>
-              <input type="text" id="nombre" name="nombre" required>
-            </div>
+      <div class="title">
+        <h2>FORMULARIO DE COTIZACIÓN</h2>
+      </div>
+      <div class="encabezado">
+        <label for="nombre">COTIZACIÓN</label>
+        <label for="nombre">FOLIO</label>
+      </div>
+      <div class="solicitud">
+        <div class="campo">
+          <label for="nombre">SOLICITUD</label>
+          <input type="text1" id="nombre" name="nombre" required>
         </div>
-          <label for="nombre" class="delinear">FECHAS</label>
-          <div class="form-group">
-              <div class="camposs">
-                <label for="nombre">Cotización:</label>
-                <input type="date" id="fecha" name="fecha" required >
-              </div>
-              <div class="camposs">
-                <label for="nombre">Vigencia:</label>
-                <input type="date" id="fecha" name="fecha" required >
-              </div>
-              <div class="camposs">
-                <label for="nombre">Autorización:</label>
-                <select class="form-select" aria-label="Default select example">
-                  <option value="Nueva">Nueva</option>
-                  <!--<option value="Cotizando">Cotizando</option>
-                  <option value="Actualizando">Actualizando</option>
-                  <option value="Rechazada">Rechazada</option>
-                  <option value="Aprovado">Aprovado</option>
-                  <option value="Vencida">Vencida</option>-->
-                </select>
-              </div>
-          </div>
-          <label for="nombre" class="delinear">RESPONSABLES</label>
-          <div class="form-group">
-              <div class="campos">
-                <label for="nombre">Analista:</label>
-                <input type="text" id="nombre" name="nombre" required >
-              </div>
-              <div class="campos">
-                <label for="nombre">Autorizo:</label>
-                <input type="text" id="nombre" name="nombre" required >
-              </div>
-          </div>
-          <label for="nombre" class="delinear">PROVEEDOR</label>
-          <div class="form-groups">
-              <div class="campos">
-                <label for="nombre">Codigo:</label>
-                <input type="text" id="nombre" name="nombre" required>
-              </div>
-              <div class="campos">
-                <label for="nombre">Razon Social:</label>
-                <input type="text" id="nombre" name="nombre" required>
-              </div>
-              <div class="campos">
-                <label for="nombre">Certificaciones:</label>
-                <input type="text" id="nombre" name="nombre" required>
-              </div>
-          </div>
-          <label for="nombre" class="delinear">MATERIAL</label>
-          <div class="form-groups">
-              <div class="campos">
-                <label for="nombre">Codigo:</label>
-                <input type="text" id="nombre" name="nombre" required>
-              </div>
-              <div class="campos">
-                <label for="nombre">Descripción:</label>
-                <input type="text" id="nombre" name="nombre" required>
-              </div>
-              <div class="campos">
-                <label for="nombre">Tipo Familia:</label>
-                <input type="text" id="nombre" name="nombre" required>
-              </div>
-              <div class="campos">
-                <label for="nombre">Caracteristica 1:</label>
-                <input type="text" id="nombre" name="nombre" required>
-              </div>
-              <div class="campos">
-                <label for="nombre">Caracteristica 2:</label>
-                <input type="text" id="nombre" name="nombre" required>
-              </div>
-              <div class="campos">
-                <label for="nombre">Caracteristica 3:</label>
-                <input type="text" id="nombre" name="nombre" required>
-              </div>
-              <div class="campos">
-                <label for="nombre">Caracteristica 4:</label>
-                <input type="text" id="nombre" name="nombre" required>
-              </div>
-              <div class="campos">
-                <label for="nombre">Caracteristica 5:</label>
-                <input type="text" id="nombre" name="nombre" required>
-              </div>
-          </div>
-      </form>
-  </div>
-    </div>
-    <div class="formdere">
-      <div class="container2">
-        <form action="#" method="POST" class="gridform">
-            <label for="nombre" class="delinear">PRECIOS</label>
-            <div class="form-groups">
-                <div class="campos">
-                  <label for="nombre">Fabricación:</label>
-                  <input type="text" id="nombre" name="nombre" required >
-                </div>
-                <div class="campos">
-                  <label for="nombre">LME:</label>
-                  <input type="text" id="nombre" name="nombre" required >
-                </div>
-                <div class="campos">
-                  <label for="nombre">Premiun:</label>
-                  <input type="text" id="nombre" name="nombre" required >
-                </div>
-                <div class="campos">
-                  <label for="nombre">Total:</label>
-                  <input type="text" id="nombre" name="nombre" required >
-                </div>
-                <div class="campos">
-                  <label for="nombre">Icoterm:</label>
-                  <input type="text" id="nombre" name="nombre" required >
-                </div>
-            </div>
-            <div class="form-group">
-                <button type="submit">Enviar</button>
-            </div>
-        </form>
+      </div>
+      <div class="fechas">
+        <label for="nombre" class="delinear">FECHAS</label>
+        <div class="campos6">
+          <label for="nombre">Cotización</label>
+          <input type="text" id="nombre" name="nombre" required>
+          <label for="nombre">Vigencia</label>
+          <input type="text" id="nombre" name="nombre" required>
+         <label for="nombre">Autorización</label>
+         <input type="text" id="nombre" name="nombre" required>
+        </div>
+      </div>
+      <div class="responsables">
+        <label for="nombre" class="delinear">RESPONSABLES</label>
+        <div class="campos4">
+          <label for="nombre">Analista</label>
+          <input type="text" id="nombre" name="nombre" required>
+          <label for="nombre">Autorizo</label>
+          <input type="text" id="nombre" name="nombre" required>
+        </div>
+      </div>
+      <div class="proveedor">
+        <label for="nombre" class="delinear">PROVEEDOR</label>
+        <div class="campos">
+          <label for="nombre">CODIGO</label>
+          <input type="text" id="nombre" name="nombre" required>
+          <label for="nombre">Razon Social</label>
+          <input type="text" id="nombre" name="nombre" required>
+          <label for="nombre">Certificaciones</label>
+          <input type="text" id="nombre" name="nombre" required>
+        </div>
+      </div>
+      <div class="material">
+        <label for="nombre" class="delinear">MATERIAL</label>
+        <div class="campos">
+          <label for="nombre">CODIGO</label>
+          <input type="text" id="nombre" name="nombre" required>
+          <label for="nombre">DESCRIPCION</label>
+          <input type="text" id="nombre" name="nombre" required>
+          <label for="nombre">TIPO FAMILIA</label>
+          <input type="text" id="nombre" name="nombre" required>
+          <label for="nombre">CARACTERISTICA 1</label>
+          <input type="text" id="nombre" name="nombre" required>
+          <label for="nombre">CARACTERISTICA 2</label>
+          <input type="text" id="nombre" name="nombre" required>
+          <label for="nombre">CARACTERISTICA 3</label>
+          <input type="text" id="nombre" name="nombre" required>
+          <label for="nombre">CARACTERISTICA 4</label>
+          <input type="text" id="nombre" name="nombre" required>
+          <label for="nombre">CARACTERISTICA 5</label>
+          <input type="text" id="nombre" name="nombre" required>
+        </div>
+      </div>
+      <div class="precios">
+        <label for="nombre" class="delinear">PRECIOS</label>
+        <div class="campos">
+          <label for="nombre">Fabricación</label>
+          <input type="text" id="nombre" name="nombre" required>
+          <label for="nombre">LME</label>
+          <input type="text" id="nombre" name="nombre" required>
+          <label for="nombre">Premiun</label>
+          <input type="text" id="nombre" name="nombre" required>
+          <label for="nombre">Total</label>
+          <input type="text" id="nombre" name="nombre" required>
+          <label for="nombre">Icoterm</label>
+          <input type="text" id="nombre" name="nombre" required>
+        </div>
+      </div>
+      <div class="boton">
+        <button type="submit">Autorizar</button>
     </div>
     </div>
-  </div>
 <!-- FOOTER -->
 <footer class="footer">
   <div class="copy">

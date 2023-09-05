@@ -10,6 +10,8 @@ import { FormSolicitudCComponent } from './vista-usuario/form-solicitud-c/form-s
 
 import { VistaAnalistaComponent } from './vista-analista/vista-analista.component';
 import { FormCotizacionComponent } from './vista-analista/form-cotizacion/form-cotizacion.component';
+import { VistaDirectorComponent } from './vista-director/vista-director.component';
+import { RechazadaComponent } from './vista-analista/rechazada/rechazada.component';
 
 
 @NgModule({
@@ -21,6 +23,8 @@ import { FormCotizacionComponent } from './vista-analista/form-cotizacion/form-c
 
     VistaAnalistaComponent,
     FormCotizacionComponent,
+    VistaDirectorComponent,
+    RechazadaComponent,
 
 
   ],
