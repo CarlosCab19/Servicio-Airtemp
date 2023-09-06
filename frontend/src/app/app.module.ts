@@ -12,6 +12,15 @@ import { VistaAnalistaComponent } from './vista-analista/vista-analista.componen
 import { FormCotizacionComponent } from './vista-analista/form-cotizacion/form-cotizacion.component';
 import { VistaDirectorComponent } from './vista-director/vista-director.component';
 import { RechazadaComponent } from './vista-analista/rechazada/rechazada.component';
+import { SoliAprobadaComponent } from './soli-aprobada/soli-aprobada.component';
+import { PorCotizarComponent } from './vista-analista/por-cotizar/por-cotizar.component';
+import { VencidaComponent } from './vista-analista/vencida/vencida.component';
+import { SoporteTIComponent } from './soporte-ti/soporte-ti.component';
+import { EditPersonalComponent } from './soporte-ti/edit-personal/edit-personal.component';
+import { AddPersonalComponent } from './soporte-ti/add-personal/add-personal.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 @NgModule({
@@ -25,13 +34,22 @@ import { RechazadaComponent } from './vista-analista/rechazada/rechazada.compone
     FormCotizacionComponent,
     VistaDirectorComponent,
     RechazadaComponent,
+    SoliAprobadaComponent,
+    PorCotizarComponent,
+    VencidaComponent,
+    SoporteTIComponent,
+    EditPersonalComponent,
+    AddPersonalComponent,
 
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

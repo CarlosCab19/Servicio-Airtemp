@@ -1,0 +1,106 @@
+/* Importa Font Awesome */
+@import "~@fortawesome/fontawesome-free/css/all.min.css";
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+ /*estilos para el menu*/
+.menu {
+  background-color:#005ba2;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 250px;
+  padding: 20px;
+  font-weight: bold;
+}
+
+.menu ul {
+  list-style-type: none;
+  padding: 10px;
+}
+
+.menu ul li {
+  margin-bottom: 10px;
+  padding: 10px;
+}
+i {
+  margin-right: 5px;
+}
+img{
+  width: 100%;
+  margin-top: 10px;
+  margin-block-end: 30px;
+}
+.menu ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.menu ul li a:hover {
+  text-decoration: underline;
+  color: black;
+}
+
+@media screen and (max-width: 768px) {
+
+  .menu {
+    width: 190px;
+    padding: 5px;
+    font-weight: bold;
+  }
+  .card{
+    margin-left: 50%;
+  }
+
+}
+
+/*estilos para la tabla del personal*/
+/* Estilos para la tarjeta */
+.card {
+  width: 100%;
+  max-width: 400px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  margin-top: 30px;
+  margin-left: 30%;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+h2{
+  font-weight: bold;
+  text-align: center;
+  background-color: #6495ED;
+  color: white;
+}
+
+/* Estilos para el formulario */
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input{
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

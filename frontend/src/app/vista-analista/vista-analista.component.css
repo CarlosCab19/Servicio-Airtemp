@@ -47,6 +47,9 @@ header {
   color: black;
 
 }
+i {
+  margin-right: 5px;
+}
 
 /* Estilos para el submenu */
 .submenu {
