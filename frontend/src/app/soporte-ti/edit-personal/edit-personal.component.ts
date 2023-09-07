@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Personal } from 'src/app/interfaces/personal';
+import { Personal } from 'src/app/shared/personal';
 import { PersonalService } from 'src/app/services/personal.service';
 
 @Component({
@@ -10,6 +10,8 @@ import { PersonalService } from 'src/app/services/personal.service';
   styleUrls: ['./edit-personal.component.css']
 })
 export class EditPersonalComponent implements OnInit{
+
+
   id!:number;
   personal!:Personal;
   form!:FormGroup;
@@ -27,8 +29,8 @@ export class EditPersonalComponent implements OnInit{
     this.form = new FormGroup({
       nombres:  new FormControl('', [ Validators.required, Validators.pattern('^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ \-\']+') ]),
       apellidos:  new FormControl('', [ Validators.required, Validators.pattern('^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ \-\']+') ]),
-      departamento: new FormControl('', [ Validators.required, Validators.pattern('^(Solicitante|Analista|Director)$') ]),
-      contra:  new FormControl('', [ Validators.required, Validators.pattern('^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ \-\']+') ]),
+      departamento: new FormControl('', [ Validators.required, Validators.pattern('^(Solicitante|Analista|Director|Soporte)$') ]),
+      contra:  new FormControl('', [ Validators.required, Validators.pattern('^[A-Za-z0-9]+$') ]),
       estatus:  new FormControl('', [ Validators.required, Validators.pattern('^(Activo|Inactivo)$') ]),
     });
 
@@ -41,7 +43,7 @@ export class EditPersonalComponent implements OnInit{
     console.log(this.form.value);
     this.personalService.update(this.id, this.form.value).subscribe(res => {
          console.log('Person updated successfully!');
-         this.router.navigateByUrl('/personal/:id');
+         this.router.navigateByUrl('/soporteTI');
     })
   }
 

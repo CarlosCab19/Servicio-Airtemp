@@ -18,8 +18,8 @@ export class AddPersonalComponent implements OnInit{
     this.form = new FormGroup({
       nombres:  new FormControl('', [ Validators.required, Validators.pattern('^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ \-\']+') ]),
       apellidos:  new FormControl('', [ Validators.required, Validators.pattern('^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ \-\']+') ]),
-      departamento: new FormControl('', [ Validators.required, Validators.pattern('^(Solicitante|Analista|Director)$') ]),
-      contra:  new FormControl('', [ Validators.required, Validators.pattern('^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ \-\']+') ]),
+      departamento: new FormControl('', [ Validators.required, Validators.pattern('^(Solicitante|Analista|Director|Soporte)$') ]),
+      contra:  new FormControl('', [ Validators.required, Validators.pattern('^[A-Za-z0-9]+$') ]),
       estatus:  new FormControl('', [ Validators.required, Validators.pattern('^(Activo|Inactivo)$') ]),
     });
   }

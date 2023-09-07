@@ -27,7 +27,7 @@ const routes: Routes = [
   {path:'porCotizar',component:PorCotizarComponent},
   {path:'cotizacionVencida',component:VencidaComponent},
   {path:'soporteTI',component:SoporteTIComponent},
-  {path:'editPersonal',component:EditPersonalComponent},
+  {path:'editPersonal/:id',component:EditPersonalComponent},
   {path:'addPersonal',component:AddPersonalComponent},
 
 ];

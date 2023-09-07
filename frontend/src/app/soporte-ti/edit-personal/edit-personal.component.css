@@ -53,54 +53,31 @@ img{
     padding: 5px;
     font-weight: bold;
   }
-  .card{
-    margin-left: 50%;
+  .container{
+    margin-left: 220px;
   }
 
 }
 
 /*estilos para la tabla del personal*/
-/* Estilos para la tarjeta */
-.card {
-  width: 100%;
-  max-width: 400px;
-  background-color: #f0f0f0;
-  border-radius: 10px;
-  margin-top: 30px;
-  margin-left: 30%;
+.container{
+  margin-top: 10%;
+  width: 50%;
+  height: 50%;
+  background-color: #90EE90;
   padding: 20px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  font-weight: bold;
 }
+.btn{
+  background-color: #228B22;
+  color: black;
+  font-weight: bold;
+}
+
 h2{
   font-weight: bold;
   text-align: center;
   background-color: #6495ED;
   color: white;
-}
-
-/* Estilos para el formulario */
-.form-group {
-  margin-bottom: 20px;
-}
-
-label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-input{
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-button {
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
 }

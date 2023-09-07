@@ -2,7 +2,7 @@ import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Personal } from '../interfaces/personal';
+import { Personal } from '../shared/personal';
 import { PersonalService } from '../services/personal.service';
 
 @Component({
@@ -14,6 +14,7 @@ import { PersonalService } from '../services/personal.service';
 export class SoporteTIComponent implements OnInit{
 
   personals:Personal[]=[];
+  showPassword: boolean = false;
 
 
   constructor(public personalService:PersonalService,

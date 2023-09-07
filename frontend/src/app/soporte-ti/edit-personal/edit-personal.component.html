@@ -6,42 +6,63 @@
           <li><a routerLink="/aprobados"><i class="fa-solid fa-file-invoice-dollar fa-lg"></i>Cotizadas</a></li>
           <li><a routerLink="/cotizacionRechazada"><i class="fa-solid fa-filter-circle-dollar fa-lg"></i>Rechazadas</a></li>
           <li><a routerLink="/cotizacionVencida"><i class="fa-solid fa-hourglass-end fa-lg"></i>Vencidas</a></li>
-          <li><a routerLink=""><i class="fa-solid fa-right-from-bracket fa-lg"></i>Salir</a></li>
+          <li><a routerLink="/soporteTI"><i class="fa-solid fa-rotate-left fa-lg"></i>Regresar</a></li>
       </ul>
   </nav>
   <!--Card para el lado derecho donde se podra ver la tabla del personal-->
-  <div class="card">
+  <div class="container">
     <h2>Datos del Personal</h2>
     <form [formGroup]="form" (ngSubmit)="submit()">
-        <div class="form-group" >
-            <label for="nombre">Nombres:</label>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group" >
+            <label for="nombres">Nombres:</label>
             <input formControlName="nombres" [(ngModel)]="personal.nombres" id="name" type="text" class="form-control">
+          </div>
         </div>
-        <div class="form-group">
-          <label for="apellidos">Apellidos:</label>
-          <input formControlName="apellidos" [(ngModel)]="personal.apellidos" id="name" type="text" class="form-control">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="apellidos">Apellidos:</label>
+            <input formControlName="apellidos" [(ngModel)]="personal.apellidos" id="apellidos" type="text" class="form-control">
+          </div>
         </div>
-        <div class="form-group">
-          <label for="departamento">Departamento:</label>
-          <select class="form-select" aria-label="Default select example" [(ngModel)]="personal.departamento" formControlName="departamento" id="departamento">
-            <!--<option selected>Open this select menu</option>-->
-            <option value="Solicitante">Solicitante</option>
-            <option value="Analista">Analista</option>
-            <option value="Director">Director</option>
-          </select>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="departamento">Departamento:</label>
+            <select class="form-select" aria-label="Default select example" [(ngModel)]="personal.departamento" formControlName="departamento" id="departamento">
+              <option value="Solicitante">Solicitante</option>
+              <option value="Analista">Analista</option>
+              <option value="Director">Director</option>
+              <option value="Soporte">Soporte</option>
+            </select>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="contra">Contraseña:</label>
-          <input formControlName="contra" [(ngModel)]="personal.contra" id="name" type="text" class="form-control">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="contra">Contraseña:</label>
+            <input formControlName="contra" [(ngModel)]="personal.contra" id="name" type="text" class="form-control" >
+          </div>
         </div>
-        <div class="form-group">
-          <label for="contra">Estatus:</label>
-          <select class="form-select" aria-label="Default select example" [(ngModel)]="personal.estatus" formControlName="estatus" id="estatus">
-            <option value="Activo">Activo</option>
-            <option value="Inactivo">Inactivo</option>
-        </select>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="contra">Estatus:</label>
+            <select class="form-select" aria-label="Default select example" [(ngModel)]="personal.estatus" formControlName="estatus" id="estatus">
+              <option value="Activo">Activo</option>
+              <option value="Inactivo">Inactivo</option>
+            </select>
+          </div>
         </div>
-        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Actualizar</button>
+      </div>
+      <br>
+        <div class="row justify-content-between">
+          <div class="col-md-6">
+            <button class="btn" type="submit" [disabled]="!form.valid">Actualizar</button>
+          </div>
+        </div>
     </form>
 </div>
 </body>
