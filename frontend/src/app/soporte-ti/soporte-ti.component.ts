@@ -14,12 +14,12 @@ import { PersonalService } from '../services/personal.service';
 export class SoporteTIComponent implements OnInit{
 
   personals:Personal[]=[];
-  showPassword: boolean = false;
 
 
-  constructor(public personalService:PersonalService,
-     public http:HttpClient,
-     public router:Router,
+
+  constructor(private personalService:PersonalService,
+     private http:HttpClient,
+     private router:Router,
      public datePipe: DatePipe){}
 
   ngOnInit(): void {

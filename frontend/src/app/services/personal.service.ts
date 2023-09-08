@@ -17,11 +17,11 @@ export class PersonalService {
  }
  constructor(private httpClient: HttpClient) { }
 
- /*filtrado(): Observable <Personal[]> {
+ filtrado(): Observable <Personal[]> {
    let direccion = this.url;
    return this.httpClient.get<Personal[]>(direccion);
 
- }*/
+ }
 
  getAll(): Observable<Personal[]> {
    return this.httpClient.get<Personal[]>(this.url)

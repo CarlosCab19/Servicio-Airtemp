@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nombres');
             $table->string('apellidos');
             $table->string('departamento');
+            $table->string('usuario');
             $table->string('contra');
             $table->string('estatus');
             $table->timestamps();

@@ -3,6 +3,7 @@ export interface Personal {
     nombres: string;
     apellidos: string;
     departamento:string;
+    usuario:string;
     contra:string;
     estatus:string;
     created_at:Date;

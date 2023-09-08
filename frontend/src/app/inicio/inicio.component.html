@@ -11,20 +11,23 @@
             <!-- CONTENEDOR DERECHO -->
             <div class="col-md-12 main-content-container">
                   <img class="letrasAirtemp" src="assets/img-logo/Letras_Airtemp.png">
-                <div class="card">
+                <form class="formulario" #forma="ngForm" (ngSubmit)="onSubmit(forma)">
+                  <div class="alert alert-danger" *ngIf="error">
+                    <strong>Alerta!</strong> Usuario o Contraseña Inválida.
+                  </div>
                     <a class="login">Log in</a>
                     <div class="inputBox">
-                        <input type="text" required="required">
+                        <input #name="ngModel" name="usuario" [(ngModel)]="usuario" id="usuario"  type="text" required="required">
                         <span class="user">Username</span>
                     </div>
 
                     <div class="inputBox">
-                        <input type="password" required="required">
+                        <input #name="ngModel" name="contra" [(ngModel)]="contra"  id="contra" type="password" required="required">
                         <span>Password</span>
                     </div>
 
-                    <button class="enter" routerLink="/soporteTI">Enter</button>
-                </div>
+                    <button type="submit" class="enter">Enter</button>
+                  </form>
             </div>
         </div>
     </div>

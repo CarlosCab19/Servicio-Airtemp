@@ -14,6 +14,7 @@ class Personal extends Model
         'nombres',
         'apellidos',
         'departamento',
+        'usuario',
         'contra',
         'estatus',
     ];

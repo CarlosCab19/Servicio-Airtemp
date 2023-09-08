@@ -6,7 +6,7 @@
           <li><a routerLink="/aprobados"><i class="fa-solid fa-file-invoice-dollar fa-lg"></i>Cotizadas</a></li>
           <li><a routerLink="/cotizacionRechazada"><i class="fa-solid fa-filter-circle-dollar fa-lg"></i>Rechazadas</a></li>
           <li><a routerLink="/cotizacionVencida"><i class="fa-solid fa-hourglass-end fa-lg"></i>Vencidas</a></li>
-          <li><a routerLink="/soporteTI"><i class="fa-solid fa-rotate-left fa-lg"></i>Regresar</a></li>
+          <li><a routerLink="/soporte/:id"><i class="fa-solid fa-rotate-left fa-lg"></i>Regresar</a></li>
       </ul>
   </nav>
   <!--Card para el lado derecho donde se podra ver la tabla del personal-->
@@ -41,8 +41,8 @@
         </div>
         <div class="col-md-6">
           <div class="form-group">
-            <label for="contra">Contraseña:</label>
-            <input formControlName="contra" [(ngModel)]="personal.contra" id="name" type="text" class="form-control" >
+            <label for="usuario">Usuario:</label>
+            <input formControlName="usuario" [(ngModel)]="personal.usuario" id="name" type="text" class="form-control" >
           </div>
         </div>
       </div>
@@ -54,6 +54,12 @@
               <option value="Activo">Activo</option>
               <option value="Inactivo">Inactivo</option>
             </select>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="contra">Contraseña:</label>
+            <input formControlName="contra" [(ngModel)]="personal.contra" id="name" type="text" class="form-control" >
           </div>
         </div>
       </div>

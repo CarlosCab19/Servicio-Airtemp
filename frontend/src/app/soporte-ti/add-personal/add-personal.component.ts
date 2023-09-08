@@ -19,6 +19,7 @@ export class AddPersonalComponent implements OnInit{
       nombres:  new FormControl('', [ Validators.required, Validators.pattern('^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ \-\']+') ]),
       apellidos:  new FormControl('', [ Validators.required, Validators.pattern('^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ \-\']+') ]),
       departamento: new FormControl('', [ Validators.required, Validators.pattern('^(Solicitante|Analista|Director|Soporte)$') ]),
+      usuario:  new FormControl('', [ Validators.required, Validators.pattern('^[A-Za-z0-9]+$') ]),
       contra:  new FormControl('', [ Validators.required, Validators.pattern('^[A-Za-z0-9]+$') ]),
       estatus:  new FormControl('', [ Validators.required, Validators.pattern('^(Activo|Inactivo)$') ]),
     });
@@ -32,7 +33,7 @@ export class AddPersonalComponent implements OnInit{
     console.log(this.form.value);
     this.personalService.create(this.form.value).subscribe(res => {
          console.log('Person created successfully!');
-         this.router.navigateByUrl('/soporteTI');
+         this.router.navigateByUrl('/soporte/:id');
     })
   }
 

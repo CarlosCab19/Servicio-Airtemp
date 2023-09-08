@@ -17,6 +17,7 @@ class PersonalController extends Controller
         $data['nombres'] = $request['nombres'];
         $data['apellidos'] = $request['apellidos'];
         $data['departamento'] = $request['departamento'];
+        $data['usuario'] = $request['usuario'];
         $data['contra'] = $request['contra'];
         $data['estatus'] = $request['estatus'];
         Personal::create($data);
@@ -43,6 +44,7 @@ class PersonalController extends Controller
         $data['nombres'] = $request['nombres'];
         $data['apellidos'] = $request['apellidos'];
         $data['departamento'] = $request['departamento'];
+        $data['usuario'] = $request['usuario'];
         $data['contra'] = $request['contra'];
         $data['estatus'] = $request['estatus'];
         Personal::find($id)->update($data);
