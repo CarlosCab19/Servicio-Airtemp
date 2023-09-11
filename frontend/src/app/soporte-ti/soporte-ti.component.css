@@ -69,16 +69,13 @@ header {
   display: block;
 
 }
-
-/*.submenu li {
-  display: block;
-}*/
-
-/*.submenu li a {
+.nombres{
+  width: 100%;
+  height: 30px;
+  background-color: #2F4F4F;
   color: white;
-  text-decoration: none;
-}*/
-
+  font-weight: bold;
+}
 /* Estilos responsivos */
 @media screen and (max-width: 768px) {
   header {

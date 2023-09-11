@@ -44,7 +44,7 @@ export class EditPersonalComponent implements OnInit{
     console.log(this.form.value);
     this.personalService.update(this.id, this.form.value).subscribe(res => {
          console.log('Person updated successfully!');
-         this.router.navigateByUrl('/soporte/:id');
+         this.router.navigate(['/soporte/', this.id]);
     })
   }
 

@@ -98,8 +98,16 @@ header {
       margin-bottom: 10px;
 
   }
+
 }
 
+.nombres{
+  width: 100%;
+  height: 30px;
+  background-color: #2F4F4F;
+  color: white;
+  font-weight: bold;
+}
 /*Estilos para la tabla*/
 
 
@@ -134,11 +142,26 @@ header {
 }
 /* TABLA */
 thead {
-  background-color: darkseagreen !important;
+  background-color: #8fbc8f !important;
   /* Color de fondo para el encabezado de la tabla*/
 
 }
-
+/*Para mas informacion de la solicitud*/
+.masinfo{
+  height: 200px;
+  width: 800px;
+  max-width: 800px;
+  margin-top: 20px;
+  margin-block-end: 20px;
+  border-radius: 10px;
+  background-color: #8fbc8f;
+}
+#container{
+  display: grid;
+  gap: 20px;
+  grid-template-columns: auto  auto;
+  /*background-color: #000000;*/
+}
 
 /* FOOTER */
 

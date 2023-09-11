@@ -12,9 +12,8 @@ import { PersonalService } from '../services/personal.service';
   providers: [DatePipe], // Añade DatePipe a los providers
 })
 export class SoporteTIComponent implements OnInit{
-
+  usuario: string = "Default";
   personals:Personal[]=[];
-
 
 
   constructor(private personalService:PersonalService,
@@ -25,8 +24,8 @@ export class SoporteTIComponent implements OnInit{
   ngOnInit(): void {
     this.personalService.getAll().subscribe((data: Personal[])=>{
       this.personals = data;
-      console.log(this.personals);
-    })
+      /*console.log(this.personals);*/
+    });
   }
 
   deletePerson(id: number){
