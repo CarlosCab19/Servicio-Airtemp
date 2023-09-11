@@ -1,0 +1,134 @@
+/* Importa Font Awesome */
+@import "~@fortawesome/fontawesome-free/css/all.min.css";
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+ /*estilos para el menu*/
+.menu {
+  background-color:#005ba2;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 250px;
+  padding: 20px;
+  font-weight: bold;
+
+}
+
+.menu ul {
+  list-style-type: none;
+  padding: 10px;
+}
+
+.menu ul li {
+  margin-bottom: 10px;
+  padding: 10px;
+}
+i {
+  margin-right: 5px;
+}
+img{
+  width: 100%;
+  margin-top: 10px;
+  margin-block-end: 30px;
+}
+.menu ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.menu ul li a:hover {
+  text-decoration: underline;
+  color: black;
+}
+
+/*Para el nombre de que perfil es*/
+.header{
+  position: fixed;
+  background-color: #c9c9c9;
+  width: 100%;
+  height: 70px;
+  margin-left: 250px;
+}
+.nombre{
+  margin-left: 10px;
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/*estilos para la tabla*/
+
+/*Estilos para la tabla*/
+.card{
+  position: fixed;
+  height: 50%;
+  width: 80%;
+  margin: auto;
+  margin-top: 80px;
+  margin-left: 260px;
+  margin-block-end: 20px;
+
+}
+
+.responsive-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.responsive-table th,
+.responsive-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.responsive-table th {
+  background-color: #ffff00b0;
+  color: #000000;
+}
+.table th {
+  background-color: #FFFF00b0;
+  color: #fff;
+}
+.responsive-table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.responsive-table tbody tr:hover {
+  background-color: #ddd;
+}
+/*estilos para el titulo*/
+h2{
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+  background-color: #6495ED;
+  color: black;
+}
+
+@media screen and (max-width: 768px) {
+
+  .menu {
+    width: 190px;
+    padding: 5px;
+    font-weight: bold;
+  }
+  .container{
+    margin-left: 220px;
+  }
+  .header{
+    margin-left: 190px;
+  }
+  .nombre{
+    font-size: 20px;
+  }
+
+}

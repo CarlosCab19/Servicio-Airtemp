@@ -1,0 +1,196 @@
+/* Importa Font Awesome */
+@import "~@fortawesome/fontawesome-free/css/all.min.css";
+/* Estilos generales */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Estilos para el encabezado (header) */
+header {
+  background-color: #005ba2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.logo img {
+  max-width: 25%;
+  height: auto;
+}
+
+/* Estilos para el menú */
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  font-weight: bold;
+}
+
+.menu li {
+  margin-right: 20px;
+  position: relative;
+}
+.menu li :hover{
+  color: black;
+}
+.menu li a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease, text-decoration 0.3s ease; /* Transición suave del color y el subrayado durante 0.3 segundos */
+  padding: 10px;
+}
+.menu li a :hover{
+  color: black;
+
+}
+i {
+  margin-right: 5px;
+}
+
+/* Estilos para el submenu */
+.submenu {
+  display: none;
+  position: absolute;
+  background-color: #005ba2;
+  list-style: none;
+  padding:0;
+  margin: 0;
+  z-index: 1;
+  border-radius: 5%;
+  width: max-content;
+}
+.submenu li{
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.menu li:hover .submenu {
+  display: block;
+
+}
+
+/*.submenu li {
+  display: block;
+}*/
+
+/*.submenu li a {
+  color: white;
+  text-decoration: none;
+}*/
+
+/* Estilos responsivos */
+@media screen and (max-width: 768px) {
+  header {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+  .menu {
+      margin-top: 10px;
+  }
+  .menu li {
+      margin: 20px;
+      margin-bottom: 10px;
+
+  }
+
+
+}
+
+/*Estilos para la tabla*/
+.card{
+  height: 50%;
+  width: 90%;
+  /*margin: 25px 60px;
+  background-color: #005ba2;*/
+  margin: auto;
+  margin-top: 20px;
+  margin-block-end: 20px;
+}
+
+.responsive-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.responsive-table th,
+.responsive-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.responsive-table th {
+  background-color: #8fbc8f;
+  color: #000000;
+}
+.table th {
+  background-color: #8fbc8f;
+  color: #fff;
+}
+.responsive-table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.responsive-table tbody tr:hover {
+  background-color: #ddd;
+}
+
+/*Estilos para el boton de cotizar*/
+.button {
+  position: relative;
+  overflow: hidden;
+  height: 3rem;
+  padding: 0 2rem;
+  border-radius: 1.5rem;
+  background: #005ba2;
+  background-size: 400%;
+  color: #fff;
+  border: none;
+}
+
+.button:hover::before {
+  transform: scaleX(1);
+}
+
+.button-content {
+  position: relative;
+  z-index: 1;
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  width: 100%;
+  height: inherit;
+  border-radius: inherit;
+  background: linear-gradient(
+    82.3deg,
+    rgb(29, 153, 184) 10.8%,
+    rgb(35, 116, 182) 94.3%
+  );
+  transition: all 0.475s;
+}
+
+/* FOOTER */
+
+/* Estilo para el pie de página */
+.footer {
+  background-color: #005ba2;
+  /* Color de fondo del pie de página*/
+  padding: 20px 0;
+  /* Espaciado interior de 20 píxeles en la parte superior e inferior */
+  text-align: center;
+  /* Alineación del texto al centro dentro del pie de página */
+  color: white;
+  /* Color del texto*/
+}

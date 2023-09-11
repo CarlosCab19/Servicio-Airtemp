@@ -1,0 +1,77 @@
+<body>
+  <nav class="menu">
+    <img src="assets\img-logo\Letras_Airtemp.png">
+      <ul>
+          <li><a  routerLink="/porCotizar"><i class="fa-solid fa-comment-dollar fa-lg"></i>Por Cotizar</a></li>
+          <li><a routerLink="/aprobados"><i class="fa-solid fa-file-invoice-dollar fa-lg"></i>Cotizadas</a></li>
+          <li><a routerLink="/cotizacionRechazada"><i class="fa-solid fa-filter-circle-dollar fa-lg"></i>Rechazadas</a></li>
+          <li><a routerLink="/cotizacionVencida"><i class="fa-solid fa-hourglass-end fa-lg"></i>Vencidas</a></li>
+          <li><a routerLink="/soporte/:id"><i class="fa-solid fa-rotate-left fa-lg"></i>Regresar</a></li>
+      </ul>
+  </nav>
+  <!--Formulario para añadir al personal-->
+<div class="container">
+  <h2>Añadir Personal</h2>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="row">
+          <div class="col-md-6">
+              <div class="form-group">
+                  <label for="nombres" style="font-weight: bold;">Nombre:</label>
+                  <input formControlName="nombres" id="nombres" type="text" class="form-control">
+              </div>
+          </div>
+          <div class="col-md-6">
+              <div class="form-group">
+                  <label for="apellidos" style="font-weight: bold;">Apellidos:</label>
+                  <input formControlName="apellidos" id="apellidos" type="text" class="form-control">
+              </div>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="departamento" style="font-weight: bold;">Departamento:</label>
+                <select class="form-select" formControlName="departamento" id="departamento">
+                  <option value="Solicitante">Solicitante</option>
+                  <option value="Analista">Analista</option>
+                  <option value="Director">Director</option>
+                  <option value="Soporte">Soporte</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="usuario" style="font-weight: bold;">Usuario:</label>
+                <input formControlName="usuario" id="usuario" type="text" class="form-control">
+            </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="estatus" style="font-weight: bold;">Estatus:</label>
+                <select class="form-select" formControlName="estatus" id="estatus">
+                  <option value="Activo">Activo</option>
+                  <option value="Inactivo">Inactivo</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+              <label for="contra" style="font-weight: bold;">Contraseña:</label>
+              <input formControlName="contra" id="contra" type="text" class="form-control">
+          </div>
+      </div>
+      </div>
+      <br>
+      <div class="row justify-content-between">
+        <div class="col-md-6">
+            <button class="btn" type="submit" [disabled]="!form.valid">Registrar</button>
+        </div>
+      </div>
+
+  </form>
+</div>
+
+
+</body>

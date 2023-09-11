@@ -5,7 +5,7 @@
     </div>
     <nav>
         <ul class="menu">
-            <li><a href="#" routerLink="/vistaUsuario"><i class="fa-solid fa-ban fa-lg"></i>Cancelar</a></li>
+            <li><a href="#" routerLink="/solicitante/:id"><i class="fa-solid fa-ban fa-lg"></i>Cancelar</a></li>
             <!--<li><a href="#" routerLink="/formSolicitud"><i class="fa-solid fa-user-pen fa-lg"></i>Solicitar Cotización </a></li>-->
             <!--<li><a href="#"><i class="fa-solid fa-file-pen fa-lg"></i>Ver solicitudes</a></li>-->
             <li><a href="#" routerLink="/inicio"><i class="fa-solid fa-right-from-bracket fa-lg"></i>Salir</a></li>
@@ -14,24 +14,41 @@
   </header>
     <!--formulario de solicitus-->
     <div class="container">
-      <i class="fa-solid fa-spinner fa-spin-pulse fa-2xl"></i><h2>Solicitud de Cotización</h2>
+      <i class="fa-solid fa-spinner fa-spin-pulse fa-2xl"></i><h2>SOLICITUD DE COTIZACIÓN</h2>
       <form action="#" method="POST" class="gridform">
+        <div class="form-groups">
+          <div class="campos">
+            <label for="nombre">SOLICITUS DE COTIZACIÓN:</label>
+            <input type="text" id="nombre" name="nombre" required >
+          </div>
+          <div class="campos">
+            <label for="nombre">FOLIO:</label>
+            <input type="text" id="nombre" name="nombre" required >
+          </div>
+        </div>
           <label for="nombre" class="delinear">FECHAS</label>
           <div class="form-group">
               <div class="camposs">
                 <label for="nombre">Solicitud:</label>
-                <input type="text" id="nombre" name="nombre" required>
+                <input type="date" id="fecha" name="fecha" required >
               </div>
               <div class="camposs">
                 <label for="nombre">Estatus:</label>
-                <input type="text" id="nombre" name="nombre" required>
+                <select class="form-select" aria-label="Default select example">
+                  <option value="Nueva">Nueva</option>
+                  <!--<option value="Cotizando">Cotizando</option>
+                  <option value="Actualizando">Actualizando</option>
+                  <option value="Rechazada">Rechazada</option>
+                  <option value="Aprovado">Aprovado</option>
+                  <option value="Vencida">Vencida</option>-->
+                </select>
               </div>
           </div>
           <label for="nombre" class="delinear">RESPONSABLES</label>
           <div class="form-groups">
               <div class="campos">
                 <label for="nombre">Solicitante:</label>
-                <input type="text" id="nombre" name="nombre" required>
+                <input type="text" id="nombre" name="nombre" required >
               </div>
           </div>
           <label for="nombre" class="delinear">PROVEEDOR</label>
@@ -86,6 +103,12 @@
               <button type="submit">Enviar</button>
           </div>
       </form>
-  </div>
+    </div>
 
-</body>
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="copy">
+    Copyrigth © <span id="año-actual"></span> Airtemp de México S.A de C.V
+  </div>
+</footer>
+
