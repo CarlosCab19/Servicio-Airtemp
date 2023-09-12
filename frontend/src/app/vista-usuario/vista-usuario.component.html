@@ -12,19 +12,20 @@
       </nav>
   </header>
   <div class="nombres">
-    <p>Nombres:</p>
+    <p>Nombres:{{nombrePersonal}}</p>
     </div>
 
-  <div class="table-responsive" id="container" style="width:max-content">
-    <div class="container-fluid my-4">
-      <table class="responsive-table table-bordered" style="width:100%">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <table class="responsive-table table-bordered" style="width:100%">
           <thead>
             <tr>
               <th>Folio</th>
-              <th>Fecha Sol.</th>
+              <th>Fecha Solicitud</th>
               <th>Solicitante</th>
               <th>Estatus</th>
-              <th>Ver</th>
+              <th>Información</th>
             </tr>
           </thead>
           <tbody>
@@ -32,19 +33,34 @@
                   <td>Dato 1</td>
                   <td>Dato 2</td>
                   <td>Dato 3</td>
-                  <td>Dato 1</td>
-                  <td>VerDatos</td>
+                  <td>Dato 4</td>
+                  <td><button (click)="toggleInfo()">
+                    ver +
+                </button></td>
+              </tr>
+              <tr>
+                <td>Dato 1</td>
+                <td>Dato 2</td>
+                <td>Dato 3</td>
+                <td>Dato 1</td>
+                <td>VerDatos</td>
+              </tr>
+              <tr>
+                <td>Dato 1</td>
+                <td>Dato 2</td>
+                <td>Dato 3</td>
+                <td>Dato 1</td>
+                <td>VerDatos</td>
               </tr>
               <!-- Agrega más filas según sea necesario -->
           </tbody>
       </table>
-    </div>
-    <div class="masinfo">
-
+      </div>
+      <div class="col-6" *ngIf="mostrarInformacion">
+        <app-masinfo-soli></app-masinfo-soli>
+      </div>
     </div>
   </div>
-
-
     <!-- FOOTER -->
     <footer class="footer">
       <div class="copy">

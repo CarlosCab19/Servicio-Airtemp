@@ -12,7 +12,10 @@ import { PersonalService } from '../services/personal.service';
   providers: [DatePipe], // Añade DatePipe a los providers
 })
 export class SoporteTIComponent implements OnInit{
-  usuario: string = "Default";
+  nombrePersonal:string="ffgdg";
+  id:string="";
+  personalN!:Personal;
+
   personals:Personal[]=[];
 
 
@@ -26,9 +29,15 @@ export class SoporteTIComponent implements OnInit{
       this.personals = data;
       /*console.log(this.personals);*/
     });
+    /*this.id=this.rutaActiva.snapshot.paramMap.get('id');*/
+    this.personalService.find(this.id).subscribe(response=>{
+      this.personalN=response;
+      this.nombrePersonal=response.nombres;
+
+    });
   }
 
-  deletePerson(id: number){
+  deletePerson(id: string){
     this.personalService.delete(id).subscribe(res => {
          this.personals = this.personals.filter(item => item.id !== id);
          console.log('Personal deleted successfully!');

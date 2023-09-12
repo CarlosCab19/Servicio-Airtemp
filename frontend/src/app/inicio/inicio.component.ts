@@ -12,7 +12,7 @@ export class InicioComponent implements OnInit{
   usuario: string = "";
   contra: string = "";
   personals: Personal[] = [];
-  id: number | undefined;
+  id: string | undefined;
   admin: Personal | undefined;
   error: boolean = false;
 

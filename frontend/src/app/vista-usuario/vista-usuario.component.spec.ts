@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VistaUsuarioComponent } from './vista-usuario.component';
+import { VistaUsuarioComponent } from './VistaUsuarioComponent';
 
 describe('VistaUsuarioComponent', () => {
   let component: VistaUsuarioComponent;
