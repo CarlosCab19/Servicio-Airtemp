@@ -9,7 +9,7 @@ import { PersonalService } from 'src/app/services/personal.service';
   styleUrls: ['./add-personal.component.css']
 })
 export class AddPersonalComponent implements OnInit{
-
+  id!:number;
   form!: FormGroup;
 
   constructor(public personalService:PersonalService,public router:Router){}
@@ -33,7 +33,7 @@ export class AddPersonalComponent implements OnInit{
     console.log(this.form.value);
     this.personalService.create(this.form.value).subscribe(res => {
          console.log('Person created successfully!');
-         this.router.navigateByUrl('/soporte/:id');
+         this.router.navigate(['/soporte/', this.id]);
     })
   }
 

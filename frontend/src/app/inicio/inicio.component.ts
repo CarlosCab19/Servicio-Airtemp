@@ -12,7 +12,7 @@ export class InicioComponent implements OnInit{
   usuario: string = "";
   contra: string = "";
   personals: Personal[] = [];
-  id: number | undefined;
+  id: string | undefined;
   admin: Personal | undefined;
   error: boolean = false;
 
@@ -28,7 +28,7 @@ export class InicioComponent implements OnInit{
     this.error = true; // Establece error como verdadero por defecto
 
     for (const element of this.personals) {
-      if (element.usuario === this.usuario && element.contra === this.contra) {
+      if (element.usuario === this.usuario && element.contra === this.contra && element.estatus === 'Activo') {
         this.id = element.id;
         this.admin = element;
         this.error = false; // Resetea el error si las credenciales coinciden

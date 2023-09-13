@@ -12,9 +12,11 @@ import { PersonalService } from '../services/personal.service';
   providers: [DatePipe], // Añade DatePipe a los providers
 })
 export class SoporteTIComponent implements OnInit{
+  nombrePersonal:string="ffgdg";
+  id:string="";
+  personalN!:Personal;
 
   personals:Personal[]=[];
-
 
 
   constructor(private personalService:PersonalService,
@@ -25,11 +27,17 @@ export class SoporteTIComponent implements OnInit{
   ngOnInit(): void {
     this.personalService.getAll().subscribe((data: Personal[])=>{
       this.personals = data;
-      console.log(this.personals);
-    })
+      /*console.log(this.personals);*/
+    });
+    /*this.id=this.rutaActiva.snapshot.paramMap.get('id');*/
+    this.personalService.find(this.id).subscribe(response=>{
+      this.personalN=response;
+      this.nombrePersonal=response.nombres;
+
+    });
   }
 
-  deletePerson(id: number){
+  deletePerson(id: string){
     this.personalService.delete(id).subscribe(res => {
          this.personals = this.personals.filter(item => item.id !== id);
          console.log('Personal deleted successfully!');

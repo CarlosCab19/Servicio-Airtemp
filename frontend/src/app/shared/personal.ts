@@ -1,5 +1,5 @@
 export interface Personal {
-    id: number;
+    id: string;
     nombres: string;
     apellidos: string;
     departamento:string;
