@@ -1,17 +1,15 @@
 <body>
-  <header>
+  <!--<header>
     <div class="logo">
         <img src="assets\img-logo\Letras_Airtemp.png" alt="Logo">
     </div>
     <nav>
         <ul class="menu">
             <li><a href="#" routerLink="/solicitante/:id"><i class="fa-solid fa-ban fa-lg"></i>Cancelar</a></li>
-            <!--<li><a href="#" routerLink="/formSolicitud"><i class="fa-solid fa-user-pen fa-lg"></i>Solicitar Cotización </a></li>-->
-            <!--<li><a href="#"><i class="fa-solid fa-file-pen fa-lg"></i>Ver solicitudes</a></li>-->
             <li><a href="#" routerLink="/inicio"><i class="fa-solid fa-right-from-bracket fa-lg"></i>Salir</a></li>
         </ul>
     </nav>
-  </header>
+  </header>-->
     <!--formulario de solicitus-->
     <div class="container">
       <h2>SOLICITUD DE COTIZACIÓN</h2>
@@ -65,7 +63,7 @@
           <label for="nombre" class="delinear">MATERIAL</label>
           <div class="form-groups">
               <div class="campos">
-                <label for="nombre">Codigo:</label>
+                <label for="nombre">Codigo proveedor:</label>
                 <input type="text" id="nombre" name="nombre" required>
               </div>
               <div class="campos">
@@ -97,6 +95,13 @@
                 <input type="text" id="nombre" name="nombre" required>
               </div>
           </div>
+          <label for="nombre" class="delinear">Cargar archivos</label>
+          <div class="form-groups">
+            <form (submit)="onSubmit()">
+              <input class="pdf" type="file" (change)="onFileSelected($event)">
+              <button type="submit">Subir PDF</button>
+            </form>
+          </div>
 
 
           <div class="form-group">
@@ -105,10 +110,10 @@
       </form>
     </div>
 
-<!-- FOOTER -->
+<!-- FOOTER
 <footer class="footer">
   <div class="copy">
     Copyrigth © <span id="año-actual"></span> Airtemp de México S.A de C.V
   </div>
-</footer>
+</footer>-->
 
