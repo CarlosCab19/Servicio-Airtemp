@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PersonalService } from '../services/personal.service';
 import { Personal } from '../shared/personal';
+import { Solicitud } from '../shared/solicitud';
+import { SolicitudService } from '../services/solicitud.service';
 
 @Component({
   selector: 'app-vista-usuario',
@@ -19,10 +21,14 @@ export class VistaUsuarioComponent implements OnInit{
   mostrarInformacion: boolean = false;
   mostrarSolicitudes:boolean = false;
   mostrarForm:boolean = true;
+  solicituds:Solicitud[]=[];
+  solicitud!:Solicitud;
+
+
 
 
   constructor(private router: Router,private rutaActiva: ActivatedRoute,
-      private personalService:PersonalService){
+      private personalService:PersonalService, private solicitudService:SolicitudService){
       // Obtener la fecha actual y formatearla como "YYYY-MM-DD"
       const today = new Date();
      const year = today.getFullYear();
@@ -30,11 +36,8 @@ export class VistaUsuarioComponent implements OnInit{
       const day = String(today.getDate()).padStart(2, '0');
       this.fechaActual = `${year}-${month}-${day}`;}
 
-  onFileSelected(event: any) {
-      this.selectedFile = event.target.files[0] as File;
-  }
-
   ngOnInit(): void {
+    /*para trer un personal por su id y buscar sus nombres y apellidos*/
     this.id=this.rutaActiva.snapshot.paramMap.get('id') as string;
     this.personalService.find(this.id).subscribe(response=>{
       //console.log(response); // Agrega esta línea para depurar
@@ -42,10 +45,17 @@ export class VistaUsuarioComponent implements OnInit{
       this.nombrePersonal=response.nombres;
       this.apellidoPersonal=response.apellidos;
     });
+
+    /*para trer todo los datos de las solicitudes*/
+    this.solicitudService.getAll().subscribe((data: Solicitud[])=>{
+      this.solicituds = data;
+      /*console.log(this.personals);*/
+    });
   }
 
   toggleInfo() {
     this.mostrarInformacion = !this.mostrarInformacion;
+    this.router.navigate([this.id]);
   }
   toggleSoli(){
     this.mostrarSolicitudes;
@@ -54,4 +64,6 @@ export class VistaUsuarioComponent implements OnInit{
     this.mostrarSolicitudes = !this.mostrarSolicitudes;
     this.mostrarForm = !this.mostrarForm;
   }
+
+
 }

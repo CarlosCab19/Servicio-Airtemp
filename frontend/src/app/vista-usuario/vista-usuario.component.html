@@ -7,7 +7,7 @@
           <ul class="menu">
               <li (click)="toggleForm()"><a><i class="fa-solid fa-user-pen fa-lg"></i>Solicitar Cotización</a></li>
               <li ><a><i class="fa-solid fa-file-invoice-dollar fa-lg" ></i>Cotizadas</a></li>
-              <li><a><i class="fa-solid fa-right-from-bracket fa-lg"></i>Salir</a></li>
+              <li><a routerLink="/inicio"><i class="fa-solid fa-right-from-bracket fa-lg"></i>Salir</a></li>
           </ul>
       </nav>
   </header>
@@ -30,30 +30,15 @@
             </tr>
           </thead>
           <tbody>
-              <tr>
-                  <td>Dato 1</td>
-                  <td>Dato 2</td>
-                  <td>Dato 3</td>
-                  <td>Dato 4</td>
+              <tr *ngFor="let solicitud of solicituds">
+                  <td>{{solicitud.id}}</td>
+                  <td>{{solicitud.fechasolicitud}}</td>
+                  <td>{{solicitud.solicitante}}</td>
+                  <td>{{solicitud.estatus}}</td>
                   <td><button (click)="toggleInfo()">
                     ver +
                 </button></td>
               </tr>
-              <tr>
-                <td>Dato 1</td>
-                <td>Dato 2</td>
-                <td>Dato 3</td>
-                <td>Dato 1</td>
-                <td>VerDatos</td>
-              </tr>
-              <tr>
-                <td>Dato 1</td>
-                <td>Dato 2</td>
-                <td>Dato 3</td>
-                <td>Dato 1</td>
-                <td>VerDatos</td>
-              </tr>
-              <!-- Agrega más filas según sea necesario -->
           </tbody>
       </table>
       </div>
@@ -66,21 +51,21 @@
       <div class="col">
         <!--<app-form-solicitud-c></app-form-solicitud-c>-->
         <h2>Solicitud de cotización</h2>
-      <form >
+      <form action="EnvioDatos" method="post" enctype="multipart/form-data">
         <div class="row">
             <div class="col-md-6">
               <label for="nombre" class="delinear">FECHAS</label>
                 <div class="form-group">
-                    <label for="nombres" style="font-weight: bold;">Fecha de Solicitud:</label>
+                    <label for="fechasolicitud" style="font-weight: bold;">Fecha de Solicitud:</label>
                     <br>
-                    <input type="date" id="fecha" name="fecha" required [(ngModel)]="fechaActual" readonly>
+                    <input type="date" id="fecha"  name="fechasolicitud" required [(ngModel)]="fechaActual" readonly>
                 </div>
             </div>
             <div class="col-md-6">
               <label for="nombre" class="delinear"></label>
                 <div class="form-group">
-                    <label for="apellidos" style="font-weight: bold;">Estatus:</label>
-                    <select class="form-select" aria-label="Default select example">
+                    <label for="estatus" style="font-weight: bold;">Estatus:</label>
+                    <select class="form-select" formControlName="estatus" aria-label="Default select example">
                       <option value="Nueva">Nueva</option>
                     </select>
                 </div>
@@ -90,8 +75,8 @@
           <div class="col-md-6">
             <label for="nombre" class="delinear">RESPONSABLES</label>
               <div class="form-group">
-                  <label for="departamento" style="font-weight: bold;">Solicitante:</label>
-                  <input formControlName="apellidos" id="apellidos" type="text" class="form-control" value="{{nombrePersonal}} {{apellidoPersonal}}">
+                  <label for="solicitante" style="font-weight: bold;">Solicitante:</label>
+                  <input formControlName="solicitante" id="solicitante" type="text" class="form-control" value="{{nombrePersonal}} {{apellidoPersonal}}">
               </div>
           </div>
         </div>
@@ -99,15 +84,15 @@
           <div class="col-md-6">
             <label for="nombre" class="delinear">PROVEEDOR</label>
               <div class="form-group">
-                  <label for="estatus" style="font-weight: bold;">Proveedor:</label>
-                  <input formControlName="apellidos" id="apellidos" type="text" class="form-control">
+                  <label for="codigoproveedor" style="font-weight: bold;">Codigo Proveedor:</label>
+                  <input formControlName="codigoproveedor" id="codigoproveedor" type="text" class="form-control">
               </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <br>
-                <label for="contra" style="font-weight: bold;">Razon Social:</label>
-                <input formControlName="contra" id="contra" type="text" class="form-control">
+                <label for="razonsocial" style="font-weight: bold;">Razon Social:</label>
+                <input formControlName="razonsocial" id="razonsocial" type="text" class="form-control">
             </div>
         </div>
         </div>
@@ -115,61 +100,89 @@
           <div class="col-md-6">
             <label for="nombre" class="delinear">MATERIAL</label>
               <div class="form-group">
-                  <label for="estatus" style="font-weight: bold;">Codigo proveedor:</label>
-                  <input formControlName="apellidos" id="apellidos" type="text" class="form-control">
+                  <label for="codigo" style="font-weight: bold;">Codigo:</label>
+                  <input formControlName="codigo" id="codigo" type="text" class="form-control">
               </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <br>
-                <label for="contra" style="font-weight: bold;">Descripción:</label>
-                <input formControlName="contra" id="contra" type="text" class="form-control">
+                <label for="descripcion" style="font-weight: bold;">Descripción:</label>
+                <input formControlName="descripcion" id="descripcion" type="text" class="form-control">
             </div>
         </div>
         </div>
         <div class="row">
           <div class="col-md-6">
               <div class="form-group">
-                  <label for="estatus" style="font-weight: bold;">Tipo Familia:</label>
-                  <input formControlName="apellidos" id="apellidos" type="text" class="form-control">
+                  <label for="tipofamilia" style="font-weight: bold;">Tipo Familia:</label>
+                  <input formControlName="tipofamilia" id="tipofamilia" type="text" class="form-control">
               </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
-                <label for="contra" style="font-weight: bold;">Caracteristica 1:</label>
-                <input formControlName="contra" id="contra" type="text" class="form-control">
+                <label for="caracteristicaone" style="font-weight: bold;">Caracteristica 1:</label>
+                <input formControlName="caracteristicaone" id="caracteristicaone" type="text" class="form-control">
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-md-6">
               <div class="form-group">
-                  <label for="estatus" style="font-weight: bold;">Caracteristica 2:</label>
-                  <input formControlName="apellidos" id="apellidos" type="text" class="form-control">
+                  <label for="caracteristicatwo" style="font-weight: bold;">Caracteristica 2:</label>
+                  <input formControlName="caracteristicatwo" id="caracteristicatwo" type="text" class="form-control">
               </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
-                <label for="contra" style="font-weight: bold;">Caracteristica 3:</label>
-                <input formControlName="contra" id="contra" type="text" class="form-control">
+                <label for="caracteristicathree" style="font-weight: bold;">Caracteristica 3:</label>
+                <input formControlName="caracteristicathree" id="caracteristicathree" type="text" class="form-control">
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-md-6">
               <div class="form-group">
-                  <label for="estatus" style="font-weight: bold;">Caracteristica 4:</label>
-                  <input formControlName="apellidos" id="apellidos" type="text" class="form-control">
+                  <label for="caracteristicafour" style="font-weight: bold;">Caracteristica 4:</label>
+                  <input formControlName="caracteristicafour" id="caracteristicafour" type="text" class="form-control">
               </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
-                <label for="contra" style="font-weight: bold;">Caracteristica 5:</label>
-                <input formControlName="contra" id="contra" type="text" class="form-control">
+                <label for="caracteristicafive" style="font-weight: bold;">Caracteristica 5:</label>
+                <input formControlName="caracteristicafive" id="caracteristicafive" type="text" class="form-control">
             </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label for="nombre" class="delinear">CLIENTE</label>
+              <div class="form-group">
+                  <label for="nombrecliente" style="font-weight: bold;">Nombre:</label>
+                  <input formControlName="nombrecliente" id="nombrecliente" type="text" class="form-control">
+              </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <br>
+                <label for="numparte" style="font-weight: bold;">Numero de parte:</label>
+                <input formControlName="numparte" id="numparte" type="text" class="form-control">
+            </div>
+        </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label for="nombre" class="delinear">Subir Archivo</label>
+              <div class="form-group">
+                  <label for="pdf" style="font-weight: bold;">Documento:</label>
+                  <input formControlName="pdf" id="pdf" type="file" class="form-control" multiple>
+              </div>
           </div>
         </div>
         <br>
+        <div class="form-group">
+          <button type="submit">Enviar</button>
+      </div>
     </form>
       </div>
     </div>

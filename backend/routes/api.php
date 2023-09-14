@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\PersonalController;
+use App\Http\Controllers\SolicitudController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,4 +28,11 @@ Route::prefix('personal')->group(function () {
     Route::delete('/{id}',[ PersonalController::class, 'delete']);
     Route::get('/{id}',[ PersonalController::class, 'get']);
     Route::put('/{id}',[ PersonalController::class, 'update']);
+});
+Route::prefix('solicitud')->group(function(){
+    Route::get('/',[SolicitudController::class, 'getAll']);
+    Route::post('/',[SolicitudController::class, 'create']);
+    Route::delete('/{id}',[SolicitudController::class, 'delete']);
+    Route::get('/{id}',[SolicitudController::class, 'get']);
+    Route::put('/{id}',[SolicitudController::class, 'update']);
 });

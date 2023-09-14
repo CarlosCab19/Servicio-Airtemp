@@ -1,0 +1,19 @@
+export interface Solicitud {
+  id:string;
+  fechasolicitud:string;
+  estatus:string;
+  solicitante:string;
+  codigoproveedor:string;
+  razonsocial:string;
+  codigo:string;
+  descripcion:string;
+  tipofamilia:string;
+  caracteristicaone:string;
+  caracteristicatwo:string;
+  caracteristicathree:string;
+  caracteristicafour:string;
+  caracteristicafive:string;
+  nombrecliente:string;
+  numparte:string;
+  documentos:string;
+}
