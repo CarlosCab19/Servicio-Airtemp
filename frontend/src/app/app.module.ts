@@ -21,6 +21,7 @@ import { AddPersonalComponent } from './soporte-ti/add-personal/add-personal.com
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MasinfoSoliComponent } from './vista-usuario/masinfo-soli/masinfo-soli.component';
+import { SoliNuevaComponent } from './vista-usuario/soli-nueva/soli-nueva.component';
 
 
 
@@ -42,6 +43,7 @@ import { MasinfoSoliComponent } from './vista-usuario/masinfo-soli/masinfo-soli.
     EditPersonalComponent,
     AddPersonalComponent,
     MasinfoSoliComponent,
+    SoliNuevaComponent,
 
 
   ],

@@ -125,12 +125,7 @@ header {
 .responsive-table tbody tr:hover {
   background-color: #ddd;
 }
-/* TABLA */
-thead {
-  background-color: #8fbc8f !important;
-  /* Color de fondo para el encabezado de la tabla*/
 
-}
 
 /*estilos para ver mas informacion de la solicitud*/
 .container{
@@ -143,65 +138,7 @@ thead {
   margin-left: 30px;
   border-radius: 10px;
 }
-/*estilos para el formulario de solicitud*/
-#formSoli{
-  background-color: #DCDCDC;
-  border-radius: 10px;
-}
-h2{
-  font-weight: bold;
-  text-align: center;
-  margin-top: 20px;
-  background-color: #6495ED;
-  color: black;
-}
-.delinear{
-  text-decoration: underline;
-  font-weight: bold;
-}
 
-/*boton para ver mas informacion*/
-button {
-  --color: #0077ff;
-  font-family: inherit;
-  display: inline-block;
-  width: 6em;
-  height: 2.6em;
-  line-height: 2.5em;
-  overflow: hidden;
-  margin: 5px;
-  font-size: 17px;
-  z-index: 1;
-  color: var(--color);
-  border: 2px solid var(--color);
-  border-radius: 6px;
-  position: relative;
-}
-
-button::before {
-  position: absolute;
-  content: "";
-  background: var(--color);
-  width: 150px;
-  height: 200px;
-  z-index: -1;
-  border-radius: 50%;
-}
-
-button:hover {
-  color: white;
-}
-
-button:before {
-  top: 100%;
-  left: 100%;
-  transition: .3s all;
-}
-
-button:hover::before {
-  top: -30px;
-  left: -30px;
-}
 
 /* FOOTER */
 

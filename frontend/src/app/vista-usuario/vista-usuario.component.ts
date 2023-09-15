@@ -18,11 +18,11 @@ export class VistaUsuarioComponent implements OnInit{
   apellidoPersonal:string="";
   id:string="";
   personalN:Personal | undefined;
-  mostrarInformacion: boolean = false;
-  mostrarSolicitudes:boolean = false;
-  mostrarForm:boolean = true;
-  solicituds:Solicitud[]=[];
-  solicitud!:Solicitud;
+
+  /*para mostrar las vistas*/
+  solicitudes:boolean=true;
+  formulario:boolean=false;
+  cotizadas:boolean=false;
 
 
 
@@ -45,25 +45,25 @@ export class VistaUsuarioComponent implements OnInit{
       this.nombrePersonal=response.nombres;
       this.apellidoPersonal=response.apellidos;
     });
-
-    /*para trer todo los datos de las solicitudes*/
-    this.solicitudService.getAll().subscribe((data: Solicitud[])=>{
-      this.solicituds = data;
-      /*console.log(this.personals);*/
-    });
   }
 
-  toggleInfo() {
-    this.mostrarInformacion = !this.mostrarInformacion;
-    this.router.navigate([this.id]);
+  verSoli(){
+    this.solicitudes=true;
+    this.formulario=false;
+    this.cotizadas=false;
   }
-  toggleSoli(){
-    this.mostrarSolicitudes;
+  verForm(){
+    this.solicitudes=false;
+    this.formulario=true;
+    this.cotizadas=false;
   }
-  toggleForm(){
-    this.mostrarSolicitudes = !this.mostrarSolicitudes;
-    this.mostrarForm = !this.mostrarForm;
+  verCotizadas(){
+    this.solicitudes=false;
+    this.formulario=false;
+    this.cotizadas=true;
   }
+  salir(){
 
+  }
 
 }

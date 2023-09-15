@@ -19,8 +19,7 @@ class SolicitudController extends Controller
         try{
             DB::beginTransaction();
             $reg=new Solicitud;
-            $reg->fechasolicitud=$request->get('fechasolicitud');
-            $reg->estatus=$request->get('estatus');
+            /*$reg->estatus=$request->get('estatus');
             $reg->solicitante=$request->get('solicitante');
             $reg->codigoproveedor=$request->get('codigoproveedor');
             $reg->razonsocial=$request->get('razonsocial');
@@ -31,14 +30,14 @@ class SolicitudController extends Controller
             $reg->caracteristicatwo=$request->get('caracteristicatwo');
             $reg->caracteristicathree=$request->get('caracteristicathree');
             $reg->caracteristicafour=$request->get('caracteristicafour');
-            $reg->caracteristicafive=$request->get('caracteristicafive');
+            $reg->caracteristicafive=$request->get('caracteristicafive');*/
             $reg->nombrecliente=$request->get('nombrecliente');
             $reg->numparte=$request->get('numparte');
-            if($request->hasFile('pdf')){
+            /*if($request->hasFile('pdf')){
                 $archivo=$request->file('pdf');
                 $archivo->move(public_path().'/Documentos/',$archivo->getClientOriginalName());
                 $reg->documentos=$archivo->getClientOriginalName();
-            }
+            }*/
             $reg->save();
             DB::commit();
         }catch (Exeption $e){

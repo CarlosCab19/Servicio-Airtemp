@@ -11,21 +11,10 @@ class Solicitud extends Model
     protected $table='solicitud';
 
     protected $fillable=[
-        'fechasolicitud',
-        'estatus',
-        'solicitante',
-        'codigoproveedor',
-        'razonsocial',
-        'codigo',
-        'descripcion',
-        'tipofamilia',
-        'caracteristicaone',
-        'caracteristicatwo',
-        'caracteristicathree',
-        'caracteristicafour',
-        'caracteristicafive',
+        'id_solicitante',
+        'nom_solicitante',
+        'ape_solicitante',
         'nombrecliente',
         'numparte',
-        'documentos',
     ];
 }

@@ -10,104 +10,145 @@
         </ul>
     </nav>
   </header>-->
-    <!--formulario de solicitus-->
-    <div class="container">
-      <h2>SOLICITUD DE COTIZACIÓN</h2>
-      <form action="#" method="POST" class="gridform">
-        <!--<div class="form-groups">
-          <div class="campos">
-            <label for="nombre">SOLICITUS DE COTIZACIÓN:</label>
-            <input type="text" id="nombre" name="nombre" required >
-          </div>
-          <div class="campos">
-            <label for="nombre">FOLIO:</label>
-            <input type="text" id="nombre" name="nombre" required >
-          </div>
-        </div>-->
-          <label for="nombre" class="delinear">FECHAS</label>
-          <div class="form-group">
-              <div class="camposs">
-                <label for="nombre">Solicitud:</label>
-                <input type="date" id="fecha" name="fecha" required [(ngModel)]="fechaActual" readonly>
-              </div>
-              <div class="camposs">
-                <label for="nombre">Estatus:</label>
-                <select class="form-select" aria-label="Default select example">
-                  <option value="Nueva">Nueva</option>
-                  <!--<option value="Cotizando">Cotizando</option>
-                  <option value="Actualizando">Actualizando</option>
-                  <option value="Rechazada">Rechazada</option>
-                  <option value="Aprovado">Aprovado</option>
-                  <option value="Vencida">Vencida</option>-->
-                </select>
-              </div>
-          </div>
-          <label for="nombre" class="delinear">RESPONSABLES</label>
-          <div class="form-groups">
-              <div class="campos">
-                <label for="nombre">Solicitante:</label>
-                <input type="text" id="nombre" name="nombre" required >
+    <!--formulario de solicitud-->
+    <div class="row"  id="formSoli">
+      <div class="col">
+        <!--<app-form-solicitud-c></app-form-solicitud-c>-->
+        <h2>Solicitud de cotización</h2>
+      <form  action="EnvioDatos" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <!--<div class="col-md-6">
+              <label for="nombre" class="delinear">FECHAS</label>
+                <div class="form-group">
+                    <label for="fechasolicitud" style="font-weight: bold;">Fecha de Solicitud:</label>
+                    <br>
+                    <input type="date" id="fecha"  name="fechasolicitud" required [(ngModel)]="fechaActual" readonly>
+                </div>
+            </div>-->
+            <div class="col-md-6">
+              <label for="nombre" class="delinear"></label>
+                <div class="form-group">
+                    <label for="estatus" style="font-weight: bold;">Estatus:</label>
+                    <select class="form-select" formControlName="estatus" aria-label="Default select example">
+                      <option value="Nueva">Nueva</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label for="nombre" class="delinear">RESPONSABLES</label>
+              <div class="form-group">
+                  <label for="solicitante" style="font-weight: bold;">Solicitante:</label>
+                  <input formControlName="solicitante" id="solicitante" type="text" class="form-control" >
               </div>
           </div>
-          <label for="nombre" class="delinear">PROVEEDOR</label>
-          <div class="form-groups">
-              <div class="campos">
-                <label for="nombre">Codigo:</label>
-                <input type="text" id="nombre" name="nombre" required>
-              </div>
-              <div class="campos">
-                <label for="nombre">Razon Social:</label>
-                <input type="text" id="nombre" name="nombre" required>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label for="nombre" class="delinear">PROVEEDOR</label>
+              <div class="form-group">
+                  <label for="codigoproveedor" style="font-weight: bold;">Codigo Proveedor:</label>
+                  <input formControlName="codigoproveedor" id="codigoproveedor" type="text" class="form-control">
               </div>
           </div>
-          <label for="nombre" class="delinear">MATERIAL</label>
-          <div class="form-groups">
-              <div class="campos">
-                <label for="nombre">Codigo proveedor:</label>
-                <input type="text" id="nombre" name="nombre" required>
-              </div>
-              <div class="campos">
-                <label for="nombre">Descripción:</label>
-                <input type="text" id="nombre" name="nombre" required>
-              </div>
-              <div class="campos">
-                <label for="nombre">Tipo Familia:</label>
-                <input type="text" id="nombre" name="nombre" required>
-              </div>
-              <div class="campos">
-                <label for="nombre">Caracteristica 1:</label>
-                <input type="text" id="nombre" name="nombre" required>
-              </div>
-              <div class="campos">
-                <label for="nombre">Caracteristica 2:</label>
-                <input type="text" id="nombre" name="nombre" required>
-              </div>
-              <div class="campos">
-                <label for="nombre">Caracteristica 3:</label>
-                <input type="text" id="nombre" name="nombre" required>
-              </div>
-              <div class="campos">
-                <label for="nombre">Caracteristica 4:</label>
-                <input type="text" id="nombre" name="nombre" required>
-              </div>
-              <div class="campos">
-                <label for="nombre">Caracteristica 5:</label>
-                <input type="text" id="nombre" name="nombre" required>
+          <div class="col-md-6">
+            <div class="form-group">
+              <br>
+                <label for="razonsocial" style="font-weight: bold;">Razon Social:</label>
+                <input formControlName="razonsocial" id="razonsocial" type="text" class="form-control">
+            </div>
+        </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label for="nombre" class="delinear">MATERIAL</label>
+              <div class="form-group">
+                  <label for="codigo" style="font-weight: bold;">Codigo:</label>
+                  <input formControlName="codigo" id="codigo" type="text" class="form-control">
               </div>
           </div>
-          <label for="nombre" class="delinear">Cargar archivos</label>
-          <div class="form-groups">
-            <form (submit)="onSubmit()">
-              <input class="pdf" type="file" (change)="onFileSelected($event)">
-              <button type="submit">Subir PDF</button>
-            </form>
+          <div class="col-md-6">
+            <div class="form-group">
+              <br>
+                <label for="descripcion" style="font-weight: bold;">Descripción:</label>
+                <input formControlName="descripcion" id="descripcion" type="text" class="form-control">
+            </div>
+        </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+              <div class="form-group">
+                  <label for="tipofamilia" style="font-weight: bold;">Tipo Familia:</label>
+                  <input formControlName="tipofamilia" id="tipofamilia" type="text" class="form-control">
+              </div>
           </div>
-
-
-          <div class="form-group">
-              <button type="submit">Enviar</button>
+          <div class="col-md-6">
+            <div class="form-group">
+                <label for="caracteristicaone" style="font-weight: bold;">Caracteristica 1:</label>
+                <input formControlName="caracteristicaone" id="caracteristicaone" type="text" class="form-control">
+            </div>
           </div>
-      </form>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+              <div class="form-group">
+                  <label for="caracteristicatwo" style="font-weight: bold;">Caracteristica 2:</label>
+                  <input formControlName="caracteristicatwo" id="caracteristicatwo" type="text" class="form-control">
+              </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+                <label for="caracteristicathree" style="font-weight: bold;">Caracteristica 3:</label>
+                <input formControlName="caracteristicathree" id="caracteristicathree" type="text" class="form-control">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+              <div class="form-group">
+                  <label for="caracteristicafour" style="font-weight: bold;">Caracteristica 4:</label>
+                  <input formControlName="caracteristicafour" id="caracteristicafour" type="text" class="form-control">
+              </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+                <label for="caracteristicafive" style="font-weight: bold;">Caracteristica 5:</label>
+                <input formControlName="caracteristicafive" id="caracteristicafive" type="text" class="form-control">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label for="nombre" class="delinear">CLIENTE</label>
+              <div class="form-group">
+                  <label for="nombrecliente" style="font-weight: bold;">Nombre:</label>
+                  <input formControlName="nombrecliente" id="nombrecliente" type="text" class="form-control">
+              </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <br>
+                <label for="numparte" style="font-weight: bold;">Numero de parte:</label>
+                <input formControlName="numparte" id="numparte" type="text" class="form-control">
+            </div>
+        </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label for="nombre" class="delinear">Subir Archivo</label>
+              <div class="form-group">
+                  <label for="pdf" style="font-weight: bold;">Documento:</label>
+                  <input formControlName="pdf" id="pdf" type="file" class="form-control" multiple>
+              </div>
+          </div>
+        </div>
+        <br>
+        <div class="form-group">
+          <button type="submit">Enviar</button>
+      </div>
+    </form>
+      </div>
     </div>
 
 <!-- FOOTER

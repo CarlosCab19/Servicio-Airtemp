@@ -1,6 +1,6 @@
 export interface Solicitud {
   id:string;
-  fechasolicitud:string;
+  id_solicitante:string;
   estatus:string;
   solicitante:string;
   codigoproveedor:string;
