@@ -14,12 +14,21 @@ class SolicitudController extends Controller
         $data = Solicitud::get();
         return response()->json($data, 200);
     }
-
     public function create(Request $request){
+        $data['nombrecliente'] = $request['nombrecliente'];
+        $data['numparte'] = $request['numparte'];
+        Personal::create($data);
+        return response()->json([
+            'message' => "Successfully created",
+            'success' => true
+        ], 200);
+      }
+
+    /*public function create(Request $request){
         try{
             DB::beginTransaction();
             $reg=new Solicitud;
-            /*$reg->estatus=$request->get('estatus');
+            $reg->estatus=$request->get('estatus');
             $reg->solicitante=$request->get('solicitante');
             $reg->codigoproveedor=$request->get('codigoproveedor');
             $reg->razonsocial=$request->get('razonsocial');
@@ -30,20 +39,20 @@ class SolicitudController extends Controller
             $reg->caracteristicatwo=$request->get('caracteristicatwo');
             $reg->caracteristicathree=$request->get('caracteristicathree');
             $reg->caracteristicafour=$request->get('caracteristicafour');
-            $reg->caracteristicafive=$request->get('caracteristicafive');*/
+            $reg->caracteristicafive=$request->get('caracteristicafive');
             $reg->nombrecliente=$request->get('nombrecliente');
             $reg->numparte=$request->get('numparte');
-            /*if($request->hasFile('pdf')){
+            if($request->hasFile('pdf')){
                 $archivo=$request->file('pdf');
                 $archivo->move(public_path().'/Documentos/',$archivo->getClientOriginalName());
                 $reg->documentos=$archivo->getClientOriginalName();
-            }*/
+            }
             $reg->save();
             DB::commit();
         }catch (Exeption $e){
             DB::rollback();
         }
-    }
+    }*/
 
     public function delete($id){
         $res = Solicitud::find($id)->delete();
@@ -59,6 +68,13 @@ class SolicitudController extends Controller
     }
 
     public function update(Request $request,$id){
+        $data['nombrecliente'] = $request['nombrecliente'];
+        $data['numparte'] = $request['numparte'];
+        Personal::find($id)->update($data);
+        return response()->json([
+            'message' => "Successfully updated",
+            'success' => true
+        ], 200);
 
     }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { PersonalService } from '../services/personal.service';
 import { Personal } from '../shared/personal';
 import { Solicitud } from '../shared/solicitud';
@@ -63,7 +63,7 @@ export class VistaUsuarioComponent implements OnInit{
     this.cotizadas=true;
   }
   salir(){
-
+    this.router.navigateByUrl('/inicio');
   }
 
 }

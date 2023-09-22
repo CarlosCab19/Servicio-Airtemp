@@ -1,6 +1,8 @@
 export interface Solicitud {
   id:string;
-  id_solicitante:string;
+  /*id_solicitante:string;
+  nom_solicitante:string;
+  ape_solicitante:string;
   estatus:string;
   solicitante:string;
   codigoproveedor:string;
@@ -12,8 +14,9 @@ export interface Solicitud {
   caracteristicatwo:string;
   caracteristicathree:string;
   caracteristicafour:string;
-  caracteristicafive:string;
+  caracteristicafive:string;*/
   nombrecliente:string;
   numparte:string;
-  documentos:string;
+  //documentos:string;
+  created_at:Date;
 }

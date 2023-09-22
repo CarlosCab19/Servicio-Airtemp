@@ -1,7 +1,7 @@
 
 /*estilos para el formulario de solicitud*/
 #formSoli{
-  background-color: #DCDCDC;
+  background-color: #8fbc8f;
   border-radius: 10px;
 }
 h2{
@@ -14,4 +14,102 @@ h2{
 .delinear{
   text-decoration: underline;
   font-weight: bold;
+}
+
+button {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+  background-color: #ffffff;
+  padding: 1em 2em;
+  border: none;
+  border-radius: .6rem;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+button span:not(:nth-child(6)) {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 30px;
+  width: 30px;
+  background-color: #0c66ed;
+  border-radius: 50%;
+  transition: .6s ease;
+}
+
+button span:nth-child(6) {
+  position: relative;
+}
+
+button span:nth-child(1) {
+  transform: translate(-3.3em, -4em);
+}
+
+button span:nth-child(2) {
+  transform: translate(-6em, 1.3em);
+}
+
+button span:nth-child(3) {
+  transform: translate(-.2em, 1.8em);
+}
+
+button span:nth-child(4) {
+  transform: translate(3.5em, 1.4em);
+}
+
+button span:nth-child(5) {
+  transform: translate(3.5em, -3.8em);
+}
+
+button:hover span:not(:nth-child(6)) {
+  transform: translate(-50%, -50%) scale(4);
+  transition: 1.5s ease;
+}
+
+
+#container{
+  /*background-color: #3b82f6;*/
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 30px;
+}
+.datos{
+  /*background-color: aqua;*/
+  margin: 5px;
+}
+.material{
+  /*background-color: chartreuse;*/
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  row-gap: 15px;
+  column-gap: 15px;
+  margin: 5px;
+}
+.materialone{
+  background-color: #8fbc8f;
+}
+.materialtwo{
+  background-color: #8fbc8f;
+}
+.materialthree{
+  background-color: #8fbc8f;
+}
+.materialfour{
+  background-color: #8fbc8f;
+}
+strong{
+  text-decoration:underline;
+}
+
+/* Estilos responsivos */
+@media screen and (max-width: 768px) {
+  #container {
+      display: grid;
+      grid-template-columns: 1fr;
+  }
+
 }

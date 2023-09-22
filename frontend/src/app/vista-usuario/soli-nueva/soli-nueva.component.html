@@ -1,22 +1,24 @@
     <!--tabla donde se ven las solicitudes-->
     <div class="row" >
       <div class="col">
-        <table class="responsive-table table-bordered" style="width:100%">
+        <table class="responsive-table table-bordered" >
           <thead>
             <tr>
               <th>Folio</th>
               <th>Fecha Solicitud</th>
               <th>Solicitante</th>
-              <th>Estatus</th>
-              <th>Información</th>
+              <th>Nom. Cliente</th>
+              <th>Num. Parte</th>
+              <th>Informacion</th>
             </tr>
           </thead>
           <tbody>
               <tr *ngFor="let solicitud of solicituds">
                   <td>{{solicitud.id}}</td>
+                  <td>{{ formatDate(solicitud.created_at) }}</td>
                   <td></td>
-                  <td>{{solicitud.solicitante}}</td>
-                  <td *ngIf="solicitud.estatus=='Nueva'" [ngStyle]="{'color':'blue'}">{{solicitud.estatus}}</td>
+                  <td>{{solicitud.nombrecliente}}</td>
+                  <td>{{solicitud.numparte}}</td>
                   <td><button (click)="masInfo()">
                     ver +
                 </button></td>

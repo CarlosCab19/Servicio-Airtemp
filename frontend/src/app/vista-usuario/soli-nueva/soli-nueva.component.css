@@ -41,7 +41,7 @@ button {
   --color: #0077ff;
   font-family: inherit;
   display: inline-block;
-  width: 6em;
+  width: 4em;
   height: 2.6em;
   line-height: 2.5em;
   overflow: hidden;
@@ -77,4 +77,11 @@ button:before {
 button:hover::before {
   top: -30px;
   left: -30px;
+}
+
+/* Estilos responsivos */
+@media screen and (max-width: 768px) {
+  .col-6{
+    width: 100%;
+  }
 }

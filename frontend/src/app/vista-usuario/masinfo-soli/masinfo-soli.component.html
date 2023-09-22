@@ -12,7 +12,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="estatus" style="font-weight: bold;">Estatus:</label>
-                    <input formControlName="estatus" [(ngModel)]="solicitud.estatus" id="apellidos" type="text" class="form-control" readonly="readonly">
+                    <input formControlName="estatus"  id="apellidos" type="text" class="form-control" readonly="readonly">
                 </div>
             </div>
         </div>
@@ -20,7 +20,7 @@
           <div class="col-md-6">
               <div class="form-group">
                   <label for="solicitante" style="font-weight: bold;">Solicitante:</label>
-                  <input formControlName="solicitante" [(ngModel)]="solicitud.solicitante" id="apellidos" type="text" class="form-control" readonly="readonly">
+                  <input formControlName="solicitante"  id="apellidos" type="text" class="form-control" readonly="readonly">
               </div>
           </div>
         </div>
@@ -28,55 +28,56 @@
           <div class="col-md-6">
               <div class="form-group">
                   <label for="codigoproveedor" style="font-weight: bold;">Codigo Proveedor:</label>
-                  <input formControlName="codigoproveedor" [(ngModel)]="solicitud.codigoproveedor" id="apellidos" type="text" class="form-control" readonly="readonly">
+                  <input formControlName="codigoproveedor"  id="apellidos" type="text" class="form-control" readonly="readonly">
               </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
                 <label for="razonsocial" style="font-weight: bold;">Razon Social:</label>
-                <input formControlName="razonsocial" [(ngModel)]="solicitud.razonsocial"  id="contra" type="text" class="form-control" readonly="readonly">
+                <input formControlName="razonsocial"   id="contra" type="text" class="form-control" readonly="readonly">
             </div>
         </div>
         </div>
         <div class="row">
           <div class="col-md-6">
               <div class="form-group">
-                  <label for="codigo" style="font-weight: bold;">Codigo Material:</label>
-                  <input formControlName="codigo" [(ngModel)]="solicitud.codigo" id="apellidos" type="text" class="form-control" readonly="readonly">
+                  <label for="fechasolicitud" style="font-weight: bold;">Nombre del Cliente:</label>
+                  <input formControlName="fechasolicitud" id="nombres" type="text" class="form-control" readonly="readonly">
+              </div>
+          </div>
+          <div class="col-md-6">
+              <div class="form-group">
+                  <label for="estatus" style="font-weight: bold;">Numero de parte:</label>
+                  <input formControlName="estatus"  id="apellidos" type="text" class="form-control" readonly="readonly">
+              </div>
+          </div>
+      </div>
+        <div class="row">
+          <div class="col-md-6">
+              <div class="form-group">
+                  <label for="codigo" style="font-weight: bold;">Descripcion del Material:</label>
+                  <!--<input formControlName="codigo"  id="apellidos" type="text" class="form-control" readonly="readonly">-->
+                  <textarea class="form-control"  id="floatingTextarea2" style="height: 100px"></textarea>
               </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
-                <label for="descripcion" style="font-weight: bold;">Descripción:</label>
-                <input formControlName="descripcion" [(ngModel)]="solicitud.descripcion" id="contra" type="text" class="form-control" readonly="readonly">
+                <label for="descripcion" style="font-weight: bold;">Familia del Material:</label>
+                <input formControlName="descripcion"  id="contra" type="text" class="form-control" readonly="readonly">
             </div>
         </div>
         </div>
         <div class="row">
           <div class="col-md-6">
               <div class="form-group">
-                  <label for="tipofamilia" style="font-weight: bold;">Tipo Familia:</label>
-                  <input formControlName="tipofamilia" [(ngModel)]="solicitud.tipofamilia" id="apellidos" type="text" class="form-control" readonly="readonly">
+                  <label for="tipofamilia" style="font-weight: bold;">Caracteristica 1:</label>
+                  <input formControlName="tipofamilia"  id="apellidos" type="text" class="form-control" readonly="readonly">
               </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
-                <label for="caracteristicaone" style="font-weight: bold;">Caracteristica 1:</label>
-                <input formControlName="caracteristicaone" [(ngModel)]="solicitud.caracteristicaone" id="contra" type="text" class="form-control" readonly="readonly">
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-              <div class="form-group">
-                  <label for="caracteristicatwo" style="font-weight: bold;">Caracteristica 2:</label>
-                  <input formControlName="carcateristicatwo" [(ngModel)]="solicitud.caracteristicatwo" id="apellidos" type="text" class="form-control" readonly="readonly">
-              </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-                <label for="caracteristicathree" style="font-weight: bold;">Caracteristica 3:</label>
-                <input formControlName="caracteristicathree" [(ngModel)]="solicitud.caracteristicathree" id="contra" type="text" class="form-control" readonly="readonly">
+                <label for="caracteristicaone" style="font-weight: bold;">Caracteristica 2:</label>
+                <input formControlName="caracteristicaone"  id="contra" type="text" class="form-control" readonly="readonly">
             </div>
           </div>
         </div>
