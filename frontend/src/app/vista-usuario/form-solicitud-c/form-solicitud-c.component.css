@@ -15,7 +15,7 @@ h2{
   text-decoration: underline;
   font-weight: bold;
 }
-
+/*
 button {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
@@ -69,13 +69,13 @@ button:hover span:not(:nth-child(6)) {
   transform: translate(-50%, -50%) scale(4);
   transition: 1.5s ease;
 }
-
+*/
 
 #container{
   /*background-color: #3b82f6;*/
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  column-gap: 30px;
+  column-gap: 20px;
 }
 .datos{
   /*background-color: aqua;*/
@@ -111,5 +111,112 @@ strong{
       display: grid;
       grid-template-columns: 1fr;
   }
+  #body{
+    display: grid;
+    grid-template-columns: 1fr;
+  }
 
+}
+
+/*estilos para la nueva modificacion*/
+/*.containertabla{
+  background-color: #0c66ed;
+  height: 50%;
+  width: 90%;
+  margin: auto;
+  margin-top: 20px;
+  margin-block-end: 20px;
+}
+.containermaterial{
+  background-color: brown;
+}*/
+
+/*estilos para la tabla*/
+
+.responsive-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.responsive-table th,
+.responsive-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.responsive-table th {
+  background-color: #8fbc8f;
+  color: #000000;
+}
+.table th {
+  background-color: #8fbc8f;
+  color: #fff;
+}
+.responsive-table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.responsive-table tbody tr:hover {
+  background-color: #ddd;
+}
+/*estilos para el boton*/
+.button {
+  position: relative;
+  width: 150px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: 1px solid #34974d;
+  background-color: #3aa856;
+}
+
+.button, .button__icon, .button__text {
+  transition: all 0.3s;
+}
+
+.button .button__text {
+  transform: translateX(30px);
+  color: #fff;
+  font-weight: 600;
+}
+
+.button .button__icon {
+  position: absolute;
+  transform: translateX(109px);
+  height: 100%;
+  width: 33px;
+  background-color: #34974d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button .svg {
+  width: 30px;
+  stroke: #fff;
+}
+
+.button:hover {
+  background: #34974d;
+}
+
+.button:hover .button__text {
+  color: transparent;
+}
+
+.button:hover .button__icon {
+  width: 140px;
+  transform: translateX(0);
+}
+
+.button:active .button__icon {
+  background-color: #2e8644;
+}
+
+.button:active {
+  border: 1px solid #2e8644;
 }

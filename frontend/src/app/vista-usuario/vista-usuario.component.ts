@@ -18,7 +18,6 @@ export class VistaUsuarioComponent implements OnInit{
   apellidoPersonal:string="";
   id:string="";
   personalN:Personal | undefined;
-
   /*para mostrar las vistas*/
   solicitudes:boolean=true;
   formulario:boolean=false;
@@ -45,6 +44,7 @@ export class VistaUsuarioComponent implements OnInit{
       this.nombrePersonal=response.nombres;
       this.apellidoPersonal=response.apellidos;
     });
+
   }
 
   verSoli(){

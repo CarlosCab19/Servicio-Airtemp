@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import { SolicitudService } from 'src/app/services/solicitud.service';
 import { Personal } from 'src/app/shared/personal';
 import { Solicitud } from 'src/app/shared/solicitud';
@@ -10,28 +10,19 @@ import { Solicitud } from 'src/app/shared/solicitud';
   styleUrls: ['./soli-nueva.component.css'],
   providers: [DatePipe], // Añade DatePipe a los providers
 })
-export class SoliNuevaComponent implements OnChanges{
+export class SoliNuevaComponent implements OnInit{
   solicituds:Solicitud[]=[];
   masInformacion:boolean=false;
 
-  @Input() id:string="";
-  @Input() nombre:string="";
-  @Input() actualizar: boolean = false;
 
   constructor(private readonly solicitudes:SolicitudService, public datePipe: DatePipe){}
-
-  ngOnChanges(changes: SimpleChanges): void {
-    /*this.solicitudes.getAll().subscribe(response=>{
-      response.forEach(element => {
-        if(element.id_solicitante==this.id){
-          this.solicituds.push(element);
-        }
-      })
-    })*/
+  ngOnInit(): void {
     this.solicitudes.getAll().subscribe((data: Solicitud[])=>{
       this.solicituds = data;
+      console.log(this.solicitudes);
     });
   }
+
   masInfo(){
     this.masInformacion=!this.masInformacion;
   }

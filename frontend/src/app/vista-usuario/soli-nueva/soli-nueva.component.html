@@ -5,20 +5,20 @@
           <thead>
             <tr>
               <th>Folio</th>
-              <th>Fecha Solicitud</th>
-              <th>Solicitante</th>
-              <th>Nom. Cliente</th>
-              <th>Num. Parte</th>
+              <th>Id usuario</th>
+              <th>estatus</th>
+              <th>id proveedor</th>
+              <th>id cliente</th>
               <th>Informacion</th>
             </tr>
           </thead>
           <tbody>
               <tr *ngFor="let solicitud of solicituds">
                   <td>{{solicitud.id}}</td>
-                  <td>{{ formatDate(solicitud.created_at) }}</td>
-                  <td></td>
-                  <td>{{solicitud.nombrecliente}}</td>
-                  <td>{{solicitud.numparte}}</td>
+                  <td>{{solicitud.id_usuario}}</td>
+                  <td>{{solicitud.estatus}}</td>
+                  <td>{{solicitud.id_proveedor}}</td>
+                  <td>{{solicitud.id_cliente}}</td>
                   <td><button (click)="masInfo()">
                     ver +
                 </button></td>
@@ -28,5 +28,6 @@
       </div>
       <div class="col-6" >
         <app-masinfo-soli *ngIf="masInformacion"></app-masinfo-soli>
+
       </div>
     </div>

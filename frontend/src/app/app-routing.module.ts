@@ -34,6 +34,7 @@ const routes: Routes = [
   {path:'addPersonal',component:AddPersonalComponent},
   {path:'infoSolicitud',component:MasinfoSoliComponent},
   {path:'solinueva',component:SoliNuevaComponent},
+  {path:'vencidas',component:VencidaComponent}
 
 ];
 

@@ -1,22 +1,8 @@
 export interface Solicitud {
   id:string;
-  /*id_solicitante:string;
-  nom_solicitante:string;
-  ape_solicitante:string;
+  id_usuario:string;
   estatus:string;
-  solicitante:string;
-  codigoproveedor:string;
-  razonsocial:string;
-  codigo:string;
-  descripcion:string;
-  tipofamilia:string;
-  caracteristicaone:string;
-  caracteristicatwo:string;
-  caracteristicathree:string;
-  caracteristicafour:string;
-  caracteristicafive:string;*/
-  nombrecliente:string;
-  numparte:string;
-  //documentos:string;
-  created_at:Date;
+  id_proveedor:string;
+  id_cliente:string;
+  created_at:string;
 }

@@ -17,16 +17,16 @@
     </div>
 
   <div class="container">
-    <app-soli-nueva *ngIf="solicitudes" [id]="id" [nombre]="nombrePersonal" [actualizar]="solicitudes" ></app-soli-nueva>
-    <app-form-solicitud-c *ngIf="formulario"></app-form-solicitud-c>
+    <app-soli-nueva *ngIf="solicitudes" [id]="id"></app-soli-nueva>
+    <app-form-solicitud-c *ngIf="formulario" ></app-form-solicitud-c>
     <app-soli-aprobada *ngIf="cotizadas"></app-soli-aprobada>
   </div>
-    <!-- FOOTER -->
+    <!-- FOOTER
     <footer class="footer">
       <div class="copy">
         Copyrigth © <span id="año-actual"></span> Airtemp de México S.A de C.V
       </div>
-    </footer>
+    </footer>-->
 
 
 </body>
