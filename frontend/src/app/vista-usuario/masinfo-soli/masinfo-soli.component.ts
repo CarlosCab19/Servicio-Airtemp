@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SolicitudService } from 'src/app/services/solicitud.service';
@@ -13,7 +13,7 @@ export class MasinfoSoliComponent implements OnInit{
   id!:number;
   solicitud!:Solicitud;
   form!:FormGroup;
-
+  @Input() solicitudes:Solicitud[]=[];
 
   constructor(private router:Router,
     private solicitudService:SolicitudService,public route: ActivatedRoute,){

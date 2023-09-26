@@ -5,7 +5,7 @@
           <thead>
             <tr>
               <th>Folio</th>
-              <th>Id usuario</th>
+              <th>Id Solicitante</th>
               <th>estatus</th>
               <th>id proveedor</th>
               <th>id cliente</th>
@@ -19,7 +19,7 @@
                   <td>{{solicitud.estatus}}</td>
                   <td>{{solicitud.id_proveedor}}</td>
                   <td>{{solicitud.id_cliente}}</td>
-                  <td><button (click)="masInfo()">
+                  <td><button (click)="masInfo(solicitud)">
                     ver +
                 </button></td>
               </tr>
@@ -27,7 +27,7 @@
       </table>
       </div>
       <div class="col-6" >
-        <app-masinfo-soli *ngIf="masInformacion"></app-masinfo-soli>
+        <app-masinfo-soli *ngIf="masInformacion" [solicitudes]="solicitud"></app-masinfo-soli>
 
       </div>
     </div>

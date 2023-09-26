@@ -11,19 +11,25 @@ import { Solicitud } from 'src/app/shared/solicitud';
   providers: [DatePipe], // Añade DatePipe a los providers
 })
 export class SoliNuevaComponent implements OnInit{
+  @Input() idSolicitante:string="";
   solicituds:Solicitud[]=[];
   masInformacion:boolean=false;
-
+  idInfo:string | null = null;
+  solicitud:Solicitud[]=[];
 
   constructor(private readonly solicitudes:SolicitudService, public datePipe: DatePipe){}
   ngOnInit(): void {
-    this.solicitudes.getAll().subscribe((data: Solicitud[])=>{
-      this.solicituds = data;
-      console.log(this.solicitudes);
+    this.solicitudes.getAll().subscribe(response=>{
+      response.forEach(element => {
+        if (element.id_usuario==this.idSolicitante) {
+          this.solicituds.push(element);
+        }
+      });
     });
   }
 
-  masInfo(){
+  masInfo(solicitud:any){
+    this.solicitud;
     this.masInformacion=!this.masInformacion;
   }
 

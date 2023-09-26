@@ -17,6 +17,7 @@ export class VistaUsuarioComponent implements OnInit{
   nombrePersonal:string="";
   apellidoPersonal:string="";
   id:string="";
+  idSolicitante:string="";
   personalN:Personal | undefined;
   /*para mostrar las vistas*/
   solicitudes:boolean=true;
@@ -41,6 +42,7 @@ export class VistaUsuarioComponent implements OnInit{
     this.personalService.find(this.id).subscribe(response=>{
       //console.log(response); // Agrega esta línea para depurar
       this.personalN=response;
+      this.idSolicitante=response.id;
       this.nombrePersonal=response.nombres;
       this.apellidoPersonal=response.apellidos;
     });

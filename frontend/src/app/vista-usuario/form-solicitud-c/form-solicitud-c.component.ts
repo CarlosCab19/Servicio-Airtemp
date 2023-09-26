@@ -14,8 +14,10 @@ import { Solicitud } from 'src/app/shared/solicitud';
 })
 export class FormSolicitudCComponent implements OnInit{
 
+  @Input() idSolicitante:string="";
   selectedValue: number = 0; // Valor seleccionado del select
   materialClasses: string[] = []; // Arreglo de clases a mostrar
+  solicitudSeleccionadaId: string | null = null;
 
   solicitar!:Solicitud;
   body:boolean=false;
@@ -25,22 +27,40 @@ export class FormSolicitudCComponent implements OnInit{
   constructor(public solicitudService:SolicitudService){}
 
   ngOnInit(): void {
-    this.solicitudService.getAll().subscribe((data: Solicitud[])=>{
-      this.solicituds = data;
-      /*console.log(this.personals);*/
+    /*Filtrar las solicitudes de cada usuario o solicitante*/
+    this.solicitudService.getAll().subscribe(response=>{
+      response.forEach(element => {
+        if (element.id_usuario==this.idSolicitante) {
+          this.solicituds.push(element);
+        }
+      });
     });
+    this.solicitar={
+      id:"",
+      id_usuario:this.idSolicitante,
+      estatus:"",
+      id_proveedor:"",
+      id_cliente:"",
+      created_at:"",
+    }
   }
 
 
 
   submit(element:Solicitud){
-
+    this.solicitudService.create(this.solicitar).subscribe(res=>{
+      console.log('Solicitud realizada')
+    })
   }
   verbody(){
     this.body=false;
   }
   formEncabezado(){
-    this.verEncabezado=true;
+    this.verEncabezado=!this.verEncabezado;
   }
+  mostrarFormulario(solicitudId: string) {
+    this.solicitudSeleccionadaId = solicitudId;
+  }
+
 
 }

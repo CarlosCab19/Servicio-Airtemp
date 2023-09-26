@@ -197,21 +197,21 @@
               <thead>
                 <tr>
                   <th># Solicitud</th>
-                  <th>Id Encargado</th>
+                  <th>Id Solicitante</th>
                   <th>Estatus</th>
                   <th>Id Proveedor</th>
                   <th>Id Cliente</th>
-                  <th>Acciones</th>
+                  <th>Añadir</th>
                 </tr>
               </thead>
               <tbody>
                   <tr *ngFor="let solicitudes of solicituds">
                       <td>{{solicitudes.id}}</td>
                       <td>{{solicitudes.id_usuario}}</td>
-                      <td>{{solicitar.estatus}}</td>
-                      <td>{{solicitar.id_proveedor}}</td>
-                      <td>{{solicitar.id_cliente}}</td>
-                      <td>fds</td>
+                      <td>{{solicitudes.estatus}}</td>
+                      <td>{{solicitudes.id_proveedor}}</td>
+                      <td>{{solicitudes.id_cliente}}</td>
+                      <td><button id="bottone5" (click)="mostrarFormulario(solicitudes.id)">Material</button></td>
                   </tr>
               </tbody>
           </table>
@@ -220,7 +220,57 @@
 
     </div>
     <div class="containermaterial">
-      <app-form-encabezado *ngIf="verEncabezado"></app-form-encabezado>
+      <div class="datos" *ngIf="verEncabezado">
+        <form  (ngSubmit)="submit(form.value)" #form="ngForm" >
+        <div class="form-floating">
+          <strong>ESTATUS</strong>
+        </div>
+        <div class="form-floating">
+          <select #name="ngModel" type="text" [(ngModel)]="solicitar.estatus" required name="estatus" class="form-select" id="floatingSelect" aria-label="Floating label select example">
+            <!--<option value="0" selected >Seleccionar</option>-->
+            <option value="Nueva">Nueva</option>
+          </select>
+          <label for="floatingInputValue">Estatus</label>
+        </div>
+      <div class="form-floating">
+        <strong>RESPONSABLES</strong>
+      </div>
+      <div class="form-floating">
+        <input  type="txt" class="form-control" id="floatingInputValue" placeholder="Solicitante">
+        <label for="floatingInputValue">Solicitante</label>
+      </div>
+      <div class="form-floating">
+        <strong>PROVEEDOR</strong>
+      </div>
+      <div class="form-floating mb-2">
+        <input type="txt" class="form-control" id="floatingInput" placeholder="Codigo">
+        <label for="floatingInput">Codigo</label>
+      </div>
+      <div class="form-floating">
+        <input type="txt" class="form-control" id="floatingInput" placeholder="Razon Social">
+        <label for="floatingInput">Razon Social</label>
+      </div>
+      <div class="form-floating">
+        <strong>Cliente</strong>
+      </div>
+      <div class="form-floating mb-2">
+        <input type="txt" class="form-control" id="floatingInput" placeholder="Nombre">
+        <label for="floatingInput">Nombre</label>
+      </div>
+      <div class="form-floating">
+        <input type="txt" class="form-control" id="floatingInput" placeholder="Num. Parte">
+        <label for="floatingInput">Num. Parte</label>
+      </div>
+      <br>
+      <button type="submit" [disabled]="!form.valid" id="button"> <span>Solicitar</span>
+      </button>
+      <br>
+      </form>
+      </div>
+      <div *ngIf="solicitudSeleccionadaId !== null">
+        <app-form-encabezado [solicitudId]="solicitudSeleccionadaId"></app-form-encabezado>
+      </div>
+
     </div>
   </div>
 </body>
