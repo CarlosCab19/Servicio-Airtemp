@@ -1,25 +1,65 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { PersonalService } from 'src/app/services/personal.service';
-import { Personal } from 'src/app/shared/personal';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MaterialService } from 'src/app/services/material.service';
+import { SolicitudService } from 'src/app/services/solicitud.service';
+import { Material } from 'src/app/shared/material';
+import { Solicitud } from 'src/app/shared/solicitud';
+
 
 @Component({
   selector: 'app-form-solicitud-c',
   templateUrl: './form-solicitud-c.component.html',
   styleUrls: ['./form-solicitud-c.component.css']
 })
-export class FormSolicitudCComponent {
-  id!:number;
-  personal!:Personal;
-  fechaActual: string;
+export class FormSolicitudCComponent implements OnInit{
 
-  constructor(private router: Router, public personalService: PersonalService) {
-    // Obtener la fecha actual y formatearla como "YYYY-MM-DD"
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, '0');
-    const day = String(today.getDate()).padStart(2, '0');
-    this.fechaActual = `${year}-${month}-${day}`;
+  @Input() idSolicitante:string="";
+  selectedValue: number = 0; // Valor seleccionado del select
+  materialClasses: string[] = []; // Arreglo de clases a mostrar
+  solicitudSeleccionadaId: string | null = null;
+
+  solicitar!:Solicitud;
+  body:boolean=false;
+  verEncabezado:boolean=false;
+  solicituds:Solicitud[]=[];
+
+  constructor(public solicitudService:SolicitudService){}
+
+  ngOnInit(): void {
+    /*Filtrar las solicitudes de cada usuario o solicitante*/
+    this.solicitudService.getAll().subscribe(response=>{
+      response.forEach(element => {
+        if (element.id_usuario==this.idSolicitante) {
+          this.solicituds.push(element);
+        }
+      });
+    });
+    this.solicitar={
+      id:"",
+      id_usuario:this.idSolicitante,
+      estatus:"",
+      id_proveedor:"",
+      id_cliente:"",
+      created_at:"",
+    }
+  }
+
+
+
+  submit(element:Solicitud){
+    this.solicitudService.create(this.solicitar).subscribe(res=>{
+      console.log('Solicitud realizada')
+    })
+  }
+  verbody(){
+    this.body=false;
+  }
+  formEncabezado(){
+    this.verEncabezado=!this.verEncabezado;
+  }
+  mostrarFormulario(solicitudId: string) {
+    this.solicitudSeleccionadaId = solicitudId;
   }
 
 

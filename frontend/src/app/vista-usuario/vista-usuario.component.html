@@ -5,68 +5,28 @@
       </div>
       <nav>
           <ul class="menu">
-              <li><a href="#" routerLink="/formSolicitud"><i class="fa-solid fa-user-pen fa-lg"></i>Solicitar Cotización </a></li>
-              <li><a routerLink="/aprobados"><i class="fa-solid fa-file-invoice-dollar fa-lg"></i>Cotizadas</a></li>
-              <li><a href="#" routerLink="/inicio"><i class="fa-solid fa-right-from-bracket fa-lg"></i>Salir</a></li>
+            <li (click)="verSoli()"><a><i class="fa-solid fa-user-pen fa-lg"></i>Solicitudes</a></li>
+              <li (click)="verForm()"><a><i class="fa-solid fa-user-pen fa-lg"></i>Solicitar Cotización</a></li>
+              <li (click)="verCotizadas()"><a><i class="fa-solid fa-file-invoice-dollar fa-lg" ></i>Cotizadas</a></li>
+              <li (click)="salir()"><a><i class="fa-solid fa-right-from-bracket fa-lg"></i>Salir</a></li>
           </ul>
       </nav>
   </header>
   <div class="nombres">
-    <p>Nombres:{{nombrePersonal}}</p>
+    <p>Solicitante: {{nombrePersonal}}</p>
     </div>
 
   <div class="container">
-    <div class="row">
-      <div class="col">
-        <table class="responsive-table table-bordered" style="width:100%">
-          <thead>
-            <tr>
-              <th>Folio</th>
-              <th>Fecha Solicitud</th>
-              <th>Solicitante</th>
-              <th>Estatus</th>
-              <th>Información</th>
-            </tr>
-          </thead>
-          <tbody>
-              <tr>
-                  <td>Dato 1</td>
-                  <td>Dato 2</td>
-                  <td>Dato 3</td>
-                  <td>Dato 4</td>
-                  <td><button (click)="toggleInfo()">
-                    ver +
-                </button></td>
-              </tr>
-              <tr>
-                <td>Dato 1</td>
-                <td>Dato 2</td>
-                <td>Dato 3</td>
-                <td>Dato 1</td>
-                <td>VerDatos</td>
-              </tr>
-              <tr>
-                <td>Dato 1</td>
-                <td>Dato 2</td>
-                <td>Dato 3</td>
-                <td>Dato 1</td>
-                <td>VerDatos</td>
-              </tr>
-              <!-- Agrega más filas según sea necesario -->
-          </tbody>
-      </table>
-      </div>
-      <div class="col-6" *ngIf="mostrarInformacion">
-        <app-masinfo-soli></app-masinfo-soli>
-      </div>
-    </div>
+    <app-soli-nueva *ngIf="solicitudes" [idSolicitante]="idSolicitante"></app-soli-nueva>
+    <app-form-solicitud-c *ngIf="formulario" [idSolicitante]="idSolicitante"></app-form-solicitud-c>
+    <app-soli-aprobada *ngIf="cotizadas"></app-soli-aprobada>
   </div>
-    <!-- FOOTER -->
+    <!-- FOOTER
     <footer class="footer">
       <div class="copy">
         Copyrigth © <span id="año-actual"></span> Airtemp de México S.A de C.V
       </div>
-    </footer>
+    </footer>-->
 
 
 </body>

@@ -1,114 +1,277 @@
-<body>
-  <header>
-    <div class="logo">
-        <img src="assets\img-logo\Letras_Airtemp.png" alt="Logo">
+<body *ngIf="verbody()">
+    <!--formulario de solicitud-->
+    <div class="row"  id="formSoli">
+      <h2>Solicitud de cotización</h2>
+      <div class="col" id="container">
+        <!--<form (ngSubmit)="submit(form.value)" #form="ngForm">-->
+        <div class="datos">
+            <div class="form-floating">
+              <strong>Estatus</strong>
+            </div>
+            <div class="form-floating">
+              <select #name="ngModel" type="text" [(ngModel)]="solicitar.estatus" required name="estatus" class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                <!--<option value="0" selected >Seleccionar</option>-->
+                <option value="Nueva">Nueva</option>
+              </select>
+              <label for="floatingInputValue">Estatus</label>
+            </div>
+          <div class="form-floating">
+            <strong>RESPONSABLES</strong>
+          </div>
+          <div class="form-floating">
+            <input  type="txt" class="form-control" id="floatingInputValue" placeholder="Solicitante">
+            <label for="floatingInputValue">Solicitante</label>
+          </div>
+          <div class="form-floating">
+            <strong>PROVEEDOR</strong>
+          </div>
+          <div class="form-floating mb-2">
+            <input type="txt" class="form-control" id="floatingInput" placeholder="Codigo">
+            <label for="floatingInput">Codigo</label>
+          </div>
+          <div class="form-floating">
+            <input type="txt" class="form-control" id="floatingInput" placeholder="Razon Social">
+            <label for="floatingInput">Razon Social</label>
+          </div>
+          <div class="form-floating">
+            <strong>Cliente</strong>
+          </div>
+          <div class="form-floating mb-2">
+            <input type="txt" class="form-control" id="floatingInput" placeholder="Nombre">
+            <label for="floatingInput">Nombre</label>
+          </div>
+          <div class="form-floating">
+            <input type="txt" class="form-control" id="floatingInput" placeholder="Num. Parte">
+            <label for="floatingInput">Num. Parte</label>
+          </div>
+          <div class="form-floating">
+            <strong>Material</strong>
+          </div>
+          <div class="form-floating">
+            <select class="form-select" id="floatingSelect" [(ngModel)]="selectedValue" aria-label="Floating label select example">
+              <option value="0" selected >Seleccionar</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+            </select>
+            <label for="floatingSelect">Cantidad de Material</label>
+          </div>
+          <br>
+          <!--<button>
+            <span class="circle1"></span>
+            <span class="circle2"></span>
+            <span class="circle3"></span>
+            <span class="circle4"></span>
+            <span class="circle5"></span>
+            <span class="text">Solicitar</span>
+          </button>-->
+          <br>
+        </div>
+        <form (ngSubmit)="submit(form.value)" #form="ngForm">
+        <div class="material">
+          <!--FORMULARIO PARA 1 MATERIAL-->
+          <div class="materialone" *ngIf="selectedValue >= 1">
+            <div class="form-floating">
+              <strong>Material</strong>
+            </div>
+            <div class="form-floating mb-2">
+              <!--<input type="txt" class="form-control" id="floatingInput" placeholder="Descripcion">-->
+
+              <label for="floatingInput">Descripcion</label>
+            </div>
+            <div class="form-floating mb-2">
+
+              <label for="floatingInput">Tipo Familia</label>
+            </div>
+            <div class="form-floating mb-2">
+
+              <label for="floatingInput">Caracteristica 1</label>
+            </div>
+            <div class="form-floating">
+
+              <label for="floatingInput">Caracteristica 2</label>
+            </div>
+          </div>
+          <!--FORMULARIO PARA 2 MATERIALES-->
+          <div class="materialtwo" *ngIf="selectedValue >= 2">
+            <div class="form-floating">
+              <strong>Material</strong>
+            </div>
+            <div class="form-floating mb-2">
+              <!--<input type="txt" class="form-control" id="floatingInput" placeholder="Descripcion">-->
+
+              <label for="floatingInput">Descripcion</label>
+            </div>
+            <div class="form-floating mb-2">
+
+              <label for="floatingInput">Tipo Familia</label>
+            </div>
+            <div class="form-floating mb-2">
+
+              <label for="floatingInput">Caracteristica 1</label>
+            </div>
+            <div class="form-floating">
+
+              <label for="floatingInput">Caracteristica 2</label>
+            </div>
+          </div>
+          <!--FORMULARIO PARA 3 MATERIALES-->
+          <div class="materialthree" *ngIf="selectedValue >= 3">
+            <div class="form-floating">
+              <strong>Material</strong>
+            </div>
+            <div class="form-floating mb-2">
+              <!--<input type="txt" class="form-control" id="floatingInput" placeholder="Descripcion">-->
+              <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 50px"></textarea>
+              <label for="floatingInput">Descripcion</label>
+            </div>
+            <div class="form-floating mb-2">
+              <input type="txt" class="form-control" id="floatingInput" placeholder="Tipo Familia">
+              <label for="floatingInput">Tipo Familia</label>
+            </div>
+            <div class="form-floating mb-2">
+              <input type="txt" class="form-control" id="floatingInput" placeholder="Caracteristica 1">
+              <label for="floatingInput">Caracteristica 1</label>
+            </div>
+            <div class="form-floating">
+              <input type="txt" class="form-control" id="floatingInput" placeholder="Caracteristica 2">
+              <label for="floatingInput">Caracteristica 2</label>
+            </div>
+            <br>
+          </div>
+          <!--FORMULARIO PARA 4 MATERIALES-->
+          <div class="materialfour" *ngIf="selectedValue >= 4">
+            <div class="form-floating">
+              <strong>Material</strong>
+            </div>
+            <div class="form-floating mb-2">
+              <!--<input type="txt" class="form-control" id="floatingInput" placeholder="Descripcion">-->
+              <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 50px"></textarea>
+              <label for="floatingInput">Descripcion</label>
+            </div>
+            <div class="form-floating mb-2">
+              <input type="txt" class="form-control" id="floatingInput" placeholder="Tipo Familia">
+              <label for="floatingInput">Tipo Familia</label>
+            </div>
+            <div class="form-floating mb-2">
+              <input type="txt" class="form-control" id="floatingInput" placeholder="Caracteristica 1">
+              <label for="floatingInput">Caracteristica 1</label>
+            </div>
+            <div class="form-floating">
+              <input type="txt" class="form-control" id="floatingInput" placeholder="Caracteristica 2">
+              <label for="floatingInput">Caracteristica 2</label>
+            </div>
+            <br>
+          </div>
+          <div class="form-floating">
+            <button type="submit" [disabled]="!form.valid">
+              <span class="circle1"></span>
+              <span class="circle2"></span>
+              <span class="circle3"></span>
+              <span class="circle4"></span>
+              <span class="circle5"></span>
+              <span class="text">Solicitar</span>
+            </button>
+          </div>
+        </div>
+        </form>
+      </div>
     </div>
-    <nav>
-        <ul class="menu">
-            <li><a href="#" routerLink="/solicitante/:id"><i class="fa-solid fa-ban fa-lg"></i>Cancelar</a></li>
-            <!--<li><a href="#" routerLink="/formSolicitud"><i class="fa-solid fa-user-pen fa-lg"></i>Solicitar Cotización </a></li>-->
-            <!--<li><a href="#"><i class="fa-solid fa-file-pen fa-lg"></i>Ver solicitudes</a></li>-->
-            <li><a href="#" routerLink="/inicio"><i class="fa-solid fa-right-from-bracket fa-lg"></i>Salir</a></li>
-        </ul>
-    </nav>
-  </header>
-    <!--formulario de solicitus-->
-    <div class="container">
-      <h2>SOLICITUD DE COTIZACIÓN</h2>
-      <form action="#" method="POST" class="gridform">
-        <!--<div class="form-groups">
-          <div class="campos">
-            <label for="nombre">SOLICITUS DE COTIZACIÓN:</label>
-            <input type="text" id="nombre" name="nombre" required >
-          </div>
-          <div class="campos">
-            <label for="nombre">FOLIO:</label>
-            <input type="text" id="nombre" name="nombre" required >
-          </div>
-        </div>-->
-          <label for="nombre" class="delinear">FECHAS</label>
-          <div class="form-group">
-              <div class="camposs">
-                <label for="nombre">Solicitud:</label>
-                <input type="date" id="fecha" name="fecha" required [(ngModel)]="fechaActual" readonly>
-              </div>
-              <div class="camposs">
-                <label for="nombre">Estatus:</label>
-                <select class="form-select" aria-label="Default select example">
-                  <option value="Nueva">Nueva</option>
-                  <!--<option value="Cotizando">Cotizando</option>
-                  <option value="Actualizando">Actualizando</option>
-                  <option value="Rechazada">Rechazada</option>
-                  <option value="Aprovado">Aprovado</option>
-                  <option value="Vencida">Vencida</option>-->
-                </select>
-              </div>
-          </div>
-          <label for="nombre" class="delinear">RESPONSABLES</label>
-          <div class="form-groups">
-              <div class="campos">
-                <label for="nombre">Solicitante:</label>
-                <input type="text" id="nombre" name="nombre" required >
-              </div>
-          </div>
-          <label for="nombre" class="delinear">PROVEEDOR</label>
-          <div class="form-groups">
-              <div class="campos">
-                <label for="nombre">Codigo:</label>
-                <input type="text" id="nombre" name="nombre" required>
-              </div>
-              <div class="campos">
-                <label for="nombre">Razon Social:</label>
-                <input type="text" id="nombre" name="nombre" required>
-              </div>
-          </div>
-          <label for="nombre" class="delinear">MATERIAL</label>
-          <div class="form-groups">
-              <div class="campos">
-                <label for="nombre">Codigo:</label>
-                <input type="text" id="nombre" name="nombre" required>
-              </div>
-              <div class="campos">
-                <label for="nombre">Descripción:</label>
-                <input type="text" id="nombre" name="nombre" required>
-              </div>
-              <div class="campos">
-                <label for="nombre">Tipo Familia:</label>
-                <input type="text" id="nombre" name="nombre" required>
-              </div>
-              <div class="campos">
-                <label for="nombre">Caracteristica 1:</label>
-                <input type="text" id="nombre" name="nombre" required>
-              </div>
-              <div class="campos">
-                <label for="nombre">Caracteristica 2:</label>
-                <input type="text" id="nombre" name="nombre" required>
-              </div>
-              <div class="campos">
-                <label for="nombre">Caracteristica 3:</label>
-                <input type="text" id="nombre" name="nombre" required>
-              </div>
-              <div class="campos">
-                <label for="nombre">Caracteristica 4:</label>
-                <input type="text" id="nombre" name="nombre" required>
-              </div>
-              <div class="campos">
-                <label for="nombre">Caracteristica 5:</label>
-                <input type="text" id="nombre" name="nombre" required>
-              </div>
-          </div>
+    <strong><pre>{{form.value | json }}</pre></strong>
+</body>
+<!---------->
+<body >
+  <div class="col" id="container">
+    <div class="containertabla">
+      <div class="table-responsive">
+        <button type="button" class="button" (click)="formEncabezado()">
+          <span class="button__text">Nuevo</span>
+          <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2"
+            stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg">
+            <line y2="19" y1="5" x2="12" x1="12"></line>
+            <line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
+        </button>
+        <div class="container-fluid my-4">
+          <table class="responsive-table table-bordered" style="width: 100%">
+              <thead>
+                <tr>
+                  <th># Solicitud</th>
+                  <th>Id Solicitante</th>
+                  <th>Estatus</th>
+                  <th>Id Proveedor</th>
+                  <th>Id Cliente</th>
+                  <th>Añadir</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let solicitudes of solicituds">
+                      <td>{{solicitudes.id}}</td>
+                      <td>{{solicitudes.id_usuario}}</td>
+                      <td>{{solicitudes.estatus}}</td>
+                      <td>{{solicitudes.id_proveedor}}</td>
+                      <td>{{solicitudes.id_cliente}}</td>
+                      <td><button id="bottone5" (click)="mostrarFormulario(solicitudes.id)">Material</button></td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+      </div>
 
-
-          <div class="form-group">
-              <button type="submit">Enviar</button>
-          </div>
+    </div>
+    <div class="containermaterial">
+      <div class="datos" *ngIf="verEncabezado">
+        <form  (ngSubmit)="submit(form.value)" #form="ngForm" >
+        <div class="form-floating">
+          <strong>ESTATUS</strong>
+        </div>
+        <div class="form-floating">
+          <select #name="ngModel" type="text" [(ngModel)]="solicitar.estatus" required name="estatus" class="form-select" id="floatingSelect" aria-label="Floating label select example">
+            <!--<option value="0" selected >Seleccionar</option>-->
+            <option value="Nueva">Nueva</option>
+          </select>
+          <label for="floatingInputValue">Estatus</label>
+        </div>
+      <div class="form-floating">
+        <strong>RESPONSABLES</strong>
+      </div>
+      <div class="form-floating">
+        <input  type="txt" class="form-control" id="floatingInputValue" placeholder="Solicitante">
+        <label for="floatingInputValue">Solicitante</label>
+      </div>
+      <div class="form-floating">
+        <strong>PROVEEDOR</strong>
+      </div>
+      <div class="form-floating mb-2">
+        <input type="txt" class="form-control" id="floatingInput" placeholder="Codigo">
+        <label for="floatingInput">Codigo</label>
+      </div>
+      <div class="form-floating">
+        <input type="txt" class="form-control" id="floatingInput" placeholder="Razon Social">
+        <label for="floatingInput">Razon Social</label>
+      </div>
+      <div class="form-floating">
+        <strong>Cliente</strong>
+      </div>
+      <div class="form-floating mb-2">
+        <input type="txt" class="form-control" id="floatingInput" placeholder="Nombre">
+        <label for="floatingInput">Nombre</label>
+      </div>
+      <div class="form-floating">
+        <input type="txt" class="form-control" id="floatingInput" placeholder="Num. Parte">
+        <label for="floatingInput">Num. Parte</label>
+      </div>
+      <br>
+      <button type="submit" [disabled]="!form.valid" id="button"> <span>Solicitar</span>
+      </button>
+      <br>
       </form>
-    </div>
+      </div>
+      <div *ngIf="solicitudSeleccionadaId !== null">
+        <app-form-encabezado [solicitudId]="solicitudSeleccionadaId"></app-form-encabezado>
+      </div>
 
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="copy">
-    Copyrigth © <span id="año-actual"></span> Airtemp de México S.A de C.V
+    </div>
   </div>
-</footer>
+</body>
 

@@ -1,0 +1,28 @@
+<div class="datos">
+  <div class="materialfour">
+    <form (ngSubmit)="submit(form.value)" #form="ngForm">
+    <div class="form-floating">
+      <strong>Material</strong>{{solicitudId}}
+    </div>
+    <div class="form-floating mb-2">
+      <!--<input type="txt" class="form-control" id="floatingInput" placeholder="Descripcion">-->
+      <textarea #name="ngModel" type="text" [(ngModel)]="solicitar.descripcion" required name="descripcion" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 50px"></textarea>
+      <label for="floatingInput">Descripcion</label>
+    </div>
+    <div class="form-floating mb-2">
+      <input #name="ngModel" type="text" [(ngModel)]="solicitar.familia" required name="familia" type="txt" class="form-control" id="floatingInput" placeholder="Tipo Familia">
+      <label for="floatingInput">Tipo Familia</label>
+    </div>
+    <div class="form-floating mb-2">
+      <input #name="ngModel" type="text" [(ngModel)]="solicitar.caracterone" required name="caracterone" type="txt" class="form-control" id="floatingInput" placeholder="Caracteristica 1">
+      <label for="floatingInput">Caracteristica 1</label>
+    </div>
+    <div class="form-floating">
+      <input #name="ngModel" type="text" [(ngModel)]="solicitar.caractertwo" required name="caractertwo" type="txt" class="form-control" id="floatingInput" placeholder="Caracteristica 2">
+      <label for="floatingInput">Caracteristica 2</label>
+    </div>
+    <br>
+    <button id="bottone5" type="submit" [disabled]="!form.valid">Agregar Material</button>
+  </form>
+  </div>
+</div>

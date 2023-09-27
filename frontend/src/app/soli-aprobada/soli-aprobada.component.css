@@ -1,71 +1,5 @@
 /* Importa Font Awesome */
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
-/* Estilos generales */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
-/* Estilos para el encabezado (header) */
-header {
-  background-color: #005ba2;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-}
-
-.logo img {
-  max-width: 25%;
-  height: auto;
-}
-
-/* Estilos para el menú */
-.menu {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  font-weight: bold;
-}
-
-.menu li {
-  margin-right: 20px;
-  position: relative;
-}
-.menu li :hover{
-  color: black;
-}
-.menu li a {
-  color: white;
-  text-decoration: none;
-  transition: color 0.3s ease, text-decoration 0.3s ease; /* Transición suave del color y el subrayado durante 0.3 segundos */
-  padding: 10px;
-}
-.menu li a :hover{
-  color: black;
-}
-
-
-/* Estilos responsivos */
-@media screen and (max-width: 768px) {
-  header {
-      flex-direction: column;
-      align-items: flex-start;
-  }
-
-  .menu {
-      margin-top: 10px;
-  }
-
-  .menu li {
-      margin: 20px;
-      margin-bottom: 10px;
-
-  }
-
-}
 
 
 /*Estilos para la tabla*/
@@ -153,17 +87,4 @@ header {
   transform: translate(3px , 3px);
   transition-duration: .3s;
   box-shadow: 2px 2px 0px rgb(244, 247, 103);
-}
-/* FOOTER */
-
-/* Estilo para el pie de página */
-.footer {
-  background-color: #005ba2;
-  /* Color de fondo del pie de página*/
-  padding: 20px 0;
-  /* Espaciado interior de 20 píxeles en la parte superior e inferior */
-  text-align: center;
-  /* Alineación del texto al centro dentro del pie de página */
-  color: white;
-  /* Color del texto*/
 }

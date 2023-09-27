@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\PersonalController;
+use App\Http\Controllers\SolicitudController;
+use App\Http\Controllers\MaterialController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +30,5 @@ Route::prefix('personal')->group(function () {
     Route::get('/{id}',[ PersonalController::class, 'get']);
     Route::put('/{id}',[ PersonalController::class, 'update']);
 });
+Route::apiResource('solicitud',SolicitudController::class);
+Route::apiResource('material',MaterialController::class);

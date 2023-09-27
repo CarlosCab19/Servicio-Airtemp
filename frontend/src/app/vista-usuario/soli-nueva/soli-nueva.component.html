@@ -1,0 +1,33 @@
+    <!--tabla donde se ven las solicitudes-->
+    <div class="row" >
+      <div class="col">
+        <table class="responsive-table table-bordered" >
+          <thead>
+            <tr>
+              <th>Folio</th>
+              <th>Id Solicitante</th>
+              <th>estatus</th>
+              <th>id proveedor</th>
+              <th>id cliente</th>
+              <th>Informacion</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let solicitud of solicituds">
+                  <td>{{solicitud.id}}</td>
+                  <td>{{solicitud.id_usuario}}</td>
+                  <td>{{solicitud.estatus}}</td>
+                  <td>{{solicitud.id_proveedor}}</td>
+                  <td>{{solicitud.id_cliente}}</td>
+                  <td><button (click)="masInfo(solicitud)">
+                    ver +
+                </button></td>
+              </tr>
+          </tbody>
+      </table>
+      </div>
+      <div class="col-6" >
+        <app-masinfo-soli *ngIf="masInformacion" [solicitudes]="solicitud"></app-masinfo-soli>
+
+      </div>
+    </div>

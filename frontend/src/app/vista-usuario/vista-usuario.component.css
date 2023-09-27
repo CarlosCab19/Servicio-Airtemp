@@ -27,7 +27,6 @@ header {
   padding: 0;
   margin: 0;
   display: flex;
-
   font-weight: bold;
 
 }
@@ -35,6 +34,11 @@ header {
 .menu li {
   margin-right: 20px;
   position: relative;
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease, text-decoration 0.3s ease; /* Transición suave del color y el subrayado durante 0.3 segundos */
+  padding: 10px;
+  cursor: pointer;
 }
 
 .menu li :hover{
@@ -57,29 +61,6 @@ header {
   text-decoration: none;
 }
 
-/* Estilos para el submenu */
-.submenu {
-  display: none;
-  position: absolute;
-  background-color: #555;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  z-index: 1;
-}
-
-.menu li:hover .submenu {
-  display: block;
-}
-
-.submenu li {
-  display: block;
-}
-
-.submenu li a {
-  color: white;
-  text-decoration: none;
-}
 
 
 /* Estilos responsivos */
@@ -144,66 +125,20 @@ header {
 .responsive-table tbody tr:hover {
   background-color: #ddd;
 }
-/* TABLA */
-thead {
-  background-color: #8fbc8f !important;
-  /* Color de fondo para el encabezado de la tabla*/
 
-}
 
 /*estilos para ver mas informacion de la solicitud*/
 .container{
   margin-top: 20px;
   margin-block-end: 20px;
 }
+
 .col-6{
   background-color: #8fbc8f;
   margin-left: 30px;
   border-radius: 10px;
 }
 
-/*boton para ver mas informacion*/
-button {
-  --color: #0077ff;
-  font-family: inherit;
-  display: inline-block;
-  width: 6em;
-  height: 2.6em;
-  line-height: 2.5em;
-  overflow: hidden;
-  margin: 5px;
-  font-size: 17px;
-  z-index: 1;
-  color: var(--color);
-  border: 2px solid var(--color);
-  border-radius: 6px;
-  position: relative;
-}
-
-button::before {
-  position: absolute;
-  content: "";
-  background: var(--color);
-  width: 150px;
-  height: 200px;
-  z-index: -1;
-  border-radius: 50%;
-}
-
-button:hover {
-  color: white;
-}
-
-button:before {
-  top: 100%;
-  left: 100%;
-  transition: .3s all;
-}
-
-button:hover::before {
-  top: -30px;
-  left: -30px;
-}
 
 /* FOOTER */
 
@@ -218,3 +153,4 @@ button:hover::before {
   color: white;
   /* Color del texto*/
 }
+
