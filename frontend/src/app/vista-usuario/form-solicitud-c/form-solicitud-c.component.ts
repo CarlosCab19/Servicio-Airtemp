@@ -50,17 +50,20 @@ export class FormSolicitudCComponent implements OnInit{
   submit(element:Solicitud){
     this.solicitudService.create(this.solicitar).subscribe(res=>{
       console.log('Solicitud realizada')
-    })
+    });
+    this.verEncabezado=false;
   }
   verbody(){
     this.body=false;
   }
   formEncabezado(){
-    this.verEncabezado=!this.verEncabezado;
+    this.verEncabezado=true;
   }
   mostrarFormulario(solicitudId: string) {
     this.solicitudSeleccionadaId = solicitudId;
   }
-
+  cancelar(){
+    this.verEncabezado=false;
+  }
 
 }

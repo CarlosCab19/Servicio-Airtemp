@@ -17,7 +17,7 @@
     </div>
 
   <div class="container">
-    <app-soli-nueva *ngIf="solicitudes" [idSolicitante]="idSolicitante"></app-soli-nueva>
+    <app-soli-nueva *ngIf="solicitudes" [idSolicitante]="idSolicitante" [nombreSolicitante]="nombrePersonal" [apellidoSoli]="apellidoPersonal"></app-soli-nueva>
     <app-form-solicitud-c *ngIf="formulario" [idSolicitante]="idSolicitante"></app-form-solicitud-c>
     <app-soli-aprobada *ngIf="cotizadas"></app-soli-aprobada>
   </div>

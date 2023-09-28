@@ -33,7 +33,7 @@ export class MaterialService {
       catchError(this.errorHandler)
     )
   }
-  find(id: string | number): Observable<Material> {
+  find(id: string | null): Observable<Material> {
     return this.httpClient.get<Material>(this.url + id)
     .pipe(
       catchError(this.errorHandler)

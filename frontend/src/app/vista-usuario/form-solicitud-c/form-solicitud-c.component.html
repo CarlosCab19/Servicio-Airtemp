@@ -261,10 +261,13 @@
         <input type="txt" class="form-control" id="floatingInput" placeholder="Num. Parte">
         <label for="floatingInput">Num. Parte</label>
       </div>
-      <br>
-      <button type="submit" [disabled]="!form.valid" id="button"> <span>Solicitar</span>
-      </button>
-      <br>
+      <div class="solicitar">
+        <button type="submit" [disabled]="!form.valid" id="button"> <span>Solicitar</span>
+        </button>
+        <button type="submit" id="button2" (click)="cancelar()"> <span>Cancelar</span>
+        </button>
+      </div>
+
       </form>
       </div>
       <div *ngIf="solicitudSeleccionadaId !== null">

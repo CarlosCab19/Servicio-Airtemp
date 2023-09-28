@@ -24,9 +24,6 @@ export class VistaUsuarioComponent implements OnInit{
   formulario:boolean=false;
   cotizadas:boolean=false;
 
-
-
-
   constructor(private router: Router,private rutaActiva: ActivatedRoute,
       private personalService:PersonalService, private solicitudService:SolicitudService){
       // Obtener la fecha actual y formatearla como "YYYY-MM-DD"

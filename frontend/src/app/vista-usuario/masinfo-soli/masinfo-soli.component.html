@@ -1,88 +1,50 @@
 
-  <div class="container">
-    <h2>Información de la cotización</h2>
-    <form  [formGroup]="form">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="fechasolicitud" style="font-weight: bold;">Fecha de Solicitud:</label>
-                    <input formControlName="fechasolicitud" id="nombres" type="text" class="form-control" readonly="readonly">
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="estatus" style="font-weight: bold;">Estatus:</label>
-                    <input formControlName="estatus"  id="apellidos" type="text" class="form-control" readonly="readonly">
-                </div>
-            </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-              <div class="form-group">
-                  <label for="solicitante" style="font-weight: bold;">Solicitante:</label>
-                  <input formControlName="solicitante"  id="apellidos" type="text" class="form-control" readonly="readonly">
-              </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-              <div class="form-group">
-                  <label for="codigoproveedor" style="font-weight: bold;">Codigo Proveedor:</label>
-                  <input formControlName="codigoproveedor"  id="apellidos" type="text" class="form-control" readonly="readonly">
-              </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-                <label for="razonsocial" style="font-weight: bold;">Razon Social:</label>
-                <input formControlName="razonsocial"   id="contra" type="text" class="form-control" readonly="readonly">
-            </div>
-        </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-              <div class="form-group">
-                  <label for="fechasolicitud" style="font-weight: bold;">Nombre del Cliente:</label>
-                  <input formControlName="fechasolicitud" id="nombres" type="text" class="form-control" readonly="readonly">
-              </div>
-          </div>
-          <div class="col-md-6">
-              <div class="form-group">
-                  <label for="estatus" style="font-weight: bold;">Numero de parte:</label>
-                  <input formControlName="estatus"  id="apellidos" type="text" class="form-control" readonly="readonly">
-              </div>
-          </div>
+    <div class="card">
+      <div class="card-header">
+        <h2>Información de la cotización</h2>
       </div>
-        <div class="row">
-          <div class="col-md-6">
-              <div class="form-group">
-                  <label for="codigo" style="font-weight: bold;">Descripcion del Material:</label>
-                  <!--<input formControlName="codigo"  id="apellidos" type="text" class="form-control" readonly="readonly">-->
-                  <textarea class="form-control"  id="floatingTextarea2" style="height: 100px"></textarea>
-              </div>
+      <div class="card-body">
+        <p><strong>Fecha Solicitada: </strong>{{ fecha | date:'dd/MM/yyyy' }}</p>
+        <p><strong>Estatus: </strong>{{estatusS}}</p>
+        <p><strong>Solicitante: </strong>{{usuarioNom}} {{usuarioApe}}</p>
+        <p><strong>Codigo Proveedor: </strong>{{idProvS}}</p>
+        <p><strong>Razon Social: </strong></p>
+        <p><strong>Cliente: </strong>{{idClienS}}</p>
+        <p><strong>Numero de parte: </strong></p>
+        <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
+        <!--<button class="button" style="vertical-align:middle"><span>Materiales</span></button>-->
+        <button class="Btn" (click)="verMaterial()">
+          <div class="sign">
+            <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z"/></svg>
           </div>
-          <div class="col-md-6">
-            <div class="form-group">
-                <label for="descripcion" style="font-weight: bold;">Familia del Material:</label>
-                <input formControlName="descripcion"  id="contra" type="text" class="form-control" readonly="readonly">
-            </div>
-        </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-              <div class="form-group">
-                  <label for="tipofamilia" style="font-weight: bold;">Caracteristica 1:</label>
-                  <input formControlName="tipofamilia"  id="apellidos" type="text" class="form-control" readonly="readonly">
-              </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-                <label for="caracteristicaone" style="font-weight: bold;">Caracteristica 2:</label>
-                <input formControlName="caracteristicaone"  id="contra" type="text" class="form-control" readonly="readonly">
-            </div>
-          </div>
-        </div>
+          <div class="text">Material</div>
+        </button>
         <br>
-    </form>
-  </div>
+        <!--Tabla de los materiales-->
+        <div class="table-responsive" *ngIf="infoMaterial">
+          <table class="table align-middle">
+            <thead class="table-primary">
+              <tr>
+                <td><strong>#</strong></td>
+                <td><strong>Descripcion</strong></td>
+                <td><strong>Familia</strong></td>
+                <td><strong>Caracteristica 1</strong></td>
+                <td><strong>Caracteristica 2</strong></td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let materiales of material" class="align-bottom">
+                <td >{{materiales.id}}</td>
+                <td >{{materiales.descripcion}}</td>
+                <td>{{materiales.familia}}</td>
+                <td>{{materiales.caracterone}}</td>
+                <td>{{materiales.caractertwo}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
 
 

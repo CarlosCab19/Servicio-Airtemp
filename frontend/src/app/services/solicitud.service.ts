@@ -39,7 +39,7 @@ export class SolicitudService {
     )
   }
 
-  find(id: string | number): Observable<Solicitud> {
+  find(id: string | null): Observable<Solicitud> {
     return this.httpClient.get<Solicitud>(this.url + id)
     .pipe(
       catchError(this.errorHandler)

@@ -44,6 +44,12 @@ export class PersonalService {
      catchError(this.errorHandler)
    )
  }
+ find2(id: string | null): Observable<Personal> {
+  return this.httpClient.get<Personal>(this.url + id)
+  .pipe(
+    catchError(this.errorHandler)
+  )
+}
 
 
 
