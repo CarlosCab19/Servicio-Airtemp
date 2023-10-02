@@ -17,6 +17,11 @@ import { Solicitud } from 'src/app/shared/solicitud';
 })
 export class MasinfoSoliComponent implements OnInit{
   solicitud!:Solicitud;
+  solicitudN!:Solicitud;
+  form = new FormGroup({
+    estatus:  new FormControl('', [ Validators.required, Validators.pattern('^(Nueva)$') ]),
+  });
+
   material:Material[]=[];
   infoMaterial:boolean=false;
 
@@ -28,6 +33,8 @@ export class MasinfoSoliComponent implements OnInit{
   idUserS:string="";
   idProvS:string="";
   idClienS:string="";
+  actualizar:string="";
+
 
   fecha:Date|string="";
   constructor(private router:Router,
@@ -53,12 +60,25 @@ export class MasinfoSoliComponent implements OnInit{
         }
       });
     });
-
+    this.solicitudService.find(this.idN).subscribe((data: Solicitud)=>{
+      this.solicitudN = data;
+    });
+  }
+  get f(){
+    return this.form.controls;
   }
   verMaterial(){
     this.infoMaterial=!this.infoMaterial;
   }
-
-
+  submit(){
+    console.log(this.form.value);
+    this.solicitudService.update(this.idN, this.form.value).subscribe(res => {
+      this.form.setValue(
+        {
+        'estatus':this.solicitudN.estatus,
+      });
+      console.log('Actualizado y Listo');
+    });
+  }
 
 }

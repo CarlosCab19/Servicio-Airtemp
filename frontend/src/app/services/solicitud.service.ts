@@ -24,13 +24,12 @@ export class SolicitudService {
       catchError(this.errorHandler)
     )
   }
-  getID(empleadoId: string): Observable<Solicitud[]> {
-    return this.httpClient.get<Solicitud[]>(this.url)
-      .pipe(
-        catchError(this.errorHandler)
-      );
+  update(id: string | null, solicitud: any): Observable<Solicitud> {
+    return this.httpClient.put<Solicitud>(this.url + id, JSON.stringify(solicitud), this.httpOptions)
+    .pipe(
+      catchError(this.errorHandler)
+    )
   }
-
 
   create(solicitud: any): Observable<Solicitud> {
     return this.httpClient.post<Solicitud>(this.url, JSON.stringify(solicitud), this.httpOptions)

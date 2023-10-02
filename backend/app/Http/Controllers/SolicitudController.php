@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Solicitud;
+use App\Http\Requests\UpdateSolicitudRequest;
+use App\Http\Requests\SolicitudRequest;
 
 class SolicitudController extends Controller
 {
@@ -12,7 +14,7 @@ class SolicitudController extends Controller
         $solicitud=Solicitud::all();
         return $solicitud;
     }
-    public function store(Request $request){
+    public function store(SolicitudRequest $request){
         $request->validate([
             'estatus' => 'required',
         ]);
@@ -22,7 +24,7 @@ class SolicitudController extends Controller
     public function show(Solicitud $solicitud){
         return $solicitud;
     }
-    public function update(Request $request){
+    public function update(UpdateSolicitudRequest $request, Solicitud $solicitud){
         $request->validate([
             'estatus' => 'required',
         ]);

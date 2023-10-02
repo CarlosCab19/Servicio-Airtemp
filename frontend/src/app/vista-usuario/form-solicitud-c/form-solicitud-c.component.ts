@@ -18,11 +18,14 @@ export class FormSolicitudCComponent implements OnInit{
   selectedValue: number = 0; // Valor seleccionado del select
   materialClasses: string[] = []; // Arreglo de clases a mostrar
   solicitudSeleccionadaId: string | null = null;
+  /*para desabilitar material*/
+  id_solicitud:string="";
 
   solicitar!:Solicitud;
   body:boolean=false;
   verEncabezado:boolean=false;
   solicituds:Solicitud[]=[];
+  estatus:string="";
 
   constructor(public solicitudService:SolicitudService){}
 
@@ -42,7 +45,8 @@ export class FormSolicitudCComponent implements OnInit{
       id_proveedor:"",
       id_cliente:"",
       created_at:"",
-    }
+    };
+
   }
 
 

@@ -5,21 +5,34 @@
       </div>
       <div class="card-body">
         <p><strong>Fecha Solicitada: </strong>{{ fecha | date:'dd/MM/yyyy' }}</p>
-        <p><strong>Estatus: </strong>{{estatusS}}</p>
+        <form [formGroup]="form" (ngSubmit)="submit()">
+        <!--<p><strong>Estatus: </strong>
+          <select class="form-select" aria-label="Default select example" [(ngModel)]="solicitudN.estatus" formControlName="estatus" id="estatus">
+            <option value="Nueva">Nueva</option>
+          </select></p>-->
+          <div class="input-group mb-3" *ngIf="estatusS=='Nueva'">
+            <p><strong>Estatus:</strong>{{estatusS}}</p>
+          </div>
+          <div class="input-group mb-3" *ngIf="estatusS=='Edicion'">
+            <p><strong>Estatus: </strong></p>
+            <select class="form-select" aria-label="Default select example" [(ngModel)]="solicitudN.estatus" formControlName="estatus" id="estatus" aria-describedby="button-addon2">
+              <option value="Nueva">Nueva</option>
+            </select>
+            <button class="btn btn-outline-secondary" type="submit" [disabled]="!form.valid" id="button-addon2">Actualizar</button>
+          </div>
+          <!--<button  class="btn btn-primary" type="submit" [disabled]="!form.valid">Actualizar</button>-->
+        </form>
         <p><strong>Solicitante: </strong>{{usuarioNom}} {{usuarioApe}}</p>
         <p><strong>Codigo Proveedor: </strong>{{idProvS}}</p>
         <p><strong>Razon Social: </strong></p>
         <p><strong>Cliente: </strong>{{idClienS}}</p>
         <p><strong>Numero de parte: </strong></p>
-        <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
-        <!--<button class="button" style="vertical-align:middle"><span>Materiales</span></button>-->
-        <button class="Btn" (click)="verMaterial()">
-          <div class="sign">
-            <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z"/></svg>
-          </div>
-          <div class="text">Material</div>
-        </button>
-        <br>
+      <button class="Btn" (click)="verMaterial()">
+        <div class="sign">
+          <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z"/></svg>
+        </div>
+        <div class="text">Material</div>
+      </button>
         <!--Tabla de los materiales-->
         <div class="table-responsive" *ngIf="infoMaterial">
           <table class="table align-middle">
@@ -43,7 +56,6 @@
             </tbody>
           </table>
         </div>
-      </div>
     </div>
 
 
