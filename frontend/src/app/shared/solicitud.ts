@@ -4,5 +4,5 @@ export interface Solicitud {
   estatus:string;
   id_proveedor:string;
   id_cliente:string;
-  created_at:string;
+  created_at:Date|string;
 }

@@ -38,7 +38,8 @@ export class FormEncabezadoComponent implements OnInit{
       caracterone: "",
       caractertwo: ""
     };
-    })
+    });
+
   }
 
 }

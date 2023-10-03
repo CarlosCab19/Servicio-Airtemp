@@ -18,11 +18,14 @@ export class FormSolicitudCComponent implements OnInit{
   selectedValue: number = 0; // Valor seleccionado del select
   materialClasses: string[] = []; // Arreglo de clases a mostrar
   solicitudSeleccionadaId: string | null = null;
+  /*para desabilitar material*/
+  id_solicitud:string="";
 
   solicitar!:Solicitud;
   body:boolean=false;
   verEncabezado:boolean=false;
   solicituds:Solicitud[]=[];
+  estatus:string="";
 
   constructor(public solicitudService:SolicitudService){}
 
@@ -42,7 +45,8 @@ export class FormSolicitudCComponent implements OnInit{
       id_proveedor:"",
       id_cliente:"",
       created_at:"",
-    }
+    };
+
   }
 
 
@@ -50,17 +54,20 @@ export class FormSolicitudCComponent implements OnInit{
   submit(element:Solicitud){
     this.solicitudService.create(this.solicitar).subscribe(res=>{
       console.log('Solicitud realizada')
-    })
+    });
+    this.verEncabezado=false;
   }
   verbody(){
     this.body=false;
   }
   formEncabezado(){
-    this.verEncabezado=!this.verEncabezado;
+    this.verEncabezado=true;
   }
   mostrarFormulario(solicitudId: string) {
     this.solicitudSeleccionadaId = solicitudId;
   }
-
+  cancelar(){
+    this.verEncabezado=false;
+  }
 
 }

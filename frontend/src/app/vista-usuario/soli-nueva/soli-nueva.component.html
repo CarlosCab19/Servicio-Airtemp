@@ -19,7 +19,7 @@
                   <td>{{solicitud.estatus}}</td>
                   <td>{{solicitud.id_proveedor}}</td>
                   <td>{{solicitud.id_cliente}}</td>
-                  <td><button (click)="masInfo(solicitud)">
+                  <td><button (click)="masInfo(solicitud.id)">
                     ver +
                 </button></td>
               </tr>
@@ -27,7 +27,7 @@
       </table>
       </div>
       <div class="col-6" >
-        <app-masinfo-soli *ngIf="masInformacion" [solicitudes]="solicitud"></app-masinfo-soli>
-
+        {{infoSelec}}
+        <app-masinfo-soli *ngIf="masInformacion" [solicitudesId]="infoSelec" [usuarioNom]="nombreSolicitante" [usuarioApe]="apellidoSoli"></app-masinfo-soli>
       </div>
     </div>
