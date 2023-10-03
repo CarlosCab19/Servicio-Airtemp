@@ -85,3 +85,14 @@ button:hover::before {
     width: 100%;
   }
 }
+
+.amarillo {
+  color: rgb(255, 0, 0);
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.verde {
+  color: green;
+  font-weight: bold;
+}

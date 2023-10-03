@@ -1,12 +1,10 @@
 import { DatePipe } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MaterialService } from 'src/app/services/material.service';
-import { PersonalService } from 'src/app/services/personal.service';
 import { SolicitudService } from 'src/app/services/solicitud.service';
 import { Material } from 'src/app/shared/material';
-import { Personal } from 'src/app/shared/personal';
 import { Solicitud } from 'src/app/shared/solicitud';
 
 @Component({
@@ -28,6 +26,8 @@ export class MasinfoSoliComponent implements OnInit{
   @Input() solicitudesId:null | string="";
   @Input() usuarioNom:string="";
   @Input() usuarioApe:string="";
+  @Output() newEstado = new EventEmitter<boolean>();
+  @Output() newActualizar = new EventEmitter<string>();
   idN:null|string="";
   estatusS:string="";
   idUserS:string="";
@@ -79,6 +79,20 @@ export class MasinfoSoliComponent implements OnInit{
       });
       console.log('Actualizado y Listo');
     });
+    this.addNewEstado(false);
+    this.addNewActua('ngOnInit');
+  }
+  eliminar(id:string){
+    this.materialService.delete(id).subscribe(res => {
+      this.material = this.material.filter(item => item.id !== id);
+      console.log('Material Eliminado!');
+    })
+  }
+  addNewEstado(value: boolean){
+    this.newEstado.emit(value);
+  }
+  addNewActua(value:string){
+    this.newActualizar.emit(value);
   }
 
 }

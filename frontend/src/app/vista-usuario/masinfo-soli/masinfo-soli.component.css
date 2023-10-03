@@ -12,7 +12,11 @@ h2{
 
 .card-header{
   display:grid;
-  grid-template-columns: min-content, max-content;
+  grid-template-columns: repeat(2,max-content);
+  column-gap: 50px;
+}
+.close{
+  cursor: pointer;
 }
 .Btn {
   display: flex;
@@ -82,3 +86,6 @@ h2{
   transform: translate(2px ,2px);
 }
 /*estilos para la tabla*/
+#delete{
+  cursor: pointer;
+}

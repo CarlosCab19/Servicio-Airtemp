@@ -270,8 +270,8 @@
 
       </form>
       </div>
-      <div *ngIf="solicitudSeleccionadaId !== null">
-        <app-form-encabezado [solicitudId]="solicitudSeleccionadaId"></app-form-encabezado>
+      <div *ngIf="verFormSoli==true">
+        <app-form-encabezado [solicitudId]="solicitudSeleccionadaId" (newEstado)="addEstado($event)"></app-form-encabezado>
       </div>
 
     </div>

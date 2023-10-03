@@ -27,7 +27,7 @@
     <br>
     <div class="botones">
       <button id="bottone5" type="submit" [disabled]="!form.valid" >Agregar Material</button>
-      <button id="bottone5" type="submit">Completo</button>
+      <button id="bottone5" (click)="addNewEstado(false)" >Completo</button>
     </div>
   </form>
   </div>

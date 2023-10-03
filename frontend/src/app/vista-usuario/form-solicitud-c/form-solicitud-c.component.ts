@@ -17,7 +17,8 @@ export class FormSolicitudCComponent implements OnInit{
   @Input() idSolicitante:string="";
   selectedValue: number = 0; // Valor seleccionado del select
   materialClasses: string[] = []; // Arreglo de clases a mostrar
-  solicitudSeleccionadaId: string | null = null;
+  solicitudSeleccionadaId: string ="";
+  verFormSoli:boolean=false;
   /*para desabilitar material*/
   id_solicitud:string="";
 
@@ -65,9 +66,13 @@ export class FormSolicitudCComponent implements OnInit{
   }
   mostrarFormulario(solicitudId: string) {
     this.solicitudSeleccionadaId = solicitudId;
+    this.verFormSoli=true;
   }
   cancelar(){
     this.verEncabezado=false;
+  }
+  addEstado(newEstado:boolean){
+    this.verFormSoli=newEstado;
   }
 
 }

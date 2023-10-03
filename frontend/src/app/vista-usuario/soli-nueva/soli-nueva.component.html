@@ -6,7 +6,7 @@
             <tr>
               <th>Folio</th>
               <th>Id Solicitante</th>
-              <th>estatus</th>
+              <th>Estatus</th>
               <th>id proveedor</th>
               <th>id cliente</th>
               <th>Informacion</th>
@@ -16,7 +16,7 @@
               <tr *ngFor="let solicitud of solicituds">
                   <td>{{solicitud.id}}</td>
                   <td>{{solicitud.id_usuario}}</td>
-                  <td>{{solicitud.estatus}}</td>
+                  <td [ngClass]="{'amarillo': solicitud.estatus === 'Edicion', 'verde': solicitud.estatus !== 'Edicion'}">{{solicitud.estatus}}</td>
                   <td>{{solicitud.id_proveedor}}</td>
                   <td>{{solicitud.id_cliente}}</td>
                   <td><button (click)="masInfo(solicitud.id)">
@@ -27,7 +27,7 @@
       </table>
       </div>
       <div class="col-6" >
-        {{infoSelec}}
-        <app-masinfo-soli *ngIf="masInformacion" [solicitudesId]="infoSelec" [usuarioNom]="nombreSolicitante" [usuarioApe]="apellidoSoli"></app-masinfo-soli>
+        <!--{{infoSelec}}-->
+        <app-masinfo-soli (newEstado)="addEstado($event)" (newActualizar)="addActua($event)" *ngIf="masInformacion==true" [solicitudesId]="infoSelec" [usuarioNom]="nombreSolicitante" [usuarioApe]="apellidoSoli"></app-masinfo-soli>
       </div>
     </div>
