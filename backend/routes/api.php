@@ -29,6 +29,23 @@ Route::prefix('personal')->group(function () {
     Route::delete('/{id}',[ PersonalController::class, 'delete']);
     Route::get('/{id}',[ PersonalController::class, 'get']);
     Route::put('/{id}',[ PersonalController::class, 'update']);
+    /*Route::get('/',[ PersonalController::class, 'getActivos']);*/
+
 });
-Route::apiResource('solicitud',SolicitudController::class);
-Route::apiResource('material',MaterialController::class);
+/*Route::apiResource('solicitud',SolicitudController::class);*/
+Route::prefix('solicitud')->group(function () {
+    Route::get('/',[ SolicitudController::class, 'index']);
+    Route::get('/{id}',[SolicitudController::class,'getList']);
+    Route::post('/',[ SolicitudController::class, 'create']);
+    Route::delete('/{id}',[ SolicitudController::class, 'delete']);
+    Route::get('/get/{id}',[ SolicitudController::class, 'get']);
+    Route::put('/{id}',[ SolicitudController::class, 'update']);
+});
+/*Route::apiResource('material',MaterialController::class);*/
+Route::prefix('material')->group(function () {
+    Route::get('/{id}',[MaterialController::class,'getList']);
+    Route::post('/',[ MaterialController::class, 'create']);
+    Route::delete('/{id}',[ MaterialController::class, 'delete']);
+});
+
+

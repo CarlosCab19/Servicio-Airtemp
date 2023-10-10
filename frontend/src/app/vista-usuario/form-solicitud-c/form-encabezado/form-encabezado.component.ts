@@ -1,8 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MaterialService } from 'src/app/services/material.service';
-import { SolicitudService } from 'src/app/services/solicitud.service';
 import { Material } from 'src/app/shared/material';
-import { Solicitud } from 'src/app/shared/solicitud';
 
 @Component({
   selector: 'app-form-encabezado',
@@ -19,7 +17,6 @@ export class FormEncabezadoComponent implements OnInit{
     this.solicitar={
       id:"",
       id_solicitud:this.solicitudId,
-      id_cotizacion:"",
       descripcion:"",
       familia:"",
       caracterone:"",
@@ -33,7 +30,6 @@ export class FormEncabezadoComponent implements OnInit{
     this.solicitar = {
       id: "",
       id_solicitud: this.solicitudId,
-      id_cotizacion: "",
       descripcion: "",
       familia: "",
       caracterone: "",

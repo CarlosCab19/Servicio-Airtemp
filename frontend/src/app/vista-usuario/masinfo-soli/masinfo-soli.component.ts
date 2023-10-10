@@ -22,12 +22,13 @@ export class MasinfoSoliComponent implements OnInit{
 
   material:Material[]=[];
   infoMaterial:boolean=false;
+  solicituds:Solicitud[]=[];
 
   @Input() solicitudesId:null | string="";
   @Input() usuarioNom:string="";
   @Input() usuarioApe:string="";
   @Output() newEstado = new EventEmitter<boolean>();
-  @Output() newActualizar = new EventEmitter<string>();
+  @Output() newresponder = new EventEmitter<string>();
   idN:null|string="";
   estatusS:string="";
   idUserS:string="";
@@ -49,8 +50,8 @@ export class MasinfoSoliComponent implements OnInit{
       this.solicitud = response;
       this.estatusS=response.estatus;
       this.idUserS=response.id_usuario;
-      this.idProvS=response.id_proveedor;
-      this.idClienS=response.id_cliente;
+      this.idProvS="response.id_proveedor";
+      this.idClienS="response.id_cliente";
       this.fecha=response.created_at;
     });
     this.materialService.getAll().subscribe(response=>{
@@ -80,7 +81,7 @@ export class MasinfoSoliComponent implements OnInit{
       console.log('Actualizado y Listo');
     });
     this.addNewEstado(false);
-    this.addNewActua('ngOnInit');
+    this.addNewRes('Actualizar');
   }
   eliminar(id:string){
     this.materialService.delete(id).subscribe(res => {
@@ -91,8 +92,7 @@ export class MasinfoSoliComponent implements OnInit{
   addNewEstado(value: boolean){
     this.newEstado.emit(value);
   }
-  addNewActua(value:string){
-    this.newActualizar.emit(value);
+  addNewRes(value:string){
+    this.newresponder.emit(value);
   }
-
 }

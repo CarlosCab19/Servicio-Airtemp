@@ -17,8 +17,7 @@
                   <td>{{solicitud.id}}</td>
                   <td>{{solicitud.id_usuario}}</td>
                   <td [ngClass]="{'amarillo': solicitud.estatus === 'Edicion', 'verde': solicitud.estatus !== 'Edicion'}">{{solicitud.estatus}}</td>
-                  <td>{{solicitud.id_proveedor}}</td>
-                  <td>{{solicitud.id_cliente}}</td>
+
                   <td><button (click)="masInfo(solicitud.id)">
                     ver +
                 </button></td>
@@ -28,6 +27,7 @@
       </div>
       <div class="col-6" >
         <!--{{infoSelec}}-->
-        <app-masinfo-soli (newEstado)="addEstado($event)" (newActualizar)="addActua($event)" *ngIf="masInformacion==true" [solicitudesId]="infoSelec" [usuarioNom]="nombreSolicitante" [usuarioApe]="apellidoSoli"></app-masinfo-soli>
+        {{responseN}}
+        <app-masinfo-soli (newEstado)="addEstado($event)" (newresponder)="addRespuesta($event)" *ngIf="masInformacion==true" [solicitudesId]="infoSelec" [usuarioNom]="nombreSolicitante" [usuarioApe]="apellidoSoli"></app-masinfo-soli>
       </div>
     </div>

@@ -12,8 +12,11 @@ class Solicitud extends Model
 
     protected $fillable=[
         'id_usuario',
-        'estatus',
-        'id_proveedor',
-        'id_cliente',
+        'solicitante',
+        'codProv',
+        'Rsocial',
+        'NomCliente',
+        'NumParte',
+        'estatus'
     ];
 }

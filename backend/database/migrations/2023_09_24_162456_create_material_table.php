@@ -13,10 +13,7 @@ return new class extends Migration
     {
         Schema::create('material', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_solicitud')->nullable();
-            $table->foreign('id_solicitud')->reference('id')->on('solicitud');
-            $table->unsignedBigInteger('id_cotizacion')->nullable();
-            $table->foreign('id_cotizacion')->reference('id')->on('cotizacion');
+            $table->string('id_solicitud');
             $table->string('descripcion');
             $table->string('familia');
             $table->string('caracterone');
