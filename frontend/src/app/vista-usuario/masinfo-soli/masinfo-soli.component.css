@@ -1,0 +1,100 @@
+/* Estilos para el contenedor del registro */
+.container {
+  width: 70%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #1b9aee63;
+  border: 1px solid #1b9aee;
+  border-radius: 15px;
+}
+
+/* Estilos para los elementos del registro */
+.registro h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.form-control{
+  text-align: left;
+  /*width: 40%;*/
+}
+#datos{
+  text-align: left;
+  color: white;
+}
+#title{
+  text-align: left;
+  text-decoration: underline;
+  font-size: 15px;
+}
+
+thead{
+  background-color: #005ba2;
+  color: white;
+}
+tbody{
+  background-color: white;
+  color: black;
+}
+#delete{
+  width: 20px;
+  height: 20px;
+  margin: 5px;
+  cursor: pointer;
+}
+.acciones{
+  text-align: right;
+  /*background-color: blueviolet;*/
+}
+#enviar{
+  margin-right: 90%;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+}
+#close{
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+}
+.add{
+  text-align: right;
+  margin-top: 0;
+  margin-block-end: 10px;
+  margin-right: 20px;
+}
+/*boton dentro de mas informacion, para agregar material*/
+#add {
+  width: fit-content;
+  min-width: 100px;
+  height: 45px;
+  padding: 8px;
+  border-radius: 5px;
+  border: 2.5px solid #005ba2;
+  box-shadow: 0px 0px 20px -20px;
+  cursor: pointer;
+  background-color: white;
+  transition: all 0.2s ease-in-out 0ms;
+  user-select: none;
+  font-family: 'Poppins', sans-serif;
+}
+
+#add:hover {
+  background-color: #e2d8d885;
+  box-shadow: 0px 0px 20px -18px;
+}
+
+#add:active {
+  transform: scale(0.95);
+}
+span{
+  background-color: #e2d8d885;
+}
+#colMaterial{
+  margin-block-end: 10px;
+}
+.btnAgregar{
+  border-radius: 10px;
+  background-color: #e2d8d885;
+  border: 2.5px solid #005ba2;
+}

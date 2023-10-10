@@ -17,17 +17,19 @@ export class VistaUsuarioComponent implements OnInit{
   verMaterial:boolean=false;
   verTabla:boolean=true;
   isOffcanvasOpen: boolean = false;
+  masInfo:boolean=false;
 
 
   /*nombre del usuario*/
   responsable:string="";
   idSolicitante:string="";
+  idSolicitud:string="";
 
   /*-----------*/
   id:string="";
   personalN:Personal | undefined;
   solicitudes:Solicitud[]=[];
-  idSolicitud:string="";
+  idSoli:string="";
 
 
   constructor(private router: Router,private rutaActiva: ActivatedRoute,
@@ -52,6 +54,10 @@ export class VistaUsuarioComponent implements OnInit{
     this.verNuevo=newEstado;
     this.verMaterial=newEstado;
     this.verTabla=!newEstado;
+  }
+  EstadoClose(newClose:boolean){
+    this.masInfo=newClose;
+    this.verTabla=!newClose;
   }
   loadWindows(winEstado:boolean){
     if(winEstado==true){
@@ -93,6 +99,11 @@ export class VistaUsuarioComponent implements OnInit{
     this.idSolicitud=idSelec;
     this.verMaterial=true;
     this.verTabla=false;
+  }
+  masInformacion(idSoli:string){
+    this.masInfo=true;
+    this.verTabla=false;
+    this.idSoli=idSoli;
   }
 
 }

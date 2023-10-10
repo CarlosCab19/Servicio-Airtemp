@@ -16,13 +16,14 @@ export class MaterialService {
     })
  }
   constructor(private httpClient:HttpClient) { }
-
-  filtrado(): Observable <Material[]> {
-    let direccion = this.url;
-    return this.httpClient.get<Material[]>(direccion);
-  }
   getAll(): Observable<Material[]> {
     return this.httpClient.get<Material[]>(this.url)
+    .pipe(
+      catchError(this.errorHandler)
+    )
+  }
+  getList(id:string):Observable<Material[]>{
+    return this.httpClient.get<Material[]>(this.url+id)
     .pipe(
       catchError(this.errorHandler)
     )

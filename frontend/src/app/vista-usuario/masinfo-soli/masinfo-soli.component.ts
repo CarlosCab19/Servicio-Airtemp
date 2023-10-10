@@ -14,85 +14,84 @@ import { Solicitud } from 'src/app/shared/solicitud';
   providers: [DatePipe],
 })
 export class MasinfoSoliComponent implements OnInit{
-  solicitud!:Solicitud;
-  solicitudN!:Solicitud;
-  form = new FormGroup({
-    estatus:  new FormControl('', [ Validators.required, Validators.pattern('^(Nueva)$') ]),
-  });
-
+  @Input() idSolicitud:string="";
+  @Input() responsable:string="";
+  @Output() newClose = new EventEmitter<boolean>();
   material:Material[]=[];
-  infoMaterial:boolean=false;
-  solicituds:Solicitud[]=[];
-
-  @Input() solicitudesId:null | string="";
-  @Input() usuarioNom:string="";
-  @Input() usuarioApe:string="";
-  @Output() newEstado = new EventEmitter<boolean>();
-  @Output() newresponder = new EventEmitter<string>();
-  idN:null|string="";
-  estatusS:string="";
-  idUserS:string="";
-  idProvS:string="";
-  idClienS:string="";
-  actualizar:string="";
-
+  solicitar!:Material;
+  solicitud!:Solicitud;
+  codiProv:string="";
+  Rsocial:string="";
+  nomClien:string="";
+  numParte:string="";
+  addMaterial:boolean=false;
+  contMaterial!:boolean;
 
   fecha:Date|string="";
   constructor(private router:Router,
     private solicitudService:SolicitudService,public route: ActivatedRoute,
-    private materialService:MaterialService,private datePipe: DatePipe){
-
-  }
+    private materialService:MaterialService,private datePipe: DatePipe){}
 
   ngOnInit(): void {
-    this.idN = this.solicitudesId;
-    this.solicitudService.find(this.idN).subscribe(response=>{
-      this.solicitud = response;
-      this.estatusS=response.estatus;
-      this.idUserS=response.id_usuario;
-      this.idProvS="response.id_proveedor";
-      this.idClienS="response.id_cliente";
-      this.fecha=response.created_at;
+    this.materialService.getList(this.idSolicitud).subscribe((data: Material[])=>{
+      this.material = data;
+      // Verifica si el arreglo this.material está vacío
+  if (this.material.length === 0) {
+    console.log('El arreglo this.material está vacío.');
+    this.contMaterial=true;
+  } else {
+    console.log('El arreglo this.material no está vacío y contiene elementos.');
+    this.contMaterial=false;
+  }
     });
-    this.materialService.getAll().subscribe(response=>{
-      response.forEach(element => {
-        if (element.id_solicitud==this.solicitudesId) {
-          this.material.push(element);
-        }
-      });
+    this.solicitudService.find(this.idSolicitud).subscribe(response=>{
+      this.solicitud=response;
+      this.codiProv=response.codProv;
+      this.Rsocial=response.Rsocial;
+      this.nomClien=response.NomCliente;
+      this.numParte=response.NumParte;
     });
-    this.solicitudService.find(this.idN).subscribe((data: Solicitud)=>{
-      this.solicitudN = data;
+    this.solicitar={
+      id:"",
+      id_solicitud:this.idSolicitud,
+      descripcion:"",
+      familia:"",
+      caracterone:"",
+      caractertwo:"",
+    }
+  }
+  submit(element:Material){
+    this.materialService.create(this.solicitar).subscribe(res=>{
+      this.material.push(element);
+      console.log('Material Agregado');
+      // Limpia los campos del objeto 'solicitar'
+    this.solicitar = {
+      id: "",
+      id_solicitud: this.idSolicitud,
+      descripcion: "",
+      familia: "",
+      caracterone: "",
+      caractertwo: ""
+    };
     });
   }
-  get f(){
-    return this.form.controls;
+  addNewClose(value:boolean){
+    this.newClose.emit(value);
   }
-  verMaterial(){
-    this.infoMaterial=!this.infoMaterial;
-  }
-  submit(){
-    console.log(this.form.value);
-    this.solicitudService.update(this.idN, this.form.value).subscribe(res => {
-      this.form.setValue(
-        {
-        'estatus':this.solicitudN.estatus,
-      });
-      console.log('Actualizado y Listo');
-    });
-    this.addNewEstado(false);
-    this.addNewRes('Actualizar');
-  }
-  eliminar(id:string){
-    this.materialService.delete(id).subscribe(res => {
-      this.material = this.material.filter(item => item.id !== id);
-      console.log('Material Eliminado!');
+  eliminar(idMaterial:string){
+    this.materialService.delete(idMaterial).subscribe(res=>{
+      this.material = this.material.filter(item => item.id !== idMaterial);
+      console.log('Material Eliminado');
     })
   }
-  addNewEstado(value: boolean){
-    this.newEstado.emit(value);
+  EnviarSoli(){
+    if(this.contMaterial==true){
+      alert('Sin materiales, Agregar al menos uno');
+    }else{
+      alert('Enviado');
+    }
   }
-  addNewRes(value:string){
-    this.newresponder.emit(value);
+  masMaterial(){
+    this.addMaterial=!this.addMaterial;
   }
 }
