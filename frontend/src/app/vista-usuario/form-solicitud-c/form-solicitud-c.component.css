@@ -38,3 +38,10 @@ label {
   }
 
 }
+
+.prueva{
+  background-color: chocolate;
+  height: 200px;
+  width: 200px;
+  text-align: center;
+}

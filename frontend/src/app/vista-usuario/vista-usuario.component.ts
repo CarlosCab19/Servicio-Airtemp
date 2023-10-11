@@ -20,15 +20,22 @@ export class VistaUsuarioComponent implements OnInit{
   masInfo:boolean=false;
 
 
+
   /*nombre del usuario*/
   responsable:string="";
   idSolicitante:string="";
   idSolicitud:string="";
+  /*para los datos de la solicitud seleccionada
+  codiProv:string="";
+  Rsocial:string="";
+  nomClien:string="";
+  numParte:string="";*/
 
   /*-----------*/
   id:string="";
   personalN:Personal | undefined;
   solicitudes:Solicitud[]=[];
+  solicitud!:Solicitud;
   idSoli:string="";
 
 
@@ -61,6 +68,17 @@ export class VistaUsuarioComponent implements OnInit{
   }
   loadWindows(winEstado:boolean){
     if(winEstado==true){
+      location.reload();
+    }
+  }
+  activarForm(actForm:boolean){
+    this.masInfo=actForm;
+    console.log('valor recibido para activar',actForm);
+  }
+  EstadoSoli(newEstSoli:boolean){
+    this.verTabla=newEstSoli;
+    this.masInfo=!newEstSoli;
+    if(newEstSoli==true){
       location.reload();
     }
   }
@@ -104,6 +122,13 @@ export class VistaUsuarioComponent implements OnInit{
     this.masInfo=true;
     this.verTabla=false;
     this.idSoli=idSoli;
+    /*this.solicitudService.find(idSoli).subscribe(response=>{
+      this.solicitud=response;
+      this.codiProv=response.codProv;
+      this.Rsocial=response.Rsocial;
+      this.nomClien=response.NomCliente;
+      this.numParte=response.NumParte;
+    })*/
   }
 
 }

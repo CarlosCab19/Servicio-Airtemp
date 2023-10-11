@@ -15,10 +15,16 @@ export class FormSolicitudCComponent implements OnInit{
   @Input() nomResponsable:string="";
   @Output() newEstado = new EventEmitter<boolean>();
   @Output() loadWindows = new EventEmitter<boolean>();
+  @Output() abrirForm = new EventEmitter<boolean>();
+  verprueva:boolean=false;
+  solicitud!:Solicitud;
+  solici:Solicitud[]=[];
+  codiProv:string="";
+  Rsocial:string="";
+  nomClien:string="";
+  numParte:string="";
 
-
-  constructor(public solicitudService:SolicitudService){
-  }
+  constructor(public solicitudService:SolicitudService){}
 
   ngOnInit(): void {
     console.log('ngOnInit del formulario');
@@ -38,7 +44,7 @@ export class FormSolicitudCComponent implements OnInit{
 
   submit(element:Solicitud){
     this.solicitudService.create(this.solicitar).subscribe(res=>{
-      console.log('Solicitud realizada')
+      console.log('Solicitud realizada');
       this.solicitar={
         id:"",
         id_usuario:this.idUs,
@@ -52,6 +58,7 @@ export class FormSolicitudCComponent implements OnInit{
       };
       this.addNewEstado(false);
       this.addLoad(true);
+      /*this.addEvento(true);*/
     });
   }
   addNewEstado(value:boolean){
@@ -59,6 +66,9 @@ export class FormSolicitudCComponent implements OnInit{
   }
   addLoad(value:boolean){
     this.loadWindows.emit(value);
+  }
+  addEvento(value:boolean){
+    this.abrirForm.emit(value);
   }
 
 }
