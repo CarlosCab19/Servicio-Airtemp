@@ -1,34 +1,53 @@
-<div class="datos">
-  <div class="materialfour">
-    <form (ngSubmit)="submit(form.value)" #form="ngForm">
-    <div class="form-floating">
-      <strong>Solicitud: </strong>{{solicitudId}}
+<form (ngSubmit)="submit(form.value)" #form="ngForm">
+
+<div id="tres" class="g-col-6 g-col-md-4">
+  <div class="row">
+    <div class="col-md" id="close" (click)="addNewEstado(false)">
+      <svg id="close" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z"/></svg>
     </div>
-    <div class="form-floating">
-      <strong>Material</strong>
+  </div>
+  <div class="row g-2">
+    <div class="col-md-6 mb-3">
+      <div class="form-floating">
+        <input type="text" class="form-control" id="floatingInput"  value={{solicitudId}} disabled>
+        <label for="floatingInput">Folio Solicitud</label>
+      </div>
     </div>
-    <div class="form-floating mb-2">
-      <!--<input type="txt" class="form-control" id="floatingInput" placeholder="Descripcion">-->
-      <textarea #name="ngModel" type="text" [(ngModel)]="solicitar.descripcion" required name="descripcion" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 50px"></textarea>
-      <label for="floatingInput">Descripcion</label>
+  </div>
+  <div class="row g-2">
+    <label for="formGroupExampleInput" class="form-label mb-0" style="text-decoration: underline;"><strong>MATERIAL</strong></label>
+    <div class="col-md">
+      <div class="form-floating">
+        <textarea #name="ngModel" name="descripcion" [(ngModel)]="solicitar.descripcion" required class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+        <label for="floatingTextarea">Descripcion del Material</label>
+      </div>
     </div>
-    <div class="form-floating mb-2">
-      <input #name="ngModel" type="text" [(ngModel)]="solicitar.familia" required name="familia" type="txt" class="form-control" id="floatingInput" placeholder="Tipo Familia">
-      <label for="floatingInput">Tipo Familia</label>
+    <div class="col-md mb-3">
+      <div class="form-floating">
+        <input #name="ngModel" name="familia" [(ngModel)]="solicitar.familia" required type="text" class="form-control" id="floatingInput" placeholder="razon social">
+        <label for="floatingInput">Tipo de Familia</label>
+      </div>
     </div>
-    <div class="form-floating mb-2">
-      <input #name="ngModel" type="text" [(ngModel)]="solicitar.caracterone" required name="caracterone" type="txt" class="form-control" id="floatingInput" placeholder="Caracteristica 1">
-      <label for="floatingInput">Caracteristica 1</label>
+  </div>
+  <div class="row g-2">
+    <div class="col-md">
+      <div class="form-floating">
+        <textarea #name="ngModel" name="caracterone" [(ngModel)]="solicitar.caracterone" required  class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+        <label for="floatingTextarea">Caracteristica 1</label>
+      </div>
     </div>
-    <div class="form-floating">
-      <input #name="ngModel" type="text" [(ngModel)]="solicitar.caractertwo" required name="caractertwo" type="txt" class="form-control" id="floatingInput" placeholder="Caracteristica 2">
-      <label for="floatingInput">Caracteristica 2</label>
+    <div class="col-md mb-3">
+      <div class="form-floating">
+        <textarea #name="ngModel" name="caractertwo" [(ngModel)]="solicitar.caractertwo" required  class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+        <label for="floatingTextarea">Caracteristica 2</label>
+      </div>
     </div>
-    <br>
-    <div class="botones">
-      <button id="bottone5" type="submit" [disabled]="!form.valid" >Agregar Material</button>
-      <button id="bottone5" type="submit">Completo</button>
+  </div>
+  <div class="row">
+    <div class="col-md">
+      <button class="botonCrear" type="submit" [disabled]="!form.valid">Agregar</button>
     </div>
-  </form>
   </div>
 </div>
+
+</form>

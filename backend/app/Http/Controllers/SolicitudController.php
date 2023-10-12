@@ -11,28 +11,46 @@ class SolicitudController extends Controller
 {
     //
     public function index(){
-        $solicitud=Solicitud::all();
-        return $solicitud;
+        $data = Solicitud::all();
+        return response()->json($data, 200);
     }
-    public function store(SolicitudRequest $request){
-        $request->validate([
-            'estatus' => 'required',
-        ]);
-        $solicitud = Solicitud::create($request->all());
-        return $solicitud;
+    public function getList($id){
+        $data = Solicitud::where('id_usuario', $id)->get();
+        return response()->json($data, 200);
     }
-    public function show(Solicitud $solicitud){
-        return $solicitud;
-    }
-    public function update(UpdateSolicitudRequest $request, Solicitud $solicitud){
-        $request->validate([
-            'estatus' => 'required',
-        ]);
-        $solicitud->update($request->all());
-        return response()->noContent();
-    }
-    public function destroy(Solicitud $solicitud){
-        $solicitud->delete();
-        return response()->noContent();
-    }
+    public function create(Request $request){
+        $data['id_usuario'] = $request['id_usuario'];
+        $data['solicitante'] = $request['solicitante'];
+        $data['codProv'] = $request['codProv'];
+        $data['Rsocial'] = $request['Rsocial'];
+        $data['NomCliente'] = $request['NomCliente'];
+        $data['NumParte'] = $request['NumParte'];
+        $data['estatus'] = $request['estatus'];
+        Solicitud::create($data);
+        return response()->json([
+            'message' => "Successfully created",
+            'success' => true
+        ], 200);
+      }
+      public function delete($id){
+        $res = Solicitud::find($id)->delete();
+        return response()->json([
+            'message' => "Successfully deleted",
+            'success' => true
+        ], 200);
+      }
+      public function get($id){
+        $data = Solicitud::find($id);
+        return response()->json($data, 200);
+      }
+      public function update(Request $request,$id){
+        $data['estatus'] = $request['estatus'];
+        Solicitud::find($id)->update($data);
+        return response()->json([
+            'message' => "Successfully updated",
+            'success' => true
+        ], 200);
+      }
+
+
 }

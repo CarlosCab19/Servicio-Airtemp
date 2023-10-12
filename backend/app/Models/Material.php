@@ -11,7 +11,6 @@ class Material extends Model
     protected $table='material';
     protected $fillable=[
         'id_solicitud',
-        'id_cotizacion',
         'descripcion',
         'familia',
         'caracterone',

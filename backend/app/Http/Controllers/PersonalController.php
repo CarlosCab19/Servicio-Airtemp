@@ -11,7 +11,11 @@ class PersonalController extends Controller
     public function getAll(){
         $data = Personal::get();
         return response()->json($data, 200);
-      }
+    }
+    /*public function getActivos() {
+        $data = Personal::where('estatus', 'Inactivo')->get();
+        return response()->json($data, 200);
+    }*/
 
       public function create(Request $request){
         $data['nombres'] = $request['nombres'];

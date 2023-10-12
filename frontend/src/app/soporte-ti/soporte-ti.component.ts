@@ -35,7 +35,18 @@ export class SoporteTIComponent implements OnInit{
       this.nombrePersonal=response.nombres;
 
     });
+    /*this.getPersonalActivos();*/
   }
+  /*getPersonalActivos() {
+    this.personalService.filtrado().subscribe(
+      (data) => {
+        this.personals = data;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }*/
 
   deletePerson(id: string){
     this.personalService.delete(id).subscribe(res => {

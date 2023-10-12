@@ -1,9 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { MaterialService } from 'src/app/services/material.service';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { SolicitudService } from 'src/app/services/solicitud.service';
-import { Material } from 'src/app/shared/material';
 import { Solicitud } from 'src/app/shared/solicitud';
 
 
@@ -14,60 +10,65 @@ import { Solicitud } from 'src/app/shared/solicitud';
 })
 export class FormSolicitudCComponent implements OnInit{
 
-  @Input() idSolicitante:string="";
-  selectedValue: number = 0; // Valor seleccionado del select
-  materialClasses: string[] = []; // Arreglo de clases a mostrar
-  solicitudSeleccionadaId: string | null = null;
-  /*para desabilitar material*/
-  id_solicitud:string="";
-
   solicitar!:Solicitud;
-  body:boolean=false;
-  verEncabezado:boolean=false;
-  solicituds:Solicitud[]=[];
-  estatus:string="";
+  @Input() idUs:string="";
+  @Input() nomResponsable:string="";
+  @Output() newEstado = new EventEmitter<boolean>();
+  @Output() loadWindows = new EventEmitter<boolean>();
+  @Output() abrirForm = new EventEmitter<boolean>();
+  verprueva:boolean=false;
+  solicitud!:Solicitud;
+  solici:Solicitud[]=[];
+  codiProv:string="";
+  Rsocial:string="";
+  nomClien:string="";
+  numParte:string="";
 
   constructor(public solicitudService:SolicitudService){}
 
   ngOnInit(): void {
-    /*Filtrar las solicitudes de cada usuario o solicitante*/
-    this.solicitudService.getAll().subscribe(response=>{
-      response.forEach(element => {
-        if (element.id_usuario==this.idSolicitante) {
-          this.solicituds.push(element);
-        }
-      });
-    });
+    console.log('ngOnInit del formulario');
     this.solicitar={
       id:"",
-      id_usuario:this.idSolicitante,
-      estatus:"",
-      id_proveedor:"",
-      id_cliente:"",
+      id_usuario:this.idUs,
+      solicitante:this.nomResponsable,
+      codProv:"",
+      Rsocial:"",
+      NomCliente:"",
+      NumParte:"",
+      estatus:"Editando",
       created_at:"",
     };
 
   }
 
-
-
   submit(element:Solicitud){
     this.solicitudService.create(this.solicitar).subscribe(res=>{
-      console.log('Solicitud realizada')
+      console.log('Solicitud realizada');
+      this.solicitar={
+        id:"",
+        id_usuario:this.idUs,
+        solicitante:this.nomResponsable,
+        codProv:"",
+        Rsocial:"",
+        NomCliente:"",
+        NumParte:"",
+        estatus:"",
+        created_at:"",
+      };
+      this.addNewEstado(false);
+      this.addLoad(true);
+      /*this.addEvento(true);*/
     });
-    this.verEncabezado=false;
   }
-  verbody(){
-    this.body=false;
+  addNewEstado(value:boolean){
+    this.newEstado.emit(value);
   }
-  formEncabezado(){
-    this.verEncabezado=true;
+  addLoad(value:boolean){
+    this.loadWindows.emit(value);
   }
-  mostrarFormulario(solicitudId: string) {
-    this.solicitudSeleccionadaId = solicitudId;
-  }
-  cancelar(){
-    this.verEncabezado=false;
+  addEvento(value:boolean){
+    this.abrirForm.emit(value);
   }
 
 }

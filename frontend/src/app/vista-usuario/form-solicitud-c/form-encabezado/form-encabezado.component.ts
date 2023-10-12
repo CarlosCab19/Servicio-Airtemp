@@ -1,8 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MaterialService } from 'src/app/services/material.service';
-import { SolicitudService } from 'src/app/services/solicitud.service';
 import { Material } from 'src/app/shared/material';
-import { Solicitud } from 'src/app/shared/solicitud';
 
 @Component({
   selector: 'app-form-encabezado',
@@ -11,6 +9,7 @@ import { Solicitud } from 'src/app/shared/solicitud';
 })
 export class FormEncabezadoComponent implements OnInit{
   @Input() solicitudId:string="";
+  @Output() newEstado = new EventEmitter<boolean>();
   solicitar!:Material;
   constructor(private materialService:MaterialService){}
 
@@ -18,7 +17,6 @@ export class FormEncabezadoComponent implements OnInit{
     this.solicitar={
       id:"",
       id_solicitud:this.solicitudId,
-      id_cotizacion:"",
       descripcion:"",
       familia:"",
       caracterone:"",
@@ -32,14 +30,15 @@ export class FormEncabezadoComponent implements OnInit{
     this.solicitar = {
       id: "",
       id_solicitud: this.solicitudId,
-      id_cotizacion: "",
       descripcion: "",
       familia: "",
       caracterone: "",
       caractertwo: ""
     };
     });
-
+  }
+  addNewEstado(value: boolean){
+    this.newEstado.emit(value);
   }
 
 }

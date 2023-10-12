@@ -23,7 +23,6 @@ export class PersonalService {
    return this.httpClient.get<Personal[]>(direccion);
  }
 
-
  getAll(): Observable<Personal[]> {
    return this.httpClient.get<Personal[]>(this.url)
    .pipe(

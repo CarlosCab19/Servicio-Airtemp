@@ -24,6 +24,13 @@ export class SolicitudService {
       catchError(this.errorHandler)
     )
   }
+  getList(id:string):Observable<Solicitud[]>{
+    return this.httpClient.get<Solicitud[]>(this.url+id)
+    .pipe(
+      catchError(this.errorHandler)
+    )
+  }
+
   update(id: string | null, solicitud: any): Observable<Solicitud> {
     return this.httpClient.put<Solicitud>(this.url + id, JSON.stringify(solicitud), this.httpOptions)
     .pipe(
@@ -38,8 +45,9 @@ export class SolicitudService {
     )
   }
 
+
   find(id: string | null): Observable<Solicitud> {
-    return this.httpClient.get<Solicitud>(this.url + id)
+    return this.httpClient.get<Solicitud>(this.url +'get/' + id)
     .pipe(
       catchError(this.errorHandler)
     )

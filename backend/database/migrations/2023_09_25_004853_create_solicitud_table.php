@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('solicitud', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_usuario')->nullable();
-            $table->foreign('id_usuario')->reference('id')->on('personal');
+            $table->string('id_usuario')->nullable();
+            $table->string('solicitante');
+            $table->string('codProv');
+            $table->string('Rsocial');
+            $table->string('NomCliente');
+            $table->string('NumParte');
             $table->string('estatus');
-            $table->unsignedBigInteger('id_proveedor')->nullable();
-            $table->foreign('id_proveedor')->reference('id')->on('proveedor');
-            $table->unsignedBigInteger('id_cliente')->nullable();
-            $table->foreign('id_cliente')->reference('id')->on('cliente');
             $table->timestamps();
         });
     }
