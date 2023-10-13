@@ -38,8 +38,8 @@ export class MasinfoSoliComponent implements OnInit{
 
   form = new FormGroup({
     estatus:  new FormControl('Nueva', [ Validators.required]),
-    /*numerocotizacion:  new FormControl('', [ Validators.required]),*/
   });
+
 
   fecha:Date|string="";
   constructor(private router:Router,
@@ -47,19 +47,13 @@ export class MasinfoSoliComponent implements OnInit{
     private materialService:MaterialService,private datePipe: DatePipe){}
 
   ngOnInit(): void {
+    //para traer los meteriales de esa solictud
     this.materialService.getList(this.idSolicitud).subscribe((data: Material[])=>{
       this.material = data;
-      // Verifica si el arreglo this.material está vacío
-      if (this.material.length === 0) {
-        console.log('El arreglo this.material está vacío.');
-        this.contMaterial=true;
-      } else {
-        console.log('El arreglo this.material no está vacío y contiene elementos.');
-        this.contMaterial=false;
-      }
     });
+
     this.solicitudService.find(this.idSolicitud).subscribe(response=>{
-      console.log('entro en donde se recuperan los datos de la solicitud')
+      //console.log('entro en donde se recuperan los datos de la solicitud')
       this.solicitud=response;
       this.codiProv=response.codProv;
       this.Rsocial=response.Rsocial;
@@ -78,8 +72,19 @@ export class MasinfoSoliComponent implements OnInit{
   }
   submit(element:Material){
     this.materialService.create(this.solicitar).subscribe(res=>{
-      this.material.push(element);
       console.log('Material Agregado');
+      //const materialId = res.id; // Accede al ID bajo la clave 'material_id'
+      //console.log('ID del material creado:', materialId);
+      const materialCreado = {
+        id:res.id,
+        id_solicitud:this.idSolicitud,
+        descripcion:element.descripcion,
+        familia:element.familia,
+        caracterone:element.caracterone,
+        caractertwo:element.caractertwo,
+      };
+      this.material.push(materialCreado);
+      //console.log(materialCreado);
       // Limpia los campos del objeto 'solicitar'
     this.solicitar = {
       id: "",
@@ -87,7 +92,7 @@ export class MasinfoSoliComponent implements OnInit{
       descripcion: "",
       familia: "",
       caracterone: "",
-      caractertwo: ""
+      caractertwo: "",
     };
     });
   }
@@ -97,14 +102,43 @@ export class MasinfoSoliComponent implements OnInit{
   addNewClose(value:boolean){
     this.newClose.emit(value);
   }
-  eliminar(idMaterial:string){
+  eliminar(idMaterial:string|number){
     this.materialService.delete(idMaterial).subscribe(res=>{
       this.material = this.material.filter(item => item.id !== idMaterial);
       console.log('Material Eliminado');
     })
+    /*for(let i=0;i<this.material.length;i++){
+      if(i==idMaterial) {
+        this.material.splice(i,1);
+      }
+    }*/
   }
+
+
   EnviarSoli(value:boolean){
-    if(this.contMaterial==true){
+
+    this.materialService.getList(this.idSolicitud).subscribe((data: Material[])=>{
+      this.material = data;
+      // Verifica si el arreglo this.material está vacío
+      if (this.material.length === 0) {
+        console.log('El arreglo this.material está vacío.');
+        alert('Sin materiales, Agregar al menos uno');
+        //this.contMaterial=true;
+      } else {
+        console.log('El arreglo this.material no está vacío y contiene elementos.');
+        //this.contMaterial=false;
+        this.solicitudService.update(this.idSolicitud, this.form.value).subscribe(res => {
+          this.form.setValue(
+            {
+            'estatus':"Nueva",
+          });
+          console.log('Enviado');
+          alert('Solicitud Enviada');
+          this.newEnviar.emit(value);
+        });
+      }
+    });
+    /*if(this.contMaterial==true){
       alert('Sin materiales, Agregar al menos uno');
     }else{
       this.solicitudService.update(this.idSolicitud, this.form.value).subscribe(res => {
@@ -116,7 +150,7 @@ export class MasinfoSoliComponent implements OnInit{
         alert('Solicitud Enviada');
         this.newEnviar.emit(value);
       });
-    }
+    }*/
   }
   masMaterial(){
     this.addMaterial=!this.addMaterial;

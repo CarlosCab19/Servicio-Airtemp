@@ -12,7 +12,7 @@ class MaterialController extends Controller
         $data = Material::where('id_solicitud', $id)->get();
         return response()->json($data, 200);
     }
-    public function create(Request $request){
+    /*public function create(Request $request){
         $data['id_solicitud'] = $request['id_solicitud'];
         $data['descripcion'] = $request['descripcion'];
         $data['familia'] = $request['familia'];
@@ -23,8 +23,29 @@ class MaterialController extends Controller
             'message' => "Successfully created",
             'success' => true
         ], 200);
-      }
-      public function delete($id){
+      }*/
+
+      public function create(Request $request){
+        $data['id_solicitud'] = $request['id_solicitud'];
+        $data['descripcion'] = $request['descripcion'];
+        $data['familia'] = $request['familia'];
+        $data['caracterone'] = $request['caracterone'];
+        $data['caractertwo'] = $request['caractertwo'];
+
+        $material = Material::create($data); // Crear el material y obtener el modelo
+
+        $nuevoMaterialID = $material->id; // Obtener el ID del material recién creado
+
+        return response()->json([
+            'message' => "Successfully created",
+            'id' => $nuevoMaterialID, // Devolver el ID del material
+            'success' => true
+        ], 200);
+    }
+
+
+
+    public function delete($id){
         $res = Material::find($id)->delete();
         return response()->json([
             'message' => "Successfully deleted",

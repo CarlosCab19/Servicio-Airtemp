@@ -71,7 +71,7 @@
           <table class="responsive-table table-bordered" style="width:100%">
               <thead>
                 <tr>
-                  <!--<th>Folio Material</th>-->
+                  <th>#</th>
                   <th>Descripción</th>
                   <th>Familia</th>
                   <th>Caracteristica 1</th>
@@ -80,8 +80,9 @@
                 </tr>
               </thead>
               <tbody>
-                  <tr *ngFor="let materiales of material">
-                      <!--<td>{{materiales.id}}</td>-->
+                  <tr *ngFor="let materiales of material;let i=index">
+                      <td>{{materiales.id}}</td>
+                      <!--<th scope="row">{{i+1}}</th>-->
                       <td>{{materiales.descripcion}}</td>
                       <td>{{materiales.familia}}</td>
                       <td>{{materiales.caracterone}}</td>

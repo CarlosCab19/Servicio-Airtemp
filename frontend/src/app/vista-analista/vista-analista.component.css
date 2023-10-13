@@ -137,3 +137,24 @@ h2{
   }
 
 }
+
+#acciones{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  height: 100%;
+  column-gap: 5px;
+}
+#see{
+  background-color: rgba(51, 228, 95, 0.473) ;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+#cancel{
+  background-color: #ff020283;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  border-radius: 5px;
+}
