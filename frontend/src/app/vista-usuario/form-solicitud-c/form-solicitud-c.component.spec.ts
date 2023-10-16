@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormSolicitudCComponent } from './form-solicitud-c.component';
+import { FormSolicitudCComponent } from './FormSolicitudCComponent';
 
 describe('FormSolicitudCComponent', () => {
   let component: FormSolicitudCComponent;

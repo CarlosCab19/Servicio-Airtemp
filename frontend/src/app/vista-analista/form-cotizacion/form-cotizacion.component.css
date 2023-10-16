@@ -1,197 +1,31 @@
-/* Importa Font Awesome */
-@import "~@fortawesome/fontawesome-free/css/all.min.css";
-/* Estilos generales */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
+/* Estilos para el contenedor del registro */
+.container {
+  width: 70%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #1b9aee63;
+  border: 1px solid #1b9aee;
+  border-radius: 15px;
 }
-
-/* Estilos para el encabezado (header) */
-header {
-  background-color: #005ba2;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
+.cotizar{
+  width: 70%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #1b9aee63;
+  border: 1px solid #1b9aee;
+  border-radius: 15px;
 }
-
-.logo img {
-  max-width: 25%;
-  height: auto;
-}
-
-/* Estilos para el menú */
-.menu {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  font-weight: bold;
-}
-
-.menu li {
-  margin-right: 20px;
-  position: relative;
-}
-.menu li :hover{
-  color: black;
-}
-.menu li a {
-  color: white;
-  text-decoration: none;
-  transition: color 0.3s ease, text-decoration 0.3s ease; /* Transición suave del color y el subrayado durante 0.3 segundos */
-  padding: 10px;
-}
-.menu li a :hover{
-  color: black;
-}
-
-
-/* Estilos responsivos */
-@media screen and (max-width: 768px) {
-  header {
-      flex-direction: column;
-      align-items: flex-start;
-  }
-
-  .menu {
-      margin-top: 10px;
-  }
-
-  .menu li {
-      margin: 20px;
-      margin-bottom: 10px;
-
-  }
-
-
-}
-
-/*Formulario de solicitud*/
-.container{
-  width: 100%;
-  max-width: 1000px;
-  display: grid;
-  grid-template-rows: 1fr;
-  margin-top: 20px;
-  margin-block-end: 20px;
-  background-color: rgb(194, 201, 206);
-  border-radius: 20px;
-  gap:5px
-}
-.delinear{
-  text-decoration: underline;
-  font-weight: bold;
-}
-input{
-  width: 100%;
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-input[type="text1"],
-textarea {
-  width: 25%;
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-.title{
-  margin-top: 20px;
-  margin-left: 20px;
-  margin-right: 20px;
-  text-align: center;
-  background-color: #005ba2;
-  border-radius: 20px;
-  color: white;
-}
-h2{
-  font-weight: bold;
-  margin-top: 10px;
-}
-.encabezado{
-  display: grid;
-  grid-template-columns: repeat(2,1fr);
-  font-weight: bold;
-  /*background-color: blueviolet;*/
-  margin-left: 20px;
-  margin-top: 20px;
-  margin-block-end: 10px;
-}
-.solicitud{
-  /*background-color: aqua;*/
-  font-weight: bold;
-
-}
-.campos{
-  display: grid;
-  grid-template-columns: 160px 500px;
-  gap: 10px;
-
-}
-.campos6{
-  display: grid;
-  grid-template-columns: auto 200px auto 200px auto 200px auto;
-  gap:10px;
-}
-.campos4{
-  display: grid;
-  grid-template-columns: 100px 200px 80px 200px;
-  gap: 10px;
-}
-.fechas{
- /*background-color: blue;*/
-  font-weight: bold;
-}
-.responsables{
-  /*background-color: aqua;*/
-  font-weight: bold;
-}
-.proveedor{
-  /*background-color: #333;*/
-  font-weight: bold;
-  display: grid;
-  grid-template-rows: 1fr;
-  gap:10px
-}
-.material{
-  /*background-color: aquamarine;*/
-  font-weight: bold;
-}
-.precios{
-  /*background-color:brown;*/
-  font-weight: bold;
-}
-.boton{
-
-  margin-top: 20px;
-  margin-block-end: 20px;
-}
-button {
-  width: 30%;
-  background-color: #333;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+#close{
+  height: 30px;
+  width: 30px;
   cursor: pointer;
 }
-
-button:hover {
-  background-color: #555;
+h2{
+  background-color: rgba(0, 0, 255, 0.575);
 }
-
-/* FOOTER */
-
-/* Estilo para el pie de página */
-.footer {
-  background-color: #005ba2;
-  /* Color de fondo del pie de página*/
-  padding: 20px 0;
-  /* Espaciado interior de 20 píxeles en la parte superior e inferior */
+#cotizar{
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
   text-align: center;
-  /* Alineación del texto al centro dentro del pie de página */
-  color: white;
-  /* Color del texto*/
 }

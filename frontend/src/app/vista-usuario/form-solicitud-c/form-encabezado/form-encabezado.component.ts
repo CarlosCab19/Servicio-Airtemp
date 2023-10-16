@@ -14,17 +14,17 @@ export class FormEncabezadoComponent implements OnInit{
   constructor(private materialService:MaterialService){}
 
   ngOnInit(): void {
-    this.solicitar={
+    /*this.solicitar={
       id:"",
       id_solicitud:this.solicitudId,
       descripcion:"",
       familia:"",
       caracterone:"",
       caractertwo:"",
-    }
+    }*/
   }
   submit(element:Material){
-    this.materialService.create(this.solicitar).subscribe(res=>{
+    /*this.materialService.create(this.solicitar).subscribe(res=>{
       console.log('Material Agregado');
       // Limpia los campos del objeto 'solicitar'
     this.solicitar = {
@@ -35,7 +35,7 @@ export class FormEncabezadoComponent implements OnInit{
       caracterone: "",
       caractertwo: ""
     };
-    });
+    });*/
   }
   addNewEstado(value: boolean){
     this.newEstado.emit(value);
