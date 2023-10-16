@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MaterialService } from 'src/app/services/material.service';
 import { SolicitudService } from 'src/app/services/solicitud.service';
 import { Material } from 'src/app/shared/material';
@@ -12,7 +12,10 @@ import { Solicitud } from 'src/app/shared/solicitud';
 export class FormCotizacionComponent implements OnInit{
 
   formCotizacion:boolean=false;
+  //varibles para enviar y recibir datos
   @Input() idSolicitud:string="";
+  @Output() closeForm = new EventEmitter<boolean>();
+
   solicitudesN!:Solicitud;
   solicitud:Solicitud[]=[];
   materialesN!:Material;
@@ -48,8 +51,7 @@ export class FormCotizacionComponent implements OnInit{
     this.formCotizacion=true;
   }
   close(valor:boolean){
-    this.formCotizacion=valor;
-    console.log(valor);
+    this.closeForm.emit(valor);
   }
 
 }

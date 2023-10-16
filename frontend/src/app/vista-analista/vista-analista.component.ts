@@ -11,6 +11,10 @@ import { SolicitudService } from '../services/solicitud.service';
   styleUrls: ['./vista-analista.component.css']
 })
 export class VistaAnalistaComponent implements OnInit{
+
+  //
+  isOffcanvasOpen: boolean = false;
+  //
   verporCotizar:boolean=true;
   id:string="";
   analista!:Personal;
@@ -35,13 +39,25 @@ export class VistaAnalistaComponent implements OnInit{
     });
     this.solicitudesService.getNueva().subscribe((data: Solicitud[])=>{
       this.solicitudes = data;
-      console.log(data);
+      //console.log(data);
     });
+  }
+  toggleOffcanvas() {
+    this.isOffcanvasOpen = !this.isOffcanvasOpen;
+  }
+  closeOffcanvas() {
+    this.isOffcanvasOpen = false;
   }
 
   verFormCoti(id:string){
     this.formCotizacion=true;
     this.idSolicitud=id;
+    this.verporCotizar=false;
+  }
+  closeForm(valor:boolean){
+    this.verporCotizar=valor;
+    this.formCotizacion=!valor;
+    console.log(valor);
   }
   salir(){
     this.router.navigateByUrl('/inicio');
