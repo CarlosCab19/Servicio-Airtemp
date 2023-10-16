@@ -33,7 +33,7 @@ export class VistaAnalistaComponent implements OnInit{
       this.idAnalista=response.id;
       this.datosAnalista=response.nombres+' '+response.apellidos;
     });
-    this.solicitudesService.getAll().subscribe((data: Solicitud[])=>{
+    this.solicitudesService.getNueva().subscribe((data: Solicitud[])=>{
       this.solicitudes = data;
       console.log(data);
     });

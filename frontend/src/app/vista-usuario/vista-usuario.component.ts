@@ -64,12 +64,15 @@ export class VistaUsuarioComponent implements OnInit{
              solicitud.NomCliente.toLowerCase().includes(valorBusqueda);
     });
   }
+  idReci(id_Reci:string){
+    this.idSoli=id_Reci;
+  }
 
   EstadoReci(newEstado:boolean){
-    console.log('recibi estado ',newEstado);
     this.verNuevo=newEstado;
     this.verMaterial=newEstado;
     this.verTabla=!newEstado;
+
   }
   EstadoClose(newClose:boolean){
     this.masInfo=newClose;

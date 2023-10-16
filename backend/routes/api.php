@@ -35,6 +35,7 @@ Route::prefix('personal')->group(function () {
 /*Route::apiResource('solicitud',SolicitudController::class);*/
 Route::prefix('solicitud')->group(function () {
     Route::get('/',[ SolicitudController::class, 'index']);
+    Route::get('/',[ SolicitudController::class, 'getNueva']);
     Route::get('/{id}',[SolicitudController::class,'getList']);
     Route::post('/',[ SolicitudController::class, 'create']);
     Route::delete('/{id}',[ SolicitudController::class, 'delete']);

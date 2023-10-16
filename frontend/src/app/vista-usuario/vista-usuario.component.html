@@ -50,7 +50,7 @@
       </button>
     </div>
    <!--COMPONENTES INTERACTIVOS-->
-    <app-form-solicitud-c *ngIf="verNuevo" [nomResponsable]="responsable" [idUs]="idSolicitante" (newEstado)="EstadoReci($event)" (loadWindows)="loadWindows($event)" (abrirForm)="activarForm($event)"></app-form-solicitud-c>
+    <app-form-solicitud-c *ngIf="verNuevo" [nomResponsable]="responsable" [idUs]="idSolicitante" (newEstado)="EstadoReci($event)" (loadWindows)="loadWindows($event)" (abrirForm)="activarForm($event)" (idEmitir)="idReci($event)"></app-form-solicitud-c>
     <app-form-encabezado *ngIf="verMaterial" [solicitudId]="idSolicitud" (newEstado)="EstadoReci($event)"></app-form-encabezado>
     <app-masinfo-soli *ngIf="masInfo" [idSolicitud]="idSoli" [responsable]="responsable" (newClose)="EstadoClose($event)" (newEnviar)="EstadoSoli($event)" ></app-masinfo-soli>
     <!------>

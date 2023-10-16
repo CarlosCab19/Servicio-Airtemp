@@ -24,6 +24,13 @@ export class SolicitudService {
       catchError(this.errorHandler)
     )
   }
+  getNueva(): Observable<Solicitud[]> {
+    return this.httpClient.get<Solicitud[]>(this.url)
+    .pipe(
+      catchError(this.errorHandler)
+    )
+  }
+
   getList(id:string):Observable<Solicitud[]>{
     return this.httpClient.get<Solicitud[]>(this.url+id)
     .pipe(
