@@ -12,6 +12,7 @@ import { Solicitud } from 'src/app/shared/solicitud';
 export class FormCotizacionComponent implements OnInit{
 
   formCotizacion:boolean=false;
+  datosCotizar:boolean=true;
   //varibles para enviar y recibir datos
   @Input() idSolicitud:string="";
   @Output() closeForm = new EventEmitter<boolean>();
@@ -49,9 +50,14 @@ export class FormCotizacionComponent implements OnInit{
   }
   verCotizacion(){
     this.formCotizacion=true;
+    this.datosCotizar=false;
   }
   close(valor:boolean){
     this.closeForm.emit(valor);
+  }
+  closeCotizacion(){
+    this.formCotizacion=false;
+    this.datosCotizar=true;
   }
 
 }

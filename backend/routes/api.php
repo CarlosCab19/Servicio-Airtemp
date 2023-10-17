@@ -49,4 +49,10 @@ Route::prefix('material')->group(function () {
     Route::delete('/{id}',[ MaterialController::class, 'delete']);
 });
 
+Route::prefix('cotizacion')->group(function () {
+    Route::get('/{id}',[CotizacionController::class,'getList']);
+    Route::post('/',[ CotizacionController::class, 'create']);
+    Route::delete('/{id}',[ CotizacionController::class, 'delete']);
+});
+
 

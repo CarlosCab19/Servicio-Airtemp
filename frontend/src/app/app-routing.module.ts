@@ -28,7 +28,6 @@ const routes: Routes = [
   {path:'cotizacionRechazada',component:RechazadaComponent},
   {path:'aprobados',component:SoliAprobadaComponent},
   {path:'porCotizar',component:PorCotizarComponent},
-  {path:'cotizacionVencida',component:VencidaComponent},
   {path:'soporte/:id',component:SoporteTIComponent},
   {path:'editPersonal/:id',component:EditPersonalComponent},
   {path:'addPersonal',component:AddPersonalComponent},

@@ -9,3 +9,8 @@ export interface Solicitud {
   estatus:string;
   created_at:Date|string;
 }
+
+export interface junte{
+  id_soli:string;
+  id_material:string;
+}
