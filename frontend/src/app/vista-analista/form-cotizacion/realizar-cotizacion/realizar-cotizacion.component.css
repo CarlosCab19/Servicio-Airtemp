@@ -1,0 +1,31 @@
+/* Estilos para el contenedor del registro */
+.container {
+  width: 70%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #1b9aee63;
+  border: 1px solid #1b9aee;
+  border-radius: 15px;
+}
+.cotizar{
+  width: 70%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #1b9aee63;
+  border: 1px solid #1b9aee;
+  border-radius: 15px;
+}
+#close{
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+}
+h2{
+  background-color: rgba(0, 0, 255, 0.575);
+}
+#cotizar{
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  text-align: center;
+}

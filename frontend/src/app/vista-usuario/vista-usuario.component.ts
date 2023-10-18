@@ -85,6 +85,7 @@ export class VistaUsuarioComponent implements OnInit{
   }
   activarForm(actForm:boolean){
     this.masInfo=actForm;
+    this.verTabla=false;
     console.log('valor recibido para activar',actForm);
   }
   EstadoSoli(newEstSoli:boolean){

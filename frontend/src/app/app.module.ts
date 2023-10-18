@@ -23,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MasinfoSoliComponent } from './vista-usuario/masinfo-soli/masinfo-soli.component';
 import { SoliNuevaComponent } from './vista-usuario/soli-nueva/soli-nueva.component';
 import { FormEncabezadoComponent } from './vista-usuario/form-solicitud-c/form-encabezado/form-encabezado.component';
+import { RealizarCotizacionComponent } from './vista-analista/form-cotizacion/realizar-cotizacion/realizar-cotizacion.component';
 
 
 
@@ -46,6 +47,7 @@ import { FormEncabezadoComponent } from './vista-usuario/form-solicitud-c/form-e
     MasinfoSoliComponent,
     SoliNuevaComponent,
     FormEncabezadoComponent,
+    RealizarCotizacionComponent,
 
 
   ],

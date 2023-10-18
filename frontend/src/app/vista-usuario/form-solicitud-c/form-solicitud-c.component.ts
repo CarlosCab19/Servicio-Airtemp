@@ -75,7 +75,7 @@ export class FormSolicitudCComponent implements OnInit{
       this.addNewEstado(false);
       this.addNewIdSoli(res.id);
       /*this.addLoad(true);*/
-      /*this.addEvento(true);*/
+      this.addEvento(true);
       //console.log(res);
     });
   }

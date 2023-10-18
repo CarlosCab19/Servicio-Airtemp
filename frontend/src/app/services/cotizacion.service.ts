@@ -1,53 +1,55 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
-import { Material } from '../shared/material';
+import { Cotizacion } from '../shared/cotizacion';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MaterialService {
+export class CotizacionService {
 
-  private readonly url="http://127.0.0.1:8000/api/material/";
+  private readonly url="http://127.0.0.1:8000/api/cotizacion/";
 
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
     })
  }
+
   constructor(private httpClient:HttpClient) { }
-  getAll(): Observable<Material[]> {
-    return this.httpClient.get<Material[]>(this.url)
+
+  getAll(): Observable<Cotizacion[]> {
+    return this.httpClient.get<Cotizacion[]>(this.url)
     .pipe(
       catchError(this.errorHandler)
     )
   }
-  getList(id:string):Observable<Material[]>{
-    return this.httpClient.get<Material[]>(this.url+id)
+  getList(id:string):Observable<Cotizacion[]>{
+    return this.httpClient.get<Cotizacion[]>(this.url+id)
     .pipe(
       catchError(this.errorHandler)
     )
   }
-  create(material: Material): Observable<Material> {
-    return this.httpClient.post<Material>(this.url, JSON.stringify(material), this.httpOptions)
+  create(cotizacion: Cotizacion): Observable<Cotizacion> {
+    return this.httpClient.post<Cotizacion>(this.url, JSON.stringify(cotizacion), this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )
   }
-  /*find(id: string | null): Observable<Material> {
-    return this.httpClient.get<Material>(this.url + id)
+  find(id: string | null): Observable<Cotizacion> {
+    return this.httpClient.get<Cotizacion>(this.url + id)
     .pipe(
       catchError(this.errorHandler)
     )
-  }*/
-  /*update(id: string | number, material: any): Observable<Material> {
-    return this.httpClient.put<Material>(this.url + id, JSON.stringify(material), this.httpOptions)
+  }
+  update(id: string | number, cotizacion: any): Observable<Cotizacion> {
+    return this.httpClient.put<Cotizacion>(this.url + id, JSON.stringify(cotizacion), this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )
-  }*/
+  }
   delete(id: string | number){
-    return this.httpClient.delete<Material>(this.url + id, this.httpOptions)
+    return this.httpClient.delete<Cotizacion>(this.url + id, this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )

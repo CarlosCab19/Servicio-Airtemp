@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PersonalController;
 use App\Http\Controllers\SolicitudController;
 use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\CotizacionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +51,7 @@ Route::prefix('material')->group(function () {
 });
 
 Route::prefix('cotizacion')->group(function () {
+    Route::get('/',[ CotizacionController::class, 'index']);
     Route::get('/{id}',[CotizacionController::class,'getList']);
     Route::post('/',[ CotizacionController::class, 'create']);
     Route::delete('/{id}',[ CotizacionController::class, 'delete']);

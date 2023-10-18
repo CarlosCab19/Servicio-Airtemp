@@ -8,6 +8,10 @@ use App\Models\Cotizacion;
 class CotizacionController extends Controller
 {
     //
+    public function index(){
+        $data = Cotizacion::all();
+        return response()->json($data, 200);
+    }
     public function getList($id){
         $data = Cotizacion::where('id_material', $id)->get();
         return response()->json($data, 200);
