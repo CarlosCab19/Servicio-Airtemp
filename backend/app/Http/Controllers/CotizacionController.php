@@ -38,6 +38,10 @@ class CotizacionController extends Controller
             'success' => true
         ], 200);
     }
+    public function get($id){
+        $data = Cotizacion::find($id);
+        return response()->json($data, 200);
+      }
 
     public function delete($id){
         $res = Cotizacion::find($id)->delete();

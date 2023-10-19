@@ -4,6 +4,7 @@ import { PersonalService } from '../services/personal.service';
 import { Personal } from '../shared/personal';
 import { Solicitud } from '../shared/solicitud';
 import { SolicitudService } from '../services/solicitud.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-vista-analista',
@@ -25,6 +26,10 @@ export class VistaAnalistaComponent implements OnInit{
 
   formCotizacion:boolean=false;
   idSolicitud:string="";
+
+  form = new FormGroup({
+    estatus:  new FormControl('Cotizando', [ Validators.required]),
+  })
 
   constructor(private router: Router,private rutaActiva: ActivatedRoute,private personalService:PersonalService,
     private solicitudesService:SolicitudService){}
@@ -48,12 +53,22 @@ export class VistaAnalistaComponent implements OnInit{
   closeOffcanvas() {
     this.isOffcanvasOpen = false;
   }
-
+  get f(){
+    return this.form.controls;
+  }
   verFormCoti(id:string){
     this.formCotizacion=true;
     this.idSolicitud=id;
     this.verporCotizar=false;
+    this.solicitudesService.update(this.idSolicitud, this.form.value).subscribe(res => {
+      this.form.setValue(
+        {
+        'estatus':"Cotizando",
+      });
+      console.log('estatus cambiado a Cotizando');
+    });
   }
+
   closeForm(valor:boolean){
     this.verporCotizar=valor;
     this.formCotizacion=!valor;

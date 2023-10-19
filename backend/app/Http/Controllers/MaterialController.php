@@ -7,7 +7,10 @@ use App\Models\Material;
 
 class MaterialController extends Controller
 {
-
+    public function index(){
+        $data = Material::all();
+        return response()->json($data, 200);
+    }
     public function getList($id){
         $data = Material::where('id_solicitud', $id)->get();
         return response()->json($data, 200);
@@ -43,7 +46,10 @@ class MaterialController extends Controller
         ], 200);
     }
 
-
+    public function get($id){
+        $data = Material::find($id);
+        return response()->json($data, 200);
+      }
 
     public function delete($id){
         $res = Material::find($id)->delete();

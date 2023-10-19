@@ -422,3 +422,37 @@ h2{
   background-color: #ff020283;
   border-radius: 5px;
 }
+/*colores para cada estado en la tabla*/
+.editando{
+  color: #005ba2;
+}
+
+.nueva {
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  background-color: rgba(0, 128, 0, 0.589);
+}
+
+.cotizando {
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  background-color: rgba(0, 0, 255, 0.582);
+}
+
+.cotizado {
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  background-color: rgba(255, 166, 0, 0.651);
+}
+
+.revision {
+  color: rgb(19, 18, 19);
+  font-weight: bold;
+  background-color: rgba(128, 0, 128, 0.575);
+}
+
+.aprobado {
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  background-color: rgba(0, 128, 128, 0.582);
+}

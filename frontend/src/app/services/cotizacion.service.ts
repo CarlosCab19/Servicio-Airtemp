@@ -54,6 +54,7 @@ export class CotizacionService {
       catchError(this.errorHandler)
     )
   }
+
   errorHandler(error: { error: { message: string; }; status: any; message: any; }) {
     let errorMessage = 'ERRORRRRRRRRRRRRRRRRR!!!!!!!';
     if(error.error instanceof ErrorEvent) {

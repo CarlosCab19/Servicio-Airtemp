@@ -45,8 +45,10 @@ Route::prefix('solicitud')->group(function () {
 });
 /*Route::apiResource('material',MaterialController::class);*/
 Route::prefix('material')->group(function () {
+    Route::get('/',[ MaterialController::class, 'index']);
     Route::get('/{id}',[MaterialController::class,'getList']);
     Route::post('/',[ MaterialController::class, 'create']);
+    Route::get('/get/{id}',[ MaterialController::class, 'get']);
     Route::delete('/{id}',[ MaterialController::class, 'delete']);
 });
 
@@ -54,6 +56,7 @@ Route::prefix('cotizacion')->group(function () {
     Route::get('/',[ CotizacionController::class, 'index']);
     Route::get('/{id}',[CotizacionController::class,'getList']);
     Route::post('/',[ CotizacionController::class, 'create']);
+    Route::get('/get/{id}',[ CotizacionController::class, 'get']);
     Route::delete('/{id}',[ CotizacionController::class, 'delete']);
 });
 

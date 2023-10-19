@@ -24,6 +24,7 @@ export class FormCotizacionComponent implements OnInit{
   solicitudesN!:Solicitud;
   materialesN!:Material;
   material:Material[]=[];
+  cotizacion:Cotizacion[]=[];
   personalN!:Personal;
   idM:string="";
   //id para el analista
@@ -39,10 +40,14 @@ export class FormCotizacionComponent implements OnInit{
   nomAnalista:string="";
   //para ver el formulario de la cotizacion
   verFormCotizar:boolean=false;
+  activarCotizar:string="cotizando";
+
+  //para llevar la cuenta de si todos los materiales ya tienen aunque sea una cotizacion
+  contadorListoMaterial:number=0;
 
   constructor(private solicitudesService:SolicitudService,private materialService:MaterialService,
-              private cotizacionService:CotizacionService,private personalService:PersonalService,
-              private rutaActiva: ActivatedRoute){}
+              private personalService:PersonalService,private rutaActiva: ActivatedRoute,
+              private cotizacionService:CotizacionService){}
 
   ngOnInit(): void {
     this.solicitudesService.find(this.idSolicitud).subscribe(response=>{
@@ -63,7 +68,11 @@ export class FormCotizacionComponent implements OnInit{
       this.idAnalista=response.id;
       this.nomAnalista=response.nombres + " " + response.apellidos;
     });
-    console.log(this.verFormCotizar);
+  }
+
+  enviarCotizacion(){
+    console.log('el arreglo tiene: ',this.material.length);
+    console.log('el contador: ',this.contadorListoMaterial);
   }
 
 
@@ -71,11 +80,26 @@ export class FormCotizacionComponent implements OnInit{
     this.idM=id;
     this.datosCotizar=false;
     this.verFormCotizar=true;
-    console.log(this.verFormCotizar);
   }
   close(valor:boolean){
-    this.closeForm.emit(valor);
+    //this.closeForm.emit(valor);
   }
+  formCotizacion(valor:boolean){
+    this.verFormCotizar=!valor;
+    this.datosCotizar=valor;
+  }
+  regresarAcotizacion(valor:boolean){
+    this.verFormCotizar=!valor;
+    this.datosCotizar=valor;;
 
+  }
+  newEstado(valor:number){
+    if (valor !== 0) {
+      this.contadorListoMaterial += 1; // Incrementa el contador en 1
+    } else if (this.contadorListoMaterial > 0) {
+      this.contadorListoMaterial -= 1; // Reduce el contador en 1 si es mayor que 0
+    }
+    //console.log(this.contadorListoMaterial);
+  }
 
 }

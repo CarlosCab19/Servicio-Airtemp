@@ -37,6 +37,9 @@ export class VistaUsuarioComponent implements OnInit{
   solicitud!:Solicitud;
   idSoli:string="";
 
+  /*para saber el estado y poder bloquear*/
+  estatuSolicitud:string="";
+
 
   constructor(private router: Router,private rutaActiva: ActivatedRoute,
       private personalService:PersonalService, private solicitudService:SolicitudService){}
@@ -142,6 +145,12 @@ export class VistaUsuarioComponent implements OnInit{
       this.nomClien=response.NomCliente;
       this.numParte=response.NumParte;
     })*/
+  }
+  cancelar(id:string){
+    this.solicitudService.find(id).subscribe(response=>{
+      this.solicitud=response;
+      this.estatuSolicitud=response.estatus;
+    });
   }
 
 }

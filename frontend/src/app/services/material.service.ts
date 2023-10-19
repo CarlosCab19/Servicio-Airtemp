@@ -34,12 +34,12 @@ export class MaterialService {
       catchError(this.errorHandler)
     )
   }
-  /*find(id: string | null): Observable<Material> {
-    return this.httpClient.get<Material>(this.url + id)
+  find(id: string | null): Observable<Material> {
+    return this.httpClient.get<Material>(this.url +'get/' + id)
     .pipe(
       catchError(this.errorHandler)
     )
-  }*/
+  }
   /*update(id: string | number, material: any): Observable<Material> {
     return this.httpClient.put<Material>(this.url + id, JSON.stringify(material), this.httpOptions)
     .pipe(
