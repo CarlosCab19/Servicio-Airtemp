@@ -92,4 +92,11 @@ export class FormSolicitudCComponent implements OnInit{
     this.abrirForm.emit(value);
   }
 
+  nuevoChecked: boolean = false;
+
+  onCheckboxChange() {
+    console.log('Estado del checkbox: ', this.nuevoChecked);
+    // Aquí puedes llamar a otros métodos o realizar acciones en función del valor del checkbox.
+  }
+
 }

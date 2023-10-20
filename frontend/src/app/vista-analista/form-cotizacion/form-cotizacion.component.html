@@ -23,7 +23,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let materiales of material">
-          <th scope="row">{{materiales.id}}</th>
+          <th scope="row"  [ngClass]="{'azul': Color === 'Azul'}">{{materiales.id}}</th>
           <td>{{materiales.descripcion}}</td>
           <td>{{materiales.familia}}</td>
           <td>{{materiales.caracterone}}</td>

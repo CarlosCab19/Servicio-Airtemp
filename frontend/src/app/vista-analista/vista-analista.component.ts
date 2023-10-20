@@ -60,13 +60,13 @@ export class VistaAnalistaComponent implements OnInit{
     this.formCotizacion=true;
     this.idSolicitud=id;
     this.verporCotizar=false;
-    this.solicitudesService.update(this.idSolicitud, this.form.value).subscribe(res => {
+    /*this.solicitudesService.update(this.idSolicitud, this.form.value).subscribe(res => {
       this.form.setValue(
         {
         'estatus':"Cotizando",
       });
       console.log('estatus cambiado a Cotizando');
-    });
+    });*/
   }
 
   closeForm(valor:boolean){

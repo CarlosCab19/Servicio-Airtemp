@@ -73,6 +73,13 @@ export class FormCotizacionComponent implements OnInit{
   enviarCotizacion(){
     console.log('el arreglo tiene: ',this.material.length);
     console.log('el contador: ',this.contadorListoMaterial);
+    if(this.material.length == this.contadorListoMaterial){
+      console.log('envie la cotizacion');
+      alert('Cotizacion Enviada ');
+    }else{
+      console.log('no puedo enviarlo porque no esta listo');
+      alert('Revise que todos los materiales tenga minimo una cotización');
+    }
   }
 
 
@@ -93,13 +100,22 @@ export class FormCotizacionComponent implements OnInit{
     this.datosCotizar=valor;;
 
   }
+  Color:string="";
   newEstado(valor:number){
+    console.log('valor: ',valor);
     if (valor !== 0) {
+      this.Color='Azul';
       this.contadorListoMaterial += 1; // Incrementa el contador en 1
     } else if (this.contadorListoMaterial > 0) {
       this.contadorListoMaterial -= 1; // Reduce el contador en 1 si es mayor que 0
+      this.Color='nada';
     }
     //console.log(this.contadorListoMaterial);
+    /*if(valor !== 0){
+      this.Color='Azul';
+    }else{
+      this.Color='nada';
+    }*/
   }
 
 }
