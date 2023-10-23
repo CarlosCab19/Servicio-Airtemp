@@ -5,4 +5,10 @@ export interface Material {
   familia:string;
   caracterone:string;
   caractertwo:string;
+  estatus:string;
+}
+
+export interface Familia{
+  id:string;
+  familia:string;
 }

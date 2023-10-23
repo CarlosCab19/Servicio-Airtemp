@@ -7,6 +7,8 @@ use App\Http\Controllers\PersonalController;
 use App\Http\Controllers\SolicitudController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\CotizacionController;
+use App\Http\Controllers\FamiliaController;
+use App\Http\Controllers\CaracteristicaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,11 +39,15 @@ Route::prefix('personal')->group(function () {
 Route::prefix('solicitud')->group(function () {
     Route::get('/',[ SolicitudController::class, 'index']);
     Route::get('/',[ SolicitudController::class, 'getNueva']);
+    Route::get('/',[ SolicitudController::class, 'getCotizado']);
+    Route::get('/',[ SolicitudController::class, 'getAprovado']);
     Route::get('/{id}',[SolicitudController::class,'getList']);
     Route::post('/',[ SolicitudController::class, 'create']);
     Route::delete('/{id}',[ SolicitudController::class, 'delete']);
     Route::get('/get/{id}',[ SolicitudController::class, 'get']);
     Route::put('/{id}',[ SolicitudController::class, 'update']);
+    Route::put('/{id}',[ SolicitudController::class, 'updateAnalista']);
+    Route::put('/{id}',[ SolicitudController::class, 'updateDirector']);
 });
 /*Route::apiResource('material',MaterialController::class);*/
 Route::prefix('material')->group(function () {
@@ -58,6 +64,16 @@ Route::prefix('cotizacion')->group(function () {
     Route::post('/',[ CotizacionController::class, 'create']);
     Route::get('/get/{id}',[ CotizacionController::class, 'get']);
     Route::delete('/{id}',[ CotizacionController::class, 'delete']);
+    Route::put('/{id}',[ CotizacionController::class, 'update']);
+    Route::put('/{id}',[ CotizacionController::class, 'updateDirector']);
 });
 
+Route::prefix('familia')->group(function () {
+    Route::get('/',[ FamiliaController::class, 'index']);
+});
+
+Route::prefix('caracteristica')->group(function () {
+    Route::get('/',[ CaracteristicaController::class, 'index']);
+    Route::get('/{id}',[CaracteristicaController::class,'getList']);
+});
 

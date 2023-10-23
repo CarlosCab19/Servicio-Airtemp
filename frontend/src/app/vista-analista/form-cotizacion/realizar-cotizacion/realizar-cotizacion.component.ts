@@ -51,14 +51,13 @@ export class RealizarCotizacionComponent implements OnInit{
       id:'',
       id_material:this.idMaterial,
       id_analista:this.idAnalista,
-      nom_analista:'',
       id_director:'',
-      nom_director:'',
       fabricacion:'',
       lme:'',
       premium:'',
       total:'',
       icoterm:'',
+      estatus:'',
     };
   }
   submit(element:Cotizacion){
@@ -73,28 +72,26 @@ export class RealizarCotizacionComponent implements OnInit{
             id:res.id,
             id_material:this.idMaterial,
             id_analista:this.idAnalista,
-            nom_analista:'',
             id_director:'',
-            nom_director:'',
             fabricacion:element.fabricacion,
             lme:element.lme,
             premium:element.premium,
             total:element.total,
             icoterm:element.icoterm,
+            estatus:element.estatus,
           }
           this.cotizacion.push(cotizacionAdd);
           this.cotizar={
             id:'',
             id_material:this.idMaterial,
             id_analista:this.idAnalista,
-            nom_analista:'',
             id_director:'',
-            nom_director:'',
             fabricacion:'',
             lme:'',
             premium:'',
             total:'',
             icoterm:'',
+            estatus:'',
           };
         });
       }else{

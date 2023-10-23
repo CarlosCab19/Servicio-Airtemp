@@ -2,10 +2,13 @@ export interface Solicitud {
   id:string;
   id_usuario:string;
   solicitante:string;
+  tipo:string;
   codProv:string;
   Rsocial:string;
   NomCliente:string;
   NumParte:string;
+  id_analista:string;
+  id_director:string;
   estatus:string;
   created_at:Date|string;
 }

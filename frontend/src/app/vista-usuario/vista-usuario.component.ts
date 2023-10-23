@@ -75,10 +75,12 @@ export class VistaUsuarioComponent implements OnInit{
     this.verNuevo=newEstado;
     this.verMaterial=newEstado;
     this.verTabla=!newEstado;
-
   }
   EstadoClose(newClose:boolean){
     this.masInfo=newClose;
+    if(newClose==false){
+      location.reload();
+    }
     this.verTabla=!newClose;
   }
   loadWindows(winEstado:boolean){
@@ -88,8 +90,8 @@ export class VistaUsuarioComponent implements OnInit{
   }
   activarForm(actForm:boolean){
     this.masInfo=actForm;
-    this.verTabla=false;
-    console.log('valor recibido para activar',actForm);
+    this.verTabla=!actForm;
+    this.verNuevo=!actForm;
   }
   EstadoSoli(newEstSoli:boolean){
     this.verTabla=newEstSoli;

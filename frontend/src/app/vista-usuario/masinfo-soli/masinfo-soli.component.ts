@@ -2,9 +2,10 @@ import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FamiliaService } from 'src/app/services/familia.service';
 import { MaterialService } from 'src/app/services/material.service';
 import { SolicitudService } from 'src/app/services/solicitud.service';
-import { Material } from 'src/app/shared/material';
+import { Familia, Material } from 'src/app/shared/material';
 import { Solicitud } from 'src/app/shared/solicitud';
 
 @Component({
@@ -29,7 +30,7 @@ export class MasinfoSoliComponent implements OnInit{
   numParte:string="";
   Estatus:string="";
 
-
+  familia:Familia[]=[];
   material:Material[]=[];
   solicitar!:Material;
   solicitud!:Solicitud;
@@ -44,7 +45,7 @@ export class MasinfoSoliComponent implements OnInit{
   fecha:Date|string="";
   constructor(private router:Router,
     private solicitudService:SolicitudService,public route: ActivatedRoute,
-    private materialService:MaterialService,private datePipe: DatePipe){}
+    private materialService:MaterialService, private familiaService:FamiliaService ){}
 
   ngOnInit(): void {
     //para traer los meteriales de esa solictud
@@ -61,6 +62,9 @@ export class MasinfoSoliComponent implements OnInit{
       this.numParte=response.NumParte;
       this.Estatus=response.estatus;
     });
+    this.familiaService.getAll().subscribe((data:Familia[])=>{
+      this.familia=data;
+    });
     this.solicitar={
       id:"",
       id_solicitud:this.idSolicitud,
@@ -68,6 +72,7 @@ export class MasinfoSoliComponent implements OnInit{
       familia:"",
       caracterone:"",
       caractertwo:"",
+      estatus:"",
     }
   }
   submit(element:Material){
@@ -82,6 +87,7 @@ export class MasinfoSoliComponent implements OnInit{
         familia:element.familia,
         caracterone:element.caracterone,
         caractertwo:element.caractertwo,
+        estatus:element.estatus,
       };
       this.material.push(materialCreado);
       //console.log(materialCreado);
@@ -93,6 +99,7 @@ export class MasinfoSoliComponent implements OnInit{
       familia: "",
       caracterone: "",
       caractertwo: "",
+      estatus:"",
     };
     });
   }

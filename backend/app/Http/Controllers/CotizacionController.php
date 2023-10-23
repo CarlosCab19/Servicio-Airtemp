@@ -19,15 +19,13 @@ class CotizacionController extends Controller
     public function create(Request $request){
         $data['id_material'] = $request['id_material'];
         $data['id_analista'] = $request['id_analista'];
-        $data['nom_analista'] = $request['nom_analista'];
         $data['id_director'] = $request['id_director'];
-        $data['nom_director'] = $request['nom_director'];
         $data['fabricacion'] = $request['fabricacion'];
         $data['lme'] = $request['lme'];
         $data['premium'] = $request['premium'];
         $data['total'] = $request['total'];
         $data['icoterm'] = $request['icoterm'];
-
+        $data['estatus'] = $request['estatus'];
         $cotizacion = Cotizacion::create($data); // Crear el material y obtener el modelo
 
         $nuevoCotizacionID = $cotizacion->id; // Obtener el ID del material recién creado
@@ -38,6 +36,22 @@ class CotizacionController extends Controller
             'success' => true
         ], 200);
     }
+    public function update(Request $request,$id){
+        $data['estatus'] = $request['estatus'];
+        Cotizacion::find($id)->update($data);
+        return response()->json([
+            'message' => "Successfully updated",
+            'success' => true
+        ], 200);
+      }
+      public function updateDirector(Request $request,$id){
+        $data['id_director'] = $request['id_director'];
+        Cotizacion::find($id)->update($data);
+        return response()->json([
+            'message' => "Successfully updated",
+            'success' => true
+        ], 200);
+      }
     public function get($id){
         $data = Cotizacion::find($id);
         return response()->json($data, 200);

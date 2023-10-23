@@ -48,6 +48,12 @@ export class CotizacionService {
       catchError(this.errorHandler)
     )
   }
+  updateDirector(id: string | number, cotizacion: any): Observable<Cotizacion> {
+    return this.httpClient.put<Cotizacion>(this.url + id, JSON.stringify(cotizacion), this.httpOptions)
+    .pipe(
+      catchError(this.errorHandler)
+    )
+  }
   delete(id: string | number){
     return this.httpClient.delete<Cotizacion>(this.url + id, this.httpOptions)
     .pipe(

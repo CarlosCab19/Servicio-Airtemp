@@ -11,13 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('solicitudlista', function (Blueprint $table) {
+        Schema::create('familia', function (Blueprint $table) {
             $table->id();
-            $table->string('id_solicitud');
-            $table->string('id_solicitante')->nullable();
-            $table->string('estatus')->nullable();
-            $table->string('id_proveedor')->nullable();
-            $table->string('id_cliente')->nullable();
+            $table->string('familia');
             $table->timestamps();
         });
     }
@@ -27,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('solicitudlista');
+        Schema::dropIfExists('familia');
     }
 };

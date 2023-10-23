@@ -34,7 +34,7 @@ class MaterialController extends Controller
         $data['familia'] = $request['familia'];
         $data['caracterone'] = $request['caracterone'];
         $data['caractertwo'] = $request['caractertwo'];
-
+        $data['estatus'] = $request['estatus'];
         $material = Material::create($data); // Crear el material y obtener el modelo
 
         $nuevoMaterialID = $material->id; // Obtener el ID del material recién creado

@@ -16,8 +16,8 @@
       </div>
       <div class="col-md-6">
         <div class="form-floating">
-          <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-            <option selected>Open this select menu</option>
+          <select [(ngModel)]="solicitar.tipo" name="tipo" class="form-select" id="floatingSelect" aria-label="Floating label select example">
+            <option value="" disabled selected>Seleccione una opción</option>
             <option value="Material">Material</option>
             <option value="Maquinaria">Maquinaria</option>
             <option value="Otro">Otro</option>
@@ -32,19 +32,20 @@
         <input class="form-check-input" type="checkbox" id="inlineCheckbox1" [(ngModel)]="nuevoChecked" name="nuevo" (change)="onCheckboxChange()">
         <label class="form-check-label" for="inlineCheckbox1">Nuevo</label>
       </div>
-      <div class="col-md">
-        <div class="form-floating">
-          <input #name="ngModel" name="codProv" [(ngModel)]="solicitar.codProv" required type="text" class="form-control" id="floatingInput" value="" placeholder="codigo proveedor">
-          <!--<input #name="ngModel" type="text" [(ngModel)]="registrar.numerocotizacion" required name="numerocotizacion" class="form-control" id="numerocotizacion">-->
-          <label for="floatingInput">Codigo del Proveedor</label>
-        </div>
-      </div>
-      <div class="col-md mb-3">
+      <div class="col-md ">
         <div class="form-floating">
           <input #name="ngModel" name="Rsocial" [(ngModel)]="solicitar.Rsocial" required type="text" class="form-control" id="floatingInput" placeholder="razon social">
           <label for="floatingInput">Razon Social</label>
         </div>
       </div>
+      <div class="col-md mb-3">
+        <div class="form-floating" *ngIf="nuevoChecked==true">
+          <input #name="ngModel" name="codProv" [(ngModel)]="solicitar.codProv" required type="text" class="form-control" id="floatingInput" value="" placeholder="codigo proveedor">
+          <!--<input #name="ngModel" type="text" [(ngModel)]="registrar.numerocotizacion" required name="numerocotizacion" class="form-control" id="numerocotizacion">-->
+          <label for="floatingInput">Codigo del Proveedor</label>
+        </div>
+      </div>
+
     </div>
     <div class="row g-2">
       <label for="formGroupExampleInput" class="form-label mb-0" style="text-decoration: underline;"><strong>CLIENTE</strong></label>
@@ -66,6 +67,6 @@
         <button class="botonCrear" type="submit" [disabled]="!form.valid">Solicitar</button>
       </div>
     </div>
-    <!--<strong><pre>{{form.value | json }}</pre></strong>-->
+    <strong><pre>{{form.value | json }}</pre></strong>
   </div>
 </form>

@@ -35,10 +35,13 @@ export class FormSolicitudCComponent implements OnInit{
       id:"",
       id_usuario:this.idUs,
       solicitante:this.nomResponsable,
+      tipo:"",
       codProv:"",
       Rsocial:"",
       NomCliente:"",
       NumParte:"",
+      id_analista:"",
+      id_director:"",
       estatus:"Editando",
       created_at:"",
     };
@@ -65,18 +68,19 @@ export class FormSolicitudCComponent implements OnInit{
         id:"",
         id_usuario:this.idUs,
         solicitante:this.nomResponsable,
-        codProv:"",
-        Rsocial:"",
-        NomCliente:"",
-        NumParte:"",
-        estatus:"",
-        created_at:"",
+        tipo:'',
+        codProv:'',
+        Rsocial:'',
+        NomCliente:'',
+        NumParte:'',
+        id_analista:'',
+        id_director:'',
+        estatus:"Editando",
+        created_at:'',
       };
-      this.addNewEstado(false);
+      /*this.addNewEstado(false);*/
       this.addNewIdSoli(res.id);
-      /*this.addLoad(true);*/
       this.addEvento(true);
-      //console.log(res);
     });
   }
   addNewIdSoli(id:string){

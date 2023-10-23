@@ -13,13 +13,12 @@ class Cotizacion extends Model
     protected $fillable=[
         'id_material',
         'id_analista',
-        'nom_analista',
         'id_director',
-        'nom_director',
         'fabricacion',
         'lme',
         'premium',
         'total',
         'icoterm',
+        'estatus',
     ];
 }

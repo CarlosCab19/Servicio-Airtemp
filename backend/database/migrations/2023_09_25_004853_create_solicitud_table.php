@@ -13,12 +13,15 @@ return new class extends Migration
     {
         Schema::create('solicitud', function (Blueprint $table) {
             $table->id();
-            $table->string('id_usuario')->nullable();
+            $table->string('id_usuario');
             $table->string('solicitante');
-            $table->string('codProv');
+            $table->string('tipo');
+            $table->string('codProv')->nullable();
             $table->string('Rsocial');
             $table->string('NomCliente');
             $table->string('NumParte');
+            $table->string('id_analista')->nullable();
+            $table->string('id_director')->nullable();
             $table->string('estatus');
             $table->timestamps();
         });

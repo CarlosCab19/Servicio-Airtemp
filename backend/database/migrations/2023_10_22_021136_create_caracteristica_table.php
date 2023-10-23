@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('material', function (Blueprint $table) {
+        Schema::create('caracteristica', function (Blueprint $table) {
             $table->id();
-            $table->string('id_solicitud');
-            $table->string('descripcion');
-            $table->string('familia');
-            $table->string('caracterone');
-            $table->string('caractertwo');
-            $table->string('estatus')->nullable();
+            $table->string('caracteristica');
+            $table->string('id_familia');
             $table->timestamps();
         });
     }
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('material');
+        Schema::dropIfExists('caracteristica');
     }
 };

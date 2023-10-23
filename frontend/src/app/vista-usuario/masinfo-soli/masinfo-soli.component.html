@@ -51,10 +51,17 @@
           <div class="col" *ngIf="addMaterial" id="colMaterial">
             <form (ngSubmit)="submit(form.value)" #form="ngForm">
               <div class="input-group">
-                <span class="input-group-text"><strong>Descripción del Material:</strong></span>
+                <span class="input-group-text"><strong>Descripción:</strong></span>
                 <input #name="ngModel" name="descripcion" [(ngModel)]="solicitar.descripcion" required type="text" aria-label="First name" class="form-control">
-                <span class="input-group-text"><strong>Tipo de Familia:</strong></span>
-                <input #name="ngModel" name="familia" [(ngModel)]="solicitar.familia" required type="text" aria-label="Last name" class="form-control">
+                <!--<span class="input-group-text"><strong>Tipo de Familia:</strong></span>
+                <input #name="ngModel" name="familia" [(ngModel)]="solicitar.familia" required type="text" aria-label="Last name" class="form-control">-->
+                <span class="input-group-text" for="inputGroupSelect01"><strong>Familia: </strong></span>
+                <select class="form-select" id="inputGroupSelect01">
+                  <option selected>...</option>
+                  <option value="Aluminio">Aluminio</option>
+                  <option value="Plastico">Plastico</option>
+                  <option value="Otro">Otro</option>
+                </select>
               </div>
               <div class="input-group">
                 <span class="input-group-text"><strong>Caracteristica 1:</strong></span>

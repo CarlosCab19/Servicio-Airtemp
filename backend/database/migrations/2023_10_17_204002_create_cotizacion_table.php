@@ -13,16 +13,15 @@ return new class extends Migration
     {
         Schema::create('cotizacion', function (Blueprint $table) {
             $table->id();
-            $table->string('id_material')->nullable();
+            $table->string('id_material');
             $table->string('id_analista');
-            $table->string('nom_analista')->nullable();
-            $table->string('id_director');
-            $table->string('nom_director')->nullable();
+            $table->string('id_director')->nullable();
             $table->bigInteger('fabricacion');
             $table->bigInteger('lme');
             $table->bigInteger('premium');
             $table->bigInteger('total');
             $table->bigInteger('icoterm');
+            $table->string('estatus')->nullable();
             $table->timestamps();
         });
     }
