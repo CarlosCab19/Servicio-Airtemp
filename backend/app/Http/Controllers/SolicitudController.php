@@ -40,6 +40,7 @@ class SolicitudController extends Controller
         $data['NumParte'] = $request['NumParte'];
         $data['id_analista'] = $request['id_analista'];
         $data['id_director'] = $request['id_director'];
+        $data['vence'] = $request['vence'];
         $data['estatus'] = $request['estatus'];
 
         $solicitud = Solicitud::create($data); //se crea la solicitud y se obtiene el modelo

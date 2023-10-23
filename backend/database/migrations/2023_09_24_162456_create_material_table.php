@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('familia');
             $table->string('caracterone');
             $table->string('caractertwo');
+            $table->string('caracterthree')->nullable();
+            $table->string('otra')->nullable();
             $table->string('estatus')->nullable();
             $table->timestamps();
         });

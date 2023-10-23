@@ -9,6 +9,7 @@ export interface Solicitud {
   NumParte:string;
   id_analista:string;
   id_director:string;
+  vence:string;
   estatus:string;
   created_at:Date|string;
 }

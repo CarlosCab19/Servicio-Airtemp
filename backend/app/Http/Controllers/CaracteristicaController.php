@@ -16,4 +16,5 @@ class CaracteristicaController extends Controller
         $data = Caracteristica::where('id_familia', $id)->get();
         return response()->json($data, 200);
     }
+
 }

@@ -56,18 +56,36 @@
                 <!--<span class="input-group-text"><strong>Tipo de Familia:</strong></span>
                 <input #name="ngModel" name="familia" [(ngModel)]="solicitar.familia" required type="text" aria-label="Last name" class="form-control">-->
                 <span class="input-group-text" for="inputGroupSelect01"><strong>Familia: </strong></span>
-                <select class="form-select" id="inputGroupSelect01">
-                  <option selected>...</option>
-                  <option value="Aluminio">Aluminio</option>
-                  <option value="Plastico">Plastico</option>
-                  <option value="Otro">Otro</option>
+                <select class="form-select" id="inputGroupSelect01" (change)="onFamiliaSelected($event)"  #name="ngModel" name="familia" [(ngModel)]="solicitar.familia" required>
+                  <option value="" disabled selected>Seleccione una familia</option>
+                  <!--<option *ngFor="let familiaItem of familia" [value]="familiaItem.familia">{{familiaItem.id}}. {{familiaItem.familia}}</option>-->
+                  <option *ngFor="let familiaItem of familia" [value]="familiaItem.id">{{familiaItem.id}}. {{ familiaItem.familia }}</option>
                 </select>
               </div>
               <div class="input-group">
                 <span class="input-group-text"><strong>Caracteristica 1:</strong></span>
-                <input #name="ngModel" name="caracterone" [(ngModel)]="solicitar.caracterone" required type="text" aria-label="First name" class="form-control">
+                <!--<input #name="ngModel" name="caracterone" [(ngModel)]="solicitar.caracterone" required type="text" aria-label="First name" class="form-control">-->
+                <select class="form-select" id="inputGroupSelect01" #name="ngModel" name="caracterone" [(ngModel)]="solicitar.caracterone" required>
+                  <option value="" disabled selected>Seleccione una caracteristica</option>
+                  <option *ngFor="let caracterItem of caracteristicas" [value]="caracterItem.caracteristica">{{ caracterItem.caracteristica }}</option>
+                </select>
                 <span class="input-group-text"><strong>Caracteristica 2:</strong></span>
-                <input #name="ngModel" name="caractertwo" [(ngModel)]="solicitar.caractertwo" required type="text" aria-label="Last name" class="form-control">
+                <!--<input #name="ngModel" name="caractertwo" [(ngModel)]="solicitar.caractertwo" required type="text" aria-label="Last name" class="form-control">-->
+                <select class="form-select" id="inputGroupSelect01" #name="ngModel" name="caractertwo" [(ngModel)]="solicitar.caractertwo" required>
+                  <option value="" disabled selected>Seleccione una caracteristica</option>
+                  <option *ngFor="let caracterItem of caracteristicas" [value]="caracterItem.caracteristica">{{ caracterItem.caracteristica }}</option>
+                </select>
+              </div>
+              <div class="input-group">
+                <span class="input-group-text"><strong>Caracteristica 3:</strong></span>
+                <!--<input #name="ngModel" name="caracterone" [(ngModel)]="solicitar.caracterone" required type="text" aria-label="First name" class="form-control">-->
+                <select class="form-select" id="inputGroupSelect01" #name="ngModel" name="caracterthree" [(ngModel)]="solicitar.caracterthree">
+                  <option value="" disabled selected>Seleccione una caracteristica</option>
+                  <option *ngFor="let caracterItem of caracteristicas" [value]="caracterItem.caracteristica">{{ caracterItem.caracteristica }}</option>
+                </select>
+                <span class="input-group-text"><strong>Otra Caracteristica:</strong></span>
+                <!--<input #name="ngModel" name="caractertwo" [(ngModel)]="solicitar.caractertwo" required type="text" aria-label="Last name" class="form-control">-->
+                <textarea #name="ngModel" name="otra" [(ngModel)]="solicitar.otra"  class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
               </div>
               <div class="input-group">
                 <button class="btnAgregar" type="submit" [disabled]="!form.valid">Agregar</button>
@@ -105,5 +123,6 @@
       </div>
       <button *ngIf="Estatus=='Editando'" (click)="EnviarSoli(true)" class="custom-btn btn-1">Enviar Solicitud</button>
     </div>
+    <strong><pre>{{form.value | json }}</pre></strong>
   </div>
 </div>

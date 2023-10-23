@@ -39,15 +39,15 @@ Route::prefix('personal')->group(function () {
 Route::prefix('solicitud')->group(function () {
     Route::get('/',[ SolicitudController::class, 'index']);
     Route::get('/',[ SolicitudController::class, 'getNueva']);
-    Route::get('/',[ SolicitudController::class, 'getCotizado']);
-    Route::get('/',[ SolicitudController::class, 'getAprovado']);
+    Route::get('/Cotizado',[ SolicitudController::class, 'getCotizado']);
+    Route::get('/Aprovado',[ SolicitudController::class, 'getAprovado']);
     Route::get('/{id}',[SolicitudController::class,'getList']);
     Route::post('/',[ SolicitudController::class, 'create']);
     Route::delete('/{id}',[ SolicitudController::class, 'delete']);
     Route::get('/get/{id}',[ SolicitudController::class, 'get']);
     Route::put('/{id}',[ SolicitudController::class, 'update']);
-    Route::put('/{id}',[ SolicitudController::class, 'updateAnalista']);
-    Route::put('/{id}',[ SolicitudController::class, 'updateDirector']);
+    Route::put('/upA/{id}',[ SolicitudController::class, 'updateAnalista']);
+    Route::put('/upD/{id}',[ SolicitudController::class, 'updateDirector']);
 });
 /*Route::apiResource('material',MaterialController::class);*/
 Route::prefix('material')->group(function () {

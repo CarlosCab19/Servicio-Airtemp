@@ -12,6 +12,15 @@
     <div class="col">
       <form (ngSubmit)="submit(form.value)" #form="ngForm">
         <div class="input-group">
+          <span class="input-group-text"><strong>Tipo de Moneda:</strong></span>
+          <select class="form-select" id="inputGroupSelect01" [(ngModel)]="tipoMoneda" name="tipoMoneda" (change)="onTipoMonedaSelected()">
+            <option value="" disabled selected>Seleccinar tipo de moneda</option>
+            <option value="$">Peso mexicano</option>
+            <option value="US$">Dólar estadounidense</option>
+            <option value="€">Euro</option>
+          </select>
+        </div>
+        <div class="input-group">
           <span class="input-group-text"><strong>Fabricación:</strong></span>
           <input #name="ngModel" name="fabricacion" [(ngModel)]="cotizar.fabricacion" required type="text" aria-label="First name" class="form-control">
           <span class="input-group-text"><strong>LME:</strong></span>
@@ -25,13 +34,13 @@
           <!--<input value="{{total}}" aria-label="Total" class="form-control" disabled>-->
         </div>
         <div class="input-group">
-          <span class="input-group-text"><strong>Icoterm:</strong></span>
+          <span class="input-group-text"><strong>Costo Adicional:</strong></span>
           <input #name="ngModel" name="icoterm" [(ngModel)]="cotizar.icoterm" required type="text" aria-label="First name" class="form-control">
         </div>
-        <br>
         <div class="input-group">
           <button class="btnAgregar" type="submit" [disabled]="!form.valid">Agregar Cotización</button>
         </div>
+        <br>
       </form>
     </div>
   </div>
@@ -46,7 +55,7 @@
               <th scope="col">LME</th>
               <th scope="col">Premium</th>
               <th scope="col">Total</th>
-              <th scope="col">Icoterm</th>
+              <th scope="col">Costo Adicional</th>
               <th scope="col">Acciones</th>
             </tr>
           </thead>
@@ -67,4 +76,5 @@
       <button (click)="cotizacionLista()" class="custom-btn btn-1">Listo</button>
     </div>
   </div>
+  <strong><pre>{{form.value | json }}</pre></strong>
 </div>

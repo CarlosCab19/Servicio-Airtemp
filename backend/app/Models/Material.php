@@ -15,6 +15,8 @@ class Material extends Model
         'familia',
         'caracterone',
         'caractertwo',
+        'caracterthree',
+        'otra',
         'estatus',
     ];
 }

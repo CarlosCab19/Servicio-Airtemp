@@ -42,6 +42,7 @@ export class FormSolicitudCComponent implements OnInit{
       NumParte:"",
       id_analista:"",
       id_director:"",
+      vence:"",
       estatus:"Editando",
       created_at:"",
     };
@@ -59,6 +60,7 @@ export class FormSolicitudCComponent implements OnInit{
         Rsocial:element.Rsocial,
         NomCliente:element.NomCliente,
         NumParte:element.NumParte,
+        vence:element.vence,
         estatus:"Editando",
         created_at:element.created_at,
       }
@@ -75,6 +77,7 @@ export class FormSolicitudCComponent implements OnInit{
         NumParte:'',
         id_analista:'',
         id_director:'',
+        vence:'',
         estatus:"Editando",
         created_at:'',
       };

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('NumParte');
             $table->string('id_analista')->nullable();
             $table->string('id_director')->nullable();
+            $table->string('vence')->nullable();
             $table->string('estatus');
             $table->timestamps();
         });

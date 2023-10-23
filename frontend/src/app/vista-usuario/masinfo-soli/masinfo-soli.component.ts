@@ -2,11 +2,14 @@ import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CaracterService } from 'src/app/services/caracter.service';
 import { FamiliaService } from 'src/app/services/familia.service';
 import { MaterialService } from 'src/app/services/material.service';
 import { SolicitudService } from 'src/app/services/solicitud.service';
-import { Familia, Material } from 'src/app/shared/material';
+import { Caracteristica, Familia, Material } from 'src/app/shared/material';
 import { Solicitud } from 'src/app/shared/solicitud';
+
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-masinfo-soli',
@@ -31,11 +34,15 @@ export class MasinfoSoliComponent implements OnInit{
   Estatus:string="";
 
   familia:Familia[]=[];
+  caracteristicas:Caracteristica[]=[];
   material:Material[]=[];
   solicitar!:Material;
   solicitud!:Solicitud;
   addMaterial:boolean=false;
   contMaterial!:boolean;
+
+  //para el selec de familia
+  selectedFamilia:string="";
 
   form = new FormGroup({
     estatus:  new FormControl('Nueva', [ Validators.required]),
@@ -45,7 +52,8 @@ export class MasinfoSoliComponent implements OnInit{
   fecha:Date|string="";
   constructor(private router:Router,
     private solicitudService:SolicitudService,public route: ActivatedRoute,
-    private materialService:MaterialService, private familiaService:FamiliaService ){}
+    private materialService:MaterialService, private familiaService:FamiliaService,
+    private caracteristicaService:CaracterService){}
 
   ngOnInit(): void {
     //para traer los meteriales de esa solictud
@@ -72,6 +80,8 @@ export class MasinfoSoliComponent implements OnInit{
       familia:"",
       caracterone:"",
       caractertwo:"",
+      caracterthree:"",
+      otra:"",
       estatus:"",
     }
   }
@@ -87,6 +97,8 @@ export class MasinfoSoliComponent implements OnInit{
         familia:element.familia,
         caracterone:element.caracterone,
         caractertwo:element.caractertwo,
+        caracterthree:element.caracterthree,
+        otra:element.otra,
         estatus:element.estatus,
       };
       this.material.push(materialCreado);
@@ -99,6 +111,8 @@ export class MasinfoSoliComponent implements OnInit{
       familia: "",
       caracterone: "",
       caractertwo: "",
+      caracterthree:"",
+      otra:"",
       estatus:"",
     };
     });
@@ -129,20 +143,43 @@ export class MasinfoSoliComponent implements OnInit{
       // Verifica si el arreglo this.material está vacío
       if (this.material.length === 0) {
         console.log('El arreglo this.material está vacío.');
-        alert('Sin materiales, Agregar al menos uno');
+        //alert('Sin materiales, Agregar al menos uno');
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Sin materiales!, agregar al menos uno',
+          footer: ''
+        })
         //this.contMaterial=true;
       } else {
         console.log('El arreglo this.material no está vacío y contiene elementos.');
-        //this.contMaterial=false;
+        Swal.fire({
+          title: 'Enviar Solicitud?',
+          text: "No podrás revertir esto",
+          icon: 'question',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Si, enviar'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            //this.contMaterial=false;
         this.solicitudService.update(this.idSolicitud, this.form.value).subscribe(res => {
           this.form.setValue(
             {
             'estatus':"Nueva",
           });
           console.log('Enviado');
-          alert('Solicitud Enviada');
+          //alert('Solicitud Enviada');
+          Swal.fire(
+            'Enviado!',
+            'Tu solicitud se envio correctamente.',
+            'success'
+          )
           this.newEnviar.emit(value);
         });
+          }
+        })
       }
     });
     /*if(this.contMaterial==true){
@@ -162,4 +199,14 @@ export class MasinfoSoliComponent implements OnInit{
   masMaterial(){
     this.addMaterial=!this.addMaterial;
   }
+  onFamiliaSelected(event: any) {
+    const selectedFamiliaId = event.target.value;
+    // Resto del código para realizar la solicitud al backend y actualizar las características.
+    if(selectedFamiliaId){
+      this.caracteristicaService.getList(selectedFamiliaId).subscribe((data:Caracteristica[])=>{
+        this.caracteristicas = data;
+      })
+    }
+  }
+
 }

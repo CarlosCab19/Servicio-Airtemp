@@ -31,7 +31,14 @@ export class RealizarCotizacionComponent implements OnInit{
   caracter2:string="";
   material!:Material;
 
+  tipoMoneda: string=""; // Variable para almacenar el símbolo de la moneda seleccionada.
+
   constructor(private cotizacionService:CotizacionService,private materialService:MaterialService){}
+
+  onTipoMonedaSelected() {
+    // Puedes acceder a this.tipoMoneda para obtener el símbolo de la moneda seleccionada.
+    console.log('Símbolo de moneda seleccionada:', this.tipoMoneda);
+  }
 
   ngOnInit(): void {
     this.materialService.find(this.idMaterial).subscribe(response=>{
@@ -52,11 +59,11 @@ export class RealizarCotizacionComponent implements OnInit{
       id_material:this.idMaterial,
       id_analista:this.idAnalista,
       id_director:'',
-      fabricacion:'',
-      lme:'',
-      premium:'',
-      total:'',
-      icoterm:'',
+      fabricacion:this.tipoMoneda + '',
+      lme:this.tipoMoneda + '',
+      premium:this.tipoMoneda + '',
+      total:this.tipoMoneda +'',
+      icoterm:this.tipoMoneda + '',
       estatus:'',
     };
   }
@@ -107,13 +114,14 @@ export class RealizarCotizacionComponent implements OnInit{
     })
   }
   closeCotizacion(valor:boolean){
-    /*this.formCotizacion.emit(valor);
-    this.valorArreglo.emit(this.cotizacion.length);
+    this.formCotizacion.emit(valor);
+    /*this.valorArreglo.emit(this.cotizacion.length);
     console.log(this.cotizacion.length);*/
   }
   cotizacionLista(){
     this.newEstado.emit(true);
     this.valorArreglo.emit(this.cotizacion.length);
   }
+
 
 }

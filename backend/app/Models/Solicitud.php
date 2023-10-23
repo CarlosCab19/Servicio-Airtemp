@@ -20,6 +20,7 @@ class Solicitud extends Model
         'NumParte',
         'id_analista',
         'id_director',
+        'vence',
         'estatus'
     ];
 }

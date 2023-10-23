@@ -89,7 +89,7 @@ export class FormCotizacionComponent implements OnInit{
     this.verFormCotizar=true;
   }
   close(valor:boolean){
-    //this.closeForm.emit(valor);
+    this.closeForm.emit(valor);
   }
   formCotizacion(valor:boolean){
     this.verFormCotizar=!valor;
