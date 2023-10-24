@@ -65,6 +65,7 @@ export class FormSolicitudCComponent implements OnInit{
         created_at:element.created_at,
       }
       console.log(soliCreada);
+      this.solicitudService.notify(res);
 
       this.solicitar={
         id:"",

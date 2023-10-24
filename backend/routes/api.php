@@ -54,6 +54,7 @@ Route::prefix('material')->group(function () {
     Route::get('/',[ MaterialController::class, 'index']);
     Route::get('/{id}',[MaterialController::class,'getList']);
     Route::post('/',[ MaterialController::class, 'create']);
+    Route::put('/{id}',[ MaterialController::class, 'update']);
     Route::get('/get/{id}',[ MaterialController::class, 'get']);
     Route::delete('/{id}',[ MaterialController::class, 'delete']);
 });
@@ -65,7 +66,7 @@ Route::prefix('cotizacion')->group(function () {
     Route::get('/get/{id}',[ CotizacionController::class, 'get']);
     Route::delete('/{id}',[ CotizacionController::class, 'delete']);
     Route::put('/{id}',[ CotizacionController::class, 'update']);
-    Route::put('/{id}',[ CotizacionController::class, 'updateDirector']);
+    Route::put('/upD/{id}',[ CotizacionController::class, 'updateDirector']);
 });
 
 Route::prefix('familia')->group(function () {

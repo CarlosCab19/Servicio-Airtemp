@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('id_material');
             $table->string('id_analista');
             $table->string('id_director')->nullable();
+            $table->string('moneda');
             $table->bigInteger('fabricacion');
             $table->bigInteger('lme');
             $table->bigInteger('premium');

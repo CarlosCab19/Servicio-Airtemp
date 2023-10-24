@@ -20,6 +20,7 @@ class CotizacionController extends Controller
         $data['id_material'] = $request['id_material'];
         $data['id_analista'] = $request['id_analista'];
         $data['id_director'] = $request['id_director'];
+        $data['moneda'] = $request['moneda'];
         $data['fabricacion'] = $request['fabricacion'];
         $data['lme'] = $request['lme'];
         $data['premium'] = $request['premium'];

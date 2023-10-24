@@ -40,12 +40,12 @@ export class MaterialService {
       catchError(this.errorHandler)
     )
   }
-  /*update(id: string | number, material: any): Observable<Material> {
+  update(id: string | number, material: any): Observable<Material> {
     return this.httpClient.put<Material>(this.url + id, JSON.stringify(material), this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )
-  }*/
+  }
   delete(id: string | number){
     return this.httpClient.delete<Material>(this.url + id, this.httpOptions)
     .pipe(

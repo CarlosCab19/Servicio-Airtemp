@@ -14,6 +14,7 @@ class Cotizacion extends Model
         'id_material',
         'id_analista',
         'id_director',
+        'moneda',
         'fabricacion',
         'lme',
         'premium',

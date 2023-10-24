@@ -47,6 +47,14 @@ class MaterialController extends Controller
             'success' => true
         ], 200);
     }
+    public function update(Request $request,$id){
+        $data['estatus'] = $request['estatus'];
+        Material::find($id)->update($data);
+        return response()->json([
+            'message' => "Successfully updated",
+            'success' => true
+        ], 200);
+      }
 
     public function get($id){
         $data = Material::find($id);

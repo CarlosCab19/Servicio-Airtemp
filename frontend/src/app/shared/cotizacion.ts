@@ -3,6 +3,7 @@ export interface Cotizacion {
   id_material:string;
   id_analista:string;
   id_director:string;
+  moneda:string;
   fabricacion:string;
   lme:string;
   premium:string;

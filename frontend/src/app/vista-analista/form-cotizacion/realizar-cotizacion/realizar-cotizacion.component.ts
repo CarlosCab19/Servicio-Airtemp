@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CotizacionService } from 'src/app/services/cotizacion.service';
 import { MaterialService } from 'src/app/services/material.service';
 import { Cotizacion } from 'src/app/shared/cotizacion';
@@ -21,7 +22,7 @@ export class RealizarCotizacionComponent implements OnInit{
   @Input() idMaterial:string="";
   @Input() idAnalista:string="";
   @Output() newEstado = new EventEmitter<boolean>();
-  @Output() valorArreglo=new EventEmitter<number>();
+  @Output() valorArreglo=new EventEmitter<string>();
 
   //variables para los datos del material
   folio:string="";
@@ -32,6 +33,13 @@ export class RealizarCotizacionComponent implements OnInit{
   material!:Material;
 
   tipoMoneda: string=""; // Variable para almacenar el símbolo de la moneda seleccionada.
+
+  form = new FormGroup({
+    estatus:  new FormControl('Listo', [ Validators.required]),
+  });
+  form2 = new FormGroup({
+    estatus:  new FormControl('noListo', [ Validators.required]),
+  });
 
   constructor(private cotizacionService:CotizacionService,private materialService:MaterialService){}
 
@@ -59,11 +67,12 @@ export class RealizarCotizacionComponent implements OnInit{
       id_material:this.idMaterial,
       id_analista:this.idAnalista,
       id_director:'',
-      fabricacion:this.tipoMoneda + '',
-      lme:this.tipoMoneda + '',
-      premium:this.tipoMoneda + '',
-      total:this.tipoMoneda +'',
-      icoterm:this.tipoMoneda + '',
+      moneda:'',
+      fabricacion:'',
+      lme:'',
+      premium:'',
+      total:'',
+      icoterm:'',
       estatus:'',
     };
   }
@@ -79,7 +88,8 @@ export class RealizarCotizacionComponent implements OnInit{
             id:res.id,
             id_material:this.idMaterial,
             id_analista:this.idAnalista,
-            id_director:'',
+            id_director:element.id_director,
+            moneda:element.moneda,
             fabricacion:element.fabricacion,
             lme:element.lme,
             premium:element.premium,
@@ -93,6 +103,7 @@ export class RealizarCotizacionComponent implements OnInit{
             id_material:this.idMaterial,
             id_analista:this.idAnalista,
             id_director:'',
+            moneda:'',
             fabricacion:'',
             lme:'',
             premium:'',
@@ -118,10 +129,45 @@ export class RealizarCotizacionComponent implements OnInit{
     /*this.valorArreglo.emit(this.cotizacion.length);
     console.log(this.cotizacion.length);*/
   }
+  get f(){
+    return this.form.controls;
+  }
+  get f2(){
+    return this.form2.controls;
+  }
   cotizacionLista(){
     this.newEstado.emit(true);
-    this.valorArreglo.emit(this.cotizacion.length);
+    if(this.cotizacion.length != 0){
+      this.materialService.update(this.folio,this.form.value).subscribe(res=>{
+        console.log(this.form.value);
+        this.form.setValue(
+          {
+          'estatus':"",
+        });
+      });
+      this.valorArreglo.emit('Listo');
+    }else{
+      this.materialService.update(this.folio,this.form2.value).subscribe(res=>{
+        console.log(this.form2.value);
+        this.form.setValue(
+          {
+          'estatus':"",
+        });
+      });
+      this.valorArreglo.emit('noListo');
+    }
   }
+  //Mapeo de las monedas
+  monedaSimbolos: { [key: string]: string } = {
+    pesos_mexicanos: 'Mex$ ',
+    dolares_usa: 'US$ ',
+    euro: '€ ',
+  };
 
+  /*monedaNombres: { [key: string]: string } = {
+    pesos_mexicanos: 'Peso mexicano',
+    dolares_usa: 'Dólar estadounidense',
+    euro:'Euro',
+  };*/
 
 }

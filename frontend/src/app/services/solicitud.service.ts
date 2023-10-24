@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Solicitud } from '../shared/solicitud';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, catchError, throwError } from 'rxjs';
+import { Observable, Subject, catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +9,7 @@ import { Observable, catchError, throwError } from 'rxjs';
 export class SolicitudService {
 
   private readonly url:string="http://127.0.0.1:8000/api/solicitud/";
+  private nuevaSoliSubject=new Subject<Solicitud>();
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -17,6 +18,14 @@ export class SolicitudService {
  }
 
   constructor(private httpClient: HttpClient) { }
+
+  getObservable(): Observable<Solicitud> {
+    console.log(this.nuevaSoliSubject)
+    return this.nuevaSoliSubject.asObservable();
+  }
+  notify(solicitud:Solicitud){
+    this.nuevaSoliSubject.next(solicitud);
+  }
 
   getAll(): Observable<Solicitud[]> {
     return this.httpClient.get<Solicitud[]>(this.url)
