@@ -28,8 +28,6 @@ export class RealizarCotizacionComponent implements OnInit{
   folio:string="";
   descripcion:string="";
   familia:string="";
-  caracter1:string="";
-  caracter2:string="";
   material!:Material;
 
   tipoMoneda: string=""; // Variable para almacenar el símbolo de la moneda seleccionada.
@@ -54,8 +52,6 @@ export class RealizarCotizacionComponent implements OnInit{
       this.folio=response.id;
       this.descripcion=response.descripcion;
       this.familia=response.familia;
-      this.caracter1=response.caracterone;
-      this.caracter2=response.caractertwo;
     });
     this.cotizacionService.getList(this.idMaterial).subscribe((data:Cotizacion[])=>{
       this.cotizacion=data;

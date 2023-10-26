@@ -3,10 +3,11 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CaracterService } from 'src/app/services/caracter.service';
+import { CaractermaterialService } from 'src/app/services/caractermaterial.service';
 import { FamiliaService } from 'src/app/services/familia.service';
 import { MaterialService } from 'src/app/services/material.service';
 import { SolicitudService } from 'src/app/services/solicitud.service';
-import { Caracteristica, Familia, Material } from 'src/app/shared/material';
+import { Caracteristica, Caractermaterial, Familia, Material } from 'src/app/shared/material';
 import { Solicitud } from 'src/app/shared/solicitud';
 
 import Swal from 'sweetalert2'
@@ -18,12 +19,9 @@ import Swal from 'sweetalert2'
   providers: [DatePipe],
 })
 export class MasinfoSoliComponent implements OnInit{
+
   @Input() idSolicitud:string="";
   @Input() responsable:string="";
-  /*@Input() Rsocial:string="";
-  @Input() codiProv:string="";
-  @Input() nomClien:string="";
-  @Input() numParte:string="";*/
   @Output() newClose = new EventEmitter<boolean>();
   @Output() newEnviar = new EventEmitter<boolean>();
 
@@ -34,15 +32,21 @@ export class MasinfoSoliComponent implements OnInit{
   Estatus:string="";
 
   familia:Familia[]=[];
+  familiaN!:Familia;
+  familiaNombre:string="";
   caracteristicas:Caracteristica[]=[];
   material:Material[]=[];
   solicitar!:Material;
   solicitud!:Solicitud;
   addMaterial:boolean=false;
   contMaterial!:boolean;
+  idNuevo:string="";
+
 
   //para el selec de familia
   selectedFamilia:string="";
+  //datos para el modal
+  familiaM:string="";
 
   form = new FormGroup({
     estatus:  new FormControl('Nueva', [ Validators.required]),
@@ -78,10 +82,6 @@ export class MasinfoSoliComponent implements OnInit{
       id_solicitud:this.idSolicitud,
       descripcion:"",
       familia:"",
-      caracterone:"",
-      caractertwo:"",
-      caracterthree:"",
-      otra:"",
       estatus:"",
     }
   }
@@ -95,10 +95,6 @@ export class MasinfoSoliComponent implements OnInit{
         id_solicitud:this.idSolicitud,
         descripcion:element.descripcion,
         familia:element.familia,
-        caracterone:element.caracterone,
-        caractertwo:element.caractertwo,
-        caracterthree:element.caracterthree,
-        otra:element.otra,
         estatus:element.estatus,
       };
       this.material.push(materialCreado);
@@ -109,10 +105,6 @@ export class MasinfoSoliComponent implements OnInit{
       id_solicitud: this.idSolicitud,
       descripcion: "",
       familia: "",
-      caracterone: "",
-      caractertwo: "",
-      caracterthree:"",
-      otra:"",
       estatus:"",
     };
     });
@@ -128,11 +120,17 @@ export class MasinfoSoliComponent implements OnInit{
       this.material = this.material.filter(item => item.id !== idMaterial);
       console.log('Material Eliminado');
     })
-    /*for(let i=0;i<this.material.length;i++){
-      if(i==idMaterial) {
-        this.material.splice(i,1);
-      }
-    }*/
+  }
+  addCaracter(idFamilia:string){
+    //this.idNuevo=idFamilia;
+    this.caracteristicaService.getList(idFamilia).subscribe((data:Caracteristica[])=>{
+      this.caracteristicas=data;
+    });
+    this.familiaService.find(idFamilia).subscribe(response=>{
+      this.familiaN=response;
+      this.familiaM=response.familia;
+    })
+
   }
 
 
@@ -143,17 +141,26 @@ export class MasinfoSoliComponent implements OnInit{
       // Verifica si el arreglo this.material está vacío
       if (this.material.length === 0) {
         console.log('El arreglo this.material está vacío.');
-        //alert('Sin materiales, Agregar al menos uno');
-        Swal.fire({
+        alert('Sin materiales, Agregar al menos uno');
+        /*Swal.fire({
           icon: 'error',
           title: 'Oops...',
           text: 'Sin materiales!, agregar al menos uno',
           footer: ''
-        })
+        })*/
         //this.contMaterial=true;
       } else {
         console.log('El arreglo this.material no está vacío y contiene elementos.');
-        Swal.fire({
+        this.solicitudService.update(this.idSolicitud, this.form.value).subscribe(res => {
+          this.form.setValue(
+            {
+            'estatus':"Nueva",
+          });
+          console.log('Enviado');
+          alert('Solicitud Enviada');
+          this.newEnviar.emit(value);
+        });
+        /*Swal.fire({
           title: 'Enviar Solicitud?',
           text: "No podrás revertir esto",
           icon: 'question',
@@ -179,7 +186,7 @@ export class MasinfoSoliComponent implements OnInit{
           this.newEnviar.emit(value);
         });
           }
-        })
+        })*/
       }
     });
     /*if(this.contMaterial==true){

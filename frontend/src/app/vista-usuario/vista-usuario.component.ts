@@ -24,11 +24,6 @@ export class VistaUsuarioComponent implements OnInit{
   responsable:string="";
   idSolicitante:string="";
   idSolicitud:string="";
-  /*para los datos de la solicitud seleccionada
-  codiProv:string="";
-  Rsocial:string="";
-  nomClien:string="";
-  numParte:string="";*/
 
   /*-----------*/
   id:string="";
@@ -140,13 +135,6 @@ export class VistaUsuarioComponent implements OnInit{
     this.masInfo=true;
     this.verTabla=false;
     this.idSoli=idSoli;
-    /*this.solicitudService.find(idSoli).subscribe(response=>{
-      this.solicitud=response;
-      this.codiProv=response.codProv;
-      this.Rsocial=response.Rsocial;
-      this.nomClien=response.NomCliente;
-      this.numParte=response.NumParte;
-    })*/
   }
   cancelar(id:string){
     this.solicitudService.find(id).subscribe(response=>{

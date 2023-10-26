@@ -65,7 +65,6 @@ export class FormSolicitudCComponent implements OnInit{
         created_at:element.created_at,
       }
       console.log(soliCreada);
-      this.solicitudService.notify(res);
 
       this.solicitar={
         id:"",
@@ -82,7 +81,6 @@ export class FormSolicitudCComponent implements OnInit{
         estatus:"Editando",
         created_at:'',
       };
-      /*this.addNewEstado(false);*/
       this.addNewIdSoli(res.id);
       this.addEvento(true);
     });

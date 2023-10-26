@@ -24,6 +24,25 @@ export class FamiliaService {
       catchError(this.errorHandler)
     )
   }
+  getByFamilia(familia: string): Observable<Familia> {
+    return this.httpClient.get<Familia>(this.url+familia)
+      .pipe(
+        catchError(this.errorHandler)
+      );
+  }
+  getList(id:string):Observable<Familia[]>{
+    return this.httpClient.get<Familia[]>(this.url+id)
+    .pipe(
+      catchError(this.errorHandler)
+    )
+  }
+  find(id: string | null): Observable<Familia> {
+    return this.httpClient.get<Familia>(this.url+ id)
+    .pipe(
+      catchError(this.errorHandler)
+    )
+  }
+
   errorHandler(error: { error: { message: string; }; status: any; message: any; }) {
     let errorMessage = '';
     if(error.error instanceof ErrorEvent) {

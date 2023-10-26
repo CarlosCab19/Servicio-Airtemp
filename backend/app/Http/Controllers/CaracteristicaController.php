@@ -17,4 +17,9 @@ class CaracteristicaController extends Controller
         return response()->json($data, 200);
     }
 
+    public function get($id){
+        $data = Caracteristica::find($id);
+        return response()->json($data, 200);
+    }
+
 }

@@ -41,6 +41,7 @@ tbody{
   height: 20px;
   margin: 5px;
   cursor: pointer;
+  margin-right: 30px;
 }
 .acciones{
   text-align: right;
@@ -62,6 +63,12 @@ tbody{
   margin-top: 0;
   margin-block-end: 10px;
   margin-right: 20px;
+}
+#addM{
+  width: 20px;
+  height: 20px;
+  margin: 5px;
+  cursor: pointer;
 }
 /*boton dentro de mas informacion, para agregar material*/
 #add {
@@ -128,4 +135,13 @@ span{
  .btn-1:hover {
   background:#005ba2;
   background: linear-gradient(0deg, rgb(0, 17, 255) 0%, rgba(2,126,251,1) 100%);
+ }
+ /*estilos para el modal*/
+ .modal-header{
+  background-color: #005ba2;
+  color: white;
+  font-weight: bold;
+ }
+ .modal-footer{
+  background-color: rgba(235, 225, 225, 0.808);
  }

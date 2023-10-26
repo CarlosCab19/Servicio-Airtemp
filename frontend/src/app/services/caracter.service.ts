@@ -29,6 +29,12 @@ export class CaracterService {
       catchError(this.errorHandler)
     )
   }
+  find(id: string | null): Observable<Caracteristica> {
+    return this.httpClient.get<Caracteristica>(this.url +'get/' + id)
+    .pipe(
+      catchError(this.errorHandler)
+    )
+  }
   errorHandler(error: { error: { message: string; }; status: any; message: any; }) {
     let errorMessage = '';
     if(error.error instanceof ErrorEvent) {

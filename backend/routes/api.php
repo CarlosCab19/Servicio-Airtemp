@@ -9,6 +9,7 @@ use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\CotizacionController;
 use App\Http\Controllers\FamiliaController;
 use App\Http\Controllers\CaracteristicaController;
+use App\Http\Controllers\CaractermaterialController;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,10 +72,22 @@ Route::prefix('cotizacion')->group(function () {
 
 Route::prefix('familia')->group(function () {
     Route::get('/',[ FamiliaController::class, 'index']);
+    Route::get('/{id}',[ FamiliaController::class, 'get']);
+    Route::get('/{familia}',[ FamiliaController::class, 'getByFamilia']);
+
 });
 
 Route::prefix('caracteristica')->group(function () {
     Route::get('/',[ CaracteristicaController::class, 'index']);
     Route::get('/{id}',[CaracteristicaController::class,'getList']);
+    Route::get('/get/{id}',[ CaractermaterialController::class, 'get']);
 });
 
+Route::prefix('caractermaterial')->group(function () {
+    Route::get('/',[ CaractermaterialController::class, 'index']);
+    Route::get('/{id}',[CaractermaterialController::class,'getList']);
+    Route::post('/',[CaractermaterialController::class, 'create']);
+    Route::put('/{id}',[ CaractermaterialController::class, 'update']);
+    Route::delete('/{id}',[ CaractermaterialController::class, 'delete']);
+    Route::get('/get/{id}',[ CaractermaterialController::class, 'get']);
+});

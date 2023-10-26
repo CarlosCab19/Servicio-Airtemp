@@ -147,8 +147,8 @@ export class RechazadaComponent implements OnInit{
       table += `  <td>${this.materials[i] ? this.materials[i].descripcion : ''}</td>\n`;
       //table += `  <td>${this.solicituds[i] ? this.solicituds[i].solicitante : ''}</td>\n`;
       table += `  <td>${this.materials[i] ? this.materials[i].familia : ''}</td>\n`;
-      table += `  <td>${this.materials[i] ? this.materials[i].caracterone : ''}</td>\n`;
-      table += `  <td>${this.materials[i] ? this.materials[i].caractertwo : ''}</td>\n`;
+      //table += `  <td>${this.materials[i] ? this.materials[i].caracterone : ''}</td>\n`;
+      //table += `  <td>${this.materials[i] ? this.materials[i].caractertwo : ''}</td>\n`;
       table += '</tr>\n';
     }
 
