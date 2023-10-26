@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Material extends Model
+class Caractermaterial extends Model
 {
     use HasFactory;
-    protected $table='material';
+    protected $table='caractermaterial';
     protected $fillable=[
-        'id_solicitud',
-        'descripcion',
-        'familia',
+        'id_material',
+        'caracteristica',
+        'valor',
         'estatus',
     ];
 }

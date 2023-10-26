@@ -13,10 +13,14 @@ class Solicitud extends Model
     protected $fillable=[
         'id_usuario',
         'solicitante',
+        'tipo',
         'codProv',
         'Rsocial',
         'NomCliente',
         'NumParte',
+        'id_analista',
+        'id_director',
+        'vence',
         'estatus'
     ];
 }

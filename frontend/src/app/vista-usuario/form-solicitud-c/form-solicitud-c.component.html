@@ -5,30 +5,47 @@
         <svg id="close" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z"/></svg>
       </div>
     </div>
+    <h2>Datos de la Solicitud</h2>
     <div class="row g-2">
       <label for="formGroupExampleInput" class="form-label mb-0" style="text-decoration: underline;"><strong>RESPONSABLE</strong></label>
-      <div class="col-md-6 mb-3">
+      <div class="col-md">
         <div class="form-floating">
           <input type="text" class="form-control" id="floatingInput"  value={{nomResponsable}} disabled>
           <label for="floatingInput">Nombre del Solicitante</label>
         </div>
       </div>
+      <div class="col-md-6">
+        <div class="form-floating">
+          <select [(ngModel)]="solicitar.tipo" name="tipo" class="form-select" id="floatingSelect" aria-label="Floating label select example">
+            <option value="" disabled selected>Seleccione una opción</option>
+            <option value="Material">Material</option>
+            <option value="Maquinaria">Maquinaria</option>
+            <option value="Otro">Otro</option>
+          </select>
+          <label for="floatingSelect">Tipo de Solicitud</label>
+        </div>
+      </div>
     </div>
     <div class="row g-2">
       <label for="formGroupExampleInput" class="form-label mb-0" style="text-decoration: underline;"><strong>PROVEEDOR</strong></label>
-      <div class="col-md">
-        <div class="form-floating">
-          <input #name="ngModel" name="codProv" [(ngModel)]="solicitar.codProv" required type="text" class="form-control" id="floatingInput" value="" placeholder="codigo proveedor">
-          <!--<input #name="ngModel" type="text" [(ngModel)]="registrar.numerocotizacion" required name="numerocotizacion" class="form-control" id="numerocotizacion">-->
-          <label for="floatingInput">Codigo del Proveedor</label>
-        </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" [(ngModel)]="nuevoChecked" name="nuevo" (change)="onCheckboxChange()">
+        <label class="form-check-label" for="inlineCheckbox1">Nuevo</label>
       </div>
-      <div class="col-md mb-3">
+      <div class="col-md ">
         <div class="form-floating">
           <input #name="ngModel" name="Rsocial" [(ngModel)]="solicitar.Rsocial" required type="text" class="form-control" id="floatingInput" placeholder="razon social">
           <label for="floatingInput">Razon Social</label>
         </div>
       </div>
+      <div class="col-md mb-3">
+        <div class="form-floating" *ngIf="nuevoChecked==true">
+          <input #name="ngModel" name="codProv" [(ngModel)]="solicitar.codProv" required type="text" class="form-control" id="floatingInput" value="" placeholder="codigo proveedor">
+          <!--<input #name="ngModel" type="text" [(ngModel)]="registrar.numerocotizacion" required name="numerocotizacion" class="form-control" id="numerocotizacion">-->
+          <label for="floatingInput">Codigo del Proveedor</label>
+        </div>
+      </div>
+
     </div>
     <div class="row g-2">
       <label for="formGroupExampleInput" class="form-label mb-0" style="text-decoration: underline;"><strong>CLIENTE</strong></label>

@@ -24,11 +24,6 @@ export class VistaUsuarioComponent implements OnInit{
   responsable:string="";
   idSolicitante:string="";
   idSolicitud:string="";
-  /*para los datos de la solicitud seleccionada
-  codiProv:string="";
-  Rsocial:string="";
-  nomClien:string="";
-  numParte:string="";*/
 
   /*-----------*/
   id:string="";
@@ -36,6 +31,9 @@ export class VistaUsuarioComponent implements OnInit{
   solicitudes:Solicitud[]=[];
   solicitud!:Solicitud;
   idSoli:string="";
+
+  /*para saber el estado y poder bloquear*/
+  estatuSolicitud:string="";
 
 
   constructor(private router: Router,private rutaActiva: ActivatedRoute,
@@ -72,10 +70,12 @@ export class VistaUsuarioComponent implements OnInit{
     this.verNuevo=newEstado;
     this.verMaterial=newEstado;
     this.verTabla=!newEstado;
-
   }
   EstadoClose(newClose:boolean){
     this.masInfo=newClose;
+    if(newClose==false){
+      location.reload();
+    }
     this.verTabla=!newClose;
   }
   loadWindows(winEstado:boolean){
@@ -85,7 +85,8 @@ export class VistaUsuarioComponent implements OnInit{
   }
   activarForm(actForm:boolean){
     this.masInfo=actForm;
-    console.log('valor recibido para activar',actForm);
+    this.verTabla=!actForm;
+    this.verNuevo=!actForm;
   }
   EstadoSoli(newEstSoli:boolean){
     this.verTabla=newEstSoli;
@@ -134,13 +135,12 @@ export class VistaUsuarioComponent implements OnInit{
     this.masInfo=true;
     this.verTabla=false;
     this.idSoli=idSoli;
-    /*this.solicitudService.find(idSoli).subscribe(response=>{
+  }
+  cancelar(id:string){
+    this.solicitudService.find(id).subscribe(response=>{
       this.solicitud=response;
-      this.codiProv=response.codProv;
-      this.Rsocial=response.Rsocial;
-      this.nomClien=response.NomCliente;
-      this.numParte=response.NumParte;
-    })*/
+      this.estatuSolicitud=response.estatus;
+    });
   }
 
 }

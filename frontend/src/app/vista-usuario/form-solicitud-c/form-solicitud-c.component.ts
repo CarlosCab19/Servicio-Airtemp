@@ -35,10 +35,14 @@ export class FormSolicitudCComponent implements OnInit{
       id:"",
       id_usuario:this.idUs,
       solicitante:this.nomResponsable,
+      tipo:"",
       codProv:"",
       Rsocial:"",
       NomCliente:"",
       NumParte:"",
+      id_analista:"",
+      id_director:"",
+      vence:"",
       estatus:"Editando",
       created_at:"",
     };
@@ -56,6 +60,7 @@ export class FormSolicitudCComponent implements OnInit{
         Rsocial:element.Rsocial,
         NomCliente:element.NomCliente,
         NumParte:element.NumParte,
+        vence:element.vence,
         estatus:"Editando",
         created_at:element.created_at,
       }
@@ -65,18 +70,19 @@ export class FormSolicitudCComponent implements OnInit{
         id:"",
         id_usuario:this.idUs,
         solicitante:this.nomResponsable,
-        codProv:"",
-        Rsocial:"",
-        NomCliente:"",
-        NumParte:"",
-        estatus:"",
-        created_at:"",
+        tipo:'',
+        codProv:'',
+        Rsocial:'',
+        NomCliente:'',
+        NumParte:'',
+        id_analista:'',
+        id_director:'',
+        vence:'',
+        estatus:"Editando",
+        created_at:'',
       };
-      this.addNewEstado(false);
       this.addNewIdSoli(res.id);
-      /*this.addLoad(true);*/
-      /*this.addEvento(true);*/
-      //console.log(res);
+      this.addEvento(true);
     });
   }
   addNewIdSoli(id:string){
@@ -90,6 +96,13 @@ export class FormSolicitudCComponent implements OnInit{
   }
   addEvento(value:boolean){
     this.abrirForm.emit(value);
+  }
+
+  nuevoChecked: boolean = false;
+
+  onCheckboxChange() {
+    console.log('Estado del checkbox: ', this.nuevoChecked);
+    // Aquí puedes llamar a otros métodos o realizar acciones en función del valor del checkbox.
   }
 
 }

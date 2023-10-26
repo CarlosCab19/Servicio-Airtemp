@@ -29,9 +29,20 @@ h2{
   cursor: pointer;
   text-align: center;
 }
-/*para el boton de enviar cotizacion*/
+#delete{
+  align-items: center;
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+}
+.btnAgregar{
+  border-radius: 10px;
+  background-color: #e2d8d885;
+  border: 2.5px solid #005ba2;
+  font-weight: bold;
+}
 .custom-btn {
-  width: 180px;
+  width: 80px;
   height: 40px;
   color: #fff;
   border-radius: 5px;
@@ -60,8 +71,3 @@ h2{
   background: linear-gradient(0deg, rgb(0, 17, 255) 0%, rgba(2,126,251,1) 100%);
  }
 
- .azul {
-  color: blue; /* Cambia el color del texto a azul */
-  /* Otros estilos específicos que quieras aplicar */
-  background-color: #005ba2;
-}

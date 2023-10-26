@@ -1,158 +1,5 @@
 /* Importa Font Awesome */
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
-/* Estilos generales */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
-/* Estilos para el encabezado (header) */
-header {
-  background-color: #005ba2;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-}
-
-.logo img {
-  max-width: 25%;
-  height: auto;
-}
-
-/* Estilos para el menú */
-.menu {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  font-weight: bold;
-
-}
-
-.menu li {
-  margin-right: 20px;
-  position: relative;
-  color: white;
-  text-decoration: none;
-  transition: color 0.3s ease, text-decoration 0.3s ease; /* Transición suave del color y el subrayado durante 0.3 segundos */
-  padding: 10px;
-  cursor: pointer;
-}
-
-.menu li :hover{
-  color: black;
-}
-.menu li a {
-  color: white;
-  text-decoration: none;
-  transition: color 0.3s ease, text-decoration 0.3s ease; /* Transición suave del color y el subrayado durante 0.3 segundos */
-  padding: 10px;
-}
-.menu li a :hover{
-  color: black;
-
-}
-
-
-.menu li a {
-  color: white;
-  text-decoration: none;
-}
-
-
-
-/* Estilos responsivos */
-@media screen and (max-width: 768px) {
-  header {
-      flex-direction: column;
-      align-items: flex-start;
-  }
-
-  .menu {
-      margin-top: 10px;
-  }
-
-  .menu li {
-      margin: 20px;
-      margin-bottom: 10px;
-
-  }
-  .col-6{
-    margin-top: 20px;
-    width: 400px;
-    max-width: 400px;
-  }
-
-}
-
-.nombres{
-  width: 100%;
-  height: 30px;
-  background-color: #2F4F4F;
-  color: white;
-  font-weight: bold;
-}
-/*Estilos para la tabla*/
-
-.responsive-table {
-  width: 100%;
-  border-collapse: collapse;
-  background-color: #fff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.responsive-table th,
-.responsive-table td {
-  padding: 10px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
-.responsive-table th {
-  background-color: #8fbc8f;
-  color: #000000;
-}
-.table th {
-  background-color: #8fbc8f;
-  color: #fff;
-}
-.responsive-table tbody tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-.responsive-table tbody tr:hover {
-  background-color: #ddd;
-}
-
-
-/*estilos para ver mas informacion de la solicitud*/
-.container{
-  margin-top: 20px;
-  margin-block-end: 20px;
-}
-
-.col-6{
-  background-color: #8fbc8f;
-  margin-left: 30px;
-  border-radius: 10px;
-}
-
-
-/* FOOTER */
-
-/* Estilo para el pie de página */
-.footer {
-  background-color: #005ba2;
-  /* Color de fondo del pie de página*/
-  padding: 20px 0;
-  /* Espaciado interior de 20 píxeles en la parte superior e inferior */
-  text-align: center;
-  /* Alineación del texto al centro dentro del pie de página */
-  color: white;
-  /* Color del texto*/
-}
 
 /*lo que se va a quedar*/
 /*para el canvas*/
@@ -208,6 +55,7 @@ header {
   padding: 20px;
   width: 70%;
   margin-left: 15%;
+
 }
 .botonCrear{
   border-radius: 20px ;
@@ -573,4 +421,38 @@ h2{
   cursor: pointer;
   background-color: #ff020283;
   border-radius: 5px;
+}
+/*colores para cada estado en la tabla*/
+.editando{
+  color: #005ba2;
+}
+
+.nueva {
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  background-color: rgba(0, 128, 0, 0.589);
+}
+
+.cotizando {
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  background-color: rgba(0, 0, 255, 0.582);
+}
+
+.cotizado {
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  background-color: rgba(255, 166, 0, 0.651);
+}
+
+.revision {
+  color: rgb(19, 18, 19);
+  font-weight: bold;
+  background-color: rgba(128, 0, 128, 0.575);
+}
+
+.aprobado {
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  background-color: rgba(0, 128, 128, 0.582);
 }

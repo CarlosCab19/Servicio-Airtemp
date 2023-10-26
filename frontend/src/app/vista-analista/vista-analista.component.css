@@ -1,80 +1,16 @@
 /* Importa Font Awesome */
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-}
- /*estilos para el menu*/
-.menu {
-  background-color:#005ba2;
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 250px;
-  padding: 20px;
-  font-weight: bold;
-
-}
-
-.menu ul {
-  list-style-type: none;
-  padding: 10px;
-}
-
-.menu ul li {
-  margin-bottom: 10px;
-  padding: 10px;
-  cursor: pointer;
-}
-i {
-  margin-right: 5px;
-}
-img{
-  width: 100%;
-  margin-top: 10px;
-  margin-block-end: 30px;
-}
-.menu ul li a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 18px;
-}
-
-.menu ul li a:hover {
-  text-decoration: underline;
-  color: black;
-}
-
-/*Para el nombre de que perfil es*/
-.header{
-  position: fixed;
-  background-color: #c9c9c9;
-  width: 100%;
-  height: 70px;
-  margin-left: 250px;
-}
-.nombre{
-  margin-left: 10px;
-  font-size: 30px;
-  font-weight: bold;
-  margin-top: 10px;
-}
-
-/*estilos para la tabla*/
-
 /*Estilos para la tabla*/
 .card{
   position: fixed;
   height: 85%;
-  width: 80%;
+  width: 70%;
   margin: auto;
-  margin-top: 80px;
-  margin-left: 260px;
   margin-block-end: 20px;
-
+  background-color: #1b9aee63;
+  border-radius: 15px ;
+  padding: 20px;
+  margin-left: 15%;
 }
 
 .responsive-table {
@@ -158,3 +94,240 @@ h2{
   cursor: pointer;
   border-radius: 5px;
 }
+
+/*nuevos*/
+/*para el canvas*/
+.offcanvas{
+  background-color:#ffffff ;
+  width: 330px;
+}
+.offcanvas-header{
+  height: 86px;
+}
+.logo{
+  width: 250px;
+  height: 70px;
+}
+.container{
+  padding: 0;
+  margin: 0;
+  background-color: #000000;
+}
+.offcanvas-body{
+  display: grid;
+  grid-template-rows: repeat(8,1fr);
+}
+.grid{
+  margin-top: 20px;
+
+}
+
+#close{
+  margin-left: 80%;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+}
+
+/*para el boton de menu*/
+.btn {
+  width: 150px;
+  height: 50px;
+  border-radius: 5px;
+  border: none;
+  transition: all 0.5s ease-in-out;
+  font-size: 20px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  background: #005ba2;
+  color: #f5f5f5;
+  margin: 10px;
+}
+
+.btn:hover {
+  box-shadow: 0 0 20px 0px #2e2e2e3a;
+}
+
+.btn .icon {
+  position: absolute;
+  height: 40px;
+  width: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s;
+}
+
+.btn .text {
+  transform: translateX(55px);
+}
+
+.btn:hover .icon {
+  width: 175px;
+}
+
+.btn:hover .text {
+  transition: all 0.5s;
+  opacity: 0;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn:active .icon {
+  transform: scale(0.85);
+}
+/*para el buscador*/
+
+.form {
+  margin-right: 25px;
+  --input-text-color: #fff;
+  --input-bg-color: #005ba2;
+  --focus-input-bg-color: transparent;
+  --text-color: #949faa;
+  --active-color: #1b9bee;
+  --width-of-input: 200px;
+  --inline-padding-of-input: 1.2em;
+  --gap: 0.9rem;
+}
+.form {
+  font-size: 0.9rem;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  width: var(--width-of-input);
+  position: relative;
+  isolation: isolate;
+}
+
+.fancy-bg {
+  position: absolute;
+  width: 100%;
+  inset: 0;
+  background: var(--input-bg-color);
+  border-radius: 30px;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+label {
+  width: 100%;
+  padding: 0.8em;
+  height: 40px;
+  padding-inline: var(--inline-padding-of-input);
+  display: flex;
+  align-items: center;
+}
+
+.search,.close-btn {
+  position: absolute;
+}
+
+.search {
+  fill: var(--text-color);
+  left: var(--inline-padding-of-input);
+}
+
+svg {
+  width: 17px;
+  display: block;
+}
+
+.close-btn {
+  border: none;
+  right: var(--inline-padding-of-input);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  padding: 0.1em;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--active-color);
+  opacity: 0;
+  visibility: hidden;
+}
+
+.input {
+  color: var(--input-text-color);
+  width: 100%;
+  margin-inline: min(2em,calc(var(--inline-padding-of-input) + var(--gap)));
+  background: none;
+  border: none;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.input::placeholder {
+  color: var(--text-color)
+}
+
+.input:focus ~ .fancy-bg {
+  border: 1px solid var(--active-color);
+  background: var(--focus-input-bg-color);
+}
+
+.input:focus ~ .search {
+  fill: var(--active-color);
+}
+
+.input:valid ~ .close-btn {
+  opacity: 1;
+  visibility: visible;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-transition: "color 9999s ease-out, background-color 9999s ease-out";
+  -webkit-transition-delay: 9999s;
+}
+
+/*btn del menu (Solicitudes,cotizadas,Rechazadas */
+#btn-menu {
+  border: none;
+  display: flex;
+  padding: 0.75rem 1.5rem;
+  background-color: #488aec;
+  color: #000000;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  vertical-align: middle;
+  align-items: center;
+  border-radius: 0.5rem;
+  user-select: none;
+  gap: 0.75rem;
+  box-shadow: 0 4px 6px -1px #488aec31, 0 2px 4px -1px #488aec17;
+  transition: all .6s ease;
+  height: 50px;
+}
+
+#btn-menu:hover {
+  box-shadow: 0 10px 15px -3px #488aecd7, 0 4px 6px -2px #488aeca9;
+  color: #ffffff;
+}
+
+#btn-menu:focus,button:active {
+  opacity: .85;
+  box-shadow: none;
+}
+
+#btn-menu svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+

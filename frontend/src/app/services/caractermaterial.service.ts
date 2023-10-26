@@ -1,59 +1,61 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Caractermaterial } from '../shared/material';
 import { Observable, catchError, throwError } from 'rxjs';
-import { Material } from '../shared/material';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MaterialService {
+export class CaractermaterialService {
 
-  private readonly url="http://127.0.0.1:8000/api/material/";
+  private readonly url="http://127.0.0.1:8000/api/caractermaterial/";
 
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
     })
  }
+
   constructor(private httpClient:HttpClient) { }
-  getAll(): Observable<Material[]> {
-    return this.httpClient.get<Material[]>(this.url)
+
+  getAll(): Observable<Caractermaterial[]> {
+    return this.httpClient.get<Caractermaterial[]>(this.url)
     .pipe(
       catchError(this.errorHandler)
     )
   }
-  getList(id:string):Observable<Material[]>{
-    return this.httpClient.get<Material[]>(this.url+id)
+  getList(id:string):Observable<Caractermaterial[]>{
+    return this.httpClient.get<Caractermaterial[]>(this.url+id)
     .pipe(
       catchError(this.errorHandler)
     )
   }
-  create(material: Material): Observable<Material> {
-    return this.httpClient.post<Material>(this.url, JSON.stringify(material), this.httpOptions)
+  create(caractermaterial: Caractermaterial): Observable<Caractermaterial> {
+    return this.httpClient.post<Caractermaterial>(this.url, JSON.stringify(caractermaterial), this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )
   }
-  find(id: string | null): Observable<Material> {
-    return this.httpClient.get<Material>(this.url +'get/' + id)
+  find(id: string | null): Observable<Caractermaterial> {
+    return this.httpClient.get<Caractermaterial>(this.url +'get/' + id)
     .pipe(
       catchError(this.errorHandler)
     )
   }
-  update(id: string | number, material: any): Observable<Material> {
-    return this.httpClient.put<Material>(this.url + id, JSON.stringify(material), this.httpOptions)
+  update(id: string | number, caractermaterial: any): Observable<Caractermaterial> {
+    return this.httpClient.put<Caractermaterial>(this.url + id, JSON.stringify(caractermaterial), this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )
   }
   delete(id: string | number){
-    return this.httpClient.delete<Material>(this.url + id, this.httpOptions)
+    return this.httpClient.delete<Caractermaterial>(this.url + id, this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )
   }
   errorHandler(error: { error: { message: string; }; status: any; message: any; }) {
-    let errorMessage = 'ERRORRRRRRRRRRRRRRRRR!!!!!!!';
+    let errorMessage = 'Error';
     if(error.error instanceof ErrorEvent) {
       errorMessage = error.error.message;
     } else {
