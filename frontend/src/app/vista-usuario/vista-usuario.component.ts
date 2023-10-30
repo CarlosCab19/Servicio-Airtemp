@@ -110,6 +110,7 @@ export class VistaUsuarioComponent implements OnInit{
     this.verNuevo=true;
     this.verTabla=false;
     this.verMaterial=false;
+    this.masInfo=false;
   }
   closeForm(){
     this.verNuevo=false;

@@ -17,9 +17,9 @@ class CaractermaterialController extends Controller
         return response()->json($data, 200);
     }
     public function create(Request $request){
-        $data['id_solicitud'] = $request['id_solicitud'];
-        $data['descripcion'] = $request['descripcion'];
-        $data['familia'] = $request['familia'];
+        $data['id_material'] = $request['id_material'];
+        $data['caracteristica'] = $request['caracteristica'];
+        $data['valor'] = $request['valor'];
         $data['estatus'] = $request['estatus'];
         $caractermaterial = Caractermaterial::create($data); // Crear el material y obtener el modelo
 
@@ -33,6 +33,7 @@ class CaractermaterialController extends Controller
     }
     public function update(Request $request,$id){
         $data['estatus'] = $request['estatus'];
+        $data['valor'] = $request['valor'];
         Caractermaterial::find($id)->update($data);
         return response()->json([
             'message' => "Successfully updated",

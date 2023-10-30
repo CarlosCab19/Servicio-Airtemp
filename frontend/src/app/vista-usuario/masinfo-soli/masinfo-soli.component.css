@@ -1,81 +1,84 @@
 /* Estilos para el contenedor del registro */
+/* Importa Font Awesome */
+@import "~@fortawesome/fontawesome-free/css/all.min.css";
 .container {
-  width: 70%;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #1b9aee63;
-  border: 1px solid #1b9aee;
-  border-radius: 15px;
+  display: flex;
+  flex-wrap: wrap; /* Permite que las columnas se envuelvan en pantallas pequeñas */
+  /*margin-top: 3%;*/
+  padding: 0;
 }
 
-/* Estilos para los elementos del registro */
-.registro h1 {
-  font-size: 24px;
-  margin-bottom: 10px;
+.solicitud{
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  background-color: rgba(104, 194, 247, 0.979);
+  border-radius: 3%;
+}
+.material {
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  background-color: rgb(104, 194, 247, 0.979);
+  border-radius: 3%;
+}
+.titulo-con-linea {
+  position: relative;
+  font-weight: bold;
 }
 
-.form-control{
-  text-align: left;
-  /*width: 40%;*/
+.titulo-con-linea::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 3px; /* Ancho y altura de la línea */
+  background-color: #ffffff; /* Color de la línea */
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
-#datos{
-  text-align: left;
-  color: white;
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column; /* Cambia a un diseño de una sola columna en pantallas más pequeñas */
+  }
+
+  .solicitud, .material {
+    flex: 1;
+    margin-bottom: 10px;
+  }
 }
-#title{
-  text-align: left;
+
+section{
+  font-weight: bold;
+}
+
+.row, #seccion{
   text-decoration: underline;
-  font-size: 15px;
+}
+.row, input{
+  text-decoration: none;
+  text-align: center;
 }
 
-thead{
-  background-color: #005ba2;
-  color: white;
+#folio{
+  float: left;
+  margin-right: 2%;
 }
-tbody{
-  background-color: white;
-  color: black;
+#nombre{
+  color: rgb(54, 54, 54);
 }
-#delete{
-  width: 20px;
-  height: 20px;
-  margin: 5px;
-  cursor: pointer;
-  margin-right: 30px;
-}
-.acciones{
-  text-align: right;
-  /*background-color: blueviolet;*/
-}
-#enviar{
-  margin-right: 90%;
-  height: 30px;
-  width: 30px;
-  cursor: pointer;
-}
-#close{
-  height: 30px;
-  width: 30px;
-  cursor: pointer;
-}
-.add{
-  text-align: right;
-  margin-top: 0;
-  margin-block-end: 10px;
-  margin-right: 20px;
-}
-#addM{
-  width: 20px;
-  height: 20px;
-  margin: 5px;
-  cursor: pointer;
+.divider {
+  width: 5px; /* Ancho de la línea vertical */
+  background-color: #000; /* Color de la línea */
+  margin: 0 20px; /* Margen para separar las secciones */
 }
 /*boton dentro de mas informacion, para agregar material*/
 #add {
   width: fit-content;
   min-width: 100px;
-  height: 45px;
-  padding: 8px;
+  height: 35px;
+  padding: 4px;
   border-radius: 5px;
   border: 2.5px solid #005ba2;
   box-shadow: 0px 0px 20px -20px;
@@ -84,6 +87,8 @@ tbody{
   transition: all 0.2s ease-in-out 0ms;
   user-select: none;
   font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  float:right;
 }
 
 #add:hover {
@@ -97,17 +102,126 @@ tbody{
 span{
   background-color: #e2d8d885;
 }
-#colMaterial{
-  margin-block-end: 10px;
+.carcateristicas, ul{
+  list-style: none;
+  display: flex;
+  background-color: #c4c4c4;
+  margin: 0;
+  padding: 0;
+  border-radius: 5px;
 }
-.btnAgregar{
-  border-radius: 10px;
-  background-color: #e2d8d885;
-  border: 2.5px solid #005ba2;
+#caracteristica{
+  font-size: 17px;
   font-weight: bold;
 }
+.valor{
+  margin-block-end: 10px;
+  display: grid;
+  grid-template-columns: max-content 3fr;
+  font-weight: bold;
+  font-size: 15px;
+}
+#caracter{
+  margin-right: 5%;
+}
+#accion{
+  cursor: pointer;
+}
+
+/*botones para las caracteristicas (ancho, peso, etc)*/
+.wrapper {
+  /*display: inline-flex;*/
+  /*list-style: none;*/
+  height: 25%;
+  width: 100%;
+  /*padding-top: 40px;*/
+  font-family: "Poppins", sans-serif;
+  /*justify-content: center;*/
+}
+
+.wrapper .icon {
+  position: relative;
+  background: #e6e6e6;
+  border-radius: 50%;
+  margin: 10px;
+  width: 50px;
+  height: 50px;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .tooltip {
+  position: absolute;
+  top: 0;
+  font-size: 14px;
+  background: #fff;
+  color: #fff;
+  padding: 5px 8px;
+  border-radius: 5px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .tooltip::before {
+  position: absolute;
+  content: "";
+  height: 8px;
+  width: 8px;
+  background: #fff;
+  bottom: -3px;
+  left: 50%;
+  transform: translate(-50%) rotate(45deg);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .icon:hover .tooltip {
+  top: -45px;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.wrapper .icon:hover span,
+.wrapper .icon:hover .tooltip {
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
+}
+
+.wrapper .facebook:hover,
+.wrapper .facebook:hover .tooltip,
+.wrapper .facebook:hover .tooltip::before {
+  background: #1877F2;
+  color: #fff;
+}
+
+.wrapper .materialAdd:hover,
+.wrapper .materialAdd:hover .tooltip,
+.wrapper .materialAdd:hover .tooltip::before {
+  background: #1DA1F2;
+  color: #fff;
+}
+
+.wrapper .instagram:hover,
+.wrapper .instagram:hover .tooltip,
+.wrapper .instagram:hover .tooltip::before {
+  background: #E4405F;
+  color: #fff;
+}
+
+
+
+
+/*estilos del boton de enviar solicitud*/
 
 .custom-btn {
+  margin-top: 2%;
   width: 180px;
   height: 40px;
   color: #fff;
@@ -138,9 +252,10 @@ span{
  }
  /*estilos para el modal*/
  .modal-header{
-  background-color: #005ba2;
-  color: white;
+  background-color: rgba(104, 194, 247, 0.979);
+  color: black;
   font-weight: bold;
+
  }
  .modal-footer{
   background-color: rgba(235, 225, 225, 0.808);

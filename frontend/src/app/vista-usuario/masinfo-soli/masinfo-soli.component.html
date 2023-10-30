@@ -1,126 +1,222 @@
-<div class="container text-center">
-  <div class="acciones">
-    <svg (click)="addNewClose(false)" id="close" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
-  </div>
-  <h1>Datos de la Solicitud</h1>
-  <div class="row">
-    <div class="col" id="datos">
-      <label for="folio"><strong>FOLIO</strong></label>
-      <input type="text" class="form-control" value="{{idSolicitud}}" style="width: 20%;" disabled>
-    </div>
-  </div>
-  <div class="row">
-    <label for="nombre" id="title"><strong>RESPONSABLE</strong></label>
-    <div class="col" id="datos">
-      <label for="nombre"><strong>Nombre</strong></label>
-      <input type="text" class="form-control" value="{{responsable}}" style="width: 40%;" disabled>
-    </div>
-  </div>
-  <div class="row">
-    <label for="nombre" id="title"><strong>PROVEEDOR</strong></label>
-    <div class="col" id="datos">
-      <label for="nombre"><strong>Codigo</strong></label>
-      <input type="text" class="form-control" value="{{codiProv}}" style="width: 83%;" disabled>
-    </div>
-    <div class="col" id="datos">
-      <label for="nombre"><strong>Razon Social</strong></label>
-      <input type="text" class="form-control" value="{{Rsocial}}" style="width: 83%;" disabled>
-    </div>
-  </div>
-  <div class="row">
-    <label for="nombre" id="title"><strong>CLIENTE</strong></label>
-    <div class="col" id="datos">
-      <label for="nombre"><strong>Nombre</strong></label>
-      <input type="text" class="form-control" value="{{nomClien}}" style="width: 83%;" disabled>
-    </div>
-    <div class="col" id="datos">
-      <label for="nombre"><strong>Numero de parte</strong></label>
-      <input type="text" class="form-control" value="{{numParte}}" style="width: 83%;" disabled>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      <div class="table-responsive">
-        <div class="container-fluid my-4">
-          <h2>Datos de los materiales</h2>
-          <div class="add">
-            <button (click)="masMaterial()" id="add" *ngIf="Estatus=='Editando'">
-              + Material
-          </button>
-          </div>
-          <div class="col" *ngIf="addMaterial" id="colMaterial">
-            <form (ngSubmit)="submit(form.value)" #form="ngForm">
-              <div class="input-group">
-                <span class="input-group-text"><strong>Descripción:</strong></span>
-                <input #name="ngModel" name="descripcion" [(ngModel)]="solicitar.descripcion" required type="text" aria-label="First name" class="form-control">
-
-                <span class="input-group-text" for="inputGroupSelect01"><strong>Familia: </strong></span>
-                <select class="form-select" id="inputGroupSelect01" (change)="onFamiliaSelected($event)"  #name="ngModel" name="familia" [(ngModel)]="solicitar.familia" required>
-                  <option value="" disabled selected>Seleccione una familia</option>
-                  <option *ngFor="let familiaItem of familia" [value]="familiaItem.id">{{familiaItem.id}}. {{ familiaItem.familia }}</option>
-                </select>
-              </div>
-              <div class="input-group">
-                <button class="btnAgregar" type="submit" [disabled]="!form.valid">Agregar</button>
-              </div>
-            </form>
-          </div>
-          <table class="responsive-table table-bordered" style="width:100%">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Descripción</th>
-                  <th>Familia</th>
-                  <th *ngIf="Estatus=='Editando'">Acciones</th>
-                </tr>
-              </thead>
-              <tbody>
-                  <tr *ngFor="let materiales of material;let i=index">
-                      <td>{{materiales.id}}</td>
-                      <!--<th scope="row">{{i+1}}</th>-->
-                      <td>{{materiales.descripcion}}</td>
-                      <td>{{materiales.familia}}</td>
-                      <td id="acciones" *ngIf="Estatus=='Editando'">
-                        <div>
-                          <svg (click)="eliminar(materiales.id)" id="delete" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0H284.2c12.1 0 23.2 6.8 28.6 17.7L320 32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64S14.3 32 32 32h96l7.2-14.3zM32 128H416V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V128zm96 64c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16z"/></svg>
-                          <svg (click)="addCaracter(materiales.familia)" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="addM" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384v38.6C310.1 219.5 256 287.4 256 368c0 59.1 29.1 111.3 73.7 143.3c-3.2 .5-6.4 .7-9.7 .7H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128zm48 96a144 144 0 1 1 0 288 144 144 0 1 1 0-288zm16 80c0-8.8-7.2-16-16-16s-16 7.2-16 16v48H368c-8.8 0-16 7.2-16 16s7.2 16 16 16h48v48c0 8.8 7.2 16 16 16s16-7.2 16-16V384h48c8.8 0 16-7.2 16-16s-7.2-16-16-16H448V304z"/></svg>
-                        </div>
-                      </td>
-                  </tr>
-              </tbody>
-          </table>
+<div class="container">
+  <div class="solicitud">
+    <h2 class="titulo-con-linea">Datos de la solicitud</h2>
+    <section>
+      <div class="row">
+        <div class="col" id="datos">
+          <label id="folio">FOLIO: </label>
+          <input type="text" class="form-control" value="{{idSolicitud}}" style="width: 20%;" disabled>
+        </div>
       </div>
+      <div class="row">
+        <label id="seccion">RESPONSABLE</label>
+        <div class="col">
+          <label id="nombre">Nombre</label>
+          <input type="text" class="form-control" value="{{responsable}}" style="width: 100%;" disabled>
+        </div>
       </div>
-      <button *ngIf="Estatus=='Editando'" (click)="EnviarSoli(true)" class="custom-btn btn-1">Enviar Solicitud</button>
-    </div>
-    <!--<strong><pre>{{form.value | json }}</pre></strong>-->
+      <div class="row">
+        <label id="seccion">PROVEEDOR</label>
+        <div class="col">
+          <label id="nombre">Codigo</label>
+          <input type="text" class="form-control" value="{{codiProv}}" style="width: 100%;" disabled>
+        </div>
+        <div class="col">
+          <label id="nombre">Razon Social</label>
+          <input type="text" class="form-control" value="{{Rsocial}}" style="width: 100%;" disabled>
+        </div>
+      </div>
+      <div class="row">
+        <label id="seccion">CLIENTE</label>
+        <div class="col">
+          <label id="nombre">Nombre</label>
+          <input type="text" class="form-control" value="{{nomClien}}" style="width: 100%;" disabled>
+        </div>
+        <div class="col">
+          <label id="nombre">Numero de parte</label>
+          <input type="text" class="form-control" value="{{numParte}}" style="width: 100%;" disabled>
+        </div>
+      </div>
+    </section>
+    <section>
+    </section>
+  </div>
+  <div class="divider"></div> <!-- Divisor vertical -->
+  <div class="material">
+    <h2 class="titulo-con-linea">Datos del material</h2>
+    <section *ngIf="Estatus=='Editando'">
+      <button id="add" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
+        + Material
+      </button>
+    </section>
+    <table class="table table-hover" style="text-align: center;">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Descripcion del Material</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let items of material">
+          <th scope="row">{{items.id}}</th>
+          <td>{{items.descripcion}}</td>
+          <td>
+            <svg data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" id="accion" (click)="AbrirMaterial(items.id)" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="#0284c7" d="M12 6C5.188 6 1 12 1 12s4.188 6 11 6s11-6 11-6s-4.188-6-11-6zm0 10c-3.943 0-6.926-2.484-8.379-4c1.04-1.085 2.862-2.657 5.254-3.469A3.96 3.96 0 0 0 8 11a4 4 0 0 0 8 0a3.96 3.96 0 0 0-.875-2.469c2.393.812 4.216 2.385 5.254 3.469c-1.455 1.518-4.437 4-8.379 4z"/></svg>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
-<!-- Button trigger modal
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-  Launch static backdrop modal
-</button>-->
-
-
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<!-------Modal para los registros de los materiales y sus caracteristicas------->
+<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Caracteristicas del Material</h1>
+        <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Agregar Material</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        {{familiaM}}
-        <div class="input-group">
-        <ul *ngFor="let items of caracteristicas">
-          <li>{{items.caracteristica}}</li>
-        </ul>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
+        <form (ngSubmit)="submit(form.value)" #form="ngForm">
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Descripción del material:</label>
+            <textarea #name="ngModel" name="descripcion" [(ngModel)]="solicitar.descripcion" required type="text"  class="form-control"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Familia del material:</label>
+            <select #name="ngModel" name="familia" [(ngModel)]="solicitar.familia" required class="form-select" aria-label="Default select example" (change)="obtenerCaracteristicas($event)">
+              <option value="" disabled selected>Seleccionar</option>
+              <option *ngFor="let familiaItem of familia" [value]="familiaItem.id">{{ familiaItem.familia }}</option>
+            </select>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" [disabled]="!form.valid" class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Agregar</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
 </div>
+<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Caracteristicas del Material</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="carcateristicas" *ngIf="Estatus=='Editando'">
+            <ul class="wrapper" *ngIf="caracteristicas.length > 0">
+              <li class="icon materialAdd"  *ngFor="let items of caracteristicas" (click)="seleccionarCaracteristica(items)">
+                  <span class="tooltip">{{items.caracteristica}}</span>
+                  <span><svg *ngIf="items.caracteristica == 'Grosor'" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 36 36"><path fill="#3B88C3" d="M36 32a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V4a4 4 0 0 1 4-4h28a4 4 0 0 1 4 4v28z"/><path fill="#FFF" d="M25.66 15.915c1.953 0 2.729.992 2.729 2.977c0 5.984-3.906 10.48-10.108 10.48c-6.294 0-10.666-4.992-10.666-11.41c0-6.449 4.341-11.41 10.666-11.41c4.682 0 8.526 2.201 8.526 4.372c0 1.333-.836 2.17-1.922 2.17c-2.108 0-2.542-2.263-6.604-2.263c-3.875 0-5.829 3.379-5.829 7.131c0 3.782 1.892 7.132 5.829 7.132c2.45 0 5.272-1.365 5.272-4.899h-3.164c-1.271 0-2.17-.899-2.17-2.17c0-1.302.992-2.108 2.17-2.108h5.271z"/></svg></span>
+                  <span><svg *ngIf="items.caracteristica == 'Peso'" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 36 36"><path fill="#3B88C3" d="M36 32a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V4a4 4 0 0 1 4-4h28a4 4 0 0 1 4 4v28z"/><path fill="#FFF" d="M10.777 9.342c0-1.458.868-2.418 2.419-2.418h5.488c4.559 0 7.938 2.977 7.938 7.41c0 4.527-3.504 7.349-7.751 7.349H15.43v5.085c0 1.551-.992 2.418-2.326 2.418s-2.326-.867-2.326-2.418V9.342zm4.651 8.248h3.162c1.954 0 3.194-1.426 3.194-3.287c0-1.86-1.24-3.287-3.194-3.287h-3.162v6.574z"/></svg></span>
+                  <span><svg *ngIf="items.caracteristica == 'Ancho'" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 36 36"><path fill="#3B88C3" d="M36 32a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V4a4 4 0 0 1 4-4h28a4 4 0 0 1 4 4v28z"/><path fill="#FFF" d="M14.747 9.125c.527-1.426 1.736-2.573 3.317-2.573c1.643 0 2.792 1.085 3.318 2.573l6.077 16.867c.186.496.248.931.248 1.147c0 1.209-.992 2.046-2.139 2.046c-1.303 0-1.954-.682-2.264-1.611l-.931-2.915h-8.62l-.93 2.884c-.31.961-.961 1.642-2.232 1.642c-1.24 0-2.294-.93-2.294-2.17c0-.496.155-.868.217-1.023l6.233-16.867zm.34 11.256h5.891l-2.883-8.992h-.062l-2.946 8.992z"/></svg></span>
+                  <span><svg *ngIf="items.caracteristica == 'Alto'" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 36 36"><path fill="#3B88C3" d="M36 32a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V4a4 4 0 0 1 4-4h28a4 4 0 0 1 4 4v28z"/><path fill="#FFF" d="M14.747 9.125c.527-1.426 1.736-2.573 3.317-2.573c1.643 0 2.792 1.085 3.318 2.573l6.077 16.867c.186.496.248.931.248 1.147c0 1.209-.992 2.046-2.139 2.046c-1.303 0-1.954-.682-2.264-1.611l-.931-2.915h-8.62l-.93 2.884c-.31.961-.961 1.642-2.232 1.642c-1.24 0-2.294-.93-2.294-2.17c0-.496.155-.868.217-1.023l6.233-16.867zm.34 11.256h5.891l-2.883-8.992h-.062l-2.946 8.992z"/></svg></span>
+                  <span><svg *ngIf="items.caracteristica == 'Marca'" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 36 36"><path fill="#3B88C3" d="M36 32a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V4a4 4 0 0 1 4-4h28a4 4 0 0 1 4 4v28z"/><path fill="#FFF" d="M8.174 9.125c.186-1.116 1.395-2.387 3.039-2.387c1.55 0 2.76 1.116 3.101 2.232l3.659 12.278h.062L21.692 8.97c.341-1.116 1.55-2.232 3.101-2.232c1.642 0 2.852 1.271 3.039 2.387l2.883 17.302c.031.186.031.372.031.526c0 1.365-.992 2.232-2.232 2.232c-1.582 0-2.201-.713-2.418-2.17l-1.83-12.619h-.062l-3.721 12.991c-.217.744-.805 1.798-2.48 1.798c-1.674 0-2.263-1.054-2.48-1.798l-3.721-12.991h-.062l-1.83 12.62c-.217 1.457-.837 2.17-2.418 2.17c-1.24 0-2.232-.867-2.232-2.232c0-.154 0-.341.031-.526L8.174 9.125z"/></svg></span>
+                  <span><svg *ngIf="items.caracteristica == 'Especial'" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 36 36"><path fill="#3B88C3" d="M36 32a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V4a4 4 0 0 1 4-4h28a4 4 0 0 1 4 4v28z"/><path fill="#FFF" d="M12.219 9.621c0-1.55.775-2.697 2.418-2.697h7.689c1.488 0 2.202 1.054 2.202 2.14c0 1.054-.744 2.139-2.202 2.139H16.87v4.527h5.085c1.52 0 2.264 1.054 2.264 2.14c0 1.054-.775 2.139-2.264 2.139H16.87v4.713h5.736c1.488 0 2.201 1.055 2.201 2.14c0 1.055-.744 2.14-2.201 2.14h-7.999c-1.364 0-2.387-.93-2.387-2.325V9.621z"/></svg></span>
+                  <span><svg *ngIf="items.caracteristica == 'Densidad'" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 36 36"><path fill="#3B88C3" d="M36 32a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V4a4 4 0 0 1 4-4h28a4 4 0 0 1 4 4v28z"/><path fill="#FFF" d="M9.057 9.312c0-1.427.992-2.388 2.387-2.388h5.147c6.946 0 10.915 4.465 10.915 11.348C27.506 24.783 23.289 29 16.901 29h-5.395c-1.023 0-2.449-.559-2.449-2.325V9.312zm4.651 15.409h3.132c4 0 5.829-2.945 5.829-6.666c0-3.969-1.859-6.852-6.139-6.852h-2.822v13.518z"/></svg></span>
+                  <span><svg *ngIf="items.caracteristica == 'Color'" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 36 36"><path fill="#3B88C3" d="M36 32a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V4a4 4 0 0 1 4-4h28a4 4 0 0 1 4 4v28z"/><path fill="#FFF" d="M19.723 6.552c2.264 0 6.666.744 6.666 3.473c0 1.116-.775 2.077-1.922 2.077c-1.272 0-2.139-1.085-4.744-1.085c-3.844 0-5.829 3.256-5.829 7.038c0 3.689 2.015 6.852 5.829 6.852c2.605 0 3.658-1.302 4.93-1.302c1.396 0 2.047 1.395 2.047 2.107c0 2.977-4.682 3.659-6.976 3.659c-6.294 0-10.666-4.992-10.666-11.41c-.001-6.448 4.34-11.409 10.665-11.409z"/></svg></span>
+                </li>
+            </ul>
+          </div>
+
+        </form>
+        <table *ngIf="Estatus=='Editando'"  class="table table-hover" style="text-align: center;">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Caracteristica</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let items of caracterDelMaterial">
+              <th scope="row">{{items.id}}</th>
+              <td>{{items.caracteristica}}</td>
+              <td>
+                <svg *ngIf="Estatus=='Editando'" (click)="eliminar(items.id)" id="accion" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="#dc2626" d="M4 8h16v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8Zm3-3V3a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v2h5v2H2V5h5Zm2-1v1h6V4H9Zm0 8v6h2v-6H9Zm4 0v6h2v-6h-2Z"/></svg>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <table *ngIf="Estatus=='Nueva'" class="table table-hover" style="text-align: center;">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Caracteristica</th>
+              <th scope="col">Valor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let items of caracterDelMaterial">
+              <th scope="row">{{items.id}}</th>
+              <td>{{items.caracteristica}}</td>
+              <td>{{items.valor}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button *ngIf="Estatus=='Editando'" [disabled]="caracterDelMaterial.length === 0" class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal">Siguiente</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Valores del Material</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="valor">
+            <!--<form name="formValor">
+              <ul *ngFor="let items of caracterDelMaterial">
+                <li id="caracteristica">{{items.caracteristica}}:</li>
+
+                <button (click)="addValor(items.id)" [disabled]="inputValue === ''">Agregar</button>
+              </ul>
+            </form>-->
+            <p>Agregar valor: </p>
+            <input class="form-control" [(ngModel)]="inputValue" type="text" name="inputValue" class="form-control" style="width: 30%;">
+            <!--<strong><pre>{{formValor.value | json }}</pre></strong>-->
+        </div>
+        <table class="table table-hover" style="text-align: center;">
+          <thead>
+            <tr>
+              <!--<th scope="col">#</th>-->
+              <th scope="col">Caracteristica</th>
+              <th scope="col">Valor</th>
+              <th scope="col">Acción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let items of caracterDelMaterial">
+              <!--<th scope="row">{{items.id}}</th>-->
+              <td>{{items.caracteristica}}</td>
+              <td>{{items.valor}}</td>
+              <td>
+                <svg (click)="addValor(items.id)" id="accion" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="#0284c7" d="M14 10H3v2h11v-2zm0-4H3v2h11V6zm4 8v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM3 16h7v-2H3v2z"/></svg>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <!--<button class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal">Finalizar Datos del Material</button>-->
+        <button *ngIf="Estatus=='Editando'" class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" [disabled]="caracterDelMaterial.length === 0 || !todosLosCamposLlenos(caracterDelMaterial)">Finalizar Datos del Material</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--<button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Material</button>-->
+<!------------------------------------------------------>
+
+
+
+<button *ngIf="Estatus=='Editando'" (click)="EnviarSoli(true)" class="custom-btn btn-1">Enviar Solicitud</button>

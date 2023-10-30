@@ -19,8 +19,8 @@ export interface Caracteristica{
 
 export interface Caractermaterial{
   id:string;
-  id_material:string;
-  caracteristica:string;
-  valor:string;
-  estatus:string;
+  id_material?:string;
+  caracteristica?:string;
+  valor?:string;
+  estatus?:string|null;
 }

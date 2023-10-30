@@ -39,8 +39,9 @@ export class MasinfoSoliComponent implements OnInit{
   solicitar!:Material;
   solicitud!:Solicitud;
   addMaterial:boolean=false;
-  contMaterial!:boolean;
-  idNuevo:string="";
+  idMaterial:string="";
+  caracterDelMaterial:Caractermaterial[]=[];
+  agregarCaracter!:Caractermaterial;
 
 
   //para el selec de familia
@@ -51,19 +52,25 @@ export class MasinfoSoliComponent implements OnInit{
   form = new FormGroup({
     estatus:  new FormControl('Nueva', [ Validators.required]),
   });
+  /*formValor = new FormGroup({
+    estatus: new FormControl('Valor',[Validators.required]),
+    valor: new FormControl('',[Validators.required]),
+  });*/
 
-
-  fecha:Date|string="";
   constructor(private router:Router,
     private solicitudService:SolicitudService,public route: ActivatedRoute,
     private materialService:MaterialService, private familiaService:FamiliaService,
-    private caracteristicaService:CaracterService){}
+    private caracteristicaService:CaracterService,private caracterMaterial:CaractermaterialService){}
 
   ngOnInit(): void {
     //para traer los meteriales de esa solictud
     this.materialService.getList(this.idSolicitud).subscribe((data: Material[])=>{
       this.material = data;
     });
+    this.materialService.getList(this.idSolicitud)
+        .subscribe(caracteristicas => {
+          this.material = caracteristicas;
+        });
 
     this.solicitudService.find(this.idSolicitud).subscribe(response=>{
       //console.log('entro en donde se recuperan los datos de la solicitud')
@@ -83,8 +90,21 @@ export class MasinfoSoliComponent implements OnInit{
       descripcion:"",
       familia:"",
       estatus:"",
+    };
+  }
+  obtenerCaracteristicas(event: any) {
+    const familiaId = event.target.value; // Obtiene el valor seleccionado
+    if (familiaId) {
+      // Realiza una llamada a tu servicio o base de datos para obtener las características
+      this.caracteristicaService.getList(familiaId)
+        .subscribe(data => {
+          this.caracteristicas = data;
+        });
+    } else {
+      this.caracteristicas = []; // Limpia las características si no se selecciona una familia
     }
   }
+
   submit(element:Material){
     this.materialService.create(this.solicitar).subscribe(res=>{
       console.log('Material Agregado');
@@ -97,6 +117,8 @@ export class MasinfoSoliComponent implements OnInit{
         familia:element.familia,
         estatus:element.estatus,
       };
+      this.idMaterial=res.id;
+      console.log('Este es el id del material que cree: ',this.idMaterial)
       this.material.push(materialCreado);
       //console.log(materialCreado);
       // Limpia los campos del objeto 'solicitar'
@@ -109,46 +131,102 @@ export class MasinfoSoliComponent implements OnInit{
     };
     });
   }
-  get f(){
-    return this.form.controls;
+  seleccionarCaracteristica(items: any) {
+    this.agregarCaracter={
+      id:'',
+      id_material:this.idMaterial,
+      caracteristica:items.caracteristica,
+      valor:'',
+      estatus:'Nuevo',
+    }
+    console.log('elemento selecionado: ',items.caracteristica);
+    this.caracterMaterial.getList(this.idMaterial).subscribe(data=>{
+      this.caracterDelMaterial=data;
+      console.log('caracteristicas que tiene el material: ',data);
+
+      // Verificar si la característica ya existe en el arreglo
+      const existe = this.caracterDelMaterial.some(caracter => caracter.caracteristica === items.caracteristica);
+
+      if (!existe) {
+        // Si no existe, entonces la agregamos
+        this.caracterMaterial.create(this.agregarCaracter).subscribe(res=>{
+          console.log('caracteristica agregada');
+          const caracterAgregado ={
+            id:res.id,
+            caracteristica:items.caracteristica,
+          }
+          console.log(res.caracteristica);
+          this.caracterDelMaterial.push(caracterAgregado);
+        });
+      } else {
+        // Si ya existe, mostramos un mensaje
+        console.log('La característica ya existe y no se agregará.');
+        alert('La característica ya existe y no se agregará.')
+      }
+    });
   }
+  //metodo para ver las caracteristicas del material
+  AbrirMaterial(id:string){
+    console.log('este es el iddddd: ',id);
+    this.idMaterial=id;
+    this.materialService.find(id).subscribe(response=>{
+      this.solicitar=response;
+      console.log('id familia: ',response.familia);
+      this.caracteristicaService.getList(response.familia).subscribe(data=>{
+        this.caracteristicas=data;
+      });
+      this.caracterMaterial.getList(id).subscribe(data=>{
+        this.caracterDelMaterial=data;
+      })
+    });
+  }
+
   addNewClose(value:boolean){
     this.newClose.emit(value);
   }
   eliminar(idMaterial:string|number){
-    this.materialService.delete(idMaterial).subscribe(res=>{
-      this.material = this.material.filter(item => item.id !== idMaterial);
+    this.caracterMaterial.delete(idMaterial).subscribe(res=>{
+      this.caracterDelMaterial = this.caracterDelMaterial.filter(item => item.id !== idMaterial);
       console.log('Material Eliminado');
     })
   }
-  addCaracter(idFamilia:string){
-    //this.idNuevo=idFamilia;
-    this.caracteristicaService.getList(idFamilia).subscribe((data:Caracteristica[])=>{
-      this.caracteristicas=data;
+  inputValue: string = '';
+  addValor(idvalor: string) {
+    console.log('le pondré valor a:', idvalor);
+    // Encuentra el elemento en caracterDelMaterial con el ID correspondiente
+    const itemToUpdate = this.caracterDelMaterial.find(item => item.id === idvalor);
+    if (itemToUpdate) {
+      // Actualiza el valor del elemento encontrado
+      itemToUpdate.valor = this.inputValue;
+    }
+    this.agregarCaracter = {
+      id: '',
+      valor: this.inputValue,
+      estatus: 'valor',
+    };
+    this.caracterMaterial.update(idvalor, this.agregarCaracter).subscribe(res => {
+      console.log('valor agregado');
+      this.inputValue = '';
     });
-    this.familiaService.find(idFamilia).subscribe(response=>{
-      this.familiaN=response;
-      this.familiaM=response.familia;
-    })
-
+  }
+  //para validar que todas las caracteristicas tienen valor
+  todosLosCamposLlenos(caracterDelMaterial: any[]): boolean {
+    for (const item of caracterDelMaterial) {
+      if (!item.caracteristica || !item.valor) {
+        return false; // Si encuentra una fila con campos vacíos, devuelve falso
+      }
+    }
+    return true; // Si todas las filas tienen campos llenos, devuelve verdadero
   }
 
 
   EnviarSoli(value:boolean){
-
     this.materialService.getList(this.idSolicitud).subscribe((data: Material[])=>{
       this.material = data;
       // Verifica si el arreglo this.material está vacío
       if (this.material.length === 0) {
         console.log('El arreglo this.material está vacío.');
         alert('Sin materiales, Agregar al menos uno');
-        /*Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Sin materiales!, agregar al menos uno',
-          footer: ''
-        })*/
-        //this.contMaterial=true;
       } else {
         console.log('El arreglo this.material no está vacío y contiene elementos.');
         this.solicitudService.update(this.idSolicitud, this.form.value).subscribe(res => {
@@ -160,60 +238,11 @@ export class MasinfoSoliComponent implements OnInit{
           alert('Solicitud Enviada');
           this.newEnviar.emit(value);
         });
-        /*Swal.fire({
-          title: 'Enviar Solicitud?',
-          text: "No podrás revertir esto",
-          icon: 'question',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Si, enviar'
-        }).then((result) => {
-          if (result.isConfirmed) {
-            //this.contMaterial=false;
-        this.solicitudService.update(this.idSolicitud, this.form.value).subscribe(res => {
-          this.form.setValue(
-            {
-            'estatus':"Nueva",
-          });
-          console.log('Enviado');
-          //alert('Solicitud Enviada');
-          Swal.fire(
-            'Enviado!',
-            'Tu solicitud se envio correctamente.',
-            'success'
-          )
-          this.newEnviar.emit(value);
-        });
-          }
-        })*/
       }
     });
-    /*if(this.contMaterial==true){
-      alert('Sin materiales, Agregar al menos uno');
-    }else{
-      this.solicitudService.update(this.idSolicitud, this.form.value).subscribe(res => {
-        this.form.setValue(
-          {
-          'estatus':"Nueva",
-        });
-        console.log('Enviado');
-        alert('Solicitud Enviada');
-        this.newEnviar.emit(value);
-      });
-    }*/
   }
   masMaterial(){
     this.addMaterial=!this.addMaterial;
-  }
-  onFamiliaSelected(event: any) {
-    const selectedFamiliaId = event.target.value;
-    // Resto del código para realizar la solicitud al backend y actualizar las características.
-    if(selectedFamiliaId){
-      this.caracteristicaService.getList(selectedFamiliaId).subscribe((data:Caracteristica[])=>{
-        this.caracteristicas = data;
-      })
-    }
   }
 
 }
