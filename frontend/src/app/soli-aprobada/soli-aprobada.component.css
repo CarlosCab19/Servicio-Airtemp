@@ -1,90 +1,205 @@
 /* Importa Font Awesome */
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
-
-
-/*Estilos para la tabla*/
-.card{
-  height: 50%;
-  width: 90%;
-  /*margin: 25px 60px;
-  background-color: #005ba2;*/
-  margin: auto;
-  margin-top: 20px;
-  margin-block-end: 20px;
-}
-
-.responsive-table {
-  width: 100%;
-  border-collapse: collapse;
-  background-color: #fff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.responsive-table th,
-.responsive-table td {
-  padding: 10px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
-.responsive-table th {
-  background-color: #8fbc8f;
-  color: #000000;
-}
-.table th {
-  background-color: #8fbc8f;
-  color: #fff;
-}
-.responsive-table tbody tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-.responsive-table tbody tr:hover {
-  background-color: #ddd;
-}
-
-/*Estilos para el boton de editar*/
-.Btn {
-  position: relative;
+.container {
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  width: 100px;
-  height: 40px;
-  border: none;
-  padding: 0px 20px;
-  background-color:rgb(244, 247, 103);;
-  color: rgb(0, 0, 0);
-  font-weight: 500;
-  cursor: pointer;
-  border-radius: 10px;
-  box-shadow: 5px 5px 0px rgb(186, 189, 52);;
-  transition-duration: .3s;
+  flex-wrap: wrap; /* Permite que las columnas se envuelvan en pantallas pequeñas */
+  margin-top: 3%;
+  padding: 0;
 }
 
-.svg {
-  width: 13px;
+.solicitud{
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  background-color: rgba(104, 194, 247, 0.979);
+  border-radius: 3%;
+}
+.material {
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  background-color: rgb(104, 194, 247, 0.979);
+  border-radius: 3%;
+}
+.titulo-con-linea {
+  position: relative;
+  font-weight: bold;
+}
+
+.titulo-con-linea::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 3px; /* Ancho y altura de la línea */
+  background-color: #ffffff; /* Color de la línea */
   position: absolute;
-  right: 0;
-  margin-right: 20px;
-  fill: white;
-  transition-duration: .3s;
+  bottom: 0;
+  left: 0;
 }
 
-.Btn:hover {
-  color: transparent;
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column; /* Cambia a un diseño de una sola columna en pantallas más pequeñas */
+  }
+
+  .solicitud, .material {
+    flex: 1;
+    margin-bottom: 10px;
+  }
 }
 
-.Btn:hover svg {
-  right: 43%;
+section{
+  font-weight: bold;
+}
+
+.row, #seccion{
+  text-decoration: underline;
+}
+.row, input{
+  text-decoration: none;
+  text-align: center;
+}
+
+#folio{
+  float: left;
+  margin-right: 2%;
+}
+#nombre{
+  color: rgb(54, 54, 54);
+}
+.divider {
+  width: 5px; /* Ancho de la línea vertical */
+  background-color: #000; /* Color de la línea */
+  margin: 0 20px; /* Margen para separar las secciones */
+}
+/*boton dentro de mas informacion, para agregar material*/
+#add {
+  width: fit-content;
+  min-width: 100px;
+  height: 35px;
+  padding: 4px;
+  border-radius: 5px;
+  border: 2.5px solid #005ba2;
+  box-shadow: 0px 0px 20px -20px;
+  cursor: pointer;
+  background-color: white;
+  transition: all 0.2s ease-in-out 0ms;
+  user-select: none;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  float:right;
+}
+
+#add:hover {
+  background-color: #e2d8d885;
+  box-shadow: 0px 0px 20px -18px;
+}
+
+#add:active {
+  transform: scale(0.95);
+}
+span{
+  background-color: #e2d8d885;
+}
+.carcateristicas, ul{
+  list-style: none;
+  display: flex;
+  background-color: #c4c4c4;
   margin: 0;
   padding: 0;
-  border: none;
-  transition-duration: .3s;
+  border-radius: 5px;
+}
+#caracter{
+  margin-right: 5%;
+}
+#accion{
+  cursor: pointer;
 }
 
-.Btn:active {
-  transform: translate(3px , 3px);
-  transition-duration: .3s;
-  box-shadow: 2px 2px 0px rgb(244, 247, 103);
+/*botones para las caracteristicas (ancho, peso, etc)*/
+.wrapper {
+  /*display: inline-flex;*/
+  /*list-style: none;*/
+  height: 25%;
+  width: 100%;
+  /*padding-top: 40px;*/
+  font-family: "Poppins", sans-serif;
+  /*justify-content: center;*/
 }
+
+.wrapper .icon {
+  position: relative;
+  background: #e6e6e6;
+  border-radius: 50%;
+  margin: 10px;
+  width: 50px;
+  height: 50px;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .tooltip {
+  position: absolute;
+  top: 0;
+  font-size: 14px;
+  background: #fff;
+  color: #fff;
+  padding: 5px 8px;
+  border-radius: 5px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .tooltip::before {
+  position: absolute;
+  content: "";
+  height: 8px;
+  width: 8px;
+  background: #fff;
+  bottom: -3px;
+  left: 50%;
+  transform: translate(-50%) rotate(45deg);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .icon:hover .tooltip {
+  top: -45px;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.wrapper .icon:hover span,
+.wrapper .icon:hover .tooltip {
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
+}
+
+.wrapper .facebook:hover,
+.wrapper .facebook:hover .tooltip,
+.wrapper .facebook:hover .tooltip::before {
+  background: #1877F2;
+  color: #fff;
+}
+
+.wrapper .twitter:hover,
+.wrapper .twitter:hover .tooltip,
+.wrapper .twitter:hover .tooltip::before {
+  background: #1DA1F2;
+  color: #fff;
+}
+
+.wrapper .instagram:hover,
+.wrapper .instagram:hover .tooltip,
+.wrapper .instagram:hover .tooltip::before {
+  background: #E4405F;
+  color: #fff;
+}
+
