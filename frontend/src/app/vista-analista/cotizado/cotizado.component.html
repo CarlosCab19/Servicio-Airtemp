@@ -1,0 +1,108 @@
+
+    <div class="table-responsive text-center">
+     <div class="container-fluid my-4" *ngIf="vertabla">
+        <h2>Solicitudes Cotizadas</h2>
+        <table class="responsive-table table-bordered" style="width:100%">
+            <thead>
+              <tr>
+                <th>#Solicitud</th>
+                <th>Fecha solicitud</th>
+                <th>Nom. Cliente</th>
+                <th>Tipo de solicitud</th>
+                <th>Vencimiento</th>
+                <th>Estatus</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of solicitudes" [ngClass]="{'vencida': item.estado === -1, 'proxima-vencer': item.estado === 0}">
+                    <td>{{item.id}}</td>
+                    <td>{{item.created_at | date:'dd-MM-yyyy'}}</td>
+                    <td>{{item.NomCliente}}</td>
+                    <td>{{item.tipo}}</td>
+                    <td>{{item.vence}}</td>
+                    <td>{{item.estatus}}</td>
+                    <td >
+                      <svg id="see" (click)="verInfoForm(item.id)" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 256 256"><g fill="#eab308"><path d="M128 56c-80 0-112 72-112 72s32 72 112 72s112-72 112-72s-32-72-112-72Zm0 112a40 40 0 1 1 40-40a40 40 0 0 1-40 40Z" opacity=".2"/><path d="M247.31 124.76c-.35-.79-8.82-19.58-27.65-38.41C194.57 61.26 162.88 48 128 48S61.43 61.26 36.34 86.35C17.51 105.18 9 124 8.69 124.76a8 8 0 0 0 0 6.5c.35.79 8.82 19.57 27.65 38.4C61.43 194.74 93.12 208 128 208s66.57-13.26 91.66-38.34c18.83-18.83 27.3-37.61 27.65-38.4a8 8 0 0 0 0-6.5ZM128 192c-30.78 0-57.67-11.19-79.93-33.25A133.47 133.47 0 0 1 25 128a133.33 133.33 0 0 1 23.07-30.75C70.33 75.19 97.22 64 128 64s57.67 11.19 79.93 33.25A133.46 133.46 0 0 1 231.05 128c-7.21 13.46-38.62 64-103.05 64Zm0-112a48 48 0 1 0 48 48a48.05 48.05 0 0 0-48-48Zm0 80a32 32 0 1 1 32-32a32 32 0 0 1-32 32Z"/></g></svg>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!--<table id="my-table" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nombre</th>
+          <th>Fecha Vence</th>
+          <th>Estatus</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of solicitudes" [ngClass]="{'vencida': item.estado === -1, 'proxima-vencer': item.estado === 0}">
+          <td>{{item.id}}</td>
+          <td>{{item.NomCliente}}</td>
+          <td>{{item.vence}}</td>
+          <td>{{item.estatus}}</td>
+        </tr>
+
+      </tbody>
+
+
+    </table>-->
+
+    <section class="container-fluid my-4" *ngIf="verinformacion">
+      <svg (click)="closedos(true)" id="close" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="#000000" d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m-3.4 14L12 13.4L8.4 17L7 15.6l3.6-3.6L7 8.4L8.4 7l3.6 3.6L15.6 7L17 8.4L13.4 12l3.6 3.6l-1.4 1.4Z"/></svg>
+      <table class="table table-hover" style="text-align: center;">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Descripcion del Material</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let items of material">
+            <th>{{items.id}}</th>
+            <td>{{items.descripcion}}</td>
+            <td>
+              <svg (click)="verCotizacion(items.id)" id="see" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><g fill="none" stroke="#e11d48" stroke-width="1.5"><path d="M2 14c0-3.771 0-5.657 1.172-6.828C4.343 6 6.229 6 10 6h4c3.771 0 5.657 0 6.828 1.172C22 8.343 22 10.229 22 14c0 3.771 0 5.657-1.172 6.828C19.657 22 17.771 22 14 22h-4c-3.771 0-5.657 0-6.828-1.172C2 19.657 2 17.771 2 14Zm14-8c0-1.886 0-2.828-.586-3.414C14.828 2 13.886 2 12 2c-1.886 0-2.828 0-3.414.586C8 3.172 8 4.114 8 6"/><path stroke-linecap="round" d="M12 17.333c1.105 0 2-.746 2-1.666c0-.92-.895-1.667-2-1.667s-2-.746-2-1.667c0-.92.895-1.666 2-1.666m0 6.666c-1.105 0-2-.746-2-1.666m2 1.666V18m0-8v.667m0 0c1.105 0 2 .746 2 1.666"/></g></svg>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <section class="container-fluid my-4" *ngIf="infoCotizacion">
+      <svg (click)="close(true)" id="close" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="#000000" d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m-3.4 14L12 13.4L8.4 17L7 15.6l3.6-3.6L7 8.4L8.4 7l3.6 3.6L15.6 7L17 8.4L13.4 12l3.6 3.6l-1.4 1.4Z"/></svg>
+      <table class="table table-hover" style="text-align: center;">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Fabricación</th>
+            <th scope="col">LME</th>
+            <th scope="col">Premium</th>
+            <th scope="col">Total</th>
+            <th scope="col">Adicional</th>
+            <th scope="col">Documento</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cotizaciones of cotizacion">
+            <th>{{cotizaciones.id}}</th>
+            <td>{{monedaSimbolos[cotizaciones.moneda]}}{{cotizaciones.fabricacion}}</td>
+            <td>{{monedaSimbolos[cotizaciones.moneda]}}{{cotizaciones.lme}}</td>
+            <td>{{monedaSimbolos[cotizaciones.moneda]}}{{cotizaciones.premium}}</td>
+            <td>{{monedaSimbolos[cotizaciones.moneda]}}{{cotizaciones.total}}</td>
+            <td>{{monedaSimbolos[cotizaciones.moneda]}}{{cotizaciones.icoterm}}</td>
+            <td>Ver documento</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+
+
+
+
+

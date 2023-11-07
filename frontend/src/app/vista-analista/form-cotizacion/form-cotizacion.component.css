@@ -1,5 +1,5 @@
 /* Estilos para el contenedor del registro */
-.container {
+/*.container {
   width: 70%;
   margin: 0 auto;
   padding: 20px;
@@ -28,9 +28,9 @@ h2{
   width: 30px;
   cursor: pointer;
   text-align: center;
-}
+}*/
 /*para el boton de enviar cotizacion*/
-.custom-btn {
+/*.custom-btn {
   width: 180px;
   height: 40px;
   color: #fff;
@@ -61,7 +61,262 @@ h2{
  }
 
  .azul {
-  color: blue; /* Cambia el color del texto a azul */
-  /* Otros estilos específicos que quieras aplicar */
+  color: blue;
   background-color: #005ba2;
+}*/
+
+.container {
+  display: flex;
+  flex-wrap: wrap; /* Permite que las columnas se envuelvan en pantallas pequeñas */
+  margin-top: 3%;
+  padding: 0;
+}
+
+.solicitud{
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  background-color: rgba(104, 194, 247, 0.979);
+  border-radius: 3%;
+}
+.material {
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  background-color: rgb(104, 194, 247, 0.979);
+  border-radius: 3%;
+}
+.titulo-con-linea {
+  position: relative;
+  font-weight: bold;
+}
+
+.titulo-con-linea::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 3px; /* Ancho y altura de la línea */
+  background-color: #ffffff; /* Color de la línea */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column; /* Cambia a un diseño de una sola columna en pantallas más pequeñas */
+  }
+
+  .solicitud, .material {
+    flex: 1;
+    margin-bottom: 10px;
+  }
+}
+
+section{
+  font-weight: bold;
+}
+
+.row, #seccion{
+  text-decoration: underline;
+}
+.row, input{
+  text-decoration: none;
+  text-align: center;
+}
+
+#folio{
+  float: left;
+  margin-right: 2%;
+}
+#nombre{
+  color: rgb(54, 54, 54);
+}
+.divider {
+  width: 5px; /* Ancho de la línea vertical */
+  background-color: #000; /* Color de la línea */
+  margin: 0 20px; /* Margen para separar las secciones */
+}
+/*boton dentro de mas informacion, para agregar material*/
+#add {
+  width: fit-content;
+  min-width: 100px;
+  height: 35px;
+  padding: 4px;
+  border-radius: 5px;
+  border: 2.5px solid #005ba2;
+  box-shadow: 0px 0px 20px -20px;
+  cursor: pointer;
+  background-color: white;
+  transition: all 0.2s ease-in-out 0ms;
+  user-select: none;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  float:right;
+}
+
+#add:hover {
+  background-color: #e2d8d885;
+  box-shadow: 0px 0px 20px -18px;
+}
+
+#add:active {
+  transform: scale(0.95);
+}
+span{
+  background-color: #e2d8d885;
+}
+.carcateristicas, ul{
+  list-style: none;
+  display: flex;
+  background-color: #c4c4c4;
+  margin: 0;
+  padding: 0;
+  border-radius: 5px;
+}
+#caracter{
+  margin-right: 5%;
+}
+#accion{
+  cursor: pointer;
+}
+
+/*botones para las caracteristicas (ancho, peso, etc)*/
+.wrapper {
+  /*display: inline-flex;*/
+  /*list-style: none;*/
+  height: 25%;
+  width: 100%;
+  /*padding-top: 40px;*/
+  font-family: "Poppins", sans-serif;
+  /*justify-content: center;*/
+}
+
+.wrapper .icon {
+  position: relative;
+  background: #e6e6e6;
+  border-radius: 50%;
+  margin: 10px;
+  width: 50px;
+  height: 50px;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .tooltip {
+  position: absolute;
+  top: 0;
+  font-size: 14px;
+  background: #fff;
+  color: #fff;
+  padding: 5px 8px;
+  border-radius: 5px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .tooltip::before {
+  position: absolute;
+  content: "";
+  height: 8px;
+  width: 8px;
+  background: #fff;
+  bottom: -3px;
+  left: 50%;
+  transform: translate(-50%) rotate(45deg);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .icon:hover .tooltip {
+  top: -45px;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.wrapper .icon:hover span,
+.wrapper .icon:hover .tooltip {
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
+}
+
+.wrapper .facebook:hover,
+.wrapper .facebook:hover .tooltip,
+.wrapper .facebook:hover .tooltip::before {
+  background: #1877F2;
+  color: #fff;
+}
+
+.wrapper .twitter:hover,
+.wrapper .twitter:hover .tooltip,
+.wrapper .twitter:hover .tooltip::before {
+  background: #1DA1F2;
+  color: #fff;
+}
+
+.wrapper .instagram:hover,
+.wrapper .instagram:hover .tooltip,
+.wrapper .instagram:hover .tooltip::before {
+  background: #E4405F;
+  color: #fff;
+}
+
+#close{
+  display: flex;
+  cursor: pointer;
+}
+
+.custom-btn {
+  width: 80px;
+  height: 40px;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px 25px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  box-shadow: inset 2px 2px 2px 0px rgba(255,255,255,.5),
+    7px 7px 20px 0px rgba(0,0,0,.1),
+    4px 4px 5px 0px rgba(0,0,0,.1);
+  outline: none;
+ }
+
+ .btn-1 {
+  background: #005ca2a2;
+  background: linear-gradient(0deg, rgba(6,14,131,1) 0%, rgba(12,25,180,1) 100%);
+  border: none;
+ }
+
+ .btn-1:hover {
+  background:#005ba2;
+  background: linear-gradient(0deg, rgb(0, 17, 255) 0%, rgba(2,126,251,1) 100%);
+ }
+
+ .vence{
+  display: flex;
+  margin-block-end: 5px;
+ }
+ .vence p {
+  font-size: 18px; /* Cambia el tamaño de fuente del párrafo */
+  font-weight: bold; /* Hace que el texto sea negrita */
+}
+
+input[type="date"] {
+  width: 30%; /* Ajusta el ancho del campo de fecha al 100% del contenedor */
+  padding: 5px; /* Añade espacio dentro del campo de fecha */
+  font-size: 16px; /* Cambia el tamaño de fuente del campo de fecha */
+  border: 1px solid #ccc; /* Añade un borde al campo de fecha */
+  border-radius: 5px; /* Agrega bordes redondeados al campo de fecha */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Agrega una sombra suave */
 }

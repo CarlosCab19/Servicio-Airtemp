@@ -47,8 +47,6 @@ Route::prefix('solicitud')->group(function () {
     Route::delete('/{id}',[ SolicitudController::class, 'delete']);
     Route::get('/get/{id}',[ SolicitudController::class, 'get']);
     Route::put('/{id}',[ SolicitudController::class, 'update']);
-    Route::put('/upA/{id}',[ SolicitudController::class, 'updateAnalista']);
-    Route::put('/upD/{id}',[ SolicitudController::class, 'updateDirector']);
 });
 /*Route::apiResource('material',MaterialController::class);*/
 Route::prefix('material')->group(function () {

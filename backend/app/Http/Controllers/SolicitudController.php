@@ -65,28 +65,14 @@ class SolicitudController extends Controller
       }
       public function update(Request $request,$id){
         $data['estatus'] = $request['estatus'];
-        Solicitud::find($id)->update($data);
-        return response()->json([
-            'message' => "Successfully updated",
-            'success' => true
-        ], 200);
-      }
-      public function updateAnalista(Request $request,$id){
         $data['id_analista'] = $request['id_analista'];
-        Solicitud::find($id)->update($data);
-        return response()->json([
-            'message' => "Successfully updated",
-            'success' => true
-        ], 200);
-      }
-      public function updateDirector(Request $request,$id){
         $data['id_director'] = $request['id_director'];
+        $data['vence'] = $request['vence'];
         Solicitud::find($id)->update($data);
         return response()->json([
             'message' => "Successfully updated",
             'success' => true
         ], 200);
       }
-
 
 }

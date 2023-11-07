@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CotizacionService } from 'src/app/services/cotizacion.service';
 import { MaterialService } from 'src/app/services/material.service';
@@ -14,7 +14,7 @@ import { Solicitud } from 'src/app/shared/solicitud';
   templateUrl: './form-cotizacion.component.html',
   styleUrls: ['./form-cotizacion.component.css']
 })
-export class FormCotizacionComponent implements OnInit{
+export class FormCotizacionComponent implements AfterViewInit{
 
   datosCotizar:boolean=true;
   //varibles para enviar y recibir datos
@@ -45,11 +45,14 @@ export class FormCotizacionComponent implements OnInit{
   //para llevar la cuenta de si todos los materiales ya tienen aunque sea una cotizacion
   contadorListoMaterial:number=0;
 
+  //fecha que vencera la cotizacion de la solicitud
+  fechaVencimiento: string = ''; // Inicializada como una cadena vacía para habilitar el boton de enviar
+
   constructor(private solicitudesService:SolicitudService,private materialService:MaterialService,
               private personalService:PersonalService,private rutaActiva: ActivatedRoute,
               private cotizacionService:CotizacionService){}
 
-  ngOnInit(): void {
+  ngAfterViewInit(){
     this.solicitudesService.find(this.idSolicitud).subscribe(response=>{
       this.solicitudesN=response;
       this.responsableSoli=response.solicitante;
@@ -68,16 +71,49 @@ export class FormCotizacionComponent implements OnInit{
       this.idAnalista=response.id;
       this.nomAnalista=response.nombres + " " + response.apellidos;
     });
+    const fechaVencimientoInput = document.getElementById('fechaVencimiento') as HTMLInputElement;
+    if (fechaVencimientoInput) {
+      fechaVencimientoInput.addEventListener('change', () => {
+        this.fechaVencimiento = fechaVencimientoInput.value;
+      });
+    }
   }
 
-  enviarCotizacion(){
-    this.material.forEach((material) => {
-      console.log(`ID: ${material.id}, Estatus: ${material.estatus}`);
-    });
-    const materialesListos = this.material.filter(material => material.estatus === 'Listo');
-    const cantidadMaterialesListos = materialesListos.length;
-    console.log(`Cantidad de materiales Listos: ${cantidadMaterialesListos}`);
+  enviarCotizacion() {
+    // Consultar los datos de los materiales
+    this.materialService.getList(this.idSolicitud).subscribe((data: Material[]) => {
+      // Asignar los datos a la propiedad this.material
+      this.material = data;
+      const tamaño = this.material.length;
+      console.log('tamañooo: ',tamaño);
+      // Mostrar los datos de cada material
+      this.material.forEach((material) => {
+        console.log(`ID: ${material.id}, Estatus: ${material.estatus}`);
+      });
 
+      // Contar la cantidad de materiales con estatus 'Listo' después de recibir los datos
+      const materialesListos = this.material.filter((material) => material.estatus === 'Listo');
+      const cantidadMaterialesListos = materialesListos.length;
+      console.log(`Cantidad de materiales Listos: ${cantidadMaterialesListos}`);
+      if(materialesListos.length == this.material.length){
+        console.log('se puede enviar la cotizacion');
+        //alert('Enviado');
+        if(confirm('Enviar Solicitud?')){
+
+          this.solicitudesService.update(this.idSolicitud,
+            {estatus:'Cotizado',
+            id_analista:this.idAnalista,
+            vence:this.fechaVencimiento}
+            ).subscribe(()=>{
+              this.closeForm.emit(true);
+            console.log('Actualizado y enviado')
+          });
+        }
+      }else{
+        console.log('no se puede enviar la cotizacion');
+        alert('No se puede enviar')
+      }
+    });
   }
 
 

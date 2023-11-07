@@ -1,5 +1,5 @@
 /* Estilos para el contenedor del registro */
-.container {
+/*.container {
   width: 70%;
   margin: 0 auto;
   padding: 20px;
@@ -40,7 +40,7 @@ h2{
   background-color: #e2d8d885;
   border: 2.5px solid #005ba2;
   font-weight: bold;
-}
+}*/
 .custom-btn {
   width: 80px;
   height: 40px;
@@ -71,3 +71,117 @@ h2{
   background: linear-gradient(0deg, rgb(0, 17, 255) 0%, rgba(2,126,251,1) 100%);
  }
 
+.container{
+  background-color: rgba(104, 194, 247, 0.979);
+  border-radius: 5px;
+  display: grid;
+  grid-template-columns: 2fr min-content 4fr;
+  gap: 10px;
+  padding: 15px;
+}
+/*.datos{
+  background-color: chartreuse;
+}
+.cotizacion{
+  background-color: crimson;
+}*/
+/*section{
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  background-color: rgba(104, 194, 247, 0.979);
+  border-radius: 3%;
+}*/
+#datos{
+  display:grid;
+  grid-template-columns: max-content 2fr;
+  column-gap: 5px;
+}
+.section{
+  font-weight: bold;
+}
+
+.row, #seccion{
+  text-decoration: underline;
+}
+.row, input{
+  text-decoration: none;
+  text-align: center;
+}
+/*#folio{
+  float: left;
+  margin-right: 2%;
+}*/
+#nombre{
+  color: rgb(54, 54, 54);
+}
+ul{
+  list-style: none;
+  /*display: flex;*/
+}
+.rowp {
+  columns: 2; /* Divide en dos columnas */
+  column-gap: 0; /* Espacio entre columnas */
+  padding: 0;
+}
+
+.rowp ul li {
+  display: list-item; /* Cada elemento de la lista se muestra como un elemento de lista */
+  list-style-type: none; /* Quita los marcadores de lista predeterminados */
+  margin: 0; /* Quita los márgenes para evitar espacios innecesarios */
+  padding: 0; /* Espacio entre elementos de la lista */
+}
+#close{
+  display: flex;
+  margin-left: 80%;
+  cursor: pointer;
+}
+.encabezado{
+  display: grid;
+  grid-template-columns: repeat(2,2fr);
+}
+
+/*boton dentro de mas informacion, para agregar cotizacion*/
+#add {
+  width: fit-content;
+  min-width: 100px;
+  height: 35px;
+  padding: 4px;
+  border-radius: 5px;
+  border: 2.5px solid #005ba2;
+  box-shadow: 0px 0px 20px -20px;
+  cursor: pointer;
+  background-color: white;
+  transition: all 0.2s ease-in-out 0ms;
+  user-select: none;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  float:right;
+  margin-block-end: 5px
+}
+
+#add:hover {
+  background-color: #e2d8d885;
+  box-shadow: 0px 0px 20px -18px;
+}
+
+#add:active {
+  transform: scale(0.95);
+}
+
+.divider {
+  width: 5px; /* Ancho de la línea vertical */
+  background-color: #000; /* Color de la línea */
+  margin: 0 0px; /* Margen para separar las secciones */
+}
+
+.btnAgregar{
+  border-radius: 10px;
+  background-color: #e2d8d885;
+  border: 2.5px solid #005ba2;
+  font-weight: bold;
+  margin-top: 15px;
+}
+#accion{
+  cursor: pointer;
+}

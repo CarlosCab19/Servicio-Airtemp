@@ -68,8 +68,8 @@ h2{
     font-size: 20px;
   }
   .card{
-    margin-left: 195px;
-
+    margin-left: 50px;
+    width: 80%;
   }
 
 }

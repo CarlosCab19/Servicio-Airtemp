@@ -1,9 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CaractermaterialService } from 'src/app/services/caractermaterial.service';
 import { CotizacionService } from 'src/app/services/cotizacion.service';
+import { FamiliaService } from 'src/app/services/familia.service';
 import { MaterialService } from 'src/app/services/material.service';
 import { Cotizacion } from 'src/app/shared/cotizacion';
-import { Material } from 'src/app/shared/material';
+import { Caractermaterial, Material } from 'src/app/shared/material';
+import { Familia } from 'src/app/shared/material';
 
 @Component({
   selector: 'app-realizar-cotizacion',
@@ -17,6 +20,7 @@ export class RealizarCotizacionComponent implements OnInit{
 
   cotizar!:Cotizacion;
   cotizacion:Cotizacion[]=[];
+  caractermaterial:Caractermaterial[]=[];
 
   @Output() formCotizacion = new EventEmitter<boolean>();
   @Input() idMaterial:string="";
@@ -25,10 +29,13 @@ export class RealizarCotizacionComponent implements OnInit{
   @Output() valorArreglo=new EventEmitter<string>();
 
   //variables para los datos del material
-  folio:string="";
-  descripcion:string="";
-  familia:string="";
+  folio:string='';
+  descripcion:string='';
+  familia:string='';
   material!:Material;
+  familiaN!:Familia;
+
+
 
   tipoMoneda: string=""; // Variable para almacenar el símbolo de la moneda seleccionada.
 
@@ -39,7 +46,8 @@ export class RealizarCotizacionComponent implements OnInit{
     estatus:  new FormControl('noListo', [ Validators.required]),
   });
 
-  constructor(private cotizacionService:CotizacionService,private materialService:MaterialService){}
+  constructor(private cotizacionService:CotizacionService,private materialService:MaterialService,
+              private familiaService:FamiliaService, private caracterMaterial:CaractermaterialService){}
 
   onTipoMonedaSelected() {
     // Puedes acceder a this.tipoMoneda para obtener el símbolo de la moneda seleccionada.
@@ -51,12 +59,16 @@ export class RealizarCotizacionComponent implements OnInit{
       this.material=response;
       this.folio=response.id;
       this.descripcion=response.descripcion;
-      this.familia=response.familia;
+      this.familiaService.find(response.familia).subscribe(response=>{
+        this.familiaN=response;
+        this.familia=response.familia;
+      });
+      this.caracterMaterial.getList(response.id).subscribe((data:Caractermaterial[])=>{
+        this.caractermaterial=data;
+      })
     });
     this.cotizacionService.getList(this.idMaterial).subscribe((data:Cotizacion[])=>{
       this.cotizacion=data;
-      /*console.log('tamaño',this.cotizacion.length);
-      console.log('cotizacion tiene: ',this.cotizacion)*/
     });
     this.cotizar={
       id:'',
@@ -69,7 +81,7 @@ export class RealizarCotizacionComponent implements OnInit{
       premium:'',
       total:'',
       icoterm:'',
-      estatus:'',
+      estatus:'Agregado',
     };
   }
   submit(element:Cotizacion){
