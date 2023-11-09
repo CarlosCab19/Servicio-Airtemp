@@ -43,6 +43,7 @@
   </div>
   <div class="divider"></div> <!-- Divisor vertical -->
   <div class="material">
+    <svg (click)="cerrar(true)" id="cerrar" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="#000000" d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m-3.4 14L12 13.4L8.4 17L7 15.6l3.6-3.6L7 8.4L8.4 7l3.6 3.6L15.6 7L17 8.4L13.4 12l3.6 3.6l-1.4 1.4Z"/></svg>
     <h2 class="titulo-con-linea">Datos del material</h2>
     <section *ngIf="Estatus=='Editando'">
       <button id="add" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
@@ -80,11 +81,11 @@
       <div class="modal-body">
         <form (ngSubmit)="submit(form.value)" #form="ngForm">
           <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Descripción del material:</label>
+            <label for="recipient-name" class="col-form-label"><strong>Descripción del material:</strong></label>
             <textarea #name="ngModel" name="descripcion" [(ngModel)]="solicitar.descripcion" required type="text"  class="form-control"></textarea>
           </div>
           <div class="mb-3">
-            <label for="message-text" class="col-form-label">Familia del material:</label>
+            <label for="message-text" class="col-form-label"><strong>Familia del material:</strong></label>
             <select #name="ngModel" name="familia" [(ngModel)]="solicitar.familia" required class="form-select" aria-label="Default select example" (change)="obtenerCaracteristicas($event)">
               <option value="" disabled selected>Seleccionar</option>
               <option *ngFor="let familiaItem of familia" [value]="familiaItem.id">{{ familiaItem.familia }}</option>
@@ -98,6 +99,7 @@
     </div>
   </div>
 </div>
+<!----------->
 <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">

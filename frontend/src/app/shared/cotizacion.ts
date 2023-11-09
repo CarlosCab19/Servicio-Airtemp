@@ -11,3 +11,9 @@ export interface Cotizacion {
   icoterm:string;
   estatus:string,
 }
+export interface Comprovante{
+  id:string;
+  id_cotizacion:string;
+  nombre:string;
+  ruta:string;
+}

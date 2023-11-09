@@ -122,13 +122,13 @@ export class MasinfoSoliComponent implements OnInit{
       this.material.push(materialCreado);
       //console.log(materialCreado);
       // Limpia los campos del objeto 'solicitar'
-    this.solicitar = {
+    /*this.solicitar = {
       id: "",
       id_solicitud: this.idSolicitud,
       descripcion: "",
       familia: "",
       estatus:"",
-    };
+    };*/
     });
   }
   seleccionarCaracteristica(items: any) {
@@ -241,8 +241,11 @@ export class MasinfoSoliComponent implements OnInit{
       }
     });
   }
-  masMaterial(){
+  /*masMaterial(){
     this.addMaterial=!this.addMaterial;
+  }*/
+  cerrar(valor:boolean){
+    this.newEnviar.emit(valor);
   }
 
 }

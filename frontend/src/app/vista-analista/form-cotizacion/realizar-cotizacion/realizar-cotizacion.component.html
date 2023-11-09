@@ -124,6 +124,7 @@
             <th scope="col">Premium</th>
             <th scope="col">Total</th>
             <th scope="col">Adicional</th>
+            <th>Comprobante</th>
             <th scope="col">Acciones</th>
           </tr>
         </thead>
@@ -135,6 +136,7 @@
             <td>{{monedaSimbolos[cotizaciones.moneda]}}{{cotizaciones.premium}}</td>
             <td>{{monedaSimbolos[cotizaciones.moneda]}}{{cotizaciones.total}}</td>
             <td>{{monedaSimbolos[cotizaciones.moneda]}}{{cotizaciones.icoterm}}</td>
+            <td><button (click)="subirCompro(cotizaciones.id)" data-bs-toggle="modal" data-bs-target="#exampleModalToggle2">Subir</button></td>
             <td> <svg (click)="eliminar(cotizaciones.id)" id="accion" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="#dc2626" d="M4 8h16v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8Zm3-3V3a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v2h5v2H2V5h5Zm2-1v1h6V4H9Zm0 8v6h2v-6H9Zm4 0v6h2v-6h-2Z"/></svg></td>
           </tr>
         </tbody>
@@ -180,7 +182,7 @@
                 <input #name="ngModel" name="icoterm" [(ngModel)]="cotizar.icoterm" required type="number" aria-label="First name" class="form-control">
               </div>
               <div class="input-group">
-                <button class="btnAgregar" type="submit" [disabled]="!form.valid">Agregar Cotización</button>
+                <button data-bs-toggle="modal" data-bs-target="#exampleModalToggle2" class="btnAgregar" type="submit" [disabled]="!form.valid">Agregar Cotización</button>
               </div>
               <br>
             </form>
@@ -188,6 +190,25 @@
           <div class="modal-footer">
           </div>
         </div>
+        </div>
+      </div>
+      <!--Modal para el pdf-->
+      <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Modal 2</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              {{idCotizacion}}
+              <input type="file" (change)="manejarArchivoInput($event)" id="inputArchivo">
+              <button (click)="subirArchivo()">Subir Archivo</button>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back to first</button>
+            </div>
+          </div>
         </div>
       </div>
     </section>

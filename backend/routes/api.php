@@ -10,6 +10,7 @@ use App\Http\Controllers\CotizacionController;
 use App\Http\Controllers\FamiliaController;
 use App\Http\Controllers\CaracteristicaController;
 use App\Http\Controllers\CaractermaterialController;
+use App\Http\Controllers\ComprovanteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -89,3 +90,13 @@ Route::prefix('caractermaterial')->group(function () {
     Route::delete('/{id}',[ CaractermaterialController::class, 'delete']);
     Route::get('/get/{id}',[ CaractermaterialController::class, 'get']);
 });
+
+Route::prefix('comprobante')->group(function () {
+    Route::get('/all',[ ComprovanteController::class, 'getAll']);
+    Route::get('/{id}',[ ComprovanteController::class, 'getOne']);
+    Route::post('/', [ComprovanteController::class, 'store']);
+    Route::get('/{nombre}', [ComprovanteController::class, 'show']);
+    Route::get('/id/{id}', [ComprovanteController::class, 'showOne']);
+    Route::delete('/{nombre}', [ComprovanteController::class, 'eliminarArchivo']);
+});
+

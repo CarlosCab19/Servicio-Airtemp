@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CaractermaterialService } from 'src/app/services/caractermaterial.service';
+import { ComprobanteService } from 'src/app/services/comprobante.service';
 import { CotizacionService } from 'src/app/services/cotizacion.service';
 import { FamiliaService } from 'src/app/services/familia.service';
 import { MaterialService } from 'src/app/services/material.service';
@@ -35,8 +36,9 @@ export class RealizarCotizacionComponent implements OnInit{
   material!:Material;
   familiaN!:Familia;
 
-
-
+  archivoParaSubir: File | null = null;
+  nombreArchivo:string='';
+  idCotizacion:string='';
   tipoMoneda: string=""; // Variable para almacenar el símbolo de la moneda seleccionada.
 
   form = new FormGroup({
@@ -47,7 +49,8 @@ export class RealizarCotizacionComponent implements OnInit{
   });
 
   constructor(private cotizacionService:CotizacionService,private materialService:MaterialService,
-              private familiaService:FamiliaService, private caracterMaterial:CaractermaterialService){}
+              private familiaService:FamiliaService, private caracterMaterial:CaractermaterialService,
+              private comprobanteServi:ComprobanteService){}
 
   onTipoMonedaSelected() {
     // Puedes acceder a this.tipoMoneda para obtener el símbolo de la moneda seleccionada.
@@ -171,6 +174,56 @@ export class RealizarCotizacionComponent implements OnInit{
     dolares_usa: 'US$ ',
     euro: '€ ',
   };
+
+  manejarArchivoInput(event: any) {
+    if (event.target.files && event.target.files.length > 0) {
+      this.archivoParaSubir = event.target.files[0];
+    } else {
+      console.log('No se seleccionó ningún archivo.');
+    }
+  }
+  subirCompro(idCotizacion:string){
+    this.idCotizacion=idCotizacion;
+  }
+  /*subirArchivo() {
+    if (this.archivoParaSubir && this.idCotizacion) { // Asegúrate de tener el id_cotizacion
+      this.comprobanteServi.subirArchivo(this.archivoParaSubir, this.idCotizacion).subscribe(res => {
+        console.log('Archivo subido');
+        console.log('Esto trae res: ', res);
+        this.nombreArchivo = res.archivo;
+
+        // Restablecer el valor del input de tipo archivo
+        const inputArchivo = document.getElementById('inputArchivo') as HTMLInputElement;
+        if (inputArchivo) {
+          inputArchivo.value = ''; // Esto restablecerá el valor del input a vacío
+        }
+
+        this.archivoParaSubir = null; // También es una buena práctica restablecer la variable
+      });
+    } else {
+      console.log('No se seleccionó ningún archivo para subir o no se proporcionó id_cotizacion.');
+    }
+  }*/
+
+  subirArchivo() {
+    if (this.archivoParaSubir) {
+      this.comprobanteServi.subirArchivo(this.archivoParaSubir).subscribe(res => {
+        console.log('archivo subido');
+        console.log('esto trae res: ',res);
+        //this.documentos.push(res);
+        this.nombreArchivo=res.archivo;
+        // Restablecer el valor del input de tipo archivo
+        const inputArchivo = document.getElementById('inputArchivo') as HTMLInputElement;
+        if (inputArchivo) {
+          inputArchivo.value = ''; // Esto restablecerá el valor del input a vacío
+        }
+
+        this.archivoParaSubir = null; // También es una buena práctica restablecer la variable
+      });
+    } else {
+      console.log('No se seleccionó ningún archivo para subir.');
+    }
+  }
 
   /*monedaNombres: { [key: string]: string } = {
     pesos_mexicanos: 'Peso mexicano',

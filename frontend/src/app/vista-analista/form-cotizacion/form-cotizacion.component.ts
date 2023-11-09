@@ -71,12 +71,6 @@ export class FormCotizacionComponent implements AfterViewInit{
       this.idAnalista=response.id;
       this.nomAnalista=response.nombres + " " + response.apellidos;
     });
-    const fechaVencimientoInput = document.getElementById('fechaVencimiento') as HTMLInputElement;
-    if (fechaVencimientoInput) {
-      fechaVencimientoInput.addEventListener('change', () => {
-        this.fechaVencimiento = fechaVencimientoInput.value;
-      });
-    }
   }
 
   enviarCotizacion() {
@@ -90,7 +84,6 @@ export class FormCotizacionComponent implements AfterViewInit{
       this.material.forEach((material) => {
         console.log(`ID: ${material.id}, Estatus: ${material.estatus}`);
       });
-
       // Contar la cantidad de materiales con estatus 'Listo' después de recibir los datos
       const materialesListos = this.material.filter((material) => material.estatus === 'Listo');
       const cantidadMaterialesListos = materialesListos.length;
@@ -99,7 +92,6 @@ export class FormCotizacionComponent implements AfterViewInit{
         console.log('se puede enviar la cotizacion');
         //alert('Enviado');
         if(confirm('Enviar Solicitud?')){
-
           this.solicitudesService.update(this.idSolicitud,
             {estatus:'Cotizado',
             id_analista:this.idAnalista,

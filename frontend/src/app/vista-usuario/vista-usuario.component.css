@@ -398,8 +398,10 @@ h2{
 
 /*Estilos para las acciones de la tabla*/
 #acciones{
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
+  /*display: grid;
+  grid-template-columns: repeat(2,1fr);
+  background-color: #000000;*/
+  display: flex;
 }
 #add{
   height: 30px;

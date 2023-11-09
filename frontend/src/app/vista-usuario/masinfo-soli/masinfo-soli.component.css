@@ -89,6 +89,7 @@ section{
   font-family: 'Poppins', sans-serif;
   font-weight: bold;
   float:right;
+  margin-block-end: 5px;
 }
 
 #add:hover {
@@ -260,3 +261,7 @@ span{
  .modal-footer{
   background-color: rgba(235, 225, 225, 0.808);
  }
+#cerrar{
+  margin-left: 90%;
+  cursor: pointer;
+}

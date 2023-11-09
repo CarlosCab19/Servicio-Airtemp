@@ -95,7 +95,7 @@
             <td>{{monedaSimbolos[cotizaciones.moneda]}}{{cotizaciones.premium}}</td>
             <td>{{monedaSimbolos[cotizaciones.moneda]}}{{cotizaciones.total}}</td>
             <td>{{monedaSimbolos[cotizaciones.moneda]}}{{cotizaciones.icoterm}}</td>
-            <td>Ver documento</td>
+            <td><button (click)="verOne(cotizaciones.id)">Ver archivo</button></td>
           </tr>
         </tbody>
       </table>

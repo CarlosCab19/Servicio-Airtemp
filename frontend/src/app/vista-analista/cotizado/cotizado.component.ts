@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ComprobanteService } from 'src/app/services/comprobante.service';
 import { CotizacionService } from 'src/app/services/cotizacion.service';
 import { MaterialService } from 'src/app/services/material.service';
 import { SolicitudService } from 'src/app/services/solicitud.service';
@@ -14,7 +15,7 @@ import { Solicitud } from 'src/app/shared/solicitud';
 export class CotizadoComponent implements OnInit{
 
   constructor(private solicitudesService:SolicitudService, private materialService:MaterialService,
-    private cotizacionService:CotizacionService){}
+    private cotizacionService:CotizacionService, private comprobanteService:ComprobanteService){}
 
   solicitudes:Solicitud[]=[];
   material:Material[]=[];
@@ -105,6 +106,13 @@ export class CotizadoComponent implements OnInit{
         console.log('Estatus actualizado a por vencer');
       });
     }
+  }
+  verOne(id:string){
+    console.log(id);
+    this.comprobanteService.obtenerPDF(id).subscribe((data: Blob) => {
+      const fileURL = URL.createObjectURL(data);
+      window.open(fileURL, '_blank'); // Esto abrirá el PDF en una nueva pestaña
+    });
   }
 
 
