@@ -45,13 +45,24 @@ export class SolicitudService {
       catchError(this.errorHandler)
     )
   }
+  getCotizadoAnalista(id:string):Observable<Solicitud[]> {
+    return this.httpClient.get<Solicitud[]>(this.url+'CotizadoAnalista/'+id)
+    .pipe(
+      catchError(this.errorHandler)
+    )
+  }
+  getCotizadoUsuario(id:string):Observable<Solicitud[]> {
+    return this.httpClient.get<Solicitud[]>(this.url+'CotizadoUsuario/'+id)
+    .pipe(
+      catchError(this.errorHandler)
+    )
+  }
   getAprovado(): Observable<Solicitud[]> {
     return this.httpClient.get<Solicitud[]>(this.url+'Aprovado')
     .pipe(
       catchError(this.errorHandler)
     )
   }
-
 
   getList(id:string):Observable<Solicitud[]>{
     return this.httpClient.get<Solicitud[]>(this.url+id)

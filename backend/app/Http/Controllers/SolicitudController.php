@@ -22,8 +22,28 @@ class SolicitudController extends Controller
         $data = Solicitud::where('estatus', 'Cotizado')->get();
         return response()->json($data, 200);
     }
+    /*nuevos*/
+    public function getCotizadoAnalista($id) {
+        $data = Solicitud::where('id_analista', $id)
+                        ->where('estatus', 'Cotizado')
+                        ->get();
+        return response()->json($data, 200);
+    }
+    public function getCotizadoUsuario($id) {
+        $data = Solicitud::where('id_usuario', $id)
+                        ->where('estatus', 'Cotizado')
+                        ->get();
+        return response()->json($data, 200);
+    }
+    public function getAprovadoAnalista($id) {
+        $data = Solicitud::where('id_analista', $id)
+                        ->where('estatus', 'Aprovado')
+                        ->get();
+        return response()->json($data, 200);
+    }
+    /*---------------*/
     public function getAprovado(){
-        $data = Solicitud::where('estatus', 'NuevaAprovado')->get();
+        $data = Solicitud::where('estatus', 'Aprovado')->get();
         return response()->json($data, 200);
     }
     public function getList($id){

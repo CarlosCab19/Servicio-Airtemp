@@ -41,16 +41,9 @@ export class RealizarCotizacionComponent implements OnInit{
   idCotizacion:string='';
   tipoMoneda: string=""; // Variable para almacenar el símbolo de la moneda seleccionada.
 
-  form = new FormGroup({
-    estatus:  new FormControl('Listo', [ Validators.required]),
-  });
-  form2 = new FormGroup({
-    estatus:  new FormControl('noListo', [ Validators.required]),
-  });
-
   constructor(private cotizacionService:CotizacionService,private materialService:MaterialService,
               private familiaService:FamiliaService, private caracterMaterial:CaractermaterialService,
-              private comprobanteServi:ComprobanteService){}
+              private comprobanteServi:ComprobanteService,private comprobanteService:ComprobanteService){}
 
   onTipoMonedaSelected() {
     // Puedes acceder a this.tipoMoneda para obtener el símbolo de la moneda seleccionada.
@@ -108,6 +101,7 @@ export class RealizarCotizacionComponent implements OnInit{
             icoterm:element.icoterm,
             estatus:element.estatus,
           }
+          this.idCotizacion=res.id;
           this.cotizacion.push(cotizacionAdd);
           this.cotizar={
             id:'',
@@ -140,30 +134,16 @@ export class RealizarCotizacionComponent implements OnInit{
     /*this.valorArreglo.emit(this.cotizacion.length);
     console.log(this.cotizacion.length);*/
   }
-  get f(){
-    return this.form.controls;
-  }
-  get f2(){
-    return this.form2.controls;
-  }
   cotizacionLista(){
     this.newEstado.emit(true);
     if(this.cotizacion.length != 0){
-      this.materialService.update(this.folio,this.form.value).subscribe(res=>{
-        console.log(this.form.value);
-        this.form.setValue(
-          {
-          'estatus':"",
-        });
+      this.materialService.update(this.folio,{estatus:'Listo'}).subscribe(res=>{
+        console.log('estatus de le cotizacion: Listo')
       });
       this.valorArreglo.emit('Listo');
     }else{
-      this.materialService.update(this.folio,this.form2.value).subscribe(res=>{
-        console.log(this.form2.value);
-        this.form.setValue(
-          {
-          'estatus':"",
-        });
+      this.materialService.update(this.folio,{estatus:'noListo'}).subscribe(res=>{
+        console.log('estatus de le cotizacion: No listo');
       });
       this.valorArreglo.emit('noListo');
     }
@@ -185,33 +165,13 @@ export class RealizarCotizacionComponent implements OnInit{
   subirCompro(idCotizacion:string){
     this.idCotizacion=idCotizacion;
   }
-  /*subirArchivo() {
-    if (this.archivoParaSubir && this.idCotizacion) { // Asegúrate de tener el id_cotizacion
-      this.comprobanteServi.subirArchivo(this.archivoParaSubir, this.idCotizacion).subscribe(res => {
-        console.log('Archivo subido');
-        console.log('Esto trae res: ', res);
-        this.nombreArchivo = res.archivo;
-
-        // Restablecer el valor del input de tipo archivo
-        const inputArchivo = document.getElementById('inputArchivo') as HTMLInputElement;
-        if (inputArchivo) {
-          inputArchivo.value = ''; // Esto restablecerá el valor del input a vacío
-        }
-
-        this.archivoParaSubir = null; // También es una buena práctica restablecer la variable
-      });
-    } else {
-      console.log('No se seleccionó ningún archivo para subir o no se proporcionó id_cotizacion.');
-    }
-  }*/
-
   subirArchivo() {
-    if (this.archivoParaSubir) {
-      this.comprobanteServi.subirArchivo(this.archivoParaSubir).subscribe(res => {
+    if (this.archivoParaSubir && this.idCotizacion) {
+      this.comprobanteServi.subirArchivo(this.archivoParaSubir, this.idCotizacion).subscribe(res => {
         console.log('archivo subido');
-        console.log('esto trae res: ',res);
+        console.log('esto trae res: ', res);
         //this.documentos.push(res);
-        this.nombreArchivo=res.archivo;
+        this.nombreArchivo = res.nombre;
         // Restablecer el valor del input de tipo archivo
         const inputArchivo = document.getElementById('inputArchivo') as HTMLInputElement;
         if (inputArchivo) {
@@ -219,16 +179,16 @@ export class RealizarCotizacionComponent implements OnInit{
         }
 
         this.archivoParaSubir = null; // También es una buena práctica restablecer la variable
+        this.idCotizacion = ''; // Restablecer el id_cotizacion después de subir el archivo
       });
     } else {
-      console.log('No se seleccionó ningún archivo para subir.');
+      console.log('No se seleccionó ningún archivo para subir o falta el idCotizacion.');
     }
   }
-
-  /*monedaNombres: { [key: string]: string } = {
-    pesos_mexicanos: 'Peso mexicano',
-    dolares_usa: 'Dólar estadounidense',
-    euro:'Euro',
-  };*/
-
+  verCompro(id:string){
+    this.comprobanteService.obtenerPDF(id).subscribe((data: Blob) => {
+      const fileURL = URL.createObjectURL(data);
+      window.open(fileURL, '_blank'); // Esto abrirá el PDF en una nueva pestaña
+    });
+  }
 }

@@ -1,47 +1,5 @@
-/* Estilos para el contenedor del registro */
-/*.container {
-  width: 70%;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #1b9aee63;
-  border: 1px solid #1b9aee;
-  border-radius: 15px;
-}
-.cotizar{
-  width: 70%;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #1b9aee63;
-  border: 1px solid #1b9aee;
-  border-radius: 15px;
-}
-#close{
-  height: 30px;
-  width: 30px;
-  cursor: pointer;
-}
-h2{
-  background-color: rgba(0, 0, 255, 0.575);
-}
-#cotizar{
-  height: 30px;
-  width: 30px;
-  cursor: pointer;
-  text-align: center;
-}
-#delete{
-  align-items: center;
-  height: 20px;
-  width: 20px;
-  cursor: pointer;
-}
-.btnAgregar{
-  border-radius: 10px;
-  background-color: #e2d8d885;
-  border: 2.5px solid #005ba2;
-  font-weight: bold;
-}*/
-.custom-btn {
+
+/*.custom-btn {
   width: 80px;
   height: 40px;
   color: #fff;
@@ -79,26 +37,21 @@ h2{
   gap: 10px;
   padding: 15px;
 }
-/*.datos{
-  background-color: chartreuse;
-}
-.cotizacion{
-  background-color: crimson;
-}*/
-/*section{
-  flex: 1;
-  padding: 10px;
-  text-align: center;
-  background-color: rgba(104, 194, 247, 0.979);
-  border-radius: 3%;
-}*/
-#datos{
+
+.datos{
   display:grid;
   grid-template-columns: max-content 2fr;
   column-gap: 5px;
 }
+.cotizacion{
+  display: grid;
+  grid-template-rows: repeat(2,max-content);
+}
+
+
 .section{
   font-weight: bold;
+
 }
 
 .row, #seccion{
@@ -108,28 +61,22 @@ h2{
   text-decoration: none;
   text-align: center;
 }
-/*#folio{
-  float: left;
-  margin-right: 2%;
-}*/
 #nombre{
   color: rgb(54, 54, 54);
 }
 ul{
   list-style: none;
-  /*display: flex;*/
 }
 .rowp {
-  columns: 2; /* Divide en dos columnas */
-  column-gap: 0; /* Espacio entre columnas */
+  column-gap: 0;
   padding: 0;
 }
 
 .rowp ul li {
-  display: list-item; /* Cada elemento de la lista se muestra como un elemento de lista */
-  list-style-type: none; /* Quita los marcadores de lista predeterminados */
-  margin: 0; /* Quita los márgenes para evitar espacios innecesarios */
-  padding: 0; /* Espacio entre elementos de la lista */
+  display: list-item;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 #close{
   display: flex;
@@ -141,7 +88,7 @@ ul{
   grid-template-columns: repeat(2,2fr);
 }
 
-/*boton dentro de mas informacion, para agregar cotizacion*/
+
 #add {
   width: fit-content;
   min-width: 100px;
@@ -170,9 +117,9 @@ ul{
 }
 
 .divider {
-  width: 5px; /* Ancho de la línea vertical */
-  background-color: #000; /* Color de la línea */
-  margin: 0 0px; /* Margen para separar las secciones */
+  width: 5px;
+  background-color: #000;
+  margin: 0 0px;
 }
 
 .btnAgregar{
@@ -184,4 +131,117 @@ ul{
 }
 #accion{
   cursor: pointer;
+}*/
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  /*background-color: rgba(104, 194, 247, 0.979);
+  border-radius: 5px;*/
+}
+
+.container > * {
+  /*box-shadow: -1px 1px 7px 0px rgb(0, 0, 0);*/
+  background-color: rgba(104, 194, 247, 0.979);
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  width: 48%; /* Ajusta el ancho de las columnas como desees */
+  margin: 10px; /* Agrega un pequeño margen entre elementos */
+}
+#add{
+  margin-left: 80%;
+  margin-block-end: 5px;
+}
+#enviar{
+  margin-top: 10px;
+}
+.encabezado{
+  display: flex;
+}
+#close{
+  cursor: pointer;
+}
+#accion{
+  cursor: pointer;
+  margin-right: 20px;
+}
+.col{
+  display: flex;
+}
+#folio{
+  font-weight: bold;
+  margin-right: 5px;
+}
+#seccion{
+  font-weight: bold;
+  text-decoration: underline;
+  margin-block-end: 10px;
+}
+ul{
+  list-style: none;
+}
+#nombre{
+  font-weight: bold;
+  margin-right: 5px;
+}
+.modal-header{
+  background-color: rgba(104, 194, 247, 0.979);
+}
+.modal-title{
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .container > * {
+    width: 100%; /* Cambia a una columna en pantallas más pequeñas */
+  }
+}
+
+.modal-body {
+  padding: 20px;
+  text-align: center;
+}
+#subir{
+  background-color:rgba(6, 110, 170, 0.979);
+  border-radius: 5px;
+  color: rgb(0, 0, 0);
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+#inputArchivo {
+  display: block;
+  margin: 10px auto;
+  padding: 8px;
+  font-size: 16px;
+}
+
+
+#subir:hover {
+  background-color: rgba(104, 194, 247, 0.979);
+}
+.rowpp {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.rowp {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  width: 50%; /* Para dividir en dos columnas */
+  box-sizing: border-box;
+  padding: 5px;
 }

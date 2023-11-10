@@ -22,32 +22,19 @@ export class ComprobanteService {
   getOne(id:string): Observable<Comprovante[]> {
     return this.httpClient.get<Comprovante[]>(this.url+id);
   }
-  /*subirArchivo(archivo: File, idCotizacion: string): Observable<any> {
+  subirArchivo(archivo: File, idCotizacion: string): Observable<any> {
     const formData: FormData = new FormData();
     formData.append('archivo', archivo, archivo.name);
-    formData.append('id_cotizacion', idCotizacion.toString()); // Agregar el id_cotizacion al FormData
+    formData.append('id_cotizacion', idCotizacion.toString());
 
-    return this.httpClient.post(this.url, formData);
-  }*/
-
-  subirArchivo(archivo: File): Observable<any> {
-    const formData: FormData = new FormData();
-    formData.append('archivo', archivo, archivo.name);
-
-    return this.httpClient.post(this.url, formData);
+    return this.httpClient.post(`${this.url}store`, formData);
   }
-
-  /*obtenerPDF(nombre: string) {
-    return this.httpClient.get(this.url + nombre, { responseType: 'blob' });
-  }*/
   obtenerPDF(idCotizacion: string) {
-    // Ajusta la URL para incluir el idCotizacion en lugar del nombre
     return this.httpClient.get(this.url + 'id/' + idCotizacion, { responseType: 'blob' });
   }
 
-
-  eliminarArchivo(nombre: string): Observable<any> {
-    return this.httpClient.delete(this.url + nombre);
+  eliminarArchivo(idCotizacion: string): Observable<any> {
+    return this.httpClient.delete(this.url + 'delete/'+ idCotizacion);
   }
 
 }

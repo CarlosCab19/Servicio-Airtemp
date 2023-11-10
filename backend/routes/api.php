@@ -10,7 +10,7 @@ use App\Http\Controllers\CotizacionController;
 use App\Http\Controllers\FamiliaController;
 use App\Http\Controllers\CaracteristicaController;
 use App\Http\Controllers\CaractermaterialController;
-use App\Http\Controllers\ComprovanteController;
+use App\Http\Controllers\ComprobanteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +42,8 @@ Route::prefix('solicitud')->group(function () {
     Route::get('/',[ SolicitudController::class, 'index']);
     Route::get('/',[ SolicitudController::class, 'getNueva']);
     Route::get('/Cotizado',[ SolicitudController::class, 'getCotizado']);
+    Route::get('/CotizadoAnalista/{id}',[ SolicitudController::class, 'getCotizadoAnalista']);
+    Route::get('/CotizadoUsuario/{id}',[ SolicitudController::class, 'getCotizadoUsuario']);
     Route::get('/Aprovado',[ SolicitudController::class, 'getAprovado']);
     Route::get('/{id}',[SolicitudController::class,'getList']);
     Route::post('/',[ SolicitudController::class, 'create']);
@@ -92,11 +94,11 @@ Route::prefix('caractermaterial')->group(function () {
 });
 
 Route::prefix('comprobante')->group(function () {
-    Route::get('/all',[ ComprovanteController::class, 'getAll']);
-    Route::get('/{id}',[ ComprovanteController::class, 'getOne']);
-    Route::post('/', [ComprovanteController::class, 'store']);
-    Route::get('/{nombre}', [ComprovanteController::class, 'show']);
-    Route::get('/id/{id}', [ComprovanteController::class, 'showOne']);
-    Route::delete('/{nombre}', [ComprovanteController::class, 'eliminarArchivo']);
+    Route::post('/store', [ComprobanteController::class, 'store']);
+    Route::get('/all',[ ComprobanteController::class, 'getAll']);
+    Route::get('/{id}',[ ComprobanteController::class, 'getOne']);
+    //Route::get('/{nombre}', [ComprobanteController::class, 'show']);
+    Route::get('/id/{id}', [ComprobanteController::class, 'showOne']);
+    Route::delete('/delete/{id}', [ComprobanteController::class, 'eliminarArchivo']);
 });
 

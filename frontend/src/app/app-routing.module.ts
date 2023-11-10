@@ -16,6 +16,8 @@ import { AddPersonalComponent } from './soporte-ti/add-personal/add-personal.com
 import { MasinfoSoliComponent } from './vista-usuario/masinfo-soli/masinfo-soli.component';
 import { VistaUsuarioComponent } from './vista-usuario/vista-usuario.component';
 import { SoliNuevaComponent } from './vista-usuario/soli-nueva/soli-nueva.component';
+import { RealizarCotizacionComponent } from './vista-analista/form-cotizacion/realizar-cotizacion/realizar-cotizacion.component';
+import { CotizadoUsuarioComponent } from './vista-usuario/cotizado-usuario/cotizado-usuario.component';
 
 const routes: Routes = [
   {path:'',component:InicioComponent},
@@ -33,8 +35,9 @@ const routes: Routes = [
   {path:'addPersonal',component:AddPersonalComponent},
   {path:'infoSolicitud',component:MasinfoSoliComponent},
   {path:'solinueva',component:SoliNuevaComponent},
-  {path:'vencidas',component:VencidaComponent}
-
+  {path:'vencidas',component:VencidaComponent},
+  {path:'realizar',component:RealizarCotizacionComponent},
+  
 ];
 
 @NgModule({

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ComprobanteService } from 'src/app/services/comprobante.service';
 import { CotizacionService } from 'src/app/services/cotizacion.service';
@@ -10,32 +10,28 @@ import { Material } from 'src/app/shared/material';
 import { Solicitud } from 'src/app/shared/solicitud';
 
 @Component({
-  selector: 'app-por-cotizar',
-  templateUrl: './cotizado.component.html',
-  styleUrls: ['./cotizado.component.css']
+  selector: 'app-cotizado-usuario',
+  templateUrl: './cotizado-usuario.component.html',
+  styleUrls: ['./cotizado-usuario.component.css']
 })
-export class CotizadoComponent implements OnInit{
+export class CotizadoUsuarioComponent implements OnInit{
 
-  constructor(private rutaActiva: ActivatedRoute,private solicitudesService:SolicitudService, private materialService:MaterialService,
-    private cotizacionService:CotizacionService, private comprobanteService:ComprobanteService,private personalService:PersonalService){}
-
-  solicitudes:Solicitud[]=[];
-  material:Material[]=[];
-  //idSolicitud:string='';
-  cotizacion:Cotizacion[]=[];
-
-  //para la mostrar la informacion de la solicitud
-  verinformacion:boolean=false;
-  vertabla:boolean=true;
-  infoCotizacion:boolean=false;
   idAnalista:string='';
   id:string='';
+  solicitudes:Solicitud[]=[];
+  material:Material[]=[];
+  cotizacion:Cotizacion[]=[];
+  vertabla:boolean=true;
+  verinformacion:boolean=false;
+  infoCotizacion:boolean=false;
 
+  constructor(private rutaActiva: ActivatedRoute,private solicitudesService:SolicitudService,private materialService:MaterialService,
+    private cotizacionService:CotizacionService, private comprobanteService:ComprobanteService,private personalService:PersonalService){}
   ngOnInit(): void {
     this.id=this.rutaActiva.snapshot.paramMap.get('id') as string;
     this.personalService.find(this.id).subscribe(response=>{
       this.idAnalista=response.id;
-      this.solicitudesService.getCotizadoAnalista(response.id).subscribe((data:Solicitud[])=>{
+      this.solicitudesService.getCotizadoUsuario(response.id).subscribe((data:Solicitud[])=>{
         this.solicitudes=data;
         this.solicitudes.forEach(item => {
           item.estado = this.isVencida(item);
@@ -43,18 +39,6 @@ export class CotizadoComponent implements OnInit{
         });
       });
     });
-    /*this.solicitudesService.getCotizadoAnalista(this.id).subscribe((data:Solicitud[])=>{
-      this.solicitudes=data;
-      this.solicitudes.forEach(item => {
-        item.estado = this.isVencida(item);
-        console.log('ITEMS: ',item);
-        /*if (item.estado === -1) {
-          this.updateEstatusVencida(item);
-        }/*if(item.estado === 0){
-          this.updateEstatusPorVencer(item);
-        //}
-      });
-    });*/
   }
   verInfoForm(id:string){
     //this.idSolicitud=id;
@@ -135,6 +119,5 @@ export class CotizadoComponent implements OnInit{
       console.log('archivo eliminado correctamente');
     })
   }
-
 
 }

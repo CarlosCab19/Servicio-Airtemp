@@ -25,6 +25,7 @@ import { SoliNuevaComponent } from './vista-usuario/soli-nueva/soli-nueva.compon
 import { FormEncabezadoComponent } from './vista-usuario/form-solicitud-c/form-encabezado/form-encabezado.component';
 import { RealizarCotizacionComponent } from './vista-analista/form-cotizacion/realizar-cotizacion/realizar-cotizacion.component';
 import { SolicitudService } from './services/solicitud.service';
+import { CotizadoUsuarioComponent } from './vista-usuario/cotizado-usuario/cotizado-usuario.component';
 
 
 
@@ -49,6 +50,7 @@ import { SolicitudService } from './services/solicitud.service';
     SoliNuevaComponent,
     FormEncabezadoComponent,
     RealizarCotizacionComponent,
+    CotizadoUsuarioComponent,
 
 
   ],
