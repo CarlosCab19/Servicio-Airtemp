@@ -30,7 +30,6 @@ export class FormSolicitudCComponent implements OnInit{
 
 
   ngOnInit(): void {
-    console.log('ngOnInit del formulario');
     this.solicitar={
       id:"",
       id_usuario:this.idUs,

@@ -1,8 +1,8 @@
-<form (ngSubmit)="submit(form.value)" #form="ngForm">
+<!--<form (ngSubmit)="submit(form.value)" #form="ngForm">
   <div id="dos" class="g-col-6 g-col-md-4">
     <div class="row">
       <div class="col-md" id="close" (click)="addNewEstado(false)">
-        <svg id="close" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z"/></svg>
+
       </div>
     </div>
     <h2>Datos de la Solicitud</h2>
@@ -20,7 +20,6 @@
             <option value="" disabled selected>Seleccione una opción</option>
             <option value="Material">Material</option>
             <option value="Maquinaria">Maquinaria</option>
-            <!--<option value="Otro">Otro</option>-->
           </select>
           <label for="floatingSelect">Tipo de Solicitud</label>
         </div>
@@ -41,7 +40,7 @@
       <div class="col-md mb-3">
         <div class="form-floating" *ngIf="nuevoChecked==true">
           <input #name="ngModel" name="codProv" [(ngModel)]="solicitar.codProv" required type="text" class="form-control" id="floatingInput" value="" placeholder="codigo proveedor">
-          <!--<input #name="ngModel" type="text" [(ngModel)]="registrar.numerocotizacion" required name="numerocotizacion" class="form-control" id="numerocotizacion">-->
+
           <label for="floatingInput">Codigo del Proveedor</label>
         </div>
       </div>
@@ -67,6 +66,60 @@
         <button class="botonCrear" type="submit" [disabled]="!form.valid">Solicitar</button>
       </div>
     </div>
-    <!--<strong><pre>{{form.value | json }}</pre></strong>-->
+    <strong><pre>{{form.value | json }}</pre></strong>
   </div>
-</form>
+</form>-->
+
+<!--Lo que se va a quedar-->
+
+<body>
+  <main>
+      <section id="encabezado">
+        <p class="text-center fw-bold fs-2">Datos de la Solicitud</p>
+        <svg (click)="addNewEstado(false)" id="close" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="#000000" d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m-3.4 14L12 13.4L8.4 17L7 15.6l3.6-3.6L7 8.4L8.4 7l3.6 3.6L15.6 7L17 8.4L13.4 12l3.6 3.6l-1.4 1.4Z"/></svg>
+      </section>
+      <form (ngSubmit)="submit(form.value)" #form="ngForm">
+        <section id="proveedor">
+          <label for="inputResponsable" class="form-label fw-bold fs-5 ">Responsable</label>
+          <div id="responsableHelpBlock" class="form-text fw-semibold text-decoration-underline">Nombre</div>
+          <input type="text" id="inputResponsable" class="form-control" aria-describedby="responsableHelpBlock" value={{nomResponsable}} disabled>
+        </section>
+        <section id="proveedor">
+          <label for="inputTipo" class="form-label fw-bold fs-5">Solicitud</label>
+          <div id="tipoHelpBlock" class="form-text fw-semibold text-decoration-underline">Tipo</div>
+          <select [(ngModel)]="solicitar.tipo" name="tipo" class="form-select" id="inputTipo" aria-describedby="tipoHelpBlock">
+            <option value="" disabled selected>Seleccione una opción</option>
+            <option value="Material">Material</option>
+            <option value="Maquinaria">Maquinaria</option>
+          </select>
+        </section>
+        <section id="proveedor">
+          <label for="inputProveedor" class="form-label fw-bold fs-5">Proveedor</label>
+          <div class="form-check">
+            <input [(ngModel)]="nuevoChecked" name="nuevo" (change)="onCheckboxChange()" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+              Nuevo
+            </label>
+          </div>
+          <div class="datos">
+            <div *ngIf="nuevoChecked==true" id="codigoHelpBlock" class="form-text fw-semibold text-decoration-underline">Codigo</div>
+            <input #name="ngModel" name="codProv" [(ngModel)]="solicitar.codProv" required *ngIf="nuevoChecked==true" type="text" id="codigoProveedor" class="form-control" aria-describedby="codigoHelpBlock" placeholder="">
+            <div id="razonHelpBlock" class="form-text fw-semibold text-decoration-underline">Razon social</div>
+            <input #name="ngModel" name="Rsocial" [(ngModel)]="solicitar.Rsocial" required type="text" id="inputRazon" class="form-control" aria-describedby="razonHelpBlock" placeholder="">
+          </div>
+        </section>
+        <section id="proveedor">
+          <label for="inputProveedor" class="form-label fw-bold fs-5">Cliente</label>
+          <div id="proveedorHelpBlock" class="form-text fw-semibold text-decoration-underline">Nombre</div>
+          <input #name="ngModel" name="NomCliente" [(ngModel)]="solicitar.NomCliente" required type="text" id="inputProveedor" class="form-control" aria-describedby="proveedorHelpBlock" placeholder="">
+          <div id="codigoHelpBlock" class="form-text fw-semibold text-decoration-underline">Numero de parte</div>
+          <input #name="ngModel" name="NumParte" [(ngModel)]="solicitar.NumParte" required type="text" id="codigoProveedor" class="form-control fst-italic" aria-describedby="codigoHelpBlock" placeholder="ingresar 'SN' si no se tiene numero de parte">
+        </section>
+        <section class="position-relative">
+          <button class="btn btn-primary" [disabled]="!form.valid">Solicitar</button>
+        </section>
+        <!--<strong><pre>{{form.value | json }}</pre></strong>-->
+      </form>
+    <br>
+  </main>
+</body>

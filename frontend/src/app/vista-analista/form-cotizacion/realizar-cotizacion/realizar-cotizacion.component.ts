@@ -84,7 +84,7 @@ export class RealizarCotizacionComponent implements OnInit{
     this.cotizacionService.getList(this.idMaterial).subscribe((data:Cotizacion[])=>{
       this.cotizacion=data;
       /*console.log('tamaño',this.cotizacion.length);*/
-      if(this.cotizacion.length <=2){
+      if(this.cotizacion.length <=9){
         /*console.log('el tamaño del arreglo tiene 3 o menos de 3 asi que agrega');*/
         this.cotizacionService.create(this.cotizar).subscribe(res=>{
           console.log('cotizacion agregada');
@@ -118,8 +118,8 @@ export class RealizarCotizacionComponent implements OnInit{
           };
         });
       }else{
-        console.log('ya tiene las 3 cotizaciones');
-        alert('Solo se permite agregar 3 cotizaciones');
+        console.log('ya tiene las 10 cotizaciones');
+        alert('Solo se permite agregar 10 cotizaciones');
       }
     });
   }
@@ -127,6 +127,9 @@ export class RealizarCotizacionComponent implements OnInit{
     this.cotizacionService.delete(idCotizacion).subscribe(res=>{
       this.cotizacion = this.cotizacion.filter(item => item.id !== idCotizacion);
       console.log('Cotización Eliminada');
+    });
+    this.comprobanteServi.eliminarArchivo(idCotizacion).subscribe(res=>{
+      console.log('documento eliminado')
     })
   }
   closeCotizacion(valor:boolean){

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('id_material');
             $table->string('caracteristica');
-            $table->string('valor');
+            $table->string('valor')->nullable();
             $table->string('estatus');
             $table->timestamps();
         });
