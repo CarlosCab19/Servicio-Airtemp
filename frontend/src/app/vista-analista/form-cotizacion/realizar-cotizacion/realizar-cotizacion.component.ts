@@ -77,14 +77,14 @@ export class RealizarCotizacionComponent implements OnInit{
       premium:'',
       total:'',
       icoterm:'',
-      estatus:'Agregado',
+      estatus:'',
     };
   }
   submit(element:Cotizacion){
     this.cotizacionService.getList(this.idMaterial).subscribe((data:Cotizacion[])=>{
       this.cotizacion=data;
       /*console.log('tamaño',this.cotizacion.length);*/
-      if(this.cotizacion.length <=9){
+      if(this.cotizacion.length <=19){
         /*console.log('el tamaño del arreglo tiene 3 o menos de 3 asi que agrega');*/
         this.cotizacionService.create(this.cotizar).subscribe(res=>{
           console.log('cotizacion agregada');
@@ -118,8 +118,8 @@ export class RealizarCotizacionComponent implements OnInit{
           };
         });
       }else{
-        console.log('ya tiene las 10 cotizaciones');
-        alert('Solo se permite agregar 10 cotizaciones');
+        console.log('ya tiene las 20 cotizaciones');
+        alert('Solo se permite agregar 20 cotizaciones');
       }
     });
   }

@@ -77,3 +77,37 @@ h2{
   cursor: pointer;
   border-radius: 5px;
 }
+
+
+.table-container {
+  overflow-x: auto;
+  max-height: 400px; /* Ajusta la altura máxima según tus necesidades */
+}
+
+table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1rem;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 0.75rem;
+  text-align: center;
+  border: 1px solid #dee2e6;
+}
+
+th {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: #8FBC8B; /* Cambia el color de fondo según tus preferencias */
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  /* Estilos adicionales para dispositivos más pequeños */
+  th, td {
+    font-size: 12px; /* Ajusta el tamaño de la fuente para dispositivos pequeños */
+  }
+}
