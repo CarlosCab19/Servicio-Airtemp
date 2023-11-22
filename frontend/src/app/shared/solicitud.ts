@@ -12,6 +12,7 @@ export interface Solicitud {
   vence:string;
   estatus:string;
   created_at:Date|string;
+  estado?:number;
 }
 
 export interface junte{

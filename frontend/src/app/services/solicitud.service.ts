@@ -40,18 +40,29 @@ export class SolicitudService {
     )
   }
   getCotizado(): Observable<Solicitud[]> {
-    return this.httpClient.get<Solicitud[]>(this.url+'/Cotizado')
+    return this.httpClient.get<Solicitud[]>(this.url+'Cotizado')
+    .pipe(
+      catchError(this.errorHandler)
+    )
+  }
+  getCotizadoAnalista(id:string):Observable<Solicitud[]> {
+    return this.httpClient.get<Solicitud[]>(this.url+'CotizadoAnalista/'+id)
+    .pipe(
+      catchError(this.errorHandler)
+    )
+  }
+  getCotizadoUsuario(id:string):Observable<Solicitud[]> {
+    return this.httpClient.get<Solicitud[]>(this.url+'CotizadoUsuario/'+id)
     .pipe(
       catchError(this.errorHandler)
     )
   }
   getAprovado(): Observable<Solicitud[]> {
-    return this.httpClient.get<Solicitud[]>(this.url+'/Aprovado')
+    return this.httpClient.get<Solicitud[]>(this.url+'Aprovado')
     .pipe(
       catchError(this.errorHandler)
     )
   }
-
 
   getList(id:string):Observable<Solicitud[]>{
     return this.httpClient.get<Solicitud[]>(this.url+id)
@@ -62,18 +73,6 @@ export class SolicitudService {
 
   update(id: string | null, solicitud: any): Observable<Solicitud> {
     return this.httpClient.put<Solicitud>(this.url + id, JSON.stringify(solicitud), this.httpOptions)
-    .pipe(
-      catchError(this.errorHandler)
-    )
-  }
-  updateAnalista(id: string | null, solicitud: any): Observable<Solicitud> {
-    return this.httpClient.put<Solicitud>(this.url + '/upA'+ id, JSON.stringify(solicitud), this.httpOptions)
-    .pipe(
-      catchError(this.errorHandler)
-    )
-  }
-  updateDirector(id: string | null, solicitud: any): Observable<Solicitud> {
-    return this.httpClient.put<Solicitud>(this.url + 'upD/' + id, JSON.stringify(solicitud), this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )

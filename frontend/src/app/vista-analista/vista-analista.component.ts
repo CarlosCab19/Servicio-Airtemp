@@ -17,6 +17,7 @@ export class VistaAnalistaComponent implements OnInit{
   isOffcanvasOpen: boolean = false;
   //
   verporCotizar:boolean=true;
+  verCotizados:boolean=false;
   id:string="";
   analista!:Personal;
   idAnalista:string="";
@@ -53,27 +54,32 @@ export class VistaAnalistaComponent implements OnInit{
   closeOffcanvas() {
     this.isOffcanvasOpen = false;
   }
-  get f(){
-    return this.form.controls;
-  }
   verFormCoti(id:string){
     this.formCotizacion=true;
     this.idSolicitud=id;
     this.verporCotizar=false;
-    /*this.solicitudesService.update(this.idSolicitud, this.form.value).subscribe(res => {
-      this.form.setValue(
-        {
-        'estatus':"Cotizando",
-      });
-      console.log('estatus cambiado a Cotizando');
-    });*/
   }
-
   closeForm(valor:boolean){
     this.verporCotizar=valor;
     this.formCotizacion=!valor;
     console.log(valor);
+    if(valor===true){
+      window.location.reload();
+    }
   }
+  Nuevas(valor:boolean){
+    this.verporCotizar=valor;
+    this.verCotizados=!valor;
+    this.formCotizacion=!valor;
+    this.closeOffcanvas();
+  }
+  Cotizadas(valor:boolean){
+    this.verCotizados=valor;
+    this.verporCotizar=!valor;
+    this.formCotizacion=!valor;
+    this.closeOffcanvas();
+  }
+
   salir(){
     this.router.navigateByUrl('/inicio');
   }

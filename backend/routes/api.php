@@ -10,6 +10,7 @@ use App\Http\Controllers\CotizacionController;
 use App\Http\Controllers\FamiliaController;
 use App\Http\Controllers\CaracteristicaController;
 use App\Http\Controllers\CaractermaterialController;
+use App\Http\Controllers\ComprobanteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,14 +42,14 @@ Route::prefix('solicitud')->group(function () {
     Route::get('/',[ SolicitudController::class, 'index']);
     Route::get('/',[ SolicitudController::class, 'getNueva']);
     Route::get('/Cotizado',[ SolicitudController::class, 'getCotizado']);
+    Route::get('/CotizadoAnalista/{id}',[ SolicitudController::class, 'getCotizadoAnalista']);
+    Route::get('/CotizadoUsuario/{id}',[ SolicitudController::class, 'getCotizadoUsuario']);
     Route::get('/Aprovado',[ SolicitudController::class, 'getAprovado']);
     Route::get('/{id}',[SolicitudController::class,'getList']);
     Route::post('/',[ SolicitudController::class, 'create']);
     Route::delete('/{id}',[ SolicitudController::class, 'delete']);
     Route::get('/get/{id}',[ SolicitudController::class, 'get']);
     Route::put('/{id}',[ SolicitudController::class, 'update']);
-    Route::put('/upA/{id}',[ SolicitudController::class, 'updateAnalista']);
-    Route::put('/upD/{id}',[ SolicitudController::class, 'updateDirector']);
 });
 /*Route::apiResource('material',MaterialController::class);*/
 Route::prefix('material')->group(function () {
@@ -91,3 +92,13 @@ Route::prefix('caractermaterial')->group(function () {
     Route::delete('/{id}',[ CaractermaterialController::class, 'delete']);
     Route::get('/get/{id}',[ CaractermaterialController::class, 'get']);
 });
+
+Route::prefix('comprobante')->group(function () {
+    Route::post('/store', [ComprobanteController::class, 'store']);
+    Route::get('/all',[ ComprobanteController::class, 'getAll']);
+    Route::get('/{id}',[ ComprobanteController::class, 'getOne']);
+    //Route::get('/{nombre}', [ComprobanteController::class, 'show']);
+    Route::get('/id/{id}', [ComprobanteController::class, 'showOne']);
+    Route::delete('/delete/{id}', [ComprobanteController::class, 'eliminarArchivo']);
+});
+

@@ -35,6 +35,8 @@ export class VistaUsuarioComponent implements OnInit{
   /*para saber el estado y poder bloquear*/
   estatuSolicitud:string="";
 
+  /*ver tabla de cotizados*/
+  verCotizados:boolean=false;
 
   constructor(private router: Router,private rutaActiva: ActivatedRoute,
       private personalService:PersonalService, private solicitudService:SolicitudService){}
@@ -111,6 +113,7 @@ export class VistaUsuarioComponent implements OnInit{
     this.verTabla=false;
     this.verMaterial=false;
     this.masInfo=false;
+    this.verCotizados=false;
   }
   closeForm(){
     this.verNuevo=false;
@@ -125,6 +128,8 @@ export class VistaUsuarioComponent implements OnInit{
     this.closeOffcanvas();
     this.verNuevo=false;
     this.verMaterial=false;
+    this.masInfo=false;
+    this.verCotizados=false;
   }
 
   formMaterial(idSelec:string){
@@ -142,6 +147,11 @@ export class VistaUsuarioComponent implements OnInit{
       this.solicitud=response;
       this.estatuSolicitud=response.estatus;
     });
+  }
+  Cotizadas(valor:boolean){
+    this.verCotizados=valor;
+    this.verTabla=false;
+    this.closeOffcanvas();
   }
 
 }

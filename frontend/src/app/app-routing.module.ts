@@ -8,7 +8,7 @@ import { FormCotizacionComponent } from './vista-analista/form-cotizacion/form-c
 import { VistaDirectorComponent } from './vista-director/vista-director.component';
 import { RechazadaComponent } from './vista-analista/rechazada/rechazada.component';
 import { SoliAprobadaComponent } from './soli-aprobada/soli-aprobada.component';
-import { PorCotizarComponent } from './vista-analista/por-cotizar/por-cotizar.component';
+import { CotizadoComponent } from './vista-analista/cotizado/cotizado.component';
 import { VencidaComponent } from './vista-analista/vencida/vencida.component';
 import { SoporteTIComponent } from './soporte-ti/soporte-ti.component';
 import { EditPersonalComponent } from './soporte-ti/edit-personal/edit-personal.component';
@@ -16,6 +16,8 @@ import { AddPersonalComponent } from './soporte-ti/add-personal/add-personal.com
 import { MasinfoSoliComponent } from './vista-usuario/masinfo-soli/masinfo-soli.component';
 import { VistaUsuarioComponent } from './vista-usuario/vista-usuario.component';
 import { SoliNuevaComponent } from './vista-usuario/soli-nueva/soli-nueva.component';
+import { RealizarCotizacionComponent } from './vista-analista/form-cotizacion/realizar-cotizacion/realizar-cotizacion.component';
+import { CotizadoUsuarioComponent } from './vista-usuario/cotizado-usuario/cotizado-usuario.component';
 
 const routes: Routes = [
   {path:'',component:InicioComponent},
@@ -27,14 +29,15 @@ const routes: Routes = [
   {path:'director/:id',component:VistaDirectorComponent},
   {path:'cotizacionRechazada',component:RechazadaComponent},
   {path:'aprobados',component:SoliAprobadaComponent},
-  {path:'porCotizar',component:PorCotizarComponent},
+  {path:'cotizado',component:CotizadoComponent},
   {path:'soporte/:id',component:SoporteTIComponent},
   {path:'editPersonal/:id',component:EditPersonalComponent},
   {path:'addPersonal',component:AddPersonalComponent},
   {path:'infoSolicitud',component:MasinfoSoliComponent},
   {path:'solinueva',component:SoliNuevaComponent},
-  {path:'vencidas',component:VencidaComponent}
-
+  {path:'vencidas',component:VencidaComponent},
+  {path:'realizar',component:RealizarCotizacionComponent},
+  
 ];
 
 @NgModule({

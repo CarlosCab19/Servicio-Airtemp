@@ -49,13 +49,11 @@ export class MasinfoSoliComponent implements OnInit{
   //datos para el modal
   familiaM:string="";
 
-  form = new FormGroup({
-    estatus:  new FormControl('Nueva', [ Validators.required]),
-  });
-  /*formValor = new FormGroup({
-    estatus: new FormControl('Valor',[Validators.required]),
-    valor: new FormControl('',[Validators.required]),
-  });*/
+  //para el cambio del modal
+  agregar:boolean=false;
+  caracterForm:boolean=false;
+  valorForm:boolean=false;
+  verPrincipal:boolean=true;
 
   constructor(private router:Router,
     private solicitudService:SolicitudService,public route: ActivatedRoute,
@@ -67,10 +65,10 @@ export class MasinfoSoliComponent implements OnInit{
     this.materialService.getList(this.idSolicitud).subscribe((data: Material[])=>{
       this.material = data;
     });
-    this.materialService.getList(this.idSolicitud)
+    /*this.materialService.getList(this.idSolicitud)
         .subscribe(caracteristicas => {
           this.material = caracteristicas;
-        });
+        });*/
 
     this.solicitudService.find(this.idSolicitud).subscribe(response=>{
       //console.log('entro en donde se recuperan los datos de la solicitud')
@@ -91,6 +89,28 @@ export class MasinfoSoliComponent implements OnInit{
       familia:"",
       estatus:"",
     };
+  }
+  verAgregar(valor:boolean){
+    this.agregar=valor;
+    this.verPrincipal=!valor;
+  }
+  verCaracteristicas(valor:boolean,id:string){
+    /*this.caracterForm = valor;
+    this.agregar =!valor;*/
+    this.idMaterial=id;
+    this.caracterMaterial.getList(id).subscribe(data=>{
+      this.caracterDelMaterial=data;
+    })
+  }
+  verValor(valor:boolean){
+    this.caracterForm=!valor;
+    this.valorForm=valor;
+    this.verPrincipal=!valor;
+  }
+  finalizar(estado:boolean){
+    this.caracterForm=!estado;
+    this.valorForm=!estado;
+    this.verPrincipal=estado;
   }
   obtenerCaracteristicas(event: any) {
     const familiaId = event.target.value; // Obtiene el valor seleccionado
@@ -117,18 +137,17 @@ export class MasinfoSoliComponent implements OnInit{
         familia:element.familia,
         estatus:element.estatus,
       };
-      this.idMaterial=res.id;
-      console.log('Este es el id del material que cree: ',this.idMaterial)
+      /*this.idMaterial=res.id; este era el problema que tardaba en mandarse el id*/
+      console.log('Este es el id del material que cree: ',res.id)
       this.material.push(materialCreado);
-      //console.log(materialCreado);
-      // Limpia los campos del objeto 'solicitar'
-    this.solicitar = {
-      id: "",
-      id_solicitud: this.idSolicitud,
-      descripcion: "",
-      familia: "",
-      estatus:"",
-    };
+      this.solicitar={
+        id:"",
+        id_solicitud:this.idSolicitud,
+        descripcion:"",
+        familia:"",
+        estatus:"",
+      };
+      this.verCaracteristicas(true,res.id);
     });
   }
   seleccionarCaracteristica(items: any) {
@@ -143,10 +162,8 @@ export class MasinfoSoliComponent implements OnInit{
     this.caracterMaterial.getList(this.idMaterial).subscribe(data=>{
       this.caracterDelMaterial=data;
       console.log('caracteristicas que tiene el material: ',data);
-
       // Verificar si la característica ya existe en el arreglo
       const existe = this.caracterDelMaterial.some(caracter => caracter.caracteristica === items.caracteristica);
-
       if (!existe) {
         // Si no existe, entonces la agregamos
         this.caracterMaterial.create(this.agregarCaracter).subscribe(res=>{
@@ -166,18 +183,17 @@ export class MasinfoSoliComponent implements OnInit{
     });
   }
   //metodo para ver las caracteristicas del material
-  AbrirMaterial(id:string){
-    console.log('este es el iddddd: ',id);
+  AbrirMaterial(id:string,idfam:string){
+    this.caracterForm=true;
+    this.verPrincipal=false;
+    console.log('este es el id del material: ',id);
+    console.log('este es el id de la familia: ',idfam);
     this.idMaterial=id;
-    this.materialService.find(id).subscribe(response=>{
-      this.solicitar=response;
-      console.log('id familia: ',response.familia);
-      this.caracteristicaService.getList(response.familia).subscribe(data=>{
-        this.caracteristicas=data;
-      });
-      this.caracterMaterial.getList(id).subscribe(data=>{
-        this.caracterDelMaterial=data;
-      })
+    this.caracteristicaService.getList(idfam).subscribe(data=>{
+      this.caracteristicas=data;
+    });
+    this.caracterMaterial.getList(id).subscribe(data=>{
+      this.caracterDelMaterial=data;
     });
   }
 
@@ -229,11 +245,7 @@ export class MasinfoSoliComponent implements OnInit{
         alert('Sin materiales, Agregar al menos uno');
       } else {
         console.log('El arreglo this.material no está vacío y contiene elementos.');
-        this.solicitudService.update(this.idSolicitud, this.form.value).subscribe(res => {
-          this.form.setValue(
-            {
-            'estatus':"Nueva",
-          });
+        this.solicitudService.update(this.idSolicitud,{estatus:'Nueva'}).subscribe(res => {
           console.log('Enviado');
           alert('Solicitud Enviada');
           this.newEnviar.emit(value);
@@ -241,8 +253,15 @@ export class MasinfoSoliComponent implements OnInit{
       }
     });
   }
-  masMaterial(){
+  /*masMaterial(){
     this.addMaterial=!this.addMaterial;
+  }*/
+  cerrar(valor:boolean){
+    this.newEnviar.emit(valor);
+  }
+  cerrar2(valor:boolean){
+    this.agregar=!valor;
+    this.verPrincipal=valor;
   }
 
 }

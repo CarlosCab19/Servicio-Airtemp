@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('caractermaterial', function (Blueprint $table) {
+        Schema::create('comprobante', function (Blueprint $table) {
             $table->id();
-            $table->string('id_material');
-            $table->string('caracteristica');
-            $table->string('valor')->nullable();
-            $table->string('estatus');
+            $table->string('id_cotizacion');
+            $table->string('nombre');
+            $table->string('ruta');
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('caractermaterial');
+        Schema::dropIfExists('comprobante');
     }
 };
