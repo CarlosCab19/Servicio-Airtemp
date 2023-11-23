@@ -30,9 +30,12 @@ export class VistaDirectorComponent implements OnInit{
   datosMaterial:boolean=false;
   tablaCotizado:boolean=true;
   datosCotizacion:boolean=false;
+  verAprobadas:boolean=false;
   /*para la cotizacion*/
   cotizacion:Cotizacion[]=[];
   agregarEstado!:Cotizacion;
+  idMaterial:string='';
+  idSolicitud:string='';
 
   constructor(private personalS:PersonalService,private solicitudesS:SolicitudService,private rutaActiva: ActivatedRoute,
     private materialS:MaterialService,private cotizacionS:CotizacionService,private comprobanteS:ComprobanteService){}
@@ -56,6 +59,7 @@ export class VistaDirectorComponent implements OnInit{
   }
   verDatosMaterial(id:string){
     console.log('id de la solicitud: ',id)
+    this.idSolicitud=id;
     this.materialS.getList(id).subscribe((data: Material[])=>{
       this.material = data;
     });
@@ -69,6 +73,7 @@ export class VistaDirectorComponent implements OnInit{
     this.tablaCotizado=false;
     this.datosMaterial=false;
     this.datosCotizacion=true;
+    this.idMaterial=id;
   }
   //Mapeo de las monedas
   monedaSimbolos: { [key: string]: string } = {
@@ -91,7 +96,97 @@ export class VistaDirectorComponent implements OnInit{
     this.datosCotizacion=close;
     this.datosMaterial=!close;
   }
-  estadoAutorizado:string='Autorizado';
+  Aprobadas(valor:boolean){
+    this.verAprobadas=valor;
+    this.tablaCotizado=!valor;
+    this.datosCotizacion=!valor;
+    this.datosMaterial=!valor;
+    this.closeOffcanvas();
+  }
+  Cotizadas(valor:boolean){
+    this.tablaCotizado=valor;
+    this.verAprobadas=!valor;
+    this.datosMaterial=!valor;
+    this.datosCotizacion=!valor;
+    this.closeOffcanvas();
+  }
+  enviarAutorizado(){
+    this.cotizacionS.getList(this.idMaterial).subscribe((data:Cotizacion[])=>{
+      this.cotizacion=data;
+      console.log(this.cotizacion);
+      const tamaño = this.cotizacion.length;
+      console.log('tamaño del arreglo: ',tamaño);
+      //mostramos los datos de cada cotización
+      this.cotizacion.forEach((cotizacion)=>{
+        console.log(`ID: ${cotizacion.id}, Estatus: ${cotizacion.estatus}`);
+      });
+      // Contar la cantidad de cotizaciones con estatus 'Autorizado' después de recibir los datos
+      const cotizacionesAutorizadas = this.cotizacion.filter((cotizacion) => cotizacion.estatus === 'Autorizado');
+      const cantidadCotizacionesAutorizadas = cotizacionesAutorizadas.length;
+      console.log(`Cantidad de cotizaciones autorizadas: ${cantidadCotizacionesAutorizadas}`);
+      if (cantidadCotizacionesAutorizadas === 1) {
+        alert('Cotización Autorizada');
+        this.materialS.update(this.idMaterial,{estatus:'conAutorizacion'}).subscribe(res=>{
+          console.log('Se actualizo el estatus del material con id: ',this.idMaterial)
+        });
+        this.closeCotizacion(false);
+      } else {
+        alert('Autorice una cotización');
+      }
+    })
+  }
+  // Lógica para desmarcar los demás elementos cuando se marca uno
+  checkChanged(selectedItem: any) {
+    this.cotizacion.forEach(item => {
+      if (item !== selectedItem) {
+        item.selected = false;
+        console.log('Rechazo:', item.id);
+        const itemToUpdate = this.cotizacion.find(cotizacion => cotizacion === item);
+        if (itemToUpdate) {
+          itemToUpdate.estatus = 'Rechazado';
+        }
+        this.cotizacionS.update(item.id, { estatus: 'Rechazado' }).subscribe(res => {
+          console.log('Cotizaciones rechazadas: ');
+        });
+      } else {
+        item.selected = true;
+        console.log('Autorizo:', item.id);
+        const itemToUpdate = this.cotizacion.find(cotizacion => cotizacion === item);
+        if (itemToUpdate) {
+          itemToUpdate.estatus = 'Autorizado';
+        }
+        this.cotizacionS.update(item.id, { estatus: 'Autorizado' }).subscribe(res => {
+          console.log('Cotizaciones Autorizadas: ');
+        });
+      }
+    });
+  }
+  EnviarListoAutorizados(){
+    this.materialS.getList(this.idSolicitud).subscribe((data:Material[])=>{
+      this.material=data;
+      const tamaño = this.material.length;
+      console.log('tamaño del arreglo: ',tamaño);
+      //mostramos los datos de cada material
+      this.material.forEach((material)=>{
+        console.log(`ID: ${material.id}, Estatus: ${material.estatus}`);
+      });
+      // Contar la cantidad de los materiales con estatus 'conAutorizacion' después de recibir los datos
+      const materialesconAutoricion = this.material.filter((material) => material.estatus === 'conAutorizacion');
+      const cantidadMaterialesAutorizadas = materialesconAutoricion.length;
+      console.log(`Cantidad de materiales con autorización: ${cantidadMaterialesAutorizadas}`);
+      if (this.material.length === materialesconAutoricion.length) {
+        alert('Autorización enviada');
+        this.solicitudesS.updateDirector(this.idSolicitud,{estatus:'Aprobado',id_director:this.idDirector}).subscribe(res=>{
+          console.log('Solicitud Autorizada');
+          window.location.reload();
+        })
+      } else {
+        alert('Autorice al menos una cotizacion en cada material')
+      }
+    })
+  }
+
+  /*estadoAutorizado:string='Autorizado';
   autorizar(id:string){
     console.log('autorizo: ',id);
     const itemToUpdate = this.cotizacion.find(item => item.id === id);
@@ -136,15 +231,12 @@ export class VistaDirectorComponent implements OnInit{
       premium:'',
       total:'',
       icoterm:'',
-      estatus: this.estadoAutorizado,
+      estatus: this.estadoRechazado,
     };
     this.cotizacionS.update(id, this.agregarEstado).subscribe(res => {
       console.log('Cotizacion Rechazada');
       //this.estadoAutorizado = '';
     });
-  }
-  enviarAutorizado(){
-
-  }
+  }*/
 
 }

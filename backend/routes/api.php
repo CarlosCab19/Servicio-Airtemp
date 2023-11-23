@@ -44,12 +44,15 @@ Route::prefix('solicitud')->group(function () {
     Route::get('/Cotizado',[ SolicitudController::class, 'getCotizado']);
     Route::get('/CotizadoAnalista/{id}',[ SolicitudController::class, 'getCotizadoAnalista']);
     Route::get('/CotizadoUsuario/{id}',[ SolicitudController::class, 'getCotizadoUsuario']);
-    Route::get('/Aprovado',[ SolicitudController::class, 'getAprovado']);
+    Route::get('/Aprobado',[ SolicitudController::class, 'getAprobado']);
+    Route::get('/AprobadoDirector/{id}',[ SolicitudController::class, 'getAprobadoDirector']);
+    Route::get('/getAprobadoAnalista/{id}',[ SolicitudController::class, 'getAprobadoAnalista']);
     Route::get('/{id}',[SolicitudController::class,'getList']);
     Route::post('/',[ SolicitudController::class, 'create']);
     Route::delete('/{id}',[ SolicitudController::class, 'delete']);
     Route::get('/get/{id}',[ SolicitudController::class, 'get']);
     Route::put('/{id}',[ SolicitudController::class, 'update']);
+    Route::put('/update/{id}',[ SolicitudController::class, 'updateDirector']);
 });
 /*Route::apiResource('material',MaterialController::class);*/
 Route::prefix('material')->group(function () {

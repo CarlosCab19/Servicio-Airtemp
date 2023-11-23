@@ -35,15 +35,22 @@ class SolicitudController extends Controller
                         ->get();
         return response()->json($data, 200);
     }
-    public function getAprovadoAnalista($id) {
+    public function getAprobadoDirector($id) {
+        $data = Solicitud::where('id_director', $id)
+                        ->where('estatus', 'Aprobado')
+                        ->get();
+        return response()->json($data, 200);
+    }
+    public function getAprobadoAnalista($id) {
         $data = Solicitud::where('id_analista', $id)
-                        ->where('estatus', 'Aprovado')
+                        ->where('estatus', 'Aprobado')
                         ->get();
         return response()->json($data, 200);
     }
     /*---------------*/
-    public function getAprovado(){
-        $data = Solicitud::where('estatus', 'Aprovado')->get();
+    public function getAprobado(){
+        $data = Solicitud::where('estatus', 'Aprobado')
+                        ->get();
         return response()->json($data, 200);
     }
     public function getList($id){
@@ -86,8 +93,16 @@ class SolicitudController extends Controller
       public function update(Request $request,$id){
         $data['estatus'] = $request['estatus'];
         $data['id_analista'] = $request['id_analista'];
-        $data['id_director'] = $request['id_director'];
         $data['vence'] = $request['vence'];
+        Solicitud::find($id)->update($data);
+        return response()->json([
+            'message' => "Successfully updated",
+            'success' => true
+        ], 200);
+      }
+      public function updateDirector(Request $request,$id){
+        $data['estatus'] = $request['estatus'];
+        $data['id_director'] = $request['id_director'];
         Solicitud::find($id)->update($data);
         return response()->json([
             'message' => "Successfully updated",

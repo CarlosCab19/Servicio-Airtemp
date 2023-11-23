@@ -527,13 +527,27 @@ input:-webkit-autofill:active {
   cursor: pointer;
 
 }
-#controles{
+/*#controles{
   display: flex;
   height: 80px;
   gap: 10px;
+}*/
+.enviar{
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-#enviar{
-  background-color: #005ba2;
+
+.enviar button{
+  font-size: 17px;
+  padding: 0.5em 2em;
+  border: transparent;
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+  background: dodgerblue;
   color: white;
-  border-radius: 10px;
+  border-radius: 4px;
+}
+.table-container .text-center{
+  background-color: #6495ED;
 }

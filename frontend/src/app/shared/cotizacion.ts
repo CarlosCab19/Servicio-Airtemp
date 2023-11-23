@@ -10,6 +10,7 @@ export interface Cotizacion {
   total:string;
   icoterm:string;
   estatus:string,
+  selected?: boolean,
 }
 export interface Comprovante{
   id:string;
