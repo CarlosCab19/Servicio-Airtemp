@@ -27,6 +27,7 @@ import { RealizarCotizacionComponent } from './vista-analista/form-cotizacion/re
 import { SolicitudService } from './services/solicitud.service';
 import { CotizadoUsuarioComponent } from './vista-usuario/cotizado-usuario/cotizado-usuario.component';
 import { AprobadoComponent } from './vista-director/aprobado/aprobado.component';
+import { AprobadoAComponent } from './vista-analista/aprobado-a/aprobado-a.component';
 
 
 
@@ -53,6 +54,7 @@ import { AprobadoComponent } from './vista-director/aprobado/aprobado.component'
     RealizarCotizacionComponent,
     CotizadoUsuarioComponent,
     AprobadoComponent,
+    AprobadoAComponent,
 
 
   ],

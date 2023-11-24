@@ -18,6 +18,7 @@ import { VistaUsuarioComponent } from './vista-usuario/vista-usuario.component';
 import { SoliNuevaComponent } from './vista-usuario/soli-nueva/soli-nueva.component';
 import { RealizarCotizacionComponent } from './vista-analista/form-cotizacion/realizar-cotizacion/realizar-cotizacion.component';
 import { CotizadoUsuarioComponent } from './vista-usuario/cotizado-usuario/cotizado-usuario.component';
+import { AprobadoAComponent } from './vista-analista/aprobado-a/aprobado-a.component';
 
 const routes: Routes = [
   {path:'',component:InicioComponent},
@@ -37,7 +38,8 @@ const routes: Routes = [
   {path:'solinueva',component:SoliNuevaComponent},
   {path:'vencidas',component:VencidaComponent},
   {path:'realizar',component:RealizarCotizacionComponent},
-  
+  {path:'ptm',component:AprobadoAComponent},
+
 ];
 
 @NgModule({

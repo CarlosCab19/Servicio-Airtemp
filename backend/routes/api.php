@@ -46,8 +46,9 @@ Route::prefix('solicitud')->group(function () {
     Route::get('/CotizadoUsuario/{id}',[ SolicitudController::class, 'getCotizadoUsuario']);
     Route::get('/Aprobado',[ SolicitudController::class, 'getAprobado']);
     Route::get('/AprobadoDirector/{id}',[ SolicitudController::class, 'getAprobadoDirector']);
-    Route::get('/getAprobadoAnalista/{id}',[ SolicitudController::class, 'getAprobadoAnalista']);
+    Route::get('/AprobadoAnalista/{id}',[ SolicitudController::class, 'getAprobadoAnalista']);
     Route::get('/{id}',[SolicitudController::class,'getList']);
+    Route::get('/Nueva/{id}',[SolicitudController::class,'getListNueva']);
     Route::post('/',[ SolicitudController::class, 'create']);
     Route::delete('/{id}',[ SolicitudController::class, 'delete']);
     Route::get('/get/{id}',[ SolicitudController::class, 'get']);
@@ -103,5 +104,6 @@ Route::prefix('comprobante')->group(function () {
     //Route::get('/{nombre}', [ComprobanteController::class, 'show']);
     Route::get('/id/{id}', [ComprobanteController::class, 'showOne']);
     Route::delete('/delete/{id}', [ComprobanteController::class, 'eliminarArchivo']);
+    Route::get('/update/{id}', [ComprobanteController::class, 'editarArchivo']);
 });
 

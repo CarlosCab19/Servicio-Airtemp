@@ -42,27 +42,6 @@ class ComprobanteController extends Controller
         ], 200);
     }
 
-
-    /*public function show($nombre)
-    {
-        // Encuentra el archivo por su nombre
-        $comprobante = Comprovante::where('nombre', $nombre)->first();
-
-        if (!$comprobante) {
-            return response()->json(['message' => 'Archivo no encontrado'], 404);
-        }
-
-        // Obtén la ruta del archivo
-        $ruta = public_path('comprobantes/' . $comprobante->ruta);
-
-        // Verifica que el archivo exista en la ruta de almacenamiento
-        if (!file_exists($ruta)) {
-            return response()->json(['message' => 'El archivo no se encuentra en la ruta de almacenamiento'], 404);
-        }
-
-        // Devuelve el archivo como respuesta
-        return Response::file($ruta);
-    }*/
     public function showOne($idCotizacion){
         // Encuentra el archivo por id_cotizacion
         $comprobante = Comprobante::where('id_cotizacion', $idCotizacion)->first();
@@ -83,24 +62,6 @@ class ComprobanteController extends Controller
         return Response::file($ruta);
     }
 
-
-    /*public function eliminarArchivo($nombre){
-        // Encuentra el archivo por su nombre
-        $comprobante = Comprovante::where('nombre', $nombre)->first();
-        $nombreEliminar = $nombre;
-        if (!$comprobante) {
-            return response()->json(['message' => 'Archivo no encontrado'], 404);
-        }
-
-        // Elimina el archivo de almacenamiento
-        Storage::delete($comprobante->ruta);
-        $rutaAEliminar =$comprobante->ruta;
-
-        // Elimina el registro de la base de datos
-        $comprobante->delete();
-
-        return response()->json(['message' => 'Archivo eliminado exitosamente','ruta_eliminada' => $rutaAEliminar,'nombre_eliminar: ' =>$nombreEliminar], 200);
-    }*/
     public function eliminarArchivo($idCotizacion){
         // Encuentra el archivo por id_cotizacion
         $comprobante = Comprobante::where('id_cotizacion', $idCotizacion)->first();
@@ -119,5 +80,56 @@ class ComprobanteController extends Controller
 
         return response()->json(['message' => 'Archivo eliminado exitosamente', 'ruta_eliminada' => $rutaAEliminar, 'nombre_eliminar' => $nombreEliminar], 200);
     }
+    public function editarArchivo($idCotizacion){
+         // Encuentra el archivo por id_cotizacion
+         $comprobante = Comprobante::where('id_cotizacion', $idCotizacion)->first();
+
+         if (!$comprobante) {
+             return response()->json(['message' => 'Archivo no encontrado'], 404);
+         }
+         // Obtén la ruta del archivo
+        $ruta = public_path('comprobantes/' . $comprobante->ruta); //ruta con path
+        $rutaBuscada = $comprobante->ruta; //ruta con la que esta guardada
+         return response()->json(['message' => 'ARCHIVOOO ENCONTRADOOOO', 'nombreee' => $comprobante,'rutaaa'=>$ruta,
+        'rutaaa222'=>$rutaBuscada], 200);
+    }
+
+    /*public function eliminarArchivo($nombre){
+        // Encuentra el archivo por su nombre
+        $comprobante = Comprovante::where('nombre', $nombre)->first();
+        $nombreEliminar = $nombre;
+        if (!$comprobante) {
+            return response()->json(['message' => 'Archivo no encontrado'], 404);
+        }
+
+        // Elimina el archivo de almacenamiento
+        Storage::delete($comprobante->ruta);
+        $rutaAEliminar =$comprobante->ruta;
+
+        // Elimina el registro de la base de datos
+        $comprobante->delete();
+
+        return response()->json(['message' => 'Archivo eliminado exitosamente','ruta_eliminada' => $rutaAEliminar,'nombre_eliminar: ' =>$nombreEliminar], 200);
+    }*/
+    /*public function show($nombre)
+    {
+        // Encuentra el archivo por su nombre
+        $comprobante = Comprovante::where('nombre', $nombre)->first();
+
+        if (!$comprobante) {
+            return response()->json(['message' => 'Archivo no encontrado'], 404);
+        }
+
+        // Obtén la ruta del archivo
+        $ruta = public_path('comprobantes/' . $comprobante->ruta);
+
+        // Verifica que el archivo exista en la ruta de almacenamiento
+        if (!file_exists($ruta)) {
+            return response()->json(['message' => 'El archivo no se encuentra en la ruta de almacenamiento'], 404);
+        }
+
+        // Devuelve el archivo como respuesta
+        return Response::file($ruta);
+    }*/
 
 }

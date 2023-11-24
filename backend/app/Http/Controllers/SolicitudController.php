@@ -31,7 +31,7 @@ class SolicitudController extends Controller
     }
     public function getCotizadoUsuario($id) {
         $data = Solicitud::where('id_usuario', $id)
-                        ->where('estatus', 'Cotizado')
+                        ->whereIn('estatus', ['Cotizado', 'Aprobado'])
                         ->get();
         return response()->json($data, 200);
     }
@@ -57,6 +57,13 @@ class SolicitudController extends Controller
         $data = Solicitud::where('id_usuario', $id)->get();
         return response()->json($data, 200);
     }
+    public function getListNueva($id){
+        $data = Solicitud::where('id_usuario', $id)
+                        ->whereIn('estatus', ['Nueva', 'Editando'])
+                        ->get();
+        return response()->json($data, 200);
+    }
+
     public function create(Request $request){
         $data['id_usuario'] = $request['id_usuario'];
         $data['solicitante'] = $request['solicitante'];

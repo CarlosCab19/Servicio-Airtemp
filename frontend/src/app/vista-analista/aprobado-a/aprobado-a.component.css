@@ -1,6 +1,6 @@
 .card{
   position: fixed;
-  height: 80%;
+  height: 85%;
   width: 70%;
   margin: auto;
   margin-block-end: 20px;
@@ -9,7 +9,6 @@
   padding: 20px;
   margin-left: 15%;
 }
-
 .responsive-table {
   width: 100%;
   border-collapse: collapse;

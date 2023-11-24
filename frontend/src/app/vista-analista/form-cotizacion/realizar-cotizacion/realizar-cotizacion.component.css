@@ -144,4 +144,13 @@ th {
     font-size: 12px; /* Ajusta el tamaño de la fuente para dispositivos pequeños */
   }
 }
+input[type="date"] {
+  width: 30%; /* Ajusta el ancho del campo de fecha al 100% del contenedor */
+  padding: 5px; /* Añade espacio dentro del campo de fecha */
+  font-size: 16px; /* Cambia el tamaño de fuente del campo de fecha */
+  border: 1px solid #ccc; /* Añade un borde al campo de fecha */
+  border-radius: 5px; /* Agrega bordes redondeados al campo de fecha */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Agrega una sombra suave */
+}
+
 

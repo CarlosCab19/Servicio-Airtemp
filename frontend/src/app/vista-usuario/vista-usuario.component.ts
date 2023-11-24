@@ -49,7 +49,7 @@ export class VistaUsuarioComponent implements OnInit{
       this.idSolicitante=response.id;
       this.responsable=response.nombres + " " + response.apellidos;
     });
-    this.solicitudService.getList(this.id).subscribe((data: Solicitud[])=>{
+    this.solicitudService.getListNueva(this.id).subscribe((data: Solicitud[])=>{
       this.solicitudes = data;
     });
 
@@ -99,7 +99,7 @@ export class VistaUsuarioComponent implements OnInit{
   }
 
   salir(){
-    this.router.navigateByUrl('/inicio');
+    this.router.navigate(['/inicio']);
   }
   /*lo que se va quedar*/
   toggleOffcanvas() {

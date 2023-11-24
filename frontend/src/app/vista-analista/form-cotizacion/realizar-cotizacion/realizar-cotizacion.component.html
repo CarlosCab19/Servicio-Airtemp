@@ -106,7 +106,7 @@
                 <span class="input-group-text" *ngIf="['Aluminio'].includes(familia)"><strong>Premium:</strong></span>
                 <input *ngIf="['Aluminio'].includes(familia)" #name="ngModel" name="premium" [(ngModel)]="cotizar.premium" required type="number" aria-label="First name" class="form-control">
                 <span class="input-group-text"><strong>Total:</strong></span>
-                <input #name="ngModel" name="total" [(ngModel)]="cotizar.total" required type="text" aria-label="Last name" class="form-control">
+                <input #name="ngModel" name="total" [(ngModel)]="cotizar.total" required type="number" aria-label="Last name" class="form-control">
               </div>
               <div class="input-group">
                 <span class="input-group-text"><strong>Costo Adicional:</strong></span>
@@ -114,11 +114,15 @@
               </div>
               <div class="input-group">
                 <span class="input-group-text"><strong>Nota:</strong></span>
-                <textarea class="form-control fst-italic" aria-label="With textarea" placeholder="Ingresar una nota si lo requiere"></textarea>
+                <textarea name="nota" class="form-control fst-italic" aria-label="With textarea" placeholder="Ingresar una nota si lo requiere"></textarea>
               </div>
               <div class="input-group">
-                <!--<button data-bs-toggle="modal" data-bs-target="#exampleModalToggle2" class="btn btn-primary" id="enviar" type="submit" [disabled]="!form.valid">Agregar Cotización</button>-->
-                <button class="btn btn-primary" id="enviar" type="submit" [disabled]="!form.valid">Agregar Cotización</button>
+                <span class="input-group-text"><strong>Fecha del plazo de la cotización:</strong></span>
+                <input  name="vence" type="date" id="fechaVencimiento" [(ngModel)]="fechaVencimiento">
+              </div>
+              <div class="input-group">
+                <button data-bs-toggle="modal" data-bs-target="#exampleModalToggle2" class="btn btn-primary" id="enviar" type="submit" [disabled]="!form.valid">Agregar Cotización</button>
+                <!--<button class="btn btn-primary" id="enviar" type="submit" [disabled]="!form.valid">Agregar Cotización</button>-->
               </div>
               <br>
             </form>

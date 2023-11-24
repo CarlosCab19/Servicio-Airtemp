@@ -18,15 +18,16 @@ export class VistaAnalistaComponent implements OnInit{
   //
   verporCotizar:boolean=true;
   verCotizados:boolean=false;
-  id:string="";
+  verAprobadas:boolean=false;
+  id:string='';
   analista!:Personal;
-  idAnalista:string="";
+  idAnalista:string='';
   datosAnalista:string='';
   solicitudes:Solicitud[]=[];
   solicitudesN!:Solicitud;
 
   formCotizacion:boolean=false;
-  idSolicitud:string="";
+  idSolicitud:string='';
 
   form = new FormGroup({
     estatus:  new FormControl('Cotizando', [ Validators.required]),
@@ -71,17 +72,27 @@ export class VistaAnalistaComponent implements OnInit{
     this.verporCotizar=valor;
     this.verCotizados=!valor;
     this.formCotizacion=!valor;
+    this.verAprobadas=!valor;
     this.closeOffcanvas();
   }
   Cotizadas(valor:boolean){
     this.verCotizados=valor;
     this.verporCotizar=!valor;
     this.formCotizacion=!valor;
+    this.verAprobadas=!valor;
+    this.closeOffcanvas();
+  }
+  aprobadas(valor:boolean){
+    console.log(valor);
+    this.verAprobadas=valor;
+    this.verCotizados=!valor;
+    this.verporCotizar=!valor;
+    this.formCotizacion=!valor;
     this.closeOffcanvas();
   }
 
   salir(){
-    this.router.navigateByUrl('/inicio');
+    this.router.navigate(['/inicio']);
   }
 
 }

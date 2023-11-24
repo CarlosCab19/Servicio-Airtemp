@@ -35,11 +35,13 @@ export class RealizarCotizacionComponent implements OnInit{
   familia:string='';
   material!:Material;
   familiaN!:Familia;
+  fechaVencimiento: string = '';
 
   archivoParaSubir: File | null = null;
   nombreArchivo:string='';
   idCotizacion:string='';
   tipoMoneda: string=""; // Variable para almacenar el símbolo de la moneda seleccionada.
+
 
   constructor(private cotizacionService:CotizacionService,private materialService:MaterialService,
               private familiaService:FamiliaService, private caracterMaterial:CaractermaterialService,
@@ -168,6 +170,36 @@ export class RealizarCotizacionComponent implements OnInit{
   subirCompro(idCotizacion:string){
     this.idCotizacion=idCotizacion;
   }
+  /*comprobarArchivo() {
+    if (this.archivoParaSubir && this.idCotizacion) {
+      // Primero, verifica si existe un PDF con el ID proporcionado
+      this.comprobanteServi.obtenerPDF(this.idCotizacion).subscribe(
+        existePDF => {
+          if (existePDF) {
+            // Si existe un PDF, haz algo
+            console.log('Ya existe un PDF con este ID. Realizando acción...');
+            // Aquí puedes realizar la acción que desees cuando ya existe un PDF
+            this.eliminarArchivo(this.idCotizacion);
+            this.subirArchivo();
+          }
+        },
+        error => {
+          // Manejar el error HTTP aquí
+          if (error.status === 404) {
+            // Puedes mostrar un mensaje al usuario o realizar alguna acción específica para manejar el error 404
+            console.error('El recurso no se encuentra. Puedes mostrar un mensaje o realizar alguna acción específica.');
+            this.subirArchivo();
+          } else {
+            // Otros códigos de error HTTP
+            console.error('Error al obtener el PDF:', error);
+          }
+        }
+      );
+    } else {
+      console.log('No se seleccionó ningún archivo para subir o falta el idCotizacion.');
+    }
+  }*/
+
   subirArchivo() {
     if (this.archivoParaSubir && this.idCotizacion) {
       this.comprobanteServi.subirArchivo(this.archivoParaSubir, this.idCotizacion).subscribe(res => {
@@ -188,7 +220,13 @@ export class RealizarCotizacionComponent implements OnInit{
       console.log('No se seleccionó ningún archivo para subir o falta el idCotizacion.');
     }
   }
+  eliminarArchivo(id:string){
+    this.comprobanteServi.eliminarArchivo(id).subscribe(res=>{
+      console.log('documento eliminado')
+    })
+  }
   verCompro(id:string){
+    console.log('este es el id: ',id);
     this.comprobanteService.obtenerPDF(id).subscribe((data: Blob) => {
       const fileURL = URL.createObjectURL(data);
       window.open(fileURL, '_blank'); // Esto abrirá el PDF en una nueva pestaña

@@ -1,5 +1,4 @@
-<div class="card">
-  <section *ngIf="tablaPrincipal">
+<section class="card" *ngIf="tablaPrincipal">
     <div class="table-responsive text-center">
       <h2>Cotizaciones Aprobadas</h2>
       <div class="container-fluid my-4">
@@ -27,10 +26,10 @@
                 </tr>
             </tbody>
         </table>
-    </div>
+      </div>
     </div>
   </section>
-  <section *ngIf="descripcionMaterial">
+  <section class="card" *ngIf="descripcionMaterial">
     <div class="table-responsive text-center">
       <section class="close">
         <svg (click)="close(true)" id="close" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="#000000" d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m-3.4 14L12 13.4L8.4 17L7 15.6l3.6-3.6L7 8.4L8.4 7l3.6 3.6L15.6 7L17 8.4L13.4 12l3.6 3.6l-1.4 1.4Z"/></svg>
@@ -55,11 +54,11 @@
                 </tr>
             </tbody>
         </table>
-    </div>
+      </div>
     </div>
   </section>
-</div>
-<!-- Modal -->
+
+<!-- Modal-->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -72,7 +71,6 @@
           <table class="responsive-table table-bordered" style="width:100%" >
             <thead>
               <tr>
-                <!--<th scope="col">#</th>-->
                 <th scope="col">Fabricación</th>
                 <th scope="col">LME</th>
                 <th scope="col">Premium</th>
@@ -84,7 +82,6 @@
             </thead>
             <tbody>
               <tr *ngFor="let cotizaciones of cotizacion">
-                <!--<th>{{cotizaciones.id}}</th>-->
                 <td>{{cotizaciones.fabricacion | currency:monedaSimbolos[cotizaciones.moneda]:'symbol'}}</td>
                 <td>{{cotizaciones.lme | currency:monedaSimbolos[cotizaciones.moneda]:'symbol'}}</td>
                 <td>{{cotizaciones.premium | currency:monedaSimbolos[cotizaciones.moneda]:'symbol'}}</td>
@@ -105,3 +102,4 @@
     </div>
   </div>
 </div>
+

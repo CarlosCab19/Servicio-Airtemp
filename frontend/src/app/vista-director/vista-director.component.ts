@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SolicitudService } from '../services/solicitud.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Solicitud } from '../shared/solicitud';
 import { Personal } from '../shared/personal';
 import { PersonalService } from '../services/personal.service';
@@ -38,7 +38,7 @@ export class VistaDirectorComponent implements OnInit{
   idSolicitud:string='';
 
   constructor(private personalS:PersonalService,private solicitudesS:SolicitudService,private rutaActiva: ActivatedRoute,
-    private materialS:MaterialService,private cotizacionS:CotizacionService,private comprobanteS:ComprobanteService){}
+    private materialS:MaterialService,private cotizacionS:CotizacionService,private comprobanteS:ComprobanteService,private router: Router){}
 
   ngOnInit(): void {
     this.id=this.rutaActiva.snapshot.paramMap.get('id') as string;
@@ -185,6 +185,12 @@ export class VistaDirectorComponent implements OnInit{
       }
     })
   }
+  salir() {
+    // Navegar a la ruta 'inicio'
+    this.router.navigate(['/inicio']);
+  }
+
+
 
   /*estadoAutorizado:string='Autorizado';
   autorizar(id:string){

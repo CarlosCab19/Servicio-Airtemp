@@ -63,6 +63,12 @@ export class SolicitudService {
       catchError(this.errorHandler)
     )
   }
+  getAprobadoAnalista(id:string):Observable<Solicitud[]> {
+    return this.httpClient.get<Solicitud[]>(this.url+'AprobadoAnalista/'+id)
+    .pipe(
+      catchError(this.errorHandler)
+    )
+  }
   getAprobado(): Observable<Solicitud[]> {
     return this.httpClient.get<Solicitud[]>(this.url+'Aprobado')
     .pipe(
@@ -72,6 +78,12 @@ export class SolicitudService {
 
   getList(id:string):Observable<Solicitud[]>{
     return this.httpClient.get<Solicitud[]>(this.url+id)
+    .pipe(
+      catchError(this.errorHandler)
+    )
+  }
+  getListNueva(id:string):Observable<Solicitud[]>{
+    return this.httpClient.get<Solicitud[]>(this.url+'Nueva/'+id)
     .pipe(
       catchError(this.errorHandler)
     )

@@ -8,16 +8,15 @@ import { Material } from 'src/app/shared/material';
 import { Solicitud } from 'src/app/shared/solicitud';
 
 @Component({
-  selector: 'app-aprobado',
-  templateUrl: './aprobado.component.html',
-  styleUrls: ['./aprobado.component.css']
+  selector: 'app-aprobado-a',
+  templateUrl: './aprobado-a.component.html',
+  styleUrls: ['./aprobado-a.component.css']
 })
-export class AprobadoComponent implements OnInit{
-
+export class AprobadoAComponent implements OnInit{
   solicitudes:Solicitud[]=[];
   material:Material[]=[];
   cotizacion:Cotizacion[]=[];
-  @Input() id:string="";
+  @Input() id:string='';
 
   /*para ver las demas tablas*/
   descripcionMaterial:boolean=false;
@@ -27,7 +26,8 @@ export class AprobadoComponent implements OnInit{
     private comprobanteService:ComprobanteService){}
 
   ngOnInit(): void {
-    this.solicitudesS.getAprobadoDirector(this.id).subscribe((data:Solicitud[])=>{
+    console.log('id del analista: ',this.id)
+    this.solicitudesS.getAprobadoAnalista(this.id).subscribe((data:Solicitud[])=>{
       this.solicitudes=data;
     })
   }
