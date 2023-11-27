@@ -30,7 +30,7 @@ export class SoliNuevaComponent implements OnInit{
     /*trae las solicitudes que son de cada usuario*/
     this.solicitudes.getAll().subscribe(response=>{
       response.forEach(element => {
-        if (element.id_usuario==this.idSolicitante) {
+        if (element.id_solicitante==this.idSolicitante) {
           this.solicituds.push(element);
         }
       });

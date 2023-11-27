@@ -38,6 +38,7 @@ export class RealizarCotizacionComponent implements OnInit{
   fechaVencimiento: string = '';
 
   archivoParaSubir: File | null = null;
+  archivoParaEditar: File | null = null;
   nombreArchivo:string='';
   idCotizacion:string='';
   tipoMoneda: string=""; // Variable para almacenar el símbolo de la moneda seleccionada.
@@ -163,6 +164,15 @@ export class RealizarCotizacionComponent implements OnInit{
   manejarArchivoInput(event: any) {
     if (event.target.files && event.target.files.length > 0) {
       this.archivoParaSubir = event.target.files[0];
+      console.log(this.archivoParaSubir);
+    } else {
+      console.log('No se seleccionó ningún archivo.');
+    }
+  }
+  manejarArchivoInput2(event: any) {
+    if (event.target.files && event.target.files.length > 0) {
+      this.archivoParaEditar = event.target.files[0];
+      console.log(this.archivoParaEditar);
     } else {
       console.log('No se seleccionó ningún archivo.');
     }
@@ -170,35 +180,22 @@ export class RealizarCotizacionComponent implements OnInit{
   subirCompro(idCotizacion:string){
     this.idCotizacion=idCotizacion;
   }
-  /*comprobarArchivo() {
-    if (this.archivoParaSubir && this.idCotizacion) {
-      // Primero, verifica si existe un PDF con el ID proporcionado
-      this.comprobanteServi.obtenerPDF(this.idCotizacion).subscribe(
-        existePDF => {
-          if (existePDF) {
-            // Si existe un PDF, haz algo
-            console.log('Ya existe un PDF con este ID. Realizando acción...');
-            // Aquí puedes realizar la acción que desees cuando ya existe un PDF
-            this.eliminarArchivo(this.idCotizacion);
-            this.subirArchivo();
-          }
+  editarArchivo(){
+    if (this.archivoParaEditar && this.idCotizacion) {
+      console.log(this.idCotizacion);
+      this.comprobanteServi.editarArchivo(this.archivoParaEditar, this.idCotizacion).subscribe(
+        res => {
+          console.log('Archivo editado con éxito', res);
+          // Resto del código...
         },
         error => {
-          // Manejar el error HTTP aquí
-          if (error.status === 404) {
-            // Puedes mostrar un mensaje al usuario o realizar alguna acción específica para manejar el error 404
-            console.error('El recurso no se encuentra. Puedes mostrar un mensaje o realizar alguna acción específica.');
-            this.subirArchivo();
-          } else {
-            // Otros códigos de error HTTP
-            console.error('Error al obtener el PDF:', error);
-          }
+          console.error('Error al editar el archivo', error);
         }
       );
     } else {
-      console.log('No se seleccionó ningún archivo para subir o falta el idCotizacion.');
+      console.error('No se seleccionó ningún archivo para editar o falta el idCotizacion.');
     }
-  }*/
+  }
 
   subirArchivo() {
     if (this.archivoParaSubir && this.idCotizacion) {
@@ -232,4 +229,34 @@ export class RealizarCotizacionComponent implements OnInit{
       window.open(fileURL, '_blank'); // Esto abrirá el PDF en una nueva pestaña
     });
   }
+
+  /*comprobarArchivo() {
+    if (this.archivoParaSubir && this.idCotizacion) {
+      // Primero, verifica si existe un PDF con el ID proporcionado
+      this.comprobanteServi.obtenerPDF(this.idCotizacion).subscribe(
+        existePDF => {
+          if (existePDF) {
+            // Si existe un PDF, haz algo
+            console.log('Ya existe un PDF con este ID. Realizando acción...');
+            // Aquí puedes realizar la acción que desees cuando ya existe un PDF
+            this.eliminarArchivo(this.idCotizacion);
+            this.subirArchivo();
+          }
+        },
+        error => {
+          // Manejar el error HTTP aquí
+          if (error.status === 404) {
+            // Puedes mostrar un mensaje al usuario o realizar alguna acción específica para manejar el error 404
+            console.error('El recurso no se encuentra. Puedes mostrar un mensaje o realizar alguna acción específica.');
+            this.subirArchivo();
+          } else {
+            // Otros códigos de error HTTP
+            console.error('Error al obtener el PDF:', error);
+          }
+        }
+      );
+    } else {
+      console.log('No se seleccionó ningún archivo para subir o falta el idCotizacion.');
+    }
+  }*/
 }

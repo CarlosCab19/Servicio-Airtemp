@@ -13,16 +13,16 @@ return new class extends Migration
     {
         Schema::create('solicitud', function (Blueprint $table) {
             $table->id();
-            $table->string('id_usuario');
+            $table->string('id_solicitante');
             $table->string('solicitante');
             $table->string('tipo');
             $table->string('codProv')->nullable();
             $table->string('Rsocial');
             $table->string('NomCliente');
-            $table->string('NumParte');
+            $table->string('NumParte')->nullable();
             $table->string('id_analista')->nullable();
             $table->string('id_director')->nullable();
-            $table->string('vence')->nullable();
+            //$table->string('vence')->nullable();
             $table->string('estatus');
             $table->timestamps();
         });

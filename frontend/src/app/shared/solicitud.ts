@@ -1,6 +1,6 @@
 export interface Solicitud {
   id:string;
-  id_usuario:string;
+  id_solicitante:string;
   solicitante:string;
   tipo:string;
   codProv:string;

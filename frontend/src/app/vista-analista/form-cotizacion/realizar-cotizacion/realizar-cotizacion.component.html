@@ -141,9 +141,17 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <!--{{idCotizacion}}-->
-              <input type="file" (change)="manejarArchivoInput($event)" id="inputArchivo">
-              <button id="subir" (click)="subirArchivo()" data-bs-dismiss="modal">Subir Archivo</button>
+              {{idCotizacion}}
+              <form>
+                <!-- Otros campos del formulario -->
+                <input type="file" (change)="manejarArchivoInput($event)" id="inputArchivo">
+                <button id="subir" (click)="subirArchivo()" data-bs-dismiss="modal">Subir Archivo</button>
+              </form>
+              <form>
+                <!-- Otros campos del formulario -->
+                <input type="file" (change)="manejarArchivoInput2($event)" id="inputArchivo2">
+                <button id="editar" (click)="editarArchivo()" data-bs-dismiss="modal">Subir Archivo Editado</button>
+              </form>
             </div>
             <!--<div class="modal-footer">
               <button class="btn btn-primary" data-bs-dismiss="modal">Back to first</button>

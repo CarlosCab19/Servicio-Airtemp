@@ -11,7 +11,7 @@ class Solicitud extends Model
     protected $table='solicitud';
 
     protected $fillable=[
-        'id_usuario',
+        'id_solicitante',
         'solicitante',
         'tipo',
         'codProv',
@@ -20,7 +20,7 @@ class Solicitud extends Model
         'NumParte',
         'id_analista',
         'id_director',
-        'vence',
+        //'vence',
         'estatus'
     ];
 }

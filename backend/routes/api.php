@@ -99,11 +99,11 @@ Route::prefix('caractermaterial')->group(function () {
 
 Route::prefix('comprobante')->group(function () {
     Route::post('/store', [ComprobanteController::class, 'store']);
+    Route::put('/{id}', [ComprobanteController::class, 'editarArchivo']);
     Route::get('/all',[ ComprobanteController::class, 'getAll']);
     Route::get('/{id}',[ ComprobanteController::class, 'getOne']);
     //Route::get('/{nombre}', [ComprobanteController::class, 'show']);
     Route::get('/id/{id}', [ComprobanteController::class, 'showOne']);
     Route::delete('/delete/{id}', [ComprobanteController::class, 'eliminarArchivo']);
-    Route::get('/update/{id}', [ComprobanteController::class, 'editarArchivo']);
 });
 

@@ -32,7 +32,7 @@ export class FormSolicitudCComponent implements OnInit{
   ngOnInit(): void {
     this.solicitar={
       id:"",
-      id_usuario:this.idUs,
+      id_solicitante:this.idUs,
       solicitante:this.nomResponsable,
       tipo:"",
       codProv:"",
@@ -53,7 +53,7 @@ export class FormSolicitudCComponent implements OnInit{
       console.log('Solicitud realizada');
       const soliCreada = {
         id:res.id,
-        id_usuario:this.idUs,
+        id_solicitante:this.idUs,
         solicitante:this.nomResponsable,
         codProv:element.codProv,
         Rsocial:element.Rsocial,
@@ -67,7 +67,7 @@ export class FormSolicitudCComponent implements OnInit{
 
       this.solicitar={
         id:"",
-        id_usuario:this.idUs,
+        id_solicitante:this.idUs,
         solicitante:this.nomResponsable,
         tipo:'',
         codProv:'',

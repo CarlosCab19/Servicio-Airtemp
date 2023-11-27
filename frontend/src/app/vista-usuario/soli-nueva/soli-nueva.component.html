@@ -15,7 +15,7 @@
           <tbody>
               <tr *ngFor="let solicitud of solicituds">
                   <td>{{solicitud.id}}</td>
-                  <td>{{solicitud.id_usuario}}</td>
+                  <td>{{solicitud.id_solicitante}}</td>
                   <td [ngClass]="{'amarillo': solicitud.estatus === 'Edicion', 'verde': solicitud.estatus !== 'Edicion'}">{{solicitud.estatus}}</td>
 
                   <td><button (click)="masInfo(solicitud.id)">

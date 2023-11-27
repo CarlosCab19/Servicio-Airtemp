@@ -12,7 +12,7 @@ export interface Cotizacion {
   estatus:string,
   selected?: boolean,
 }
-export interface Comprovante{
+export interface Comprobante{
   id:string;
   id_cotizacion:string;
   nombre:string;

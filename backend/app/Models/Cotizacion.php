@@ -20,6 +20,9 @@ class Cotizacion extends Model
         'premium',
         'total',
         'icoterm',
+        'adicional',
+        'nota',
+        'vence',
         'estatus',
     ];
 }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Comprobante;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class ComprobanteController extends Controller
 {
@@ -80,19 +81,43 @@ class ComprobanteController extends Controller
 
         return response()->json(['message' => 'Archivo eliminado exitosamente', 'ruta_eliminada' => $rutaAEliminar, 'nombre_eliminar' => $nombreEliminar], 200);
     }
-    public function editarArchivo($idCotizacion){
-         // Encuentra el archivo por id_cotizacion
-         $comprobante = Comprobante::where('id_cotizacion', $idCotizacion)->first();
+    public function editarArchivo(Request $request, $idCotizacion){
+        // Valida la solicitud
+        $request->validate([
+            'archivo' => 'required|mimes:pdf|max:2048',
+        ]);
+        //var_dump($request->file('archivo'));
 
-         if (!$comprobante) {
-             return response()->json(['message' => 'Archivo no encontrado'], 404);
-         }
-         // Obtén la ruta del archivo
-        $ruta = public_path('comprobantes/' . $comprobante->ruta); //ruta con path
-        $rutaBuscada = $comprobante->ruta; //ruta con la que esta guardada
-         return response()->json(['message' => 'ARCHIVOOO ENCONTRADOOOO', 'nombreee' => $comprobante,'rutaaa'=>$ruta,
-        'rutaaa222'=>$rutaBuscada], 200);
+        // Encuentra el archivo por id_cotizacion
+        $comprobante = Comprobante::where('id_cotizacion', $idCotizacion)->first();
+
+        if (!$comprobante) {
+            return response()->json(['message' => 'Archivo no encontrado'], 404);
+        }
+
+        // Elimina el archivo actual de almacenamiento
+        Storage::delete($comprobante->ruta);
+
+        // Sube el nuevo archivo
+        $nombreNuevo = time() . '_' . $request->file('archivo')->getClientOriginalName();
+        $rutaNueva = $request->file('archivo')->storeAs('comprobantes', $nombreNuevo);
+
+        // Actualiza los datos en la base de datos
+        $comprobante->update([
+            'nombre' => $nombreNuevo,
+            'ruta' => $rutaNueva,
+        ]);
+
+        return response()->json([
+            'message' => 'Archivo actualizado exitosamente',
+            'id_cotizacion' => $comprobante->id_cotizacion,
+            'nombre' => $nombreNuevo,
+            'ruta' => $rutaNueva,
+            'id'=>$idCotizacion,
+            'archivooo'=>$request
+        ], 200);
     }
+
 
     /*public function eliminarArchivo($nombre){
         // Encuentra el archivo por su nombre
