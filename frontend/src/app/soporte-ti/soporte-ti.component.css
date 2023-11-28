@@ -37,13 +37,13 @@ header {
 .menu li :hover{
   color: black;
 }
-.menu li a {
+.menu li i {
   color: white;
   text-decoration: none;
   transition: color 0.3s ease, text-decoration 0.3s ease; /* Transición suave del color y el subrayado durante 0.3 segundos */
   padding: 10px;
 }
-.menu li a :hover{
+.menu li i :hover{
   color: black;
 
 }
@@ -231,3 +231,6 @@ h2{
   color: white;
   /* Color del texto*/
 }
+
+
+/*menu nuevo*/

@@ -11,7 +11,7 @@ export interface Solicitud {
   id_director:string;
   vence:string;
   estatus:string;
-  created_at:Date|string;
+  created_at:string;
   estado?:number;
 }
 

@@ -60,10 +60,13 @@ export class VistaUsuarioComponent implements OnInit{
       // Puedes ajustar la lógica de filtrado según tus necesidades
       return solicitud.id.toString().toLowerCase().includes(valorBusqueda) ||
              solicitud.solicitante.toLowerCase().includes(valorBusqueda) ||
-             solicitud.codProv.toLowerCase().includes(valorBusqueda) ||
-             solicitud.NomCliente.toLowerCase().includes(valorBusqueda);
+             solicitud.tipo.toLowerCase().includes(valorBusqueda) ||
+             //solicitud.codProv.toLowerCase().includes(valorBusqueda) ||
+             solicitud.NomCliente.toLowerCase().includes(valorBusqueda)||
+             solicitud.estatus.toLowerCase().includes(valorBusqueda);
     });
   }
+
   idReci(id_Reci:string){
     this.idSoli=id_Reci;
   }

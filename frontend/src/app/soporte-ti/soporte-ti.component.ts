@@ -1,7 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Personal } from '../shared/personal';
 import { PersonalService } from '../services/personal.service';
 
@@ -9,55 +9,38 @@ import { PersonalService } from '../services/personal.service';
   selector: 'app-soporte-ti',
   templateUrl: './soporte-ti.component.html',
   styleUrls: ['./soporte-ti.component.css'],
-  providers: [DatePipe], // Añade DatePipe a los providers
 })
 export class SoporteTIComponent implements OnInit{
-  nombrePersonal:string="ffgdg";
-  id:string="";
+  nomSoporte:string='';
+  id:string='1';
   personalN!:Personal;
-
+  idSoporte:string='';
   personals:Personal[]=[];
 
 
-  constructor(private personalService:PersonalService,
-     private http:HttpClient,
-     private router:Router,
-     public datePipe: DatePipe){}
+  constructor(private personalService:PersonalService,private rutaActiva: ActivatedRoute){}
 
   ngOnInit(): void {
     this.personalService.getAll().subscribe((data: Personal[])=>{
       this.personals = data;
       /*console.log(this.personals);*/
     });
-    /*this.id=this.rutaActiva.snapshot.paramMap.get('id');*/
+    this.id=this.rutaActiva.snapshot.paramMap.get('id') as string;
     this.personalService.find(this.id).subscribe(response=>{
       this.personalN=response;
-      this.nombrePersonal=response.nombres;
-
+      this.idSoporte=response.id;
+      this.nomSoporte=response.nombres + " " + response.apellidos;
     });
-    /*this.getPersonalActivos();*/
+    this.rutaActiva.url.subscribe(url => {
+      console.log('Ruta activa:', url);
+      // Realizar acciones específicas basadas en la ruta activa
+    });
   }
-  /*getPersonalActivos() {
-    this.personalService.filtrado().subscribe(
-      (data) => {
-        this.personals = data;
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  }*/
-
   deletePerson(id: string){
     this.personalService.delete(id).subscribe(res => {
          this.personals = this.personals.filter(item => item.id !== id);
          console.log('Personal deleted successfully!');
     })
-  }
-
-  // Función para formatear la fecha
-  formatDate(date: Date) {
-    return this.datePipe.transform(date, 'dd/MM/yyyy HH:mm:ss');
   }
 
 }

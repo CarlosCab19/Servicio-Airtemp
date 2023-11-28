@@ -17,6 +17,7 @@ export class AprobadoAComponent implements OnInit{
   material:Material[]=[];
   cotizacion:Cotizacion[]=[];
   @Input() id:string='';
+  @Input() filtroBusqueda:string='';
 
   /*para ver las demas tablas*/
   descripcionMaterial:boolean=false;
@@ -31,6 +32,19 @@ export class AprobadoAComponent implements OnInit{
       this.solicitudes=data;
     })
   }
+  filtrarSolicitudes(): any[] {
+    const valorBusqueda = this.filtroBusqueda.toLowerCase();
+    return this.solicitudes.filter((solicitud) => {
+      // Puedes ajustar la lógica de filtrado según tus necesidades
+      return solicitud.id.toString().toLowerCase().includes(valorBusqueda) ||
+             solicitud.solicitante.toLowerCase().includes(valorBusqueda) ||
+             solicitud.tipo.toLowerCase().includes(valorBusqueda) ||
+             //solicitud.codProv.toLowerCase().includes(valorBusqueda) ||
+             solicitud.NomCliente.toLowerCase().includes(valorBusqueda)||
+             solicitud.estatus.toLowerCase().includes(valorBusqueda);
+    });
+  }
+
   Informacion(id:string){
     this.materialeS.getList(id).subscribe((data:Material[])=>{
       this.material=data;

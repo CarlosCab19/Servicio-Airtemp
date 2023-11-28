@@ -9,13 +9,13 @@
                 <th>Fecha solicitud</th>
                 <th>Nom. Cliente</th>
                 <th>Tipo de solicitud</th>
-                <th>Vencimiento</th>
+                <!--<th>Vencimiento</th>-->
                 <th>Estatus</th>
                 <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of solicitudes" [ngClass]="{'vencida': item.estado === -1, 'proxima-vencer': item.estado === 0}">
+                <tr *ngFor="let item of solicitudes of filtrarSolicitudes()" [ngClass]="{'vencida': item.estado === -1, 'proxima-vencer': item.estado === 0}">
                     <td>{{item.id}}</td>
                     <td>{{item.created_at | date:'dd-MM-yyyy'}}</td>
                     <td>{{item.NomCliente}}</td>

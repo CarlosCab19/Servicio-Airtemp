@@ -80,6 +80,9 @@ export class RealizarCotizacionComponent implements OnInit{
       premium:'',
       total:'',
       icoterm:'',
+      adicional:'',
+      nota:'',
+      vence:'',
       estatus:'',
     };
   }
@@ -102,6 +105,9 @@ export class RealizarCotizacionComponent implements OnInit{
             premium:element.premium,
             total:element.total,
             icoterm:element.icoterm,
+            adicional:element.adicional,
+            nota:element.nota,
+            vence:element.vence,
             estatus:element.estatus,
           }
           this.idCotizacion=res.id;
@@ -117,6 +123,9 @@ export class RealizarCotizacionComponent implements OnInit{
             premium:'',
             total:'',
             icoterm:'',
+            adicional:'',
+            nota:'',
+            vence:'',
             estatus:'',
           };
         });

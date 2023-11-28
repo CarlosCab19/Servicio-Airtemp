@@ -19,6 +19,7 @@ import { SoliNuevaComponent } from './vista-usuario/soli-nueva/soli-nueva.compon
 import { RealizarCotizacionComponent } from './vista-analista/form-cotizacion/realizar-cotizacion/realizar-cotizacion.component';
 import { CotizadoUsuarioComponent } from './vista-usuario/cotizado-usuario/cotizado-usuario.component';
 import { AprobadoAComponent } from './vista-analista/aprobado-a/aprobado-a.component';
+import { SolicitudesComponent } from './soporte-ti/solicitudes/solicitudes.component';
 
 const routes: Routes = [
   {path:'',component:InicioComponent},
@@ -38,7 +39,8 @@ const routes: Routes = [
   {path:'solinueva',component:SoliNuevaComponent},
   {path:'vencidas',component:VencidaComponent},
   {path:'realizar',component:RealizarCotizacionComponent},
-  {path:'ptm',component:AprobadoAComponent},
+  {path:'apro',component:AprobadoAComponent},
+  {path:'solicitudes',component:SolicitudesComponent},
 
 ];
 

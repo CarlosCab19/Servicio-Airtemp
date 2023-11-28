@@ -36,6 +36,8 @@ export class VistaDirectorComponent implements OnInit{
   agregarEstado!:Cotizacion;
   idMaterial:string='';
   idSolicitud:string='';
+  /*para el buscador*/
+  filtroBusqueda: string = '';
 
   constructor(private personalS:PersonalService,private solicitudesS:SolicitudService,private rutaActiva: ActivatedRoute,
     private materialS:MaterialService,private cotizacionS:CotizacionService,private comprobanteS:ComprobanteService,private router: Router){}
@@ -49,6 +51,18 @@ export class VistaDirectorComponent implements OnInit{
     });
     this.solicitudesS.getCotizado().subscribe((data: Solicitud[])=>{
       this.solicitudes = data;
+    });
+  }
+  filtrarSolicitudes(): any[] {
+    const valorBusqueda = this.filtroBusqueda.toLowerCase();
+    return this.solicitudes.filter((solicitud) => {
+      // Puedes ajustar la lógica de filtrado según tus necesidades
+      return solicitud.id.toString().toLowerCase().includes(valorBusqueda) ||
+             solicitud.solicitante.toLowerCase().includes(valorBusqueda) ||
+             solicitud.tipo.toLowerCase().includes(valorBusqueda) ||
+             //solicitud.codProv.toLowerCase().includes(valorBusqueda) ||
+             solicitud.NomCliente.toLowerCase().includes(valorBusqueda)||
+             solicitud.estatus.toLowerCase().includes(valorBusqueda);
     });
   }
   toggleOffcanvas() {
@@ -110,7 +124,8 @@ export class VistaDirectorComponent implements OnInit{
     this.datosCotizacion=!valor;
     this.closeOffcanvas();
   }
-  enviarAutorizado(){
+  enviarAutorizado(idDirector:string){
+    console.log('id del director: ',idDirector);
     this.cotizacionS.getList(this.idMaterial).subscribe((data:Cotizacion[])=>{
       this.cotizacion=data;
       console.log(this.cotizacion);
@@ -136,7 +151,7 @@ export class VistaDirectorComponent implements OnInit{
     })
   }
   // Lógica para desmarcar los demás elementos cuando se marca uno
-  checkChanged(selectedItem: any) {
+  checkChanged(selectedItem: any,idDirector:string) {
     this.cotizacion.forEach(item => {
       if (item !== selectedItem) {
         item.selected = false;
@@ -145,7 +160,7 @@ export class VistaDirectorComponent implements OnInit{
         if (itemToUpdate) {
           itemToUpdate.estatus = 'Rechazado';
         }
-        this.cotizacionS.update(item.id, { estatus: 'Rechazado' }).subscribe(res => {
+        this.cotizacionS.update(item.id, { estatus: 'Rechazado',id_director:idDirector }).subscribe(res => {
           console.log('Cotizaciones rechazadas: ');
         });
       } else {
@@ -155,13 +170,13 @@ export class VistaDirectorComponent implements OnInit{
         if (itemToUpdate) {
           itemToUpdate.estatus = 'Autorizado';
         }
-        this.cotizacionS.update(item.id, { estatus: 'Autorizado' }).subscribe(res => {
+        this.cotizacionS.update(item.id, { estatus: 'Autorizado',id_director:idDirector }).subscribe(res => {
           console.log('Cotizaciones Autorizadas: ');
         });
       }
     });
   }
-  EnviarListoAutorizados(){
+  EnviarListoAutorizados(idDirector:string){
     this.materialS.getList(this.idSolicitud).subscribe((data:Material[])=>{
       this.material=data;
       const tamaño = this.material.length;
@@ -176,7 +191,7 @@ export class VistaDirectorComponent implements OnInit{
       console.log(`Cantidad de materiales con autorización: ${cantidadMaterialesAutorizadas}`);
       if (this.material.length === materialesconAutoricion.length) {
         alert('Autorización enviada');
-        this.solicitudesS.updateDirector(this.idSolicitud,{estatus:'Aprobado',id_director:this.idDirector}).subscribe(res=>{
+        this.solicitudesS.updateDirector(this.idSolicitud,{estatus:'Aprobado',id_director:idDirector}).subscribe(res=>{
           console.log('Solicitud Autorizada');
           window.location.reload();
         })

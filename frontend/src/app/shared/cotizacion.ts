@@ -9,6 +9,9 @@ export interface Cotizacion {
   premium:string;
   total:string;
   icoterm:string;
+  adicional:string;
+  nota:string;
+  vence:string;
   estatus:string,
   selected?: boolean,
 }

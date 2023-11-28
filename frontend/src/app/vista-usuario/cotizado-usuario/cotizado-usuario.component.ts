@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,Input, OnInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ComprobanteService } from 'src/app/services/comprobante.service';
 import { CotizacionService } from 'src/app/services/cotizacion.service';
@@ -24,6 +24,8 @@ export class CotizadoUsuarioComponent implements OnInit{
   vertabla:boolean=true;
   verinformacion:boolean=false;
   infoCotizacion:boolean=false;
+  /*para el filtro*/
+  @Input() filtroBusqueda: string = '';
 
   constructor(private rutaActiva: ActivatedRoute,private solicitudesService:SolicitudService,private materialService:MaterialService,
     private cotizacionService:CotizacionService, private comprobanteService:ComprobanteService,private personalService:PersonalService){}
@@ -38,6 +40,18 @@ export class CotizadoUsuarioComponent implements OnInit{
           console.log('ITEMS: ',item);
         });
       });
+    });
+  }
+  filtrarSolicitudes(): any[] {
+    const valorBusqueda = this.filtroBusqueda.toLowerCase();
+    return this.solicitudes.filter((solicitud) => {
+      // Puedes ajustar la lógica de filtrado según tus necesidades
+      return solicitud.id.toString().toLowerCase().includes(valorBusqueda) ||
+             solicitud.solicitante.toLowerCase().includes(valorBusqueda) ||
+             solicitud.tipo.toLowerCase().includes(valorBusqueda) ||
+             //solicitud.codProv.toLowerCase().includes(valorBusqueda) ||
+             solicitud.NomCliente.toLowerCase().includes(valorBusqueda)||
+             solicitud.estatus.toLowerCase().includes(valorBusqueda);
     });
   }
   verInfoForm(id:string){

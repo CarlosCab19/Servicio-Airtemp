@@ -72,7 +72,7 @@ Route::prefix('cotizacion')->group(function () {
     Route::get('/get/{id}',[ CotizacionController::class, 'get']);
     Route::delete('/{id}',[ CotizacionController::class, 'delete']);
     Route::put('/{id}',[ CotizacionController::class, 'update']);
-    Route::put('/upD/{id}',[ CotizacionController::class, 'updateDirector']);
+    /*Route::put('/upD/{id}',[ CotizacionController::class, 'updateDirector']);*/
 });
 
 Route::prefix('familia')->group(function () {

@@ -9,18 +9,16 @@
              <th>Fecha solicitud</th>
              <th>Nom. Cliente</th>
              <th>Tipo de solicitud</th>
-             <th>Vencimiento</th>
              <th>Estatus</th>
              <th>Acciones</th>
            </tr>
          </thead>
          <tbody>
-             <tr *ngFor="let item of solicitudes" [ngClass]="{'vencida': item.estado === -1, 'proxima-vencer': item.estado === 0}">
+             <tr *ngFor="let item of solicitudes of filtrarSolicitudes()" [ngClass]="{'vencida': item.estado === -1, 'proxima-vencer': item.estado === 0}">
                  <td>{{item.id}}</td>
                  <td>{{item.created_at | date:'dd-MM-yyyy'}}</td>
                  <td>{{item.NomCliente}}</td>
                  <td>{{item.tipo}}</td>
-                 <td>{{item.vence}}</td>
                  <td>{{item.estatus}}</td>
                  <td >
                    <svg id="see" (click)="verInfoForm(item.id)" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 20 20"><path fill="#000000" d="M17 7v4.567a5.793 5.793 0 0 0-6.469 1.009a5.528 5.528 0 0 0-1.098 1.405C9.181 14.451 9 14.983 9 15.5c0 .484.156 1.001.42 1.5H5.5A2.5 2.5 0 0 1 3 14.5V7h14Zm-2.5-4A2.5 2.5 0 0 1 17 5.5V6H3v-.5A2.5 2.5 0 0 1 5.5 3h9Zm0 9c-2.764 0-4.5 2.318-4.5 3.5c0 1.2 1.739 3.5 4.5 3.5s4.5-2.318 4.5-3.5c0-1.2-1.739-3.5-4.5-3.5Zm0 6a2.5 2.5 0 1 1 0-5a2.5 2.5 0 0 1 0 5Zm1.5-2.5a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0Z"/></svg>

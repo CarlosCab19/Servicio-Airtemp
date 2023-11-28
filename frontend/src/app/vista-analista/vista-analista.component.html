@@ -11,9 +11,9 @@
     </span>
     <span class="text">MENU</span>
   </button>
-  <form class="form">
+  <section class="form">
     <label for="search">
-        <input class="input" type="text" required="" placeholder="Buscar" id="search">
+        <input class="input" type="text" required="" placeholder="Buscar" id="search" [(ngModel)]="filtroBusqueda">
         <div class="fancy-bg"></div>
         <div class="search">
             <svg viewBox="0 0 24 24" aria-hidden="true" class="r-14j79pv r-4qtqp9 r-yyyyoo r-1xvli5t r-dnmrzs r-4wgw6l r-f727ji r-bnwqim r-1plcrui r-lrvibr">
@@ -28,7 +28,7 @@
             </svg>
         </button>
     </label>
-</form>
+  </section>
 </nav>
 <div class="offcanvas offcanvas-start" [ngClass]="{ 'show': isOffcanvasOpen }" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
     <div class="offcanvas-header bg-primary">
@@ -73,7 +73,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let solicitudes of solicitudes">
+                    <tr *ngFor="let solicitudes of solicitudes of filtrarSolicitudes()">
                         <td>{{solicitudes.id}}</td>
                         <td>{{solicitudes.created_at | date:'dd-MM-yyyy'}}</td>
                         <td>{{solicitudes.NomCliente}}</td>
@@ -90,10 +90,10 @@
         </div>
       </div>
       <section class="card" *ngIf="verCotizados">
-        <app-por-cotizar></app-por-cotizar> <!--Este es el componente de Cotizados-->
+        <app-por-cotizar [filtroBusqueda]="filtroBusqueda"></app-por-cotizar> <!--Este es el componente de Cotizados-->
       </section>
       <section *ngIf="verAprobadas" >
-        <app-aprobado-a [id]="id"></app-aprobado-a>
+        <app-aprobado-a [id]="id" [filtroBusqueda]="filtroBusqueda"></app-aprobado-a>
       </section>
       <section *ngIf="formCotizacion">
         <app-form-cotizacion [idSolicitud]="idSolicitud" (closeForm)="closeForm($event)"></app-form-cotizacion>
