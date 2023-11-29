@@ -57,8 +57,20 @@ export class SolicitudService {
       catchError(this.errorHandler)
     )
   }
-  getAprovado(): Observable<Solicitud[]> {
-    return this.httpClient.get<Solicitud[]>(this.url+'Aprovado')
+  getAprobadoDirector(id:string):Observable<Solicitud[]> {
+    return this.httpClient.get<Solicitud[]>(this.url+'AprobadoDirector/'+id)
+    .pipe(
+      catchError(this.errorHandler)
+    )
+  }
+  getAprobadoAnalista(id:string):Observable<Solicitud[]> {
+    return this.httpClient.get<Solicitud[]>(this.url+'AprobadoAnalista/'+id)
+    .pipe(
+      catchError(this.errorHandler)
+    )
+  }
+  getAprobado(): Observable<Solicitud[]> {
+    return this.httpClient.get<Solicitud[]>(this.url+'Aprobado')
     .pipe(
       catchError(this.errorHandler)
     )
@@ -70,9 +82,21 @@ export class SolicitudService {
       catchError(this.errorHandler)
     )
   }
+  getListNueva(id:string):Observable<Solicitud[]>{
+    return this.httpClient.get<Solicitud[]>(this.url+'Nueva/'+id)
+    .pipe(
+      catchError(this.errorHandler)
+    )
+  }
 
   update(id: string | null, solicitud: any): Observable<Solicitud> {
     return this.httpClient.put<Solicitud>(this.url + id, JSON.stringify(solicitud), this.httpOptions)
+    .pipe(
+      catchError(this.errorHandler)
+    )
+  }
+  updateDirector(id: string | null, solicitud: any): Observable<Solicitud> {
+    return this.httpClient.put<Solicitud>(this.url + 'update/' + id, JSON.stringify(solicitud), this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )

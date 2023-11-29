@@ -1,6 +1,6 @@
 export interface Solicitud {
   id:string;
-  id_usuario:string;
+  id_solicitante:string;
   solicitante:string;
   tipo:string;
   codProv:string;
@@ -11,7 +11,7 @@ export interface Solicitud {
   id_director:string;
   vence:string;
   estatus:string;
-  created_at:Date|string;
+  created_at:string;
   estado?:number;
 }
 

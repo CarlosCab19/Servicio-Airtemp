@@ -108,5 +108,7 @@ form{
   width: 100%;
   border-bottom: 2px solid rgb(1, 60, 255); /* Puedes ajustar el grosor y color según tus preferencias */
 }
-
+.form-check{
+  display: flex;
+}
 

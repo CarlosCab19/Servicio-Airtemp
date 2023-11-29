@@ -1,0 +1,108 @@
+<section class="card" *ngIf="tablaPrincipal">
+    <div class="table-responsive text-center">
+      <h2>Cotizaciones Aprobadas</h2>
+      <div class="container-fluid my-4">
+        <table class="responsive-table table-bordered" style="width:100%">
+            <thead>
+              <tr>
+                <th>#Solicitud</th>
+                <th>Fecha solicitud</th>
+                <th>Tipo de solicitud</th>
+                <th>Estatus</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let solicitudes of solicitudes of filtrarSolicitudes()">
+                    <td>{{solicitudes.id}}</td>
+                    <td>{{solicitudes.created_at | date:'dd-MM-yyyy'}}</td>
+                    <td>{{solicitudes.tipo}}</td>
+                    <!--<td>{{solicitudes.vence | date:'dd-MM-yyyy'}}</td>-->
+                    <td>{{solicitudes.estatus}}</td>
+                    <td id="acciones">
+                      <svg (click)="Informacion(solicitudes.id)" id="see" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 20 20"><path fill="#000000" d="M17 7v4.567a5.793 5.793 0 0 0-6.469 1.009a5.528 5.528 0 0 0-1.098 1.405C9.181 14.451 9 14.983 9 15.5c0 .484.156 1.001.42 1.5H5.5A2.5 2.5 0 0 1 3 14.5V7h14Zm-2.5-4A2.5 2.5 0 0 1 17 5.5V6H3v-.5A2.5 2.5 0 0 1 5.5 3h9Zm0 9c-2.764 0-4.5 2.318-4.5 3.5c0 1.2 1.739 3.5 4.5 3.5s4.5-2.318 4.5-3.5c0-1.2-1.739-3.5-4.5-3.5Zm0 6a2.5 2.5 0 1 1 0-5a2.5 2.5 0 0 1 0 5Zm1.5-2.5a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0Z"/></svg>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+  <section class="card" *ngIf="descripcionMaterial">
+    <div class="table-responsive text-center">
+      <section class="close">
+        <svg (click)="close(true)" id="close" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="#000000" d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m-3.4 14L12 13.4L8.4 17L7 15.6l3.6-3.6L7 8.4L8.4 7l3.6 3.6L15.6 7L17 8.4L13.4 12l3.6 3.6l-1.4 1.4Z"/></svg>
+      </section>
+      <h2>Datos de la cotización</h2>
+      <div class="container-fluid my-4">
+        <table class="responsive-table table-bordered" style="width:100%">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Descripción del Material</th>
+                <th>Ver caracteristicas</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let material of material">
+                    <td>{{material.id}}</td>
+                    <td>{{material.descripcion}}</td>
+                    <td id="acciones">
+                      <svg (click)="verCotizacion(material.id)" id="see" data-bs-toggle="modal" data-bs-target="#exampleModal" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 20 20"><path fill="#000000" d="M17 7v4.567a5.793 5.793 0 0 0-6.469 1.009a5.528 5.528 0 0 0-1.098 1.405C9.181 14.451 9 14.983 9 15.5c0 .484.156 1.001.42 1.5H5.5A2.5 2.5 0 0 1 3 14.5V7h14Zm-2.5-4A2.5 2.5 0 0 1 17 5.5V6H3v-.5A2.5 2.5 0 0 1 5.5 3h9Zm0 9c-2.764 0-4.5 2.318-4.5 3.5c0 1.2 1.739 3.5 4.5 3.5s4.5-2.318 4.5-3.5c0-1.2-1.739-3.5-4.5-3.5Zm0 6a2.5 2.5 0 1 1 0-5a2.5 2.5 0 0 1 0 5Zm1.5-2.5a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0Z"/></svg>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+<!-- Modal-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-3 fw-bold" id="exampleModalLabel">Cotizaciones</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="table-container">
+          <table class="responsive-table table-bordered" style="width:100%" >
+            <thead>
+              <tr>
+                <th scope="col">Fabricación</th>
+                <th scope="col">LME</th>
+                <th scope="col">Premium</th>
+                <th scope="col">Icoterm</th>
+                <th scope="col">Adicional</th>
+                <th scope="col">Total</th>
+                <!--<th scope="col">Nota</th>-->
+                <th scope="col">Comprobante</th>
+                <th scope="col">Estatus</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let cotizaciones of cotizacion">
+                <td>{{cotizaciones.fabricacion | currency:monedaSimbolos[cotizaciones.moneda]:'symbol'}}</td>
+                <td>{{cotizaciones.lme | currency:monedaSimbolos[cotizaciones.moneda]:'symbol'}}</td>
+                <td>{{cotizaciones.premium | currency:monedaSimbolos[cotizaciones.moneda]:'symbol'}}</td>
+                <td>{{cotizaciones.icoterm | currency:monedaSimbolos[cotizaciones.moneda]:'symbol'}}</td>
+                <td>{{cotizaciones.adicional | currency:monedaSimbolos[cotizaciones.moneda]:'symbol'}}</td>
+                <td>{{cotizaciones.total | currency:monedaSimbolos[cotizaciones.moneda]:'symbol'}}</td>
+                <!--<td>{{cotizaciones.nota}}</td>-->
+                <td>
+                  <svg id="close" (click)="verOne(cotizaciones.id)" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32"><path fill="#909090" d="m24.1 2.072l5.564 5.8v22.056H8.879V30h20.856V7.945L24.1 2.072"/><path fill="#f4f4f4" d="M24.031 2H8.808v27.928h20.856V7.873L24.03 2"/><path fill="#7a7b7c" d="M8.655 3.5h-6.39v6.827h20.1V3.5H8.655"/><path fill="#dd2025" d="M22.472 10.211H2.395V3.379h20.077v6.832"/><path fill="#464648" d="M9.052 4.534H7.745v4.8h1.028V7.715L9 7.728a2.042 2.042 0 0 0 .647-.117a1.427 1.427 0 0 0 .493-.291a1.224 1.224 0 0 0 .335-.454a2.13 2.13 0 0 0 .105-.908a2.237 2.237 0 0 0-.114-.644a1.173 1.173 0 0 0-.687-.65a2.149 2.149 0 0 0-.409-.104a2.232 2.232 0 0 0-.319-.026m-.189 2.294h-.089v-1.48h.193a.57.57 0 0 1 .459.181a.92.92 0 0 1 .183.558c0 .246 0 .469-.222.626a.942.942 0 0 1-.524.114m3.671-2.306c-.111 0-.219.008-.295.011L12 4.538h-.78v4.8h.918a2.677 2.677 0 0 0 1.028-.175a1.71 1.71 0 0 0 .68-.491a1.939 1.939 0 0 0 .373-.749a3.728 3.728 0 0 0 .114-.949a4.416 4.416 0 0 0-.087-1.127a1.777 1.777 0 0 0-.4-.733a1.63 1.63 0 0 0-.535-.4a2.413 2.413 0 0 0-.549-.178a1.282 1.282 0 0 0-.228-.017m-.182 3.937h-.1V5.392h.013a1.062 1.062 0 0 1 .6.107a1.2 1.2 0 0 1 .324.4a1.3 1.3 0 0 1 .142.526c.009.22 0 .4 0 .549a2.926 2.926 0 0 1-.033.513a1.756 1.756 0 0 1-.169.5a1.13 1.13 0 0 1-.363.36a.673.673 0 0 1-.416.106m5.08-3.915H15v4.8h1.028V7.434h1.3v-.892h-1.3V5.43h1.4v-.892"/><path fill="#dd2025" d="M21.781 20.255s3.188-.578 3.188.511s-1.975.646-3.188-.511Zm-2.357.083a7.543 7.543 0 0 0-1.473.489l.4-.9c.4-.9.815-2.127.815-2.127a14.216 14.216 0 0 0 1.658 2.252a13.033 13.033 0 0 0-1.4.288Zm-1.262-6.5c0-.949.307-1.208.546-1.208s.508.115.517.939a10.787 10.787 0 0 1-.517 2.434a4.426 4.426 0 0 1-.547-2.162Zm-4.649 10.516c-.978-.585 2.051-2.386 2.6-2.444c-.003.001-1.576 3.056-2.6 2.444ZM25.9 20.895c-.01-.1-.1-1.207-2.07-1.16a14.228 14.228 0 0 0-2.453.173a12.542 12.542 0 0 1-2.012-2.655a11.76 11.76 0 0 0 .623-3.1c-.029-1.2-.316-1.888-1.236-1.878s-1.054.815-.933 2.013a9.309 9.309 0 0 0 .665 2.338s-.425 1.323-.987 2.639s-.946 2.006-.946 2.006a9.622 9.622 0 0 0-2.725 1.4c-.824.767-1.159 1.356-.725 1.945c.374.508 1.683.623 2.853-.91a22.549 22.549 0 0 0 1.7-2.492s1.784-.489 2.339-.623s1.226-.24 1.226-.24s1.629 1.639 3.2 1.581s1.495-.939 1.485-1.035"/><path fill="#909090" d="M23.954 2.077V7.95h5.633l-5.633-5.873Z"/><path fill="#f4f4f4" d="M24.031 2v5.873h5.633L24.031 2Z"/><path fill="#fff" d="M8.975 4.457H7.668v4.8H8.7V7.639l.228.013a2.042 2.042 0 0 0 .647-.117a1.428 1.428 0 0 0 .493-.291a1.224 1.224 0 0 0 .332-.454a2.13 2.13 0 0 0 .105-.908a2.237 2.237 0 0 0-.114-.644a1.173 1.173 0 0 0-.687-.65a2.149 2.149 0 0 0-.411-.105a2.232 2.232 0 0 0-.319-.026m-.189 2.294h-.089v-1.48h.194a.57.57 0 0 1 .459.181a.92.92 0 0 1 .183.558c0 .246 0 .469-.222.626a.942.942 0 0 1-.524.114m3.67-2.306c-.111 0-.219.008-.295.011l-.235.006h-.78v4.8h.918a2.677 2.677 0 0 0 1.028-.175a1.71 1.71 0 0 0 .68-.491a1.939 1.939 0 0 0 .373-.749a3.728 3.728 0 0 0 .114-.949a4.416 4.416 0 0 0-.087-1.127a1.777 1.777 0 0 0-.4-.733a1.63 1.63 0 0 0-.535-.4a2.413 2.413 0 0 0-.549-.178a1.282 1.282 0 0 0-.228-.017m-.182 3.937h-.1V5.315h.013a1.062 1.062 0 0 1 .6.107a1.2 1.2 0 0 1 .324.4a1.3 1.3 0 0 1 .142.526c.009.22 0 .4 0 .549a2.926 2.926 0 0 1-.033.513a1.756 1.756 0 0 1-.169.5a1.13 1.13 0 0 1-.363.36a.673.673 0 0 1-.416.106m5.077-3.915h-2.43v4.8h1.028V7.357h1.3v-.892h-1.3V5.353h1.4v-.892"/></svg>
+                </td>
+                <td  class="fw-bold" [ngStyle]="{'color': cotizaciones.estatus === 'Autorizado' ? 'blue' : (cotizaciones.estatus === 'Rechazado' ? 'red' : 'black')}">{{cotizaciones.estatus}}</td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+

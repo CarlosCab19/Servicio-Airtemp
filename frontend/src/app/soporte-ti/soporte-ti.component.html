@@ -4,23 +4,23 @@
         <img src="assets\img-logo\Letras_Airtemp.png" alt="Logo">
     </div>
     <nav>
-        <ul class="menu">
+        <!--<ul class="menu">
             <li><a routerLink=""><i class="fa-solid fa-house fa-lg"></i>Inicio</a></li>
             <li><a ><i class="fa-solid fa-bars fa-lg"></i>Menú</a>
               <ul class="submenu">
-                <li><a  routerLink="/"><i class="fa-solid fa-comment-dollar fa-lg"></i>Solicitudes</a></li>
-                <li><a routerLink="/"><i class="fa-solid fa-file-invoice-dollar fa-lg"></i>Aprobadas</a></li>
-                <li><a routerLink="/"><i class="fa-solid fa-filter-circle-dollar fa-lg"></i>Rechazadas</a></li>
-                <li><a routerLink="/"><i class="fa-solid fa-hourglass-end fa-lg"></i>Vencidas</a></li>
+                <li><i class="fa-solid fa-comment-dollar fa-lg"></i>Solicitudes</li>
+                <li><i class="fa-solid fa-file-invoice-dollar fa-lg"></i>Aprobadas</li>
+                <li><i class="fa-solid fa-filter-circle-dollar fa-lg"></i>Rechazadas</li>
+                <li><i class="fa-solid fa-hourglass-end fa-lg"></i>Vencidas</li>
               </ul>
             </li>
             <li><a href="#" routerLink="/inicio"><i class="fa-solid fa-right-from-bracket fa-lg"></i>Salir</a></li>
-        </ul>
+        </ul>-->
     </nav>
 </header>
-<div class="nombres">
-  <p>Nombres:{{nombrePersonal}}</p>
-</div>
+<!--<div class="nombres">
+  <p>Nombres:{{nomSoporte}}</p>
+</div>-->
 
 <div class="card">
   <div class="table-responsive">
@@ -49,7 +49,7 @@
           <tbody>
               <tr *ngFor="let personal of personals">
                   <td>{{personal.id}}</td>
-                  <td>{{ formatDate(personal.created_at) }}</td>
+                  <td>{{personal.created_at | date:'dd-MM-yyyy'}}</td>
                   <td>{{personal.nombres}}</td>
                   <td>{{personal.apellidos}}</td>
                   <td>{{personal.departamento}}</td>

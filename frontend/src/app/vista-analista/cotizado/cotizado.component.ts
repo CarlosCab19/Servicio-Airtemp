@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ComprobanteService } from 'src/app/services/comprobante.service';
 import { CotizacionService } from 'src/app/services/cotizacion.service';
@@ -31,6 +31,9 @@ export class CotizadoComponent implements OnInit{
   idAnalista:string='';
   id:string='';
 
+  /*para el buscador*/
+  @Input() filtroBusqueda: string = '';
+
   ngOnInit(): void {
     this.id=this.rutaActiva.snapshot.paramMap.get('id') as string;
     this.personalService.find(this.id).subscribe(response=>{
@@ -55,6 +58,18 @@ export class CotizadoComponent implements OnInit{
         //}
       });
     });*/
+  }
+  filtrarSolicitudes(): any[] {
+    const valorBusqueda = this.filtroBusqueda.toLowerCase();
+    return this.solicitudes.filter((solicitud) => {
+      // Puedes ajustar la lógica de filtrado según tus necesidades
+      return solicitud.id.toString().toLowerCase().includes(valorBusqueda) ||
+             solicitud.solicitante.toLowerCase().includes(valorBusqueda) ||
+             solicitud.tipo.toLowerCase().includes(valorBusqueda) ||
+             //solicitud.codProv.toLowerCase().includes(valorBusqueda) ||
+             solicitud.NomCliente.toLowerCase().includes(valorBusqueda)||
+             solicitud.estatus.toLowerCase().includes(valorBusqueda);
+    });
   }
   verInfoForm(id:string){
     //this.idSolicitud=id;

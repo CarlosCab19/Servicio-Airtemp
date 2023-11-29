@@ -9,9 +9,13 @@ export interface Cotizacion {
   premium:string;
   total:string;
   icoterm:string;
+  adicional:string;
+  nota:string;
+  vence:string;
   estatus:string,
+  selected?: boolean,
 }
-export interface Comprovante{
+export interface Comprobante{
   id:string;
   id_cotizacion:string;
   nombre:string;

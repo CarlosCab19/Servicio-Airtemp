@@ -44,12 +44,16 @@ Route::prefix('solicitud')->group(function () {
     Route::get('/Cotizado',[ SolicitudController::class, 'getCotizado']);
     Route::get('/CotizadoAnalista/{id}',[ SolicitudController::class, 'getCotizadoAnalista']);
     Route::get('/CotizadoUsuario/{id}',[ SolicitudController::class, 'getCotizadoUsuario']);
-    Route::get('/Aprovado',[ SolicitudController::class, 'getAprovado']);
+    Route::get('/Aprobado',[ SolicitudController::class, 'getAprobado']);
+    Route::get('/AprobadoDirector/{id}',[ SolicitudController::class, 'getAprobadoDirector']);
+    Route::get('/AprobadoAnalista/{id}',[ SolicitudController::class, 'getAprobadoAnalista']);
     Route::get('/{id}',[SolicitudController::class,'getList']);
+    Route::get('/Nueva/{id}',[SolicitudController::class,'getListNueva']);
     Route::post('/',[ SolicitudController::class, 'create']);
     Route::delete('/{id}',[ SolicitudController::class, 'delete']);
     Route::get('/get/{id}',[ SolicitudController::class, 'get']);
     Route::put('/{id}',[ SolicitudController::class, 'update']);
+    Route::put('/update/{id}',[ SolicitudController::class, 'updateDirector']);
 });
 /*Route::apiResource('material',MaterialController::class);*/
 Route::prefix('material')->group(function () {
@@ -68,7 +72,7 @@ Route::prefix('cotizacion')->group(function () {
     Route::get('/get/{id}',[ CotizacionController::class, 'get']);
     Route::delete('/{id}',[ CotizacionController::class, 'delete']);
     Route::put('/{id}',[ CotizacionController::class, 'update']);
-    Route::put('/upD/{id}',[ CotizacionController::class, 'updateDirector']);
+    /*Route::put('/upD/{id}',[ CotizacionController::class, 'updateDirector']);*/
 });
 
 Route::prefix('familia')->group(function () {
@@ -95,6 +99,7 @@ Route::prefix('caractermaterial')->group(function () {
 
 Route::prefix('comprobante')->group(function () {
     Route::post('/store', [ComprobanteController::class, 'store']);
+    Route::put('/{id}', [ComprobanteController::class, 'editarArchivo']);
     Route::get('/all',[ ComprobanteController::class, 'getAll']);
     Route::get('/{id}',[ ComprobanteController::class, 'getOne']);
     //Route::get('/{nombre}', [ComprobanteController::class, 'show']);

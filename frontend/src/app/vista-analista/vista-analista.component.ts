@@ -18,19 +18,18 @@ export class VistaAnalistaComponent implements OnInit{
   //
   verporCotizar:boolean=true;
   verCotizados:boolean=false;
-  id:string="";
+  verAprobadas:boolean=false;
+  id:string='';
   analista!:Personal;
-  idAnalista:string="";
+  idAnalista:string='';
   datosAnalista:string='';
   solicitudes:Solicitud[]=[];
   solicitudesN!:Solicitud;
 
   formCotizacion:boolean=false;
-  idSolicitud:string="";
+  idSolicitud:string='';
 
-  form = new FormGroup({
-    estatus:  new FormControl('Cotizando', [ Validators.required]),
-  })
+  @Input() filtroBusqueda: string = '';
 
   constructor(private router: Router,private rutaActiva: ActivatedRoute,private personalService:PersonalService,
     private solicitudesService:SolicitudService){}
@@ -48,6 +47,19 @@ export class VistaAnalistaComponent implements OnInit{
       //console.log(data);
     });
   }
+  filtrarSolicitudes(): any[] {
+    const valorBusqueda = this.filtroBusqueda.toLowerCase();
+    return this.solicitudes.filter((solicitud) => {
+      // Puedes ajustar la lógica de filtrado según tus necesidades
+      return solicitud.id.toString().toLowerCase().includes(valorBusqueda) ||
+             solicitud.solicitante.toLowerCase().includes(valorBusqueda) ||
+             solicitud.tipo.toLowerCase().includes(valorBusqueda) ||
+             //solicitud.codProv.toLowerCase().includes(valorBusqueda) ||
+             solicitud.NomCliente.toLowerCase().includes(valorBusqueda)||
+             solicitud.estatus.toLowerCase().includes(valorBusqueda);
+    });
+  }
+
   toggleOffcanvas() {
     this.isOffcanvasOpen = !this.isOffcanvasOpen;
   }
@@ -71,17 +83,27 @@ export class VistaAnalistaComponent implements OnInit{
     this.verporCotizar=valor;
     this.verCotizados=!valor;
     this.formCotizacion=!valor;
+    this.verAprobadas=!valor;
     this.closeOffcanvas();
   }
   Cotizadas(valor:boolean){
     this.verCotizados=valor;
     this.verporCotizar=!valor;
     this.formCotizacion=!valor;
+    this.verAprobadas=!valor;
+    this.closeOffcanvas();
+  }
+  aprobadas(valor:boolean){
+    console.log(valor);
+    this.verAprobadas=valor;
+    this.verCotizados=!valor;
+    this.verporCotizar=!valor;
+    this.formCotizacion=!valor;
     this.closeOffcanvas();
   }
 
   salir(){
-    this.router.navigateByUrl('/inicio');
+    this.router.navigate(['/inicio']);
   }
 
 }

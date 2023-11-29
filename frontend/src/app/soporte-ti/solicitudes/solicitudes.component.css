@@ -1,0 +1,101 @@
+/* Importa Font Awesome */
+@import "~@fortawesome/fontawesome-free/css/all.min.css";
+
+.btnNav {
+  width: 150px;
+  height: 50px;
+  border-radius: 5px;
+  border: none;
+  transition: all 0.5s ease-in-out;
+  font-size: 20px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  background: #005ba2;
+  color: #f5f5f5;
+  margin: 10px;
+}
+
+.btnNav:hover {
+  box-shadow: 0 0 20px 0px #2e2e2e3a;
+}
+
+.btnNav .icon {
+  position: absolute;
+  height: 40px;
+  width: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s;
+}
+
+.btnNav .text {
+  transform: translateX(55px);
+}
+
+.btnNav:hover .icon {
+  width: 175px;
+}
+
+.btnNav:hover .text {
+  transition: all 0.5s;
+  opacity: 0;
+}
+
+.btnNav:focus {
+  outline: none;
+}
+
+.btnNav:active .icon {
+  transform: scale(0.85);
+}
+.offcanvas-header{
+  height: 86px;
+}
+.logo{
+  height: 100%;
+  width: 75%;
+}
+.offcanvas-body{
+  display: grid;
+  grid-template-rows: repeat(8,1fr);
+}
+
+/*btn del menu (Solicitudes,cotizadas,Rechazadas */
+#btn-menu {
+  border: none;
+  display: flex;
+  padding: 0.75rem 1.5rem;
+  background-color: #488aec;
+  color: #000000;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  vertical-align: middle;
+  align-items: center;
+  border-radius: 0.5rem;
+  user-select: none;
+  gap: 0.75rem;
+  box-shadow: 0 4px 6px -1px #488aec31, 0 2px 4px -1px #488aec17;
+  transition: all .6s ease;
+  height: 50px;
+}
+
+#btn-menu:hover {
+  box-shadow: 0 10px 15px -3px #488aecd7, 0 4px 6px -2px #488aeca9;
+  color: #ffffff;
+}
+
+#btn-menu:focus,button:active {
+  opacity: .85;
+  box-shadow: none;
+}
+
+#btn-menu svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
