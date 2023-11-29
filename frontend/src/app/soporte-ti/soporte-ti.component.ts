@@ -18,6 +18,7 @@ export class SoporteTIComponent implements OnInit{
   personals:Personal[]=[];
 
 
+
   constructor(private personalService:PersonalService,private rutaActiva: ActivatedRoute){}
 
   ngOnInit(): void {
@@ -30,10 +31,6 @@ export class SoporteTIComponent implements OnInit{
       this.personalN=response;
       this.idSoporte=response.id;
       this.nomSoporte=response.nombres + " " + response.apellidos;
-    });
-    this.rutaActiva.url.subscribe(url => {
-      console.log('Ruta activa:', url);
-      // Realizar acciones específicas basadas en la ruta activa
     });
   }
   deletePerson(id: string){
