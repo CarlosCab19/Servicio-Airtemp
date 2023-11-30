@@ -16,6 +16,8 @@ export class SoporteTIComponent implements OnInit{
   personalN!:Personal;
   idSoporte:string='';
   personals:Personal[]=[];
+  /*para el buscador*/
+  filtroBusqueda: string = '';
 
 
 
@@ -38,6 +40,18 @@ export class SoporteTIComponent implements OnInit{
          this.personals = this.personals.filter(item => item.id !== id);
          console.log('Personal deleted successfully!');
     })
+  }
+  filtrarPersonal(): any[] {
+    const valorBusqueda = this.filtroBusqueda.toLowerCase();
+    return this.personals.filter((personal) => {
+      // Puedes ajustar la lógica de filtrado según tus necesidades
+      return personal.id.toString().toLowerCase().includes(valorBusqueda) ||
+             personal.nombres.toLowerCase().includes(valorBusqueda) ||
+             personal.apellidos.toLowerCase().includes(valorBusqueda) ||
+             personal.departamento.toLowerCase().includes(valorBusqueda) ||
+             personal.usuario.toLowerCase().includes(valorBusqueda) ||
+             personal.estatus.toLowerCase().includes(valorBusqueda);
+    });
   }
 
 }
