@@ -3,12 +3,9 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  /*background-color: rgba(104, 194, 247, 0.979);
-  border-radius: 5px;*/
 }
 
 .container > * {
-  /*box-shadow: -1px 1px 7px 0px rgb(0, 0, 0);*/
   background-color: rgba(104, 194, 247, 0.979);
   border-radius: 10px;
   padding: 10px;
@@ -57,12 +54,6 @@ ul{
 }
 .modal-title{
   font-weight: bold;
-}
-
-@media (max-width: 768px) {
-  .container > * {
-    width: 100%; /* Cambia a una columna en pantallas más pequeñas */
-  }
 }
 
 .modal-body {
@@ -119,15 +110,12 @@ li {
 }
 
 table {
-  /*width: 100%;
-  max-width: 100%;*/
   margin-bottom: 1rem;
   border-collapse: collapse;
 }
 
 th, td {
   padding: 0.75rem;
-  /*text-align: center;*/
   border: 1px solid #9a9a9b;
   width: 500px;
 }
@@ -143,6 +131,9 @@ th {
   /* Estilos adicionales para dispositivos más pequeños */
   th, td {
     font-size: 12px; /* Ajusta el tamaño de la fuente para dispositivos pequeños */
+  }
+  .container > * {
+    width: 100%; /* Cambia a una columna en pantallas más pequeñas */
   }
 }
 input[type="date"] {

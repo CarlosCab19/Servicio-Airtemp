@@ -83,6 +83,9 @@ h2{
     margin-left: 50px;
     width: 80%;
   }
+  .table-container th, td {
+    font-size: 12px; /* Ajusta el tamaño de la fuente para dispositivos pequeños */
+  }
 
 }
 
@@ -368,12 +371,6 @@ input:-webkit-autofill:active {
   z-index: 1;
 }
 
-@media (max-width: 768px) {
-  /* Estilos adicionales para dispositivos más pequeños */
-  .table-container th, td {
-    font-size: 12px; /* Ajusta el tamaño de la fuente para dispositivos pequeños */
-  }
-}
 #accion{
   display: flex;
   justify-content: center;
@@ -396,11 +393,7 @@ input:-webkit-autofill:active {
   cursor: pointer;
 
 }
-/*#controles{
-  display: flex;
-  height: 80px;
-  gap: 10px;
-}*/
+
 .enviar{
   margin-top: 10px;
   display: flex;

@@ -1,5 +1,4 @@
-import { DatePipe } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Personal } from '../shared/personal';
@@ -26,7 +25,6 @@ export class SoporteTIComponent implements OnInit{
   ngOnInit(): void {
     this.personalService.getAll().subscribe((data: Personal[])=>{
       this.personals = data;
-      /*console.log(this.personals);*/
     });
     this.id=this.rutaActiva.snapshot.paramMap.get('id') as string;
     this.personalService.find(this.id).subscribe(response=>{
@@ -44,7 +42,6 @@ export class SoporteTIComponent implements OnInit{
   filtrarPersonal(): any[] {
     const valorBusqueda = this.filtroBusqueda.toLowerCase();
     return this.personals.filter((personal) => {
-      // Puedes ajustar la lógica de filtrado según tus necesidades
       return personal.id.toString().toLowerCase().includes(valorBusqueda) ||
              personal.nombres.toLowerCase().includes(valorBusqueda) ||
              personal.apellidos.toLowerCase().includes(valorBusqueda) ||

@@ -1,15 +1,13 @@
 import { DatePipe } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
 import { SolicitudService } from 'src/app/services/solicitud.service';
-import { Personal } from 'src/app/shared/personal';
 import { Solicitud } from 'src/app/shared/solicitud';
 
 @Component({
   selector: 'app-soli-nueva',
   templateUrl: './soli-nueva.component.html',
   styleUrls: ['./soli-nueva.component.css'],
-  providers: [DatePipe], // Añade DatePipe a los providers
-  /*changeDetection: ChangeDetectionStrategy.OnPush,*/
+  providers: [DatePipe],
 })
 export class SoliNuevaComponent implements OnInit{
   @Input() idSolicitante:string="";

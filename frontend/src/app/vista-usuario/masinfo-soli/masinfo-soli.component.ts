@@ -1,6 +1,5 @@
 import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CaracterService } from 'src/app/services/caracter.service';
 import { CaractermaterialService } from 'src/app/services/caractermaterial.service';
@@ -10,8 +9,6 @@ import { SolicitudService } from 'src/app/services/solicitud.service';
 import { Caracteristica, Caractermaterial, Familia, Material } from 'src/app/shared/material';
 import { Solicitud } from 'src/app/shared/solicitud';
 
-import Swal from 'sweetalert2'
-
 @Component({
   selector: 'app-masinfo-soli',
   templateUrl: './masinfo-soli.component.html',
@@ -19,18 +16,18 @@ import Swal from 'sweetalert2'
   providers: [DatePipe],
 })
 export class MasinfoSoliComponent implements OnInit{
-
+  //Valores que se reciben y se mandan del componente principal
   @Input() idSolicitud:string="";
   @Input() responsable:string="";
   @Output() newClose = new EventEmitter<boolean>();
   @Output() newEnviar = new EventEmitter<boolean>();
-
+  //Variables para la solicitud
   Rsocial:string="";
   codiProv:string="";
   nomClien:string="";
   numParte:string="";
   Estatus:string="";
-
+  //variables,arreglos para guardar y hacer consultas de la informacion de cada solicitud
   familia:Familia[]=[];
   familiaN!:Familia;
   familiaNombre:string="";
@@ -65,13 +62,8 @@ export class MasinfoSoliComponent implements OnInit{
     this.materialService.getList(this.idSolicitud).subscribe((data: Material[])=>{
       this.material = data;
     });
-    /*this.materialService.getList(this.idSolicitud)
-        .subscribe(caracteristicas => {
-          this.material = caracteristicas;
-        });*/
-
+    //se recuperan los datos de la solicitud
     this.solicitudService.find(this.idSolicitud).subscribe(response=>{
-      //console.log('entro en donde se recuperan los datos de la solicitud')
       this.solicitud=response;
       this.codiProv=response.codProv;
       this.Rsocial=response.Rsocial;
@@ -79,9 +71,11 @@ export class MasinfoSoliComponent implements OnInit{
       this.numParte=response.NumParte;
       this.Estatus=response.estatus;
     });
+    //se obtienne las familias a los que puede pertenecer cada material
     this.familiaService.getAll().subscribe((data:Familia[])=>{
       this.familia=data;
     });
+    //interfaz para solicitar el material
     this.solicitar={
       id:"",
       id_solicitud:this.idSolicitud,
@@ -90,10 +84,7 @@ export class MasinfoSoliComponent implements OnInit{
       estatus:"",
     };
   }
-  verAgregar(valor:boolean){
-    this.agregar=valor;
-    this.verPrincipal=!valor;
-  }
+  //Metodos para la interaccion de los componentes
   verCaracteristicas(valor:boolean,id:string){
     /*this.caracterForm = valor;
     this.agregar =!valor;*/
@@ -112,10 +103,11 @@ export class MasinfoSoliComponent implements OnInit{
     this.valorForm=!estado;
     this.verPrincipal=estado;
   }
+  //se obtiene las caracteristicas de cada material
   obtenerCaracteristicas(event: any) {
     const familiaId = event.target.value; // Obtiene el valor seleccionado
     if (familiaId) {
-      // Realiza una llamada a tu servicio o base de datos para obtener las características
+      // Realiza una llamada al servicio o a la base de datos para obtener las características
       this.caracteristicaService.getList(familiaId)
         .subscribe(data => {
           this.caracteristicas = data;
@@ -124,12 +116,11 @@ export class MasinfoSoliComponent implements OnInit{
       this.caracteristicas = []; // Limpia las características si no se selecciona una familia
     }
   }
-
+//Metodo que agrega un material nuevo
   submit(element:Material){
     this.materialService.create(this.solicitar).subscribe(res=>{
       console.log('Material Agregado');
-      //const materialId = res.id; // Accede al ID bajo la clave 'material_id'
-      //console.log('ID del material creado:', materialId);
+      //interfaz nueva donde se junta los datos del material creado
       const materialCreado = {
         id:res.id,
         id_solicitud:this.idSolicitud,
@@ -137,8 +128,7 @@ export class MasinfoSoliComponent implements OnInit{
         familia:element.familia,
         estatus:element.estatus,
       };
-      /*this.idMaterial=res.id; este era el problema que tardaba en mandarse el id*/
-      console.log('Este es el id del material que cree: ',res.id)
+      //console.log('Este es el id del material que cree: ',res.id);
       this.material.push(materialCreado);
       this.solicitar={
         id:"",
@@ -150,6 +140,7 @@ export class MasinfoSoliComponent implements OnInit{
       this.verCaracteristicas(true,res.id);
     });
   }
+  //metodo para agregar caracteristicas a cada material
   seleccionarCaracteristica(items: any) {
     this.agregarCaracter={
       id:'',
@@ -158,14 +149,14 @@ export class MasinfoSoliComponent implements OnInit{
       valor:'',
       estatus:'Nuevo',
     }
-    console.log('elemento selecionado: ',items.caracteristica);
+    //console.log('elemento selecionado: ',items.caracteristica);
     this.caracterMaterial.getList(this.idMaterial).subscribe(data=>{
       this.caracterDelMaterial=data;
-      console.log('caracteristicas que tiene el material: ',data);
+      //console.log('caracteristicas que tiene el material: ',data);
       // Verificar si la característica ya existe en el arreglo
       const existe = this.caracterDelMaterial.some(caracter => caracter.caracteristica === items.caracteristica);
       if (!existe) {
-        // Si no existe, entonces la agregamos
+        // Si no existe esa caracteristica, entonces la agregamos
         this.caracterMaterial.create(this.agregarCaracter).subscribe(res=>{
           console.log('caracteristica agregada');
           const caracterAgregado ={
@@ -177,8 +168,8 @@ export class MasinfoSoliComponent implements OnInit{
         });
       } else {
         // Si ya existe, mostramos un mensaje
-        console.log('La característica ya existe y no se agregará.');
-        alert('La característica ya existe y no se agregará.')
+        //console.log('La característica ya existe y no se agregará.');
+        alert('La característica ya se encuentra agregada');
       }
     });
   }
@@ -186,8 +177,8 @@ export class MasinfoSoliComponent implements OnInit{
   AbrirMaterial(id:string,idfam:string){
     this.caracterForm=true;
     this.verPrincipal=false;
-    console.log('este es el id del material: ',id);
-    console.log('este es el id de la familia: ',idfam);
+    /*console.log('este es el id del material: ',id);
+    console.log('este es el id de la familia: ',idfam);*/
     this.idMaterial=id;
     this.caracteristicaService.getList(idfam).subscribe(data=>{
       this.caracteristicas=data;
@@ -200,6 +191,7 @@ export class MasinfoSoliComponent implements OnInit{
   addNewClose(value:boolean){
     this.newClose.emit(value);
   }
+  //metodo para eliminar los materiales agregados
   eliminar(idMaterial:string|number){
     this.caracterMaterial.delete(idMaterial).subscribe(res=>{
       this.caracterDelMaterial = this.caracterDelMaterial.filter(item => item.id !== idMaterial);
@@ -207,8 +199,9 @@ export class MasinfoSoliComponent implements OnInit{
     })
   }
   inputValue: string = '';
+  //Metodo para agregar los valores a cada caracteristica
   addValor(idvalor: string) {
-    console.log('le pondré valor a:', idvalor);
+    //console.log('le pondré valor a:', idvalor);
     // Encuentra el elemento en caracterDelMaterial con el ID correspondiente
     const itemToUpdate = this.caracterDelMaterial.find(item => item.id === idvalor);
     if (itemToUpdate) {
@@ -235,27 +228,25 @@ export class MasinfoSoliComponent implements OnInit{
     return true; // Si todas las filas tienen campos llenos, devuelve verdadero
   }
 
-
+  //Metodo para enviar la solicitud con los materiales y sus caracteristicas agregadas
   EnviarSoli(value:boolean){
     this.materialService.getList(this.idSolicitud).subscribe((data: Material[])=>{
       this.material = data;
-      // Verifica si el arreglo this.material está vacío
+      // Verifica si el arreglo this.material está vacío para decidir si se envia o no
       if (this.material.length === 0) {
-        console.log('El arreglo this.material está vacío.');
-        alert('Sin materiales, Agregar al menos uno');
+        //console.log('El arreglo this.material está vacío.');
+        alert('Sin materiales, agregar al menos uno');
       } else {
-        console.log('El arreglo this.material no está vacío y contiene elementos.');
+        //console.log('El arreglo this.material no está vacío y contiene elementos.');
         this.solicitudService.update(this.idSolicitud,{estatus:'Nueva'}).subscribe(res => {
-          console.log('Enviado');
+          //console.log('Enviado');
           alert('Solicitud Enviada');
           this.newEnviar.emit(value);
         });
       }
     });
   }
-  /*masMaterial(){
-    this.addMaterial=!this.addMaterial;
-  }*/
+  //para cerrar cada componente o formulario
   cerrar(valor:boolean){
     this.newEnviar.emit(valor);
   }

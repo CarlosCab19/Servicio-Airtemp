@@ -35,11 +35,9 @@ export class AprobadoComponent implements OnInit{
   filtrarSolicitudes(): any[] {
     const valorBusqueda = this.filtroBusqueda.toLowerCase();
     return this.solicitudes.filter((solicitud) => {
-      // Puedes ajustar la lógica de filtrado según tus necesidades
       return solicitud.id.toString().toLowerCase().includes(valorBusqueda) ||
              solicitud.solicitante.toLowerCase().includes(valorBusqueda) ||
              solicitud.tipo.toLowerCase().includes(valorBusqueda) ||
-             //solicitud.codProv.toLowerCase().includes(valorBusqueda) ||
              solicitud.NomCliente.toLowerCase().includes(valorBusqueda)||
              solicitud.estatus.toLowerCase().includes(valorBusqueda);
     });

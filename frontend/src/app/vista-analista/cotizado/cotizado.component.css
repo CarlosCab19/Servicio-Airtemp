@@ -32,17 +32,6 @@ body {
   background-color: #87CEEB;
   color: #000000;
 }
-/*.table th {
-  background-color: #0f8dbe;
-  color: #fff;
-}*/
-/*.responsive-table tbody tr:nth-child(even) {
-  background-color: #f2f2f2;
-}*/
-
-/*.responsive-table tbody tr:hover {
-  background-color: #ddd;
-}*/
 
 /*estilos para el titulo*/
 h2{
@@ -62,7 +51,6 @@ h2{
 .vencida {
   background-color: #ff0000a8; /* Cambia el color de fondo a rojo claro */
   color: #000000; /* Cambia el color de texto a rojo oscuro */
-  /*font-weight: bold; /* Hace que el texto sea más llamativo */
 }
 
 /* Estilo para filas próximas a vencer (fondo amarillo) */

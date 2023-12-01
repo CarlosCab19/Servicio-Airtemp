@@ -57,7 +57,6 @@ export class SolicitudesComponent implements OnInit{
   filtrarSolicitudes(): any[] {
     const valorBusqueda = this.filtroBusqueda.toLowerCase();
     return this.solicitudes.filter((solicitud) => {
-      // Puedes ajustar la lógica de filtrado según tus necesidades
       return solicitud.id.toString().toLowerCase().includes(valorBusqueda) ||
              solicitud.solicitante.toLowerCase().includes(valorBusqueda) ||
              solicitud.tipo.toLowerCase().includes(valorBusqueda) ||
@@ -107,7 +106,7 @@ export class SolicitudesComponent implements OnInit{
       // Actualiza el estatus en el servidor
       this.solicitudesS.updateSoporte(id, { estatus: nuevoEstatus }).subscribe(
         (res: any) => {
-          console.log('Estatus actualizado', res);
+          //console.log('Estatus actualizado', res);
         },
         error => {
           console.error('Error al actualizar el estatus', error);
@@ -161,7 +160,7 @@ export class SolicitudesComponent implements OnInit{
     /*para buscar la informacion del material*/
     this.materialS.getList(id).subscribe((data:Material[])=>{
       this.materiales=data;
-      console.log('Materiales:',data)
+      //console.log('Materiales:',data)
     })
   }
   cotizacion(id:string){
@@ -172,7 +171,7 @@ export class SolicitudesComponent implements OnInit{
       // Si el acordeón está cerrado, ábrelo
       this.acordeonAbierto = id;
     }
-    console.log('id del material:',id);
+    //console.log('id del material:',id);
     this.cotizacionS.getList(id).subscribe((data:Cotizacion[])=>{
       this.cotizaciones=data;
     })

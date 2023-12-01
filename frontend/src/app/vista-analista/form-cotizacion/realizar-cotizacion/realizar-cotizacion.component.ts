@@ -22,7 +22,7 @@ export class RealizarCotizacionComponent implements OnInit{
   cotizar!:Cotizacion;
   cotizacion:Cotizacion[]=[];
   caractermaterial:Caractermaterial[]=[];
-
+//variables que reciben o envian informacion o datos entre componentes
   @Output() formCotizacion = new EventEmitter<boolean>();
   @Input() idMaterial:string="";
   @Input() idAnalista:string="";
@@ -36,7 +36,7 @@ export class RealizarCotizacionComponent implements OnInit{
   material!:Material;
   familiaN!:Familia;
   fechaVencimiento: string = '';
-
+//variables para subir el archivo como comprobante
   archivoParaSubir: File | null = null;
   archivoParaEditar: File | null = null;
   nombreArchivo:string='';
@@ -54,21 +54,26 @@ export class RealizarCotizacionComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    //trae los materiales de esa solicitud
     this.materialService.find(this.idMaterial).subscribe(response=>{
       this.material=response;
       this.folio=response.id;
       this.descripcion=response.descripcion;
+      //trae su familia de ese material
       this.familiaService.find(response.familia).subscribe(response=>{
         this.familiaN=response;
         this.familia=response.familia;
       });
+      //trae las caracteristicas de ese material
       this.caracterMaterial.getList(response.id).subscribe((data:Caractermaterial[])=>{
         this.caractermaterial=data;
       })
     });
+    //trae las cotizaciones de cada material
     this.cotizacionService.getList(this.idMaterial).subscribe((data:Cotizacion[])=>{
       this.cotizacion=data;
     });
+    //interfaz para el formulario de la cotización
     this.cotizar={
       id:'',
       id_material:this.idMaterial,
@@ -86,14 +91,14 @@ export class RealizarCotizacionComponent implements OnInit{
       estatus:'',
     };
   }
+  //metodo para la creacion de la cotización
   submit(element:Cotizacion){
     this.cotizacionService.getList(this.idMaterial).subscribe((data:Cotizacion[])=>{
       this.cotizacion=data;
       /*console.log('tamaño',this.cotizacion.length);*/
-      if(this.cotizacion.length <=19){
-        /*console.log('el tamaño del arreglo tiene 3 o menos de 3 asi que agrega');*/
+      if(this.cotizacion.length <=49){
         this.cotizacionService.create(this.cotizar).subscribe(res=>{
-          console.log('cotizacion agregada');
+          //console.log('cotizacion agregada');
           const cotizacionAdd={
             id:res.id,
             id_material:this.idMaterial,
@@ -130,11 +135,12 @@ export class RealizarCotizacionComponent implements OnInit{
           };
         });
       }else{
-        console.log('ya tiene las 20 cotizaciones');
-        alert('Solo se permite agregar 20 cotizaciones');
+        console.log('ya tiene las 50 cotizaciones');
+        //alert('Solo se permite agregar 20 cotizaciones');
       }
     });
   }
+  //metodo para eliminar una cotizacion y su respectiva documentación
   eliminar(idCotizacion:string){
     this.cotizacionService.delete(idCotizacion).subscribe(res=>{
       this.cotizacion = this.cotizacion.filter(item => item.id !== idCotizacion);
@@ -146,19 +152,19 @@ export class RealizarCotizacionComponent implements OnInit{
   }
   closeCotizacion(valor:boolean){
     this.formCotizacion.emit(valor);
-    /*this.valorArreglo.emit(this.cotizacion.length);
-    console.log(this.cotizacion.length);*/
   }
+  //metodo para terminar la cotizacion de cada material
   cotizacionLista(){
     this.newEstado.emit(true);
+    //se hace una comprobación antes de enviarlo para saber que todos los materiales estan cotizados
     if(this.cotizacion.length != 0){
       this.materialService.update(this.folio,{estatus:'Listo'}).subscribe(res=>{
-        console.log('estatus de le cotizacion: Listo')
+        //console.log('estatus de la cotizacion: Listo')
       });
       this.valorArreglo.emit('Listo');
     }else{
       this.materialService.update(this.folio,{estatus:'noListo'}).subscribe(res=>{
-        console.log('estatus de le cotizacion: No listo');
+        //console.log('estatus de le cotizacion: No listo');
       });
       this.valorArreglo.emit('noListo');
     }
@@ -178,47 +184,22 @@ export class RealizarCotizacionComponent implements OnInit{
       console.log('No se seleccionó ningún archivo.');
     }
   }
-  manejarArchivoInput2(event: any) {
-    if (event.target.files && event.target.files.length > 0) {
-      this.archivoParaEditar = event.target.files[0];
-      console.log(this.archivoParaEditar);
-    } else {
-      console.log('No se seleccionó ningún archivo.');
-    }
-  }
   subirCompro(idCotizacion:string){
     this.idCotizacion=idCotizacion;
   }
-  editarArchivo(){
-    if (this.archivoParaEditar && this.idCotizacion) {
-      console.log(this.idCotizacion);
-      this.comprobanteServi.editarArchivo(this.archivoParaEditar, this.idCotizacion).subscribe(
-        res => {
-          console.log('Archivo editado con éxito', res);
-          // Resto del código...
-        },
-        error => {
-          console.error('Error al editar el archivo', error);
-        }
-      );
-    } else {
-      console.error('No se seleccionó ningún archivo para editar o falta el idCotizacion.');
-    }
-  }
 
+//metodo para subir el archivo pdf
   subirArchivo() {
     if (this.archivoParaSubir && this.idCotizacion) {
       this.comprobanteServi.subirArchivo(this.archivoParaSubir, this.idCotizacion).subscribe(res => {
         console.log('archivo subido');
-        console.log('esto trae res: ', res);
-        //this.documentos.push(res);
+        //console.log('esto trae res: ', res);
         this.nombreArchivo = res.nombre;
         // Restablecer el valor del input de tipo archivo
         const inputArchivo = document.getElementById('inputArchivo') as HTMLInputElement;
         if (inputArchivo) {
           inputArchivo.value = ''; // Esto restablecerá el valor del input a vacío
         }
-
         this.archivoParaSubir = null; // También es una buena práctica restablecer la variable
         this.idCotizacion = ''; // Restablecer el id_cotizacion después de subir el archivo
       });
@@ -226,46 +207,14 @@ export class RealizarCotizacionComponent implements OnInit{
       console.log('No se seleccionó ningún archivo para subir o falta el idCotizacion.');
     }
   }
-  eliminarArchivo(id:string){
-    this.comprobanteServi.eliminarArchivo(id).subscribe(res=>{
-      console.log('documento eliminado')
-    })
-  }
+
+  //metodo para ver el documento
   verCompro(id:string){
-    console.log('este es el id: ',id);
+    //console.log('este es el id: ',id);
     this.comprobanteService.obtenerPDF(id).subscribe((data: Blob) => {
       const fileURL = URL.createObjectURL(data);
       window.open(fileURL, '_blank'); // Esto abrirá el PDF en una nueva pestaña
     });
   }
 
-  /*comprobarArchivo() {
-    if (this.archivoParaSubir && this.idCotizacion) {
-      // Primero, verifica si existe un PDF con el ID proporcionado
-      this.comprobanteServi.obtenerPDF(this.idCotizacion).subscribe(
-        existePDF => {
-          if (existePDF) {
-            // Si existe un PDF, haz algo
-            console.log('Ya existe un PDF con este ID. Realizando acción...');
-            // Aquí puedes realizar la acción que desees cuando ya existe un PDF
-            this.eliminarArchivo(this.idCotizacion);
-            this.subirArchivo();
-          }
-        },
-        error => {
-          // Manejar el error HTTP aquí
-          if (error.status === 404) {
-            // Puedes mostrar un mensaje al usuario o realizar alguna acción específica para manejar el error 404
-            console.error('El recurso no se encuentra. Puedes mostrar un mensaje o realizar alguna acción específica.');
-            this.subirArchivo();
-          } else {
-            // Otros códigos de error HTTP
-            console.error('Error al obtener el PDF:', error);
-          }
-        }
-      );
-    } else {
-      console.log('No se seleccionó ningún archivo para subir o falta el idCotizacion.');
-    }
-  }*/
 }

@@ -1,58 +1,10 @@
-/*
-#dos{
-  background-color: #488aec8c;
-  border-radius: 15px ;
-  padding: 20px;
-  width: 70%;
-  margin-left: 15%;
 
-}
-label {
-  width: 100%;
-  padding: 0.8em;
-  height: 40px;
-  padding-inline: var(--inline-padding-of-input);
-  display: flex;
-  align-items: center;
-}
-
-
-.botonCrear{
-  border-radius: 20px ;
-  background-color: #1b9bee;
-  width: 20%;
-  height: 140%;
-}
-#close{
-  margin-left: 80%;
-  height: 30px;
-  width: 30px;
-  cursor: pointer;
-}
-
-@media screen and (max-width: 768px) {
-
-  .botonCrear{
-    width: 70%;
-    height: 100%;
-  }
-
-}
-
-.prueva{
-  background-color: chocolate;
-  height: 200px;
-  width: 200px;
-  text-align: center;
-}
-*/
 body{
   margin: 0;
   padding: 0;
 }
 main{
   background-color: #488aec8c;
-  /*margin: 6%;*/
   margin: 0% 15%;
   padding: 3%;
   border-radius: 15px;
@@ -62,7 +14,7 @@ form{
   display: grid;
   grid-template-columns: repeat(2,1fr);
   grid-gap: 3%;
-  background-color: #fff;
+  background-color: #e6e1e1;
   padding: 30px;
   border-radius: 10px;
 }

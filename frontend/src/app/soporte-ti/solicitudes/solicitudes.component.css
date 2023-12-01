@@ -247,8 +247,9 @@ input:-webkit-autofill:active {
   background-color: #005ba2;
 }
 h2{
-  background-color: #005ba2;
-  color: white;
+  /*background-color: #005ba2;*/
+  width: 100%;
+  color: black;
 }
 @media (max-width: 768px) {
   /* Estilos adicionales para dispositivos más pequeños */

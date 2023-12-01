@@ -19,7 +19,7 @@ export class AprobadoAComponent implements OnInit{
   @Input() id:string='';
   @Input() filtroBusqueda:string='';
 
-  /*para ver las demas tablas*/
+  /*para ver las tablas*/
   descripcionMaterial:boolean=false;
   tablaPrincipal:boolean=true;
 
@@ -32,19 +32,18 @@ export class AprobadoAComponent implements OnInit{
       this.solicitudes=data;
     })
   }
+  //filtro para el buscador
   filtrarSolicitudes(): any[] {
     const valorBusqueda = this.filtroBusqueda.toLowerCase();
     return this.solicitudes.filter((solicitud) => {
-      // Puedes ajustar la lógica de filtrado según tus necesidades
       return solicitud.id.toString().toLowerCase().includes(valorBusqueda) ||
              solicitud.solicitante.toLowerCase().includes(valorBusqueda) ||
              solicitud.tipo.toLowerCase().includes(valorBusqueda) ||
-             //solicitud.codProv.toLowerCase().includes(valorBusqueda) ||
              solicitud.NomCliente.toLowerCase().includes(valorBusqueda)||
              solicitud.estatus.toLowerCase().includes(valorBusqueda);
     });
   }
-
+//metodo para ver la información del material
   Informacion(id:string){
     this.materialeS.getList(id).subscribe((data:Material[])=>{
       this.material=data;
@@ -56,6 +55,7 @@ export class AprobadoAComponent implements OnInit{
     this.descripcionMaterial = !valor;
     this.tablaPrincipal = valor;
   }
+  //metodo para ver la información de la cotización
   verCotizacion(id:string){
     this.cotizacionS.getList(id).subscribe((data:Cotizacion[])=>{
       this.cotizacion=data;
@@ -67,6 +67,7 @@ export class AprobadoAComponent implements OnInit{
     dolares_usa: 'US$ ',
     euro: '€ ',
   }
+  //metodo para ver el documento
   verOne(id:string){
     console.log(id);
     this.comprobanteService.obtenerPDF(id).subscribe((data: Blob) => {
