@@ -13,53 +13,53 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class VistaAnalistaComponent implements OnInit{
 
-  //
+  //para el menu
   isOffcanvasOpen: boolean = false;
-  //
+  //variables que se usan para los componentes interactivos
   verporCotizar:boolean=true;
   verCotizados:boolean=false;
   verAprobadas:boolean=false;
+  //variables que se usan para los datos del analista
   id:string='';
   analista!:Personal;
   idAnalista:string='';
   datosAnalista:string='';
   solicitudes:Solicitud[]=[];
   solicitudesN!:Solicitud;
-
+  //
   formCotizacion:boolean=false;
   idSolicitud:string='';
-
+  //recupera el valor que se manda por el buscador para que se pueda filtrar
   @Input() filtroBusqueda: string = '';
 
   constructor(private router: Router,private rutaActiva: ActivatedRoute,private personalService:PersonalService,
     private solicitudesService:SolicitudService){}
 
   ngOnInit(): void {
+    //trae los datos del usuario
     this.id=this.rutaActiva.snapshot.paramMap.get('id') as string;
     this.personalService.find(this.id).subscribe(response=>{
-      //console.log(response); // Agrega esta línea para depurar
       this.analista=response;
       this.idAnalista=response.id;
       this.datosAnalista=response.nombres+' '+response.apellidos;
     });
+    //trae todas las solicitudes nuevas
     this.solicitudesService.getNueva().subscribe((data: Solicitud[])=>{
       this.solicitudes = data;
-      //console.log(data);
     });
   }
+  //para filtrar y buscar información en la tabla
   filtrarSolicitudes(): any[] {
     const valorBusqueda = this.filtroBusqueda.toLowerCase();
     return this.solicitudes.filter((solicitud) => {
-      // Puedes ajustar la lógica de filtrado según tus necesidades
       return solicitud.id.toString().toLowerCase().includes(valorBusqueda) ||
              solicitud.solicitante.toLowerCase().includes(valorBusqueda) ||
              solicitud.tipo.toLowerCase().includes(valorBusqueda) ||
-             //solicitud.codProv.toLowerCase().includes(valorBusqueda) ||
              solicitud.NomCliente.toLowerCase().includes(valorBusqueda)||
              solicitud.estatus.toLowerCase().includes(valorBusqueda);
     });
   }
-
+  //las acciones de los componentes interactivos
   toggleOffcanvas() {
     this.isOffcanvasOpen = !this.isOffcanvasOpen;
   }

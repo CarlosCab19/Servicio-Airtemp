@@ -12,7 +12,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./vista-usuario.component.css']
 })
 export class VistaUsuarioComponent implements OnInit{
-  /*lo que se va quedar*/
+  //Variables para los componentes interactivos
   verNuevo:boolean=false;
   verMaterial:boolean=false;
   verTabla:boolean=true;
@@ -20,7 +20,7 @@ export class VistaUsuarioComponent implements OnInit{
   masInfo:boolean=false;
   filtroBusqueda: string = '';
 
-  /*nombre del usuario*/
+  //variables para el nombre del usuario
   responsable:string="";
   idSolicitante:string="";
   idSolicitud:string="";
@@ -32,45 +32,43 @@ export class VistaUsuarioComponent implements OnInit{
   solicitud!:Solicitud;
   idSoli:string="";
 
-  /*para saber el estado y poder bloquear*/
-  estatuSolicitud:string="";
 
-  /*ver tabla de cotizados*/
+  //ver tabla de cotizados
   verCotizados:boolean=false;
 
   constructor(private router: Router,private rutaActiva: ActivatedRoute,
       private personalService:PersonalService, private solicitudService:SolicitudService){}
 
   ngOnInit(): void {
-    /*para trer un personal por su id y buscar sus nombres y apellidos*/
+    //para trer un personal por su id y buscar sus nombres y apellidos
     this.id=this.rutaActiva.snapshot.paramMap.get('id') as string;
     this.personalService.find(this.id).subscribe(response=>{
       this.personalN=response;
       this.idSolicitante=response.id;
       this.responsable=response.nombres + " " + response.apellidos;
     });
+    //para traer llas solicitudes nuevas de cada usuario
     this.solicitudService.getListNueva(this.id).subscribe((data: Solicitud[])=>{
       this.solicitudes = data;
     });
 
   }
+  //filtra las busqueda en la tabla
   filtrarSolicitudes(): any[] {
     const valorBusqueda = this.filtroBusqueda.toLowerCase();
     return this.solicitudes.filter((solicitud) => {
-      // Puedes ajustar la lógica de filtrado según tus necesidades
+      // campos de la tabla en la que buscara la información para filtrarla
       return solicitud.id.toString().toLowerCase().includes(valorBusqueda) ||
              solicitud.solicitante.toLowerCase().includes(valorBusqueda) ||
              solicitud.tipo.toLowerCase().includes(valorBusqueda) ||
-             //solicitud.codProv.toLowerCase().includes(valorBusqueda) ||
              solicitud.NomCliente.toLowerCase().includes(valorBusqueda)||
              solicitud.estatus.toLowerCase().includes(valorBusqueda);
     });
   }
-
+  //estados, datos, variables que se recibe de los componentes interactivos
   idReci(id_Reci:string){
     this.idSoli=id_Reci;
   }
-
   EstadoReci(newEstado:boolean){
     this.verNuevo=newEstado;
     this.verMaterial=newEstado;
@@ -100,11 +98,10 @@ export class VistaUsuarioComponent implements OnInit{
       location.reload();
     }
   }
-
   salir(){
     this.router.navigate(['/inicio']);
   }
-  /*lo que se va quedar*/
+  /*interacción con el menu*/
   toggleOffcanvas() {
     this.isOffcanvasOpen = !this.isOffcanvasOpen;
   }
@@ -145,12 +142,7 @@ export class VistaUsuarioComponent implements OnInit{
     this.verTabla=false;
     this.idSoli=idSoli;
   }
-  cancelar(id:string){
-    this.solicitudService.find(id).subscribe(response=>{
-      this.solicitud=response;
-      this.estatuSolicitud=response.estatus;
-    });
-  }
+
   Cotizadas(valor:boolean){
     this.verCotizados=valor;
     this.verTabla=false;

@@ -9,27 +9,20 @@ import { Solicitud } from 'src/app/shared/solicitud';
   styleUrls: ['./form-solicitud-c.component.css']
 })
 export class FormSolicitudCComponent implements OnInit{
-
+  //Variables que reciben y envian dalores o datos al componente padre
   solicitar!:Solicitud;
   @Input() idUs:string="";
   @Input() nomResponsable:string="";
   @Output() newEstado = new EventEmitter<boolean>();
   @Output() loadWindows = new EventEmitter<boolean>();
   @Output() abrirForm = new EventEmitter<boolean>();
-
   @Output() idEmitir = new EventEmitter<string>();
 
-  verprueva:boolean=false;
-  solici:Solicitud[]=[];
-  codiProv:string="";
-  Rsocial:string="";
-  nomClien:string="";
-  numParte:string="";
 
   constructor(public solicitudService:SolicitudService){}
 
-
   ngOnInit(): void {
+    //interfaz para realizar la solicitud
     this.solicitar={
       id:"",
       id_solicitante:this.idUs,
@@ -47,10 +40,11 @@ export class FormSolicitudCComponent implements OnInit{
     };
 
   }
-
+  //se crea la solicitud
   submit(element:Solicitud){
     this.solicitudService.create(this.solicitar).subscribe(res=>{
       console.log('Solicitud realizada');
+      //nueva interfaz con todos los datos de la solicitud
       const soliCreada = {
         id:res.id,
         id_solicitante:this.idUs,
@@ -63,8 +57,8 @@ export class FormSolicitudCComponent implements OnInit{
         estatus:"Editando",
         created_at:element.created_at,
       }
-      console.log(soliCreada);
-
+      //console.log(soliCreada);
+      //se deja vacio los datos para otra solicitud
       this.solicitar={
         id:"",
         id_solicitante:this.idUs,
@@ -84,6 +78,7 @@ export class FormSolicitudCComponent implements OnInit{
       this.addEvento(true);
     });
   }
+  //metodos que envian y reciben estados o valores
   addNewIdSoli(id:string){
     this.idEmitir.emit(id);
   }
@@ -98,10 +93,9 @@ export class FormSolicitudCComponent implements OnInit{
   }
 
   nuevoChecked: boolean = false;
-
+  //checkbox para saber si es nuevo el proveedor
   onCheckboxChange() {
     console.log('Estado del checkbox: ', this.nuevoChecked);
-    // Aquí puedes llamar a otros métodos o realizar acciones en función del valor del checkbox.
   }
 
 }

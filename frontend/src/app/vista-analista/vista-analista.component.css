@@ -1,6 +1,6 @@
 /* Importa Font Awesome */
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
-/*Estilos para la tabla*/
+
 .card{
   position: fixed;
   height: 80%;
@@ -12,7 +12,7 @@
   padding: 20px;
   margin-left: 15%;
 }
-
+/*Estilos para la tabla*/
 .responsive-table {
   width: 100%;
   border-collapse: collapse;
@@ -71,15 +71,12 @@ h2{
     margin-left: 50px;
     width: 80%;
   }
+  th, td{
+    font-size: 12px;
+  }
 
 }
 
-#acciones{
-  display: grid;
-  grid-template-columns: repeat(2,1fr);
-  height: 100%;
-  column-gap: 5px;
-}
 #see{
   background-color: rgba(51, 228, 95, 0.473) ;
   height: 30px;

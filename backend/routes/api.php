@@ -39,7 +39,7 @@ Route::prefix('personal')->group(function () {
 });
 /*Route::apiResource('solicitud',SolicitudController::class);*/
 Route::prefix('solicitud')->group(function () {
-    Route::get('/',[ SolicitudController::class, 'index']);
+    Route::get('/all',[ SolicitudController::class, 'index']);
     Route::get('/',[ SolicitudController::class, 'getNueva']);
     Route::get('/Cotizado',[ SolicitudController::class, 'getCotizado']);
     Route::get('/CotizadoAnalista/{id}',[ SolicitudController::class, 'getCotizadoAnalista']);
@@ -54,6 +54,7 @@ Route::prefix('solicitud')->group(function () {
     Route::get('/get/{id}',[ SolicitudController::class, 'get']);
     Route::put('/{id}',[ SolicitudController::class, 'update']);
     Route::put('/update/{id}',[ SolicitudController::class, 'updateDirector']);
+    Route::put('/soporte/{id}',[ SolicitudController::class, 'updateSoporte']);
 });
 /*Route::apiResource('material',MaterialController::class);*/
 Route::prefix('material')->group(function () {

@@ -116,5 +116,13 @@ class SolicitudController extends Controller
             'success' => true
         ], 200);
       }
+      public function updateSoporte(Request $request,$id){
+        $data['estatus'] = $request['estatus'];
+        Solicitud::find($id)->update($data);
+        return response()->json([
+            'message' => "Successfully updated",
+            'success' => true
+        ], 200);
+      }
 
 }

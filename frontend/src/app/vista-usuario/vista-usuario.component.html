@@ -1,4 +1,4 @@
-<!--<button class="btn btn-primary" (click)="toggleOffcanvas()">Enable both scrolling & backdrop</button>-->
+<!--Encabezado-->
 <nav class="navbar bg-primary" >
   <button class="btn" (click)="toggleOffcanvas()">
     <span class="icon">
@@ -10,9 +10,7 @@
     </span>
     <span class="text">MENU</span>
   </button>
-  <!--<div class="buscardor">
-    <input class="input" type="text" required="" placeholder="Buscar" id="search" [(ngModel)]="filtroBusqueda">
-  </div>-->
+  <!--Buscador-->
   <section class="form">
     <label for="search">
         <input class="input" type="text" required="" placeholder="Buscar" id="search" [(ngModel)]="filtroBusqueda">
@@ -32,9 +30,10 @@
     </label>
   </section>
 </nav>
+<!-------------->
+<!--Menú desplegable-->
 <div class="offcanvas offcanvas-start" [ngClass]="{ 'show': isOffcanvasOpen }" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
     <div class="offcanvas-header bg-primary">
-      <!--<h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Solicitante</h5>-->
       <img src="assets\img-logo\Letras_Airtemp.png" class="logo">
       <button type="button" class="btn-close" (click)="closeOffcanvas()" aria-label="Close"></button>
     </div>
@@ -47,10 +46,6 @@
         <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM64 80c0-8.8 7.2-16 16-16h64c8.8 0 16 7.2 16 16s-7.2 16-16 16H80c-8.8 0-16-7.2-16-16zm0 64c0-8.8 7.2-16 16-16h64c8.8 0 16 7.2 16 16s-7.2 16-16 16H80c-8.8 0-16-7.2-16-16zm128 72c8.8 0 16 7.2 16 16v17.3c8.5 1.2 16.7 3.1 24.1 5.1c8.5 2.3 13.6 11 11.3 19.6s-11 13.6-19.6 11.3c-11.1-3-22-5.2-32.1-5.3c-8.4-.1-17.4 1.8-23.6 5.5c-5.7 3.4-8.1 7.3-8.1 12.8c0 3.7 1.3 6.5 7.3 10.1c6.9 4.1 16.6 7.1 29.2 10.9l.5 .1 0 0 0 0c11.3 3.4 25.3 7.6 36.3 14.6c12.1 7.6 22.4 19.7 22.7 38.2c.3 19.3-9.6 33.3-22.9 41.6c-7.7 4.8-16.4 7.6-25.1 9.1V440c0 8.8-7.2 16-16 16s-16-7.2-16-16V422.2c-11.2-2.1-21.7-5.7-30.9-8.9l0 0c-2.1-.7-4.2-1.4-6.2-2.1c-8.4-2.8-12.9-11.9-10.1-20.2s11.9-12.9 20.2-10.1c2.5 .8 4.8 1.6 7.1 2.4l0 0 0 0 0 0c13.6 4.6 24.6 8.4 36.3 8.7c9.1 .3 17.9-1.7 23.7-5.3c5.1-3.2 7.9-7.3 7.8-14c-.1-4.6-1.8-7.8-7.7-11.6c-6.8-4.3-16.5-7.4-29-11.2l-1.6-.5 0 0c-11-3.3-24.3-7.3-34.8-13.7c-12-7.2-22.6-18.9-22.7-37.3c-.1-19.4 10.8-32.8 23.8-40.5c7.5-4.4 15.8-7.2 24.1-8.7V232c0-8.8 7.2-16 16-16z"/></svg>
         COTIZADAS Y APROBADAS
       </button>
-      <!--<button id="btn-menu">
-        <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 512 512">< Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc.><path d="M326.7 403.7c-22.1 8-45.9 12.3-70.7 12.3s-48.7-4.4-70.7-12.3c-.3-.1-.5-.2-.8-.3c-30-11-56.8-28.7-78.6-51.4C70 314.6 48 263.9 48 208C48 93.1 141.1 0 256 0S464 93.1 464 208c0 55.9-22 106.6-57.9 144c-1 1-2 2.1-3 3.1c-21.4 21.4-47.4 38.1-76.3 48.6zM256 91.9c-11.1 0-20.1 9-20.1 20.1v6c-5.6 1.2-10.9 2.9-15.9 5.1c-15 6.8-27.9 19.4-31.1 37.7c-1.8 10.2-.8 20 3.4 29c4.2 8.8 10.7 15 17.3 19.5c11.6 7.9 26.9 12.5 38.6 16l2.2 .7c13.9 4.2 23.4 7.4 29.3 11.7c2.5 1.8 3.4 3.2 3.7 4c.3 .8 .9 2.6 .2 6.7c-.6 3.5-2.5 6.4-8 8.8c-6.1 2.6-16 3.9-28.8 1.9c-6-1-16.7-4.6-26.2-7.9l0 0 0 0 0 0c-2.2-.7-4.3-1.5-6.4-2.1c-10.5-3.5-21.8 2.2-25.3 12.7s2.2 21.8 12.7 25.3c1.2 .4 2.7 .9 4.4 1.5c7.9 2.7 20.3 6.9 29.8 9.1V304c0 11.1 9 20.1 20.1 20.1s20.1-9 20.1-20.1v-5.5c5.3-1 10.5-2.5 15.4-4.6c15.7-6.7 28.4-19.7 31.6-38.7c1.8-10.4 1-20.3-3-29.4c-3.9-9-10.2-15.6-16.9-20.5c-12.2-8.8-28.3-13.7-40.4-17.4l-.8-.2c-14.2-4.3-23.8-7.3-29.9-11.4c-2.6-1.8-3.4-3-3.6-3.5c-.2-.3-.7-1.6-.1-5c.3-1.9 1.9-5.2 8.2-8.1c6.4-2.9 16.4-4.5 28.6-2.6c4.3 .7 17.9 3.3 21.7 4.3c10.7 2.8 21.6-3.5 24.5-14.2s-3.5-21.6-14.2-24.5c-4.4-1.2-14.4-3.2-21-4.4V112c0-11.1-9-20.1-20.1-20.1zM48 352H64c19.5 25.9 44 47.7 72.2 64H64v32H256 448V416H375.8c28.2-16.3 52.8-38.1 72.2-64h16c26.5 0 48 21.5 48 48v64c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V400c0-26.5 21.5-48 48-48z"/></svg>
-        Rechazadas
-      </button>-->
       <button id="btn-menu" (click)="salir()">
         <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M208 96a48 48 0 1 0 0-96 48 48 0 1 0 0 96zM123.7 200.5c1-.4 1.9-.8 2.9-1.2l-16.9 63.5c-5.6 21.1-.1 43.6 14.7 59.7l70.7 77.1 22 88.1c4.3 17.1 21.7 27.6 38.8 23.3s27.6-21.7 23.3-38.8l-23-92.1c-1.9-7.8-5.8-14.9-11.2-20.8l-49.5-54 19.3-65.5 9.6 23c4.4 10.6 12.5 19.3 22.8 24.5l26.7 13.3c15.8 7.9 35 1.5 42.9-14.3s1.5-35-14.3-42.9L281 232.7l-15.3-36.8C248.5 154.8 208.3 128 163.7 128c-22.8 0-45.3 4.8-66.1 14l-8 3.5c-32.9 14.6-58.1 42.4-69.4 76.5l-2.6 7.8c-5.6 16.8 3.5 34.9 20.2 40.5s34.9-3.5 40.5-20.2l2.6-7.8c5.7-17.1 18.3-30.9 34.7-38.2l8-3.5zm-30 135.1L68.7 398 9.4 457.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L116.3 441c4.6-4.6 8.2-10.1 10.6-16.1l14.5-36.2-40.7-44.4c-2.5-2.7-4.8-5.6-7-8.6zM550.6 153.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L530.7 224H384c-17.7 0-32 14.3-32 32s14.3 32 32 32H530.7l-25.4 25.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l80-80c12.5-12.5 12.5-32.8 0-45.3l-80-80z"/></svg>
         SALIR
@@ -59,6 +54,7 @@
 </div>
 <div class="grid text-center">
     <div id="uno" class="g-col-6 g-col-md-4">
+      <!--Boton para crear una nueva solicitud-->
       <button type="button" class="button" (click)="Nuevo()">
         <span class="button__text">Nuevo</span>
         <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2"
@@ -68,14 +64,17 @@
       </button>
     </div>
    <!--COMPONENTES INTERACTIVOS-->
+   <!--solicitud-c es el formulario para crear el encabezado de la solicitud-->
     <app-form-solicitud-c *ngIf="verNuevo" [nomResponsable]="responsable" [idUs]="idSolicitante" (newEstado)="EstadoReci($event)" (loadWindows)="loadWindows($event)" (abrirForm)="activarForm($event)" (idEmitir)="idReci($event)"></app-form-solicitud-c>
-    <app-form-encabezado *ngIf="verMaterial" [solicitudId]="idSolicitud" (newEstado)="EstadoReci($event)"></app-form-encabezado>
+    <!--"mas-info" es el formulario donde se agrega las caracteristicas de la solicitud-->
     <app-masinfo-soli *ngIf="masInfo" [idSolicitud]="idSoli" [responsable]="responsable" (newClose)="EstadoClose($event)" (newEnviar)="EstadoSoli($event)" ></app-masinfo-soli>
     <div id="cuatro" class="g-col-6 g-col-md-4" *ngIf="verCotizados">
+      <!--Componente en donde se encuentra la tabla de las soliictudes cotizadas-->
       <app-cotizado-usuario [filtroBusqueda]="filtroBusqueda"></app-cotizado-usuario> <!--Este es el componente de Cotizados-->
     </div>
     <!------>
     <div id="cuatro" class="g-col-6 g-col-md-4" *ngIf="verTabla">
+      <!--Tabla de las solicitudes de cada usuario-->
       <h2>SOLICITUDES</h2>
       <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
         <div class="table-container">
@@ -106,13 +105,10 @@
                         'revision': solicitud.estatus === 'Revisión',
                         'aprobado': solicitud.estatus === 'Aprobado'
                       }">{{solicitud.estatus}}</td>
-                      <td> <!--id="acciones"-->
+                      <td>
                         <div class="see" (click)="masInformacion(solicitud.id)">
                           <svg id="see" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 20 20"><path fill="#000000" d="M17 7v4.567a5.793 5.793 0 0 0-6.469 1.009a5.528 5.528 0 0 0-1.098 1.405C9.181 14.451 9 14.983 9 15.5c0 .484.156 1.001.42 1.5H5.5A2.5 2.5 0 0 1 3 14.5V7h14Zm-2.5-4A2.5 2.5 0 0 1 17 5.5V6H3v-.5A2.5 2.5 0 0 1 5.5 3h9Zm0 9c-2.764 0-4.5 2.318-4.5 3.5c0 1.2 1.739 3.5 4.5 3.5s4.5-2.318 4.5-3.5c0-1.2-1.739-3.5-4.5-3.5Zm0 6a2.5 2.5 0 1 1 0-5a2.5 2.5 0 0 1 0 5Zm1.5-2.5a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0Z"/></svg>
                         </div>
-                        <!--<div class="cancel" *ngIf="solicitud.estatus=='Nueva' || solicitud.estatus=='Editando'">
-                          <svg id="cancel" (click)="cancelar(solicitud.id)" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="#000000" d="M17.5 12a5.5 5.5 0 1 1 0 11a5.5 5.5 0 0 1 0-11Zm-2.476 3.024a.5.5 0 0 0 0 .707l1.769 1.77l-1.767 1.766a.5.5 0 1 0 .707.708l1.767-1.767l1.77 1.769a.5.5 0 1 0 .707-.707l-1.769-1.77l1.771-1.77a.5.5 0 0 0-.707-.707l-1.771 1.77l-1.77-1.77a.5.5 0 0 0-.707 0ZM21 8.5l.001 3.523a6.5 6.5 0 0 0-8.979 8.979L6.25 21A3.25 3.25 0 0 1 3 17.75V8.5h18ZM17.75 3A3.25 3.25 0 0 1 21 6.25V7H3v-.75A3.25 3.25 0 0 1 6.25 3h11.5Z"/></svg>
-                        </div>-->
                       </td>
                   </tr>
               </tbody>

@@ -43,6 +43,7 @@ export class VistaDirectorComponent implements OnInit{
     private materialS:MaterialService,private cotizacionS:CotizacionService,private comprobanteS:ComprobanteService,private router: Router){}
 
   ngOnInit(): void {
+    //trae datos del usuario y sus solicitudes que han sido aprobadas
     this.id=this.rutaActiva.snapshot.paramMap.get('id') as string;
     this.personalS.find(this.id).subscribe(response=>{
       this.director=response;
@@ -53,26 +54,26 @@ export class VistaDirectorComponent implements OnInit{
       this.solicitudes = data;
     });
   }
+  //Filtro para el buscador
   filtrarSolicitudes(): any[] {
     const valorBusqueda = this.filtroBusqueda.toLowerCase();
     return this.solicitudes.filter((solicitud) => {
-      // Puedes ajustar la lógica de filtrado según tus necesidades
       return solicitud.id.toString().toLowerCase().includes(valorBusqueda) ||
              solicitud.solicitante.toLowerCase().includes(valorBusqueda) ||
              solicitud.tipo.toLowerCase().includes(valorBusqueda) ||
-             //solicitud.codProv.toLowerCase().includes(valorBusqueda) ||
              solicitud.NomCliente.toLowerCase().includes(valorBusqueda)||
              solicitud.estatus.toLowerCase().includes(valorBusqueda);
     });
   }
+  //la interaccion con los componentes y las tablas
   toggleOffcanvas() {
     this.isOffcanvasOpen = !this.isOffcanvasOpen;
   }
   closeOffcanvas() {
     this.isOffcanvasOpen = false;
   }
+  //trae los datos del material
   verDatosMaterial(id:string){
-    console.log('id de la solicitud: ',id)
     this.idSolicitud=id;
     this.materialS.getList(id).subscribe((data: Material[])=>{
       this.material = data;
@@ -80,6 +81,7 @@ export class VistaDirectorComponent implements OnInit{
     this.datosMaterial=true;
     this.tablaCotizado=false;
   }
+  //trae las cotizaciones de cada material
   verCotizacion(id:string){
     this.cotizacionS.getList(id).subscribe((data:Cotizacion[])=>{
       this.cotizacion = data;
@@ -95,6 +97,7 @@ export class VistaDirectorComponent implements OnInit{
     dolares_usa: 'US$ ',
     euro: '€ ',
   }
+  //ver el documento
   verOne(id:string){
     console.log(id);
     this.comprobanteS.obtenerPDF(id).subscribe((data: Blob) => {
@@ -124,25 +127,26 @@ export class VistaDirectorComponent implements OnInit{
     this.datosCotizacion=!valor;
     this.closeOffcanvas();
   }
+  //metodo para enviar las cotizaciones de todos los materiales
   enviarAutorizado(idDirector:string){
-    console.log('id del director: ',idDirector);
+    //console.log('id del director: ',idDirector);
     this.cotizacionS.getList(this.idMaterial).subscribe((data:Cotizacion[])=>{
       this.cotizacion=data;
-      console.log(this.cotizacion);
+      //console.log(this.cotizacion);
       const tamaño = this.cotizacion.length;
-      console.log('tamaño del arreglo: ',tamaño);
+      //console.log('tamaño del arreglo: ',tamaño);
       //mostramos los datos de cada cotización
       this.cotizacion.forEach((cotizacion)=>{
-        console.log(`ID: ${cotizacion.id}, Estatus: ${cotizacion.estatus}`);
+        //console.log(`ID: ${cotizacion.id}, Estatus: ${cotizacion.estatus}`);
       });
       // Contar la cantidad de cotizaciones con estatus 'Autorizado' después de recibir los datos
       const cotizacionesAutorizadas = this.cotizacion.filter((cotizacion) => cotizacion.estatus === 'Autorizado');
       const cantidadCotizacionesAutorizadas = cotizacionesAutorizadas.length;
-      console.log(`Cantidad de cotizaciones autorizadas: ${cantidadCotizacionesAutorizadas}`);
+      //console.log(`Cantidad de cotizaciones autorizadas: ${cantidadCotizacionesAutorizadas}`);
       if (cantidadCotizacionesAutorizadas === 1) {
         alert('Cotización Autorizada');
         this.materialS.update(this.idMaterial,{estatus:'conAutorizacion'}).subscribe(res=>{
-          console.log('Se actualizo el estatus del material con id: ',this.idMaterial)
+          //console.log('Se actualizo el estatus del material con id: ',this.idMaterial)
         });
         this.closeCotizacion(false);
       } else {
@@ -150,28 +154,30 @@ export class VistaDirectorComponent implements OnInit{
       }
     })
   }
-  // Lógica para desmarcar los demás elementos cuando se marca uno
+  // Lógica para desmarcar los demás elementos cuando se marca una cotizacion a aprobar
   checkChanged(selectedItem: any,idDirector:string) {
+    //se itera sobre cada cotizacion para poder actualizar los estatus
     this.cotizacion.forEach(item => {
       if (item !== selectedItem) {
         item.selected = false;
-        console.log('Rechazo:', item.id);
+        //console.log('Rechazo:', item.id);
         const itemToUpdate = this.cotizacion.find(cotizacion => cotizacion === item);
         if (itemToUpdate) {
           itemToUpdate.estatus = 'Rechazado';
         }
         this.cotizacionS.update(item.id, { estatus: 'Rechazado',id_director:idDirector }).subscribe(res => {
-          console.log('Cotizaciones rechazadas: ');
+          //console.log('Cotizaciones rechazadas: ');
         });
       } else {
         item.selected = true;
-        console.log('Autorizo:', item.id);
+        //console.log('Autorizo:', item.id);
         const itemToUpdate = this.cotizacion.find(cotizacion => cotizacion === item);
         if (itemToUpdate) {
           itemToUpdate.estatus = 'Autorizado';
         }
+        //actualiza el estatus y le agrega el id del director que lo autorizo
         this.cotizacionS.update(item.id, { estatus: 'Autorizado',id_director:idDirector }).subscribe(res => {
-          console.log('Cotizaciones Autorizadas: ');
+          //console.log('Cotizaciones Autorizadas: ');
         });
       }
     });
@@ -180,23 +186,23 @@ export class VistaDirectorComponent implements OnInit{
     this.materialS.getList(this.idSolicitud).subscribe((data:Material[])=>{
       this.material=data;
       const tamaño = this.material.length;
-      console.log('tamaño del arreglo: ',tamaño);
+      //console.log('tamaño del arreglo: ',tamaño);
       //mostramos los datos de cada material
       this.material.forEach((material)=>{
-        console.log(`ID: ${material.id}, Estatus: ${material.estatus}`);
+        //console.log(`ID: ${material.id}, Estatus: ${material.estatus}`);
       });
       // Contar la cantidad de los materiales con estatus 'conAutorizacion' después de recibir los datos
       const materialesconAutoricion = this.material.filter((material) => material.estatus === 'conAutorizacion');
       const cantidadMaterialesAutorizadas = materialesconAutoricion.length;
-      console.log(`Cantidad de materiales con autorización: ${cantidadMaterialesAutorizadas}`);
+      //console.log(`Cantidad de materiales con autorización: ${cantidadMaterialesAutorizadas}`);
       if (this.material.length === materialesconAutoricion.length) {
         alert('Autorización enviada');
         this.solicitudesS.updateDirector(this.idSolicitud,{estatus:'Aprobado',id_director:idDirector}).subscribe(res=>{
-          console.log('Solicitud Autorizada');
+          //console.log('Solicitud Autorizada');
           window.location.reload();
         })
       } else {
-        alert('Autorice al menos una cotizacion en cada material')
+        alert('Autorice al menos una cotización en cada material')
       }
     })
   }
@@ -204,60 +210,5 @@ export class VistaDirectorComponent implements OnInit{
     // Navegar a la ruta 'inicio'
     this.router.navigate(['/inicio']);
   }
-
-
-
-  /*estadoAutorizado:string='Autorizado';
-  autorizar(id:string){
-    console.log('autorizo: ',id);
-    const itemToUpdate = this.cotizacion.find(item => item.id === id);
-    if (itemToUpdate) {
-      // Actualiza el valor del elemento encontrado
-      itemToUpdate.estatus = this.estadoAutorizado;
-    }
-    this.agregarEstado = {
-      id: '',
-      id_material:'',
-      id_analista:'',
-      id_director:'',
-      moneda:'',
-      fabricacion:'',
-      lme:'',
-      premium:'',
-      total:'',
-      icoterm:'',
-      estatus: this.estadoAutorizado,
-    };
-    this.cotizacionS.update(id, this.agregarEstado).subscribe(res => {
-      console.log('Cotizacion Autorizada');
-      //this.estadoAutorizado = '';
-    });
-  }
-  estadoRechazado:string='Rechazado';
-  rechazar(id:string){
-    console.log('rechazo: ',id);
-    const itemToUpdate = this.cotizacion.find(item => item.id === id);
-    if (itemToUpdate) {
-      // Actualiza el valor del elemento encontrado
-      itemToUpdate.estatus = this.estadoRechazado;
-    }
-    this.agregarEstado = {
-      id: '',
-      id_material:'',
-      id_analista:'',
-      id_director:'',
-      moneda:'',
-      fabricacion:'',
-      lme:'',
-      premium:'',
-      total:'',
-      icoterm:'',
-      estatus: this.estadoRechazado,
-    };
-    this.cotizacionS.update(id, this.agregarEstado).subscribe(res => {
-      console.log('Cotizacion Rechazada');
-      //this.estadoAutorizado = '';
-    });
-  }*/
 
 }

@@ -53,6 +53,7 @@ export class FormCotizacionComponent implements AfterViewInit{
               private cotizacionService:CotizacionService){}
 
   ngAfterViewInit(){
+    //trae la informacion de la solicitud
     this.solicitudesService.find(this.idSolicitud).subscribe(response=>{
       this.solicitudesN=response;
       this.responsableSoli=response.solicitante;
@@ -61,6 +62,7 @@ export class FormCotizacionComponent implements AfterViewInit{
       this.NomCliente=response.NomCliente;
       this.NumParte=response.NumParte;
     });
+    //trae los materiales de esa solicitud
     this.materialService.getList(this.idSolicitud).subscribe((data: Material[])=>{
       this.material = data;
     });
@@ -72,24 +74,24 @@ export class FormCotizacionComponent implements AfterViewInit{
       this.nomAnalista=response.nombres + " " + response.apellidos;
     });
   }
-
+  //metodo que al terminar la cotización envia la solicitud para su aprobación
   enviarCotizacion() {
     // Consultar los datos de los materiales
     this.materialService.getList(this.idSolicitud).subscribe((data: Material[]) => {
       // Asignar los datos a la propiedad this.material
       this.material = data;
       const tamaño = this.material.length;
-      console.log('tamañooo: ',tamaño);
+      //console.log('tamañooo: ',tamaño);
       // Mostrar los datos de cada material
       this.material.forEach((material) => {
-        console.log(`ID: ${material.id}, Estatus: ${material.estatus}`);
+        //console.log(`ID: ${material.id}, Estatus: ${material.estatus}`);
       });
       // Contar la cantidad de materiales con estatus 'Listo' después de recibir los datos
       const materialesListos = this.material.filter((material) => material.estatus === 'Listo');
       const cantidadMaterialesListos = materialesListos.length;
-      console.log(`Cantidad de materiales Listos: ${cantidadMaterialesListos}`);
+      //console.log(`Cantidad de materiales Listos: ${cantidadMaterialesListos}`);
       if(materialesListos.length == this.material.length){
-        console.log('se puede enviar la cotizacion');
+        //console.log('se puede enviar la cotizacion');
         //alert('Enviado');
         if(confirm('Enviar Solicitud?')){
           this.solicitudesService.update(this.idSolicitud,
@@ -102,13 +104,13 @@ export class FormCotizacionComponent implements AfterViewInit{
           });
         }
       }else{
-        console.log('no se puede enviar la cotizacion');
-        alert('No se puede enviar')
+        //console.log('no se puede enviar la cotizacion');
+        alert('Antes de enviarlo, realice las cotizaciones en cada material')
       }
     });
   }
 
-
+//metodos para la interaccion con los componentes, tablas y formularios
   verCotizacion(id:string){
     this.idM=id;
     this.datosCotizar=false;

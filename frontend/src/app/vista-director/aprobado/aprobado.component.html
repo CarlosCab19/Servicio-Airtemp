@@ -1,5 +1,6 @@
 <div class="card">
   <section *ngIf="tablaPrincipal">
+    <!--Tabla donde se muestra las cotizaciones que han sido aprobadas-->
     <div class="table-responsive text-center">
       <h2>Cotizaciones Aprobadas</h2>
       <div class="container-fluid my-4">
@@ -18,7 +19,6 @@
                     <td>{{solicitudes.id}}</td>
                     <td>{{solicitudes.created_at | date:'dd-MM-yyyy'}}</td>
                     <td>{{solicitudes.tipo}}</td>
-                    <!--<td>{{solicitudes.vence | date:'dd-MM-yyyy'}}</td>-->
                     <td>{{solicitudes.estatus}}</td>
                     <td id="acciones">
                       <svg (click)="Informacion(solicitudes.id)" id="see" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 20 20"><path fill="#000000" d="M17 7v4.567a5.793 5.793 0 0 0-6.469 1.009a5.528 5.528 0 0 0-1.098 1.405C9.181 14.451 9 14.983 9 15.5c0 .484.156 1.001.42 1.5H5.5A2.5 2.5 0 0 1 3 14.5V7h14Zm-2.5-4A2.5 2.5 0 0 1 17 5.5V6H3v-.5A2.5 2.5 0 0 1 5.5 3h9Zm0 9c-2.764 0-4.5 2.318-4.5 3.5c0 1.2 1.739 3.5 4.5 3.5s4.5-2.318 4.5-3.5c0-1.2-1.739-3.5-4.5-3.5Zm0 6a2.5 2.5 0 1 1 0-5a2.5 2.5 0 0 1 0 5Zm1.5-2.5a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0Z"/></svg>
@@ -31,6 +31,7 @@
   </section>
   <section *ngIf="descripcionMaterial">
     <div class="table-responsive text-center">
+      <!--trae la tabla donde se puede ver el material y sus cotizaciones -->
       <section class="close">
         <svg (click)="close(true)" id="close" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="#000000" d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m-3.4 14L12 13.4L8.4 17L7 15.6l3.6-3.6L7 8.4L8.4 7l3.6 3.6L15.6 7L17 8.4L13.4 12l3.6 3.6l-1.4 1.4Z"/></svg>
       </section>
@@ -58,7 +59,7 @@
     </div>
   </section>
 </div>
-<!-- Modal -->
+<!-- Modal para ver las cotizaciones de cada material-->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -71,7 +72,6 @@
           <table class="responsive-table table-bordered" style="width:100%" >
             <thead>
               <tr>
-                <!--<th scope="col">#</th>-->
                 <th scope="col">Fabricación</th>
                 <th scope="col">LME</th>
                 <th scope="col">Premium</th>
@@ -83,7 +83,6 @@
             </thead>
             <tbody>
               <tr *ngFor="let cotizaciones of cotizacion">
-                <!--<th>{{cotizaciones.id}}</th>-->
                 <td>{{cotizaciones.fabricacion | currency:monedaSimbolos[cotizaciones.moneda]:'symbol'}}</td>
                 <td>{{cotizaciones.lme | currency:monedaSimbolos[cotizaciones.moneda]:'symbol'}}</td>
                 <td>{{cotizaciones.premium | currency:monedaSimbolos[cotizaciones.moneda]:'symbol'}}</td>

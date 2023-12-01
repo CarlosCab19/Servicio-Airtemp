@@ -21,7 +21,6 @@ export class CotizadoComponent implements OnInit{
 
   solicitudes:Solicitud[]=[];
   material:Material[]=[];
-  //idSolicitud:string='';
   cotizacion:Cotizacion[]=[];
 
   //para la mostrar la informacion de la solicitud
@@ -35,6 +34,7 @@ export class CotizadoComponent implements OnInit{
   @Input() filtroBusqueda: string = '';
 
   ngOnInit(): void {
+    //se trae el id del usuario para mostrar las solicitudes que cotizo
     this.id=this.rutaActiva.snapshot.paramMap.get('id') as string;
     this.personalService.find(this.id).subscribe(response=>{
       this.idAnalista=response.id;
@@ -42,10 +42,11 @@ export class CotizadoComponent implements OnInit{
         this.solicitudes=data;
         this.solicitudes.forEach(item => {
           item.estado = this.isVencida(item);
-          console.log('ITEMS: ',item);
+          //console.log('ITEMS: ',item);
         });
       });
     });
+    //este metodo es el que cambia el estatus a vancida
     /*this.solicitudesService.getCotizadoAnalista(this.id).subscribe((data:Solicitud[])=>{
       this.solicitudes=data;
       this.solicitudes.forEach(item => {
@@ -59,26 +60,27 @@ export class CotizadoComponent implements OnInit{
       });
     });*/
   }
+  //filtro para el buscador
   filtrarSolicitudes(): any[] {
     const valorBusqueda = this.filtroBusqueda.toLowerCase();
     return this.solicitudes.filter((solicitud) => {
-      // Puedes ajustar la lógica de filtrado según tus necesidades
       return solicitud.id.toString().toLowerCase().includes(valorBusqueda) ||
              solicitud.solicitante.toLowerCase().includes(valorBusqueda) ||
              solicitud.tipo.toLowerCase().includes(valorBusqueda) ||
-             //solicitud.codProv.toLowerCase().includes(valorBusqueda) ||
              solicitud.NomCliente.toLowerCase().includes(valorBusqueda)||
              solicitud.estatus.toLowerCase().includes(valorBusqueda);
     });
   }
+  //para ver la informacion de la solicitud cotizada
   verInfoForm(id:string){
-    //this.idSolicitud=id;
+    //se trae los materiales de esa solicitud
     this.materialService.getList(id).subscribe((data: Material[])=>{
       this.material = data;
     });
     this.vertabla=false;
     this.verinformacion=true;
   }
+  //trae la cotizacion de cada material
   verCotizacion(id:string){
     this.cotizacionService.getList(id).subscribe((data:Cotizacion[])=>{
       this.cotizacion = data;
@@ -137,6 +139,7 @@ export class CotizadoComponent implements OnInit{
       });
     }
   }
+  //ver el documento pdf
   verOne(id:string){
     console.log(id);
     this.comprobanteService.obtenerPDF(id).subscribe((data: Blob) => {
@@ -144,6 +147,7 @@ export class CotizadoComponent implements OnInit{
       window.open(fileURL, '_blank'); // Esto abrirá el PDF en una nueva pestaña
     });
   }
+  //se elimina el docuemnto pdf
   eliminar(id:string){
     console.log(id)
     this.comprobanteService.eliminarArchivo(id).subscribe(res=>{

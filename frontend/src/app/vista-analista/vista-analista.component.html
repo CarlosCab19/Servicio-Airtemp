@@ -1,6 +1,6 @@
 
-<!--<button class="btn btn-primary" (click)="toggleOffcanvas()">Enable both scrolling & backdrop</button>-->
 <nav class="navbar bg-primary" >
+  <!--encabezado con el menu-->
   <button class="btn" (click)="toggleOffcanvas()">
     <span class="icon">
         <svg viewBox="0 0 175 80" width="40" height="40">
@@ -31,8 +31,8 @@
   </section>
 </nav>
 <div class="offcanvas offcanvas-start" [ngClass]="{ 'show': isOffcanvasOpen }" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+  <!--Botones para el menu-->
     <div class="offcanvas-header bg-primary">
-      <!--<h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Solicitante</h5>-->
       <img src="assets\img-logo\Letras_Airtemp.png" class="logo">
       <button type="button" class="btn-close" (click)="closeOffcanvas()" aria-label="Close"></button>
     </div>
@@ -56,6 +56,7 @@
     </div>
 </div>
 <div class="grid">
+  <!--Tabla principal donde se ve las nuevas solicitudes-->
       <div class="card" *ngIf="verporCotizar" >
         <div class="table-responsive text-center">
           <h2>Solicitudes Nuevas</h2>
@@ -80,7 +81,7 @@
                         <td>{{solicitudes.tipo}}</td>
                         <td>{{solicitudes.NumParte}}</td>
                         <td>{{solicitudes.estatus}}</td>
-                        <td id="acciones">
+                        <td>
                           <svg id="see" (click)="verFormCoti(solicitudes.id)" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 20 20"><path fill="#000000" d="M17 7v4.567a5.793 5.793 0 0 0-6.469 1.009a5.528 5.528 0 0 0-1.098 1.405C9.181 14.451 9 14.983 9 15.5c0 .484.156 1.001.42 1.5H5.5A2.5 2.5 0 0 1 3 14.5V7h14Zm-2.5-4A2.5 2.5 0 0 1 17 5.5V6H3v-.5A2.5 2.5 0 0 1 5.5 3h9Zm0 9c-2.764 0-4.5 2.318-4.5 3.5c0 1.2 1.739 3.5 4.5 3.5s4.5-2.318 4.5-3.5c0-1.2-1.739-3.5-4.5-3.5Zm0 6a2.5 2.5 0 1 1 0-5a2.5 2.5 0 0 1 0 5Zm1.5-2.5a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0Z"/></svg>
                         </td>
                     </tr>
@@ -89,6 +90,7 @@
           </div>
         </div>
       </div>
+      <!--Componentes interactivos-->
       <section class="card" *ngIf="verCotizados">
         <app-por-cotizar [filtroBusqueda]="filtroBusqueda"></app-por-cotizar> <!--Este es el componente de Cotizados-->
       </section>
