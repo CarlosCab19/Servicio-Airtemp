@@ -3,64 +3,55 @@
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
 /*Estilos para la tabla*/
 .card{
-  position: fixed;
-  height: 80%;
-  width: 70%;
-  margin: auto;
-  margin-block-end: 20px;
-  background-color: #1b9aee63;
-  border-radius: 15px ;
+  margin: 3% 10%;
+  background-color: #b9e0fe;
+  height: 100%;
+  width: 80%;
   padding: 20px;
-  margin-left: 15%;
+  border-radius: 10px;
 }
 .cotizado{
-  position: fixed;
-  height: 80%;
-  width: 70%;
-  margin: auto;
-  margin-block-end: 20px;
-  background-color: #1b9aee63;
-  border-radius: 15px ;
+  margin: 3% 10%;
+  background-color: #b9e0fe;
+  height: 100%;
+  width: 80%;
   padding: 20px;
-  margin-left: 15%;
+  border-radius: 10px;
+}
+/*estilos para la table*/
+.table-container {
+  overflow-x: auto;
+  max-height: 400px; /* Ajusta la altura máxima según tus necesidades */
 }
 
-.responsive-table {
+table {
   width: 100%;
+  max-width: 100%;
+  margin-bottom: 1rem;
   border-collapse: collapse;
-  background-color: #fff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.responsive-table th,
-.responsive-table td {
-  padding: 10px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
+th, td {
+  padding: 0.75rem;
+  text-align: center;
+  border: 1px solid #dee2e6;
 }
 
-.responsive-table th {
-  background-color: #87CEEB;
-  color: #000000;
-}
-.table th {
-  background-color: #87CEEB;
-  color: #fff;
-}
-.responsive-table tbody tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-.responsive-table tbody tr:hover {
-  background-color: #ddd;
+th {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: #005ba2; /* Cambia el color de fondo según tus preferencias */
+  z-index: 1;
 }
 /*estilos para el titulo*/
 h2{
-  font-weight: bold;
   text-align: center;
   margin-top: 20px;
-  background-color: #6495ED;
+  background-color: #0074cb;
   color: black;
+  border-radius: 5px;
+  Font-family: Franklin Gothic, Arial Bold;
 }
 
 @media screen and (max-width: 768px) {
@@ -88,13 +79,6 @@ h2{
   }
 
 }
-
-#acciones{
-  display: grid;
-  grid-template-columns: repeat(2,1fr);
-  height: 100%;
-  column-gap: 5px;
-}
 #see{
   background-color: rgba(51, 228, 95, 0.473) ;
   height: 30px;
@@ -110,14 +94,17 @@ h2{
   border-radius: 5px;
 }
 
-/*nuevos*/
 /*para el canvas*/
 .offcanvas{
   background-color:#ffffff ;
   width: 330px;
 }
+.navbar{
+  background-color: #07294a;
+}
 .offcanvas-header{
   height: 86px;
+  background-color: #07294a;
 }
 .logo{
   width: 250px;
@@ -313,8 +300,8 @@ input:-webkit-autofill:active {
   border: none;
   display: flex;
   padding: 0.75rem 1.5rem;
-  background-color: #488aec;
-  color: #000000;
+  background-color: #005ba2;
+  color: #f5f9fb;
   font-size: 0.75rem;
   line-height: 1rem;
   font-weight: 700;
@@ -343,32 +330,6 @@ input:-webkit-autofill:active {
 #btn-menu svg {
   width: 1.25rem;
   height: 1.25rem;
-}
-/*la tabla para ver la cotizacion y los datos*/
-.table-container {
-  overflow-x: auto;
-  max-height: 400px; /* Ajusta la altura máxima según tus necesidades */
-}
-
-.table-container table {
-  width: 100%;
-  max-width: 100%;
-  margin-bottom: 1rem;
-  border-collapse: collapse;
-}
-
-.table-container th, td {
-  padding: 0.75rem;
-  text-align: center;
-  border: 1px solid #dee2e6;
-}
-
-.table-container th {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  background-color: #4682B4	; /* Cambia el color de fondo según tus preferencias */
-  z-index: 1;
 }
 
 #accion{
@@ -402,12 +363,13 @@ input:-webkit-autofill:active {
 }
 
 .enviar button{
-  font-size: 17px;
+  font-size: 15px;
   padding: 0.5em 2em;
   border: transparent;
   box-shadow: 2px 2px 4px rgba(0,0,0,0.4);
-  background: dodgerblue;
-  color: white;
+  background-color: #0a94ed;
+  color: black;
+  font-weight: bold;
   border-radius: 4px;
 }
 .table-container .text-center{

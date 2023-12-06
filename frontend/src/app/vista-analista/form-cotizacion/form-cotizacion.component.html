@@ -4,7 +4,6 @@
 <div class="container"  *ngIf="datosCotizar">
   <!--Datos de la soliictud-->
   <div class="solicitud">
-    <svg (click)="close(true)" id="close" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="-2 -2 24 24"><path fill="#000000" d="m11.414 10l2.829-2.828a1 1 0 1 0-1.415-1.415L10 8.586L7.172 5.757a1 1 0 0 0-1.415 1.415L8.586 10l-2.829 2.828a1 1 0 0 0 1.415 1.415L10 11.414l2.828 2.829a1 1 0 0 0 1.415-1.415L11.414 10zM4 0h12a4 4 0 0 1 4 4v12a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V4a4 4 0 0 1 4-4z"/></svg>
     <h2 class="titulo-con-linea">Datos de la solicitud</h2>
     <section>
       <div class="row">
@@ -49,18 +48,19 @@
   <div class="divider"></div> <!-- Divisor vertical -->
   <div class="material">
     <!--Datos del material-->
+    <svg (click)="close(true)" id="close" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="-2 -2 24 24"><path fill="#000000" d="m11.414 10l2.829-2.828a1 1 0 1 0-1.415-1.415L10 8.586L7.172 5.757a1 1 0 0 0-1.415 1.415L8.586 10l-2.829 2.828a1 1 0 0 0 1.415 1.415L10 11.414l2.828 2.829a1 1 0 0 0 1.415-1.415L11.414 10zM4 0h12a4 4 0 0 1 4 4v12a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V4a4 4 0 0 1 4-4z"/></svg>
     <h2 class="titulo-con-linea">Datos del material</h2>
     <table class="table table-hover" style="text-align: center;">
       <thead>
         <tr>
-          <th scope="col">#</th>
-          <th scope="col">Descripcion del Material</th>
-          <th scope="col">Acciones</th>
+          <th scope="col">Folio</th>
+          <th scope="col">Descripción del Material</th>
+          <th scope="col">Ver información</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let items of material">
-          <th scope="row">{{items.id}}</th>
+          <td>{{items.id}}</td>
           <td>{{items.descripcion}}</td>
           <td>
             <svg (click)="verCotizacion(items.id)" id="accion" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><g fill="none" stroke="#e11d48" stroke-width="1.5"><path d="M2 14c0-3.771 0-5.657 1.172-6.828C4.343 6 6.229 6 10 6h4c3.771 0 5.657 0 6.828 1.172C22 8.343 22 10.229 22 14c0 3.771 0 5.657-1.172 6.828C19.657 22 17.771 22 14 22h-4c-3.771 0-5.657 0-6.828-1.172C2 19.657 2 17.771 2 14Zm14-8c0-1.886 0-2.828-.586-3.414C14.828 2 13.886 2 12 2c-1.886 0-2.828 0-3.414.586C8 3.172 8 4.114 8 6"/><path stroke-linecap="round" d="M12 17.333c1.105 0 2-.746 2-1.666c0-.92-.895-1.667-2-1.667s-2-.746-2-1.667c0-.92.895-1.666 2-1.666m0 6.666c-1.105 0-2-.746-2-1.666m2 1.666V18m0-8v.667m0 0c1.105 0 2 .746 2 1.666"/></g></svg>
@@ -68,7 +68,7 @@
         </tr>
       </tbody>
     </table>
-    <button (click)="enviarCotizacion()" style="width: 30%;" class="btn btn-primary">Eviar Cotización</button> <!--[disabled]="!fechaVencimiento"-->
+    <button (click)="enviarCotizacion()" style="width: 35%;" class="btn">Eviar Cotizaciones</button> <!--[disabled]="!fechaVencimiento"-->
   </div>
 </div>
 

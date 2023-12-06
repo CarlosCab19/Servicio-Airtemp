@@ -36,7 +36,7 @@
   <div class="cotizacion">
     <section>
       <!--Boton para agragar nueva cotizacion-->
-      <button class="btn btn-primary" id="add" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      <button class="btn" id="add" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Cotizar
       </button>
       <div class="table-container">
@@ -51,7 +51,7 @@
               <th scope="col">Adicional</th>
               <th scope="col">Nota</th>
               <th scope="col">Comprobante</th>
-              <th scope="col">Acciones</th>
+              <th scope="col">Eliminar</th>
             </tr>
           </thead>
           <tbody>
@@ -144,6 +144,6 @@
         </div>
       </div>
     </section>
-    <button style="width: 30%;" (click)="cotizacionLista()" id="enviar" class="btn btn-primary">Cotizacion lista</button>
+    <button style="width: 30%;" (click)="cotizacionLista()" id="enviar" class="btn">Cotizacion lista</button>
   </div>
 </div>

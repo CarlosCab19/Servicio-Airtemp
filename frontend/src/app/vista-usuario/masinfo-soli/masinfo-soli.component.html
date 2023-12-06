@@ -46,30 +46,28 @@
   <div class="material">
     <svg (click)="cerrar(true)" id="cerrar" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="#000000" d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m-3.4 14L12 13.4L8.4 17L7 15.6l3.6-3.6L7 8.4L8.4 7l3.6 3.6L15.6 7L17 8.4L13.4 12l3.6 3.6l-1.4 1.4Z"/></svg>
     <h2 class="titulo-con-linea">Datos del material</h2>
-    <section *ngIf="Estatus=='Editando'">
-      <button id="add" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
-        + Material
-      </button>
-    </section>
-    <table class="table table-hover" style="text-align: center;">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Descripcion del Material</th>
-          <th scope="col">Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let items of material">
-          <th scope="row">{{items.id}}</th>
-          <td>{{items.descripcion}}</td>
-          <td>
-            <svg data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" id="accion" (click)="AbrirMaterial(items.id,items.familia)" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="#0284c7" d="M12 6C5.188 6 1 12 1 12s4.188 6 11 6s11-6 11-6s-4.188-6-11-6zm0 10c-3.943 0-6.926-2.484-8.379-4c1.04-1.085 2.862-2.657 5.254-3.469A3.96 3.96 0 0 0 8 11a4 4 0 0 0 8 0a3.96 3.96 0 0 0-.875-2.469c2.393.812 4.216 2.385 5.254 3.469c-1.455 1.518-4.437 4-8.379 4z"/></svg>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <button *ngIf="Estatus=='Editando'" (click)="EnviarSoli(true)" class="btn btn-primary">Enviar Solicitud</button>
+    <button *ngIf="Estatus=='Editando'" id="add" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" class="btn">
+      + Material
+    </button>
+      <table class="table table-hover" style="text-align: center;">
+        <thead>
+          <tr>
+            <!--<th scope="col">#</th>-->
+            <th scope="col">Descripción del Material</th>
+            <th scope="col">Ver información</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let items of material">
+            <!--<th scope="row">{{items.id}}</th>-->
+            <td>{{items.descripcion}}</td>
+            <td>
+              <svg data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" id="accion" (click)="AbrirMaterial(items.id,items.familia)" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="#0284c7" d="M12 6C5.188 6 1 12 1 12s4.188 6 11 6s11-6 11-6s-4.188-6-11-6zm0 10c-3.943 0-6.926-2.484-8.379-4c1.04-1.085 2.862-2.657 5.254-3.469A3.96 3.96 0 0 0 8 11a4 4 0 0 0 8 0a3.96 3.96 0 0 0-.875-2.469c2.393.812 4.216 2.385 5.254 3.469c-1.455 1.518-4.437 4-8.379 4z"/></svg>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    <button *ngIf="Estatus=='Editando'" (click)="EnviarSoli(true)" class="btn">Enviar Solicitud</button>
   </div>
 </div>
 
@@ -126,14 +124,14 @@
         <table *ngIf="Estatus=='Editando'"  class="table table-hover" style="text-align: center;">
           <thead>
             <tr>
-              <th scope="col">#</th>
+              <!--<th scope="col">#</th>-->
               <th scope="col">Caracteristica</th>
-              <th scope="col">Acciones</th>
+              <th scope="col">Eliminar</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let items of caracterDelMaterial">
-              <th scope="row">{{items.id}}</th>
+              <!--<th scope="row">{{items.id}}</th>-->
               <td>{{items.caracteristica}}</td>
               <td>
                 <svg *ngIf="Estatus=='Editando'" (click)="eliminar(items.id)" id="accion" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="#dc2626" d="M4 8h16v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8Zm3-3V3a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v2h5v2H2V5h5Zm2-1v1h6V4H9Zm0 8v6h2v-6H9Zm4 0v6h2v-6h-2Z"/></svg>
@@ -145,14 +143,14 @@
         <table *ngIf="Estatus!=='Editando'" class="table table-hover" style="text-align: center;">
           <thead>
             <tr>
-              <th scope="col">#</th>
+              <!--<th scope="col">#</th>-->
               <th scope="col">Caracteristica</th>
               <th scope="col">Valor</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let items of caracterDelMaterial">
-              <th scope="row">{{items.id}}</th>
+              <!--<th scope="row">{{items.id}}</th>-->
               <td>{{items.caracteristica}}</td>
               <td>{{items.valor}}</td>
             </tr>

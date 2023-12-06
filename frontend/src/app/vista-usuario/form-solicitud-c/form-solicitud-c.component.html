@@ -43,7 +43,7 @@
           <input #name="ngModel" name="NumParte" [(ngModel)]="solicitar.NumParte" required type="text" id="codigoProveedor" class="form-control fst-italic" aria-describedby="codigoHelpBlock" placeholder="ingresar 'SN' si no se tiene numero de parte">
         </section>
         <section class="position-relative">
-          <button class="btn btn-primary" [disabled]="!form.valid">Solicitar</button>
+          <button class="btn" [disabled]="!form.valid">Solicitar</button>
         </section>
         <!--<strong><pre>{{form.value | json }}</pre></strong>-->
       </form>

@@ -6,7 +6,9 @@ body {
   padding: 0;
   font-family: Arial, sans-serif;
 }
-
+.navbar{
+  background-color: #07294a;
+}
 .btnNav {
   width: 150px;
   height: 50px;
@@ -59,6 +61,7 @@ body {
 }
 .offcanvas-header{
   height: 86px;
+  background-color: #07294a;
 }
 .logo{
   height: 100%;
@@ -74,8 +77,8 @@ body {
   border: none;
   display: flex;
   padding: 0.75rem 1.5rem;
-  background-color: #488aec;
-  color: #000000;
+  background-color: #005ba2;
+  color: #f5f9fb;
   font-size: 0.75rem;
   line-height: 1rem;
   font-weight: 700;
@@ -112,12 +115,13 @@ body {
   margin-top: 5%;
   width: 50%;
   height: 50%;
-  background-color: #90EE90;
+  background-color: #005ba2;
   padding: 20px;
   border-radius: 10px;
+  color: #ededed;
 }
 .btn{
-  background-color: #228B22;
+  background-color: #7bc9fe;
   color: black;
   font-weight: bold;
 }
@@ -125,6 +129,6 @@ body {
 h2{
   font-weight: bold;
   text-align: center;
-  background-color: #6495ED;
-  color: white;
+  background-color: #0074cb;
+  color: #ededed;
 }

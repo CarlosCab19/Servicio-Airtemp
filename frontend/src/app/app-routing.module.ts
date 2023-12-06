@@ -40,7 +40,7 @@ const routes: Routes = [
   //{path:'vencidas',component:VencidaComponent},
   //{path:'realizar',component:RealizarCotizacionComponent},
   //{path:'apro',component:AprobadoAComponent},
-  //{path:'solicitudes',component:SolicitudesComponent},
+  {path:'solicitudes',component:SolicitudesComponent},
 
 ];
 

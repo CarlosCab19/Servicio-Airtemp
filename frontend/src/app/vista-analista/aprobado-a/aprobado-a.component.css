@@ -1,50 +1,21 @@
 .card{
-  position: fixed;
-  height: 85%;
-  width: 70%;
-  margin: auto;
-  margin-block-end: 20px;
-  background-color: #1b9aee63;
-  border-radius: 15px ;
+  margin: 3% 10%;
+  background-color: #b9e0fe;
+  height: 100%;
+  width: 80%;
   padding: 20px;
-  margin-left: 15%;
-}
-.responsive-table {
-  width: 100%;
-  border-collapse: collapse;
-  background-color: #fff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
 }
 
-.responsive-table th,
-.responsive-table td {
-  padding: 10px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
-.responsive-table th {
-  background-color: #87CEEB;
-  color: #000000;
-}
-.table th {
-  background-color: #87CEEB;
-  color: #fff;
-}
-.responsive-table tbody tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-.responsive-table tbody tr:hover {
-  background-color: #ddd;
-}
 /*estilos para el titulo*/
 h2{
   font-weight: bold;
   text-align: center;
   margin-top: 20px;
-  background-color: #6495ED;
+  background-color: #0074cb;
   color: black;
+  border-radius: 5px;
+  Font-family: Franklin Gothic, Arial Bold;
 }
 #see{
   cursor: pointer;
@@ -57,9 +28,10 @@ h2{
   cursor: pointer;
 }
 
+/*estilos para la tabla*/
 .table-container {
   overflow-x: auto;
-  max-height: 500px; /* Ajusta la altura máxima según tus necesidades */
+  max-height: 400px; /* Ajusta la altura máxima según tus necesidades */
 }
 
 table {
@@ -79,7 +51,7 @@ th {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  background-color: #f8f9fa; /* Cambia el color de fondo según tus preferencias */
+  background-color: #005ba2; /* Cambia el color de fondo según tus preferencias */
   z-index: 1;
 }
 
@@ -88,7 +60,10 @@ th {
   th, td {
     font-size: 12px; /* Ajusta el tamaño de la fuente para dispositivos pequeños */
   }
+  h2{
+    font-size: 15px;
+  }
 }
 .modal-header{
-  background-color: #6495ED;
+  background-color: #b9e0fe;
 }

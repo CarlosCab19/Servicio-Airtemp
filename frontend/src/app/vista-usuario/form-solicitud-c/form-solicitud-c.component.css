@@ -4,7 +4,7 @@ body{
   padding: 0;
 }
 main{
-  background-color: #488aec8c;
+  background-color: #b9e0fe;
   margin: 0% 15%;
   padding: 3%;
   border-radius: 15px;
@@ -14,8 +14,8 @@ form{
   display: grid;
   grid-template-columns: repeat(2,1fr);
   grid-gap: 3%;
-  background-color: #e6e1e1;
-  padding: 30px;
+  /*background-color: #e6e1e1;*/
+  padding: 10px;
   border-radius: 10px;
 }
 .nuevo{
@@ -62,5 +62,10 @@ form{
 }
 .form-check{
   display: flex;
+}
+.position-relative .btn{
+  background-color: #054f87;
+  color: black;
+  font-weight: bold;
 }
 

@@ -10,15 +10,20 @@
   flex: 1;
   padding: 10px;
   text-align: center;
-  background-color: rgba(104, 194, 247, 0.979);
+  background-color: #7bc9fe;
   border-radius: 3%;
 }
 .material {
   flex: 1;
   padding: 10px;
   text-align: center;
-  background-color: rgb(104, 194, 247, 0.979);
+  background-color: #7bc9fe;
   border-radius: 3%;
+}
+.material .btn{
+  background-color: #0a94ed;
+  color: black;
+  font-weight: bold;
 }
 .titulo-con-linea {
   position: relative;
@@ -201,6 +206,7 @@ span{
 #close{
   display: flex;
   cursor: pointer;
+  margin-left: 90%;
 }
 
 .custom-btn {
@@ -249,4 +255,13 @@ input[type="date"] {
   border: 1px solid #ccc; /* Añade un borde al campo de fecha */
   border-radius: 5px; /* Agrega bordes redondeados al campo de fecha */
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Agrega una sombra suave */
+}
+
+th {
+  top: 0;
+  background-color: #005ba2;
+  color: #000000;
+}
+h2{
+  Font-family: Franklin Gothic, Arial Bold;
 }

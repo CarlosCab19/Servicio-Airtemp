@@ -4,7 +4,6 @@
 .container {
   display: flex;
   flex-wrap: wrap; /* Permite que las columnas se envuelvan en pantallas pequeñas */
-  /*margin-top: 3%;*/
   padding: 0;
 }
 
@@ -12,14 +11,14 @@
   flex: 1;
   padding: 10px;
   text-align: center;
-  background-color: rgba(104, 194, 247, 0.979);
+  background-color: #7bc9fe;
   border-radius: 3%;
 }
 .material {
   flex: 1;
   padding: 10px;
   text-align: center;
-  background-color: rgb(104, 194, 247, 0.979);
+  background-color: #7bc9fe;
   border-radius: 3%;
 }
 .titulo-con-linea {
@@ -36,17 +35,6 @@
   position: absolute;
   bottom: 0;
   left: 0;
-}
-
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column; /* Cambia a un diseño de una sola columna en pantallas más pequeñas */
-  }
-
-  .solicitud, .material {
-    flex: 1;
-    margin-bottom: 10px;
-  }
 }
 
 section{
@@ -141,7 +129,7 @@ span{
 }
  /*estilos para el modal*/
  .modal-header{
-  background-color: rgba(104, 194, 247, 0.979);
+  background-color:#7bc9fe;
   color: black;
   font-weight: bold;
 
@@ -153,28 +141,32 @@ span{
   margin-left: 90%;
   cursor: pointer;
 }
-/*para el cambio del modal */
-.agregar{
-  background-color: rgba(104, 194, 247, 0.979);
-  border-radius: 10px;
-  height: 90%;
-  width: 40%;
-  margin: 1% 30%;
-  padding: 4%;
+.material .btn{
+  background-color: #0a94ed;
+  color: black;
+  font-weight: bold;
 }
-.caracteristicasM{
-  background-color: rgba(104, 194, 247, 0.979);
-  border-radius: 10px;
-  height: 100%;
-  width: 60%;
-  margin: 1% 20%;
-  padding: 4%;
+
+th {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: #005ba2;
+  color: #000000;
+  z-index: 1;
 }
-.valores{
-  background-color: rgba(104, 194, 247, 0.979);
-  border-radius: 10px;
-  height: 100%;
-  width: 60%;
-  margin: 1% 20%;
-  padding: 4%;
+
+@media (max-width: 768px) {
+  /* Estilos adicionales para dispositivos más pequeños */
+  th, td {
+    font-size: 12px; /* Ajusta el tamaño de la fuente para dispositivos pequeños */
+  }
+  .container {
+    flex-direction: column; /* Cambia a un diseño de una sola columna en pantallas más pequeñas */
+  }
+
+  .solicitud, .material {
+    flex: 1;
+    margin-bottom: 10px;
+  }
 }

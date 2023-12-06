@@ -1,5 +1,5 @@
 
-<nav class="navbar bg-primary">
+<nav class="navbar">
   <button class="btnNav" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
     <span class="icon">
         <svg viewBox="0 0 175 80" width="40" height="40">
@@ -31,7 +31,7 @@
 </nav>
 <body>
   <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
-    <div class="offcanvas-header bg-primary">
+    <div class="offcanvas-header">
       <img src="assets\img-logo\Letras_Airtemp.png" class="logo">
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
@@ -52,10 +52,10 @@
   </div>
   <section class="personal">
     <section class="nuevoPersonal">
-      <button class="btn btn-success" routerLink="/addPersonal">Nuevo personal</button>
+      <button class="btn" routerLink="/addPersonal">Agregar personal</button>
     </section>
+    <h2 class="text-center">PERSONAL</h2>
     <section class="table-container">
-      <h2 class="text-center">PERSONAL</h2>
       <table class="table table-hover">
         <thead>
           <tr>
@@ -80,7 +80,7 @@
             <td>{{personal.usuario}}</td>
             <td>{{personal.contra}}</td>
             <td>{{personal.estatus}}</td>
-            <td><button class="btn btn-warning" [routerLink]="['/editPersonal/', personal.id  ]">Editar</button></td>
+            <td><button class="btn" [routerLink]="['/editPersonal/', personal.id  ]">Editar</button></td>
           </tr>
         </tbody>
       </table>
