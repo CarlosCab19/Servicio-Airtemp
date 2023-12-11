@@ -30,6 +30,7 @@ th {
   position: sticky;
   top: 0;
   background-color: #005ba2; /* Cambia el color de fondo según tus preferencias */
+  color: #ededed;
   z-index: 1;
 }
 
@@ -37,7 +38,6 @@ th {
 h2{
   text-align: center;
   margin-top: 20px;
-  background-color: #0074cb;
   color: black;
   border-radius: 5px;
   Font-family: Franklin Gothic, Arial Bold;

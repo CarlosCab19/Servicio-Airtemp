@@ -12,7 +12,6 @@ h2{
   font-weight: bold;
   text-align: center;
   margin-top: 20px;
-  background-color: #0074cb;
   color: black;
   border-radius: 5px;
   Font-family: Franklin Gothic, Arial Bold;
@@ -51,7 +50,8 @@ th {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  background-color: #005ba2; /* Cambia el color de fondo según tus preferencias */
+  background-color: #005ba2; /* Color del encabezado de la tabla */
+  color: #ededed;
   z-index: 1;
 }
 

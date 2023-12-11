@@ -130,10 +130,9 @@ th {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  background-color: #f8f9fa; /* Cambia el color de fondo según tus preferencias */
   z-index: 1;
   background-color: #005ba2;
-
+  color: #ededed;
 }
 /*btn para nuevo personal*/
 .nuevoPersonal .btn{
@@ -147,9 +146,9 @@ th {
 .form {
   margin-right: 25px;
   --input-text-color: #fff;
-  --input-bg-color:#005ba2;
+  --input-bg-color:#ffffff;
   --focus-input-bg-color: transparent;
-  --text-color: #f0f8ff;
+  --text-color: #000000;
   --active-color: #b9e0fe;
   --width-of-input: 200px;
   --inline-padding-of-input: 1.2em;
@@ -262,7 +261,6 @@ h2{
   color: black;
   margin: 0;
   padding: 0;
-  background-color: #0074cb;
   margin-left: 15%;
   width: 70%;
   border-radius: 5px;

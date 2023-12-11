@@ -1,11 +1,68 @@
 <body>
-  <main>
-      <section id="encabezado">
-        <!--Formulario para agregar la descripcion de la solicitud-->
-        <p class="text-center fw-bold fs-2">Datos de la Solicitud</p>
-        <svg (click)="addNewEstado(false)" id="close" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="#000000" d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m-3.4 14L12 13.4L8.4 17L7 15.6l3.6-3.6L7 8.4L8.4 7l3.6 3.6L15.6 7L17 8.4L13.4 12l3.6 3.6l-1.4 1.4Z"/></svg>
-      </section>
-      <form (ngSubmit)="submit(form.value)" #form="ngForm">
+  <section>
+    <div class="row">
+      <svg (click)="addNewEstado(false)" style="margin-left: 45%; margin-top:1%; cursor:pointer" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="#000000" d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m-3.4 14L12 13.4L8.4 17L7 15.6l3.6-3.6L7 8.4L8.4 7l3.6 3.6L15.6 7L17 8.4L13.4 12l3.6 3.6l-1.4 1.4Z"/></svg>
+        <label for="formGroupTitle" class="form-label" style="font-weight: bold; font-size: 25px;">
+          Datos de la solicitud
+        </label>
+    </div>
+    <form (ngSubmit)="submit(form.value)" #form="ngForm">
+      <div class="row">
+        <div class="col">
+          <label for="formGroupExampleInput" class="form-label">Tipo de solicitud</label>
+          <select [(ngModel)]="solicitar.tipo" name="tipo" class="form-select" style="text-align: center;" id="inputTipo" aria-describedby="tipoHelpBlock" required>
+            <option value="" disabled selected>Seleccione una opción</option>
+            <option value="Material">Material</option>
+            <option value="Maquinaria">Maquinaria</option>
+          </select>
+        </div>
+        <div class="col">
+          <label for="formGroupExampleInput" class="form-label">Responsable</label>
+          <input type="text" class="form-control" style="text-align: center;" id="formGroupExampleInput" placeholder="{{nomResponsable}}" disabled>
+        </div>
+      </div>
+      <div class="row">
+        <label for="formGroupTitle" class="form-label" style="display: flex; align-items: start; justify-content: start; font-weight: bold; font-size: 15px;">
+          Proveedor
+        </label>
+        <div class="col">
+          <label for="formGroupExampleInput" class="form-label">Razón social</label>
+          <input type="text" #name="ngModel" name="Rsocial" [(ngModel)]="solicitar.Rsocial" class="form-control" style="text-align: center;" id="formGroupExampleInput" placeholder="" required>
+        </div>
+        <div class="col">
+          <label for="formGroupExampleInput2" class="form-label" >Código proveedor
+            <input [(ngModel)]="nuevoChecked" name="nuevo" (change)="onCheckboxChange()" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+          </label>
+          <input type="text" #name="ngModel" name="codProv" [(ngModel)]="solicitar.codProv" *ngIf="nuevoChecked==true" class="form-control" style="text-align: center;" id="formGroupExampleInput2" placeholder="" required>
+        </div>
+      </div>
+      <div class="row">
+        <label for="formGroupTitle" class="form-label" style="display: flex; align-items: start; justify-content: start; font-weight: bold; font-size: 15px;">
+          Cliente
+        </label>
+        <div class="col">
+          <label for="formGroupExampleInput" class="form-label">Nombres</label>
+          <input type="text" #name="ngModel" name="NomCliente" [(ngModel)]="solicitar.NomCliente" class="form-control" style="text-align: center;" id="formGroupExampleInput" placeholder="" required>
+        </div>
+        <div class="col">
+          <label for="formGroupExampleInput2" class="form-label">Número de parte</label>
+          <input type="text" #name="ngModel" name="NumParte" [(ngModel)]="solicitar.NumParte" class="form-control" style="text-align: center;" id="formGroupExampleInput2" placeholder="Si no cuenta con número de parte ingresar 'SN'" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col" style="margin-top: 2%;">
+          <button class="btn" [disabled]="!form.valid" type="submit" style="background-color: #005ba2; color: #ededed; font-weight: bold;">
+            Crear Solicitud
+          </button>
+        </div>
+      </div>
+    </form>
+  </section>
+    <!--<section id="encabezado">
+      <p class="text-center fw-bold fs-2">Datos de la Solicitud</p>
+      <svg (click)="addNewEstado(false)" id="close" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="#000000" d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m-3.4 14L12 13.4L8.4 17L7 15.6l3.6-3.6L7 8.4L8.4 7l3.6 3.6L15.6 7L17 8.4L13.4 12l3.6 3.6l-1.4 1.4Z"/></svg>
+    </section>-->
+      <!--<form (ngSubmit)="submit(form.value)" #form="ngForm">
         <section id="proveedor">
           <label for="inputResponsable" class="form-label fw-bold fs-5 ">Responsable</label>
           <div id="responsableHelpBlock" class="form-text fw-semibold text-decoration-underline">Nombre</div>
@@ -24,7 +81,7 @@
           <label for="inputProveedor" class="form-label fw-bold fs-5">Proveedor</label>
           <div class="form-check">
             <input [(ngModel)]="nuevoChecked" name="nuevo" (change)="onCheckboxChange()" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-            <label class="form-check-label" for="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault" style="font-weight: bold;">
               Nuevo
             </label>
           </div>
@@ -45,8 +102,5 @@
         <section class="position-relative">
           <button class="btn" [disabled]="!form.valid">Solicitar</button>
         </section>
-        <!--<strong><pre>{{form.value | json }}</pre></strong>-->
-      </form>
-    <br>
-  </main>
+      </form>-->
 </body>

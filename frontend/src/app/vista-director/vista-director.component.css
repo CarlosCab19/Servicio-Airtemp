@@ -41,14 +41,14 @@ th {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  background-color: #005ba2; /* Cambia el color de fondo según tus preferencias */
+  background-color: #005ba2;
+  color: #ededed;
   z-index: 1;
 }
 /*estilos para el titulo*/
 h2{
   text-align: center;
   margin-top: 20px;
-  background-color: #0074cb;
   color: black;
   border-radius: 5px;
   Font-family: Franklin Gothic, Arial Bold;
@@ -187,10 +187,10 @@ h2{
 .form {
   margin-right: 25px;
   --input-text-color: #fff;
-  --input-bg-color: #005ba2;
+  --input-bg-color:#ffffff;
   --focus-input-bg-color: transparent;
-  --text-color: #949faa;
-  --active-color: #1b9bee;
+  --text-color: #000000;
+  --active-color: #b9e0fe;
   --width-of-input: 200px;
   --inline-padding-of-input: 1.2em;
   --gap: 0.9rem;
@@ -214,7 +214,7 @@ h2{
   height: 100%;
   z-index: -1;
   pointer-events: none;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  box-shadow: rgba(221, 220, 220, 0.16) 0px 1px 4px;
 }
 
 label {
@@ -331,13 +331,7 @@ input:-webkit-autofill:active {
   width: 1.25rem;
   height: 1.25rem;
 }
-
-#accion{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
+/*estilos para los iconos*/
 #ver{
   height: 30px;
   width: 30px;
@@ -367,8 +361,8 @@ input:-webkit-autofill:active {
   padding: 0.5em 2em;
   border: transparent;
   box-shadow: 2px 2px 4px rgba(0,0,0,0.4);
-  background-color: #0a94ed;
-  color: black;
+  background-color: #005ba2;
+  color: #ededed;
   font-weight: bold;
   border-radius: 4px;
 }

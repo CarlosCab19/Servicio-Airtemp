@@ -10,7 +10,7 @@
             <!-- CONTENEDOR DERECHO -->
             <div class="col-md-12 main-content-container">
                   <img class="letrasAirtemp" src="assets/img-logo/Letras_Airtemp.png">
-                <form class="formulario" #forma="ngForm" (ngSubmit)="onSubmit(forma)">
+                <form class="formulario" #form="ngForm" (ngSubmit)="onSubmit(form)">
                   <div class="alert alert-danger" *ngIf="error">
                     <strong>Alerta!</strong> Usuario o Contraseña Inválida o Usuario Inactivo.
                   </div>

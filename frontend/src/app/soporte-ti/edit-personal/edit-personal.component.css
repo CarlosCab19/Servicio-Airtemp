@@ -114,21 +114,20 @@ body {
   margin-top: 5%;
   width: 50%;
   height: 50%;
-  background-color: #005ba2;
+  background-color: #7bc9fe;
   padding: 20px;
   border-radius: 10px;
   font-weight: bold;
-  color: #ededed;
+  color: #000000;
 }
 .btn{
-  background-color: #7bc9fe;
-  color: black;
+  background-color: #005ba2;
+  color: white;
   font-weight: bold;
 }
 
 h2{
   font-weight: bold;
   text-align: center;
-  background-color: #0074cb;
-  color: #ededed;
+  color: black;
 }

@@ -20,9 +20,9 @@ return new class extends Migration
             $table->bigInteger('fabricacion')->nullable();
             $table->bigInteger('lme')->nullable();
             $table->bigInteger('premium')->nullable();
-            $table->bigInteger('total')->nullable();
             $table->bigInteger('icoterm')->nullable();
             $table->bigInteger('adicional')->nullable();
+            $table->bigInteger('total')->nullable();
             $table->string('nota')->nullable();
             $table->string('vence');
             $table->string('estatus')->nullable();

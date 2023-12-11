@@ -129,9 +129,9 @@ th {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  background-color: #f8f9fa; /* Cambia el color de fondo según tus preferencias */
   z-index: 1;
   background-color: #005ba2;
+  color: #ededed;
 }
 
 /*para el buscador*/
@@ -139,10 +139,10 @@ th {
 .form {
   margin-right: 25px;
   --input-text-color: #fff;
-  --input-bg-color: #005ba2;
+  --input-bg-color:#ffffff;
   --focus-input-bg-color: transparent;
-  --text-color: #949faa;
-  --active-color: #1b9bee;
+  --text-color: #000000;
+  --active-color: #b9e0fe;
   --width-of-input: 200px;
   --inline-padding-of-input: 1.2em;
   --gap: 0.9rem;
@@ -247,15 +247,12 @@ input:-webkit-autofill:active {
   -webkit-transition-delay: 9999s;
 }
 .modal-header{
-  background-color: #005ba2;
-  color: white;
-  Font-family: Franklin Gothic, Arial Bold;
+  background-color: #7bc9fe;
 }
 h2{
   color: black;
   margin: 2%;
   padding: 0;
-  background-color: #0074cb;
   margin-left: 15%;
   width: 70%;
   border-radius: 5px;

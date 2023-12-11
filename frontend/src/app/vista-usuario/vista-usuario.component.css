@@ -199,10 +199,10 @@
 .form {
   margin-right: 25px;
   --input-text-color: #fff;
-  --input-bg-color: #005ba2;
+  --input-bg-color:#ffffff;
   --focus-input-bg-color: transparent;
-  --text-color: #949faa;
-  --active-color: #1b9bee;
+  --text-color: #000000;
+  --active-color: #b9e0fe;
   --width-of-input: 200px;
   --inline-padding-of-input: 1.2em;
   --gap: 0.9rem;
@@ -359,7 +359,6 @@ h2{
   font-weight: bold;
   text-align: center;
   margin-top: 20px;
-  background-color: #0074cb;
   color: black;
   Font-family: Franklin Gothic, Arial Bold;
   border-radius: 5px;
@@ -394,33 +393,33 @@ h2{
 }
 
 .nueva {
-  color: rgb(0, 0, 0);
+  color: rgb(0, 128, 0);
   font-weight: bold;
-  background-color: rgba(0, 128, 0, 0.589);
+  /*background-color: rgba(0, 128, 0, 0.589);*/
 }
 
 .cotizando {
-  color: rgb(0, 0, 0);
+  color: rgb(0, 0, 255);
   font-weight: bold;
-  background-color: rgba(0, 0, 255, 0.582);
+  /*background-color: rgba(0, 0, 255, 0.582);*/
 }
 
 .cotizado {
-  color: rgb(0, 0, 0);
+  color: rgb(255, 166, 0);
   font-weight: bold;
-  background-color: rgba(255, 166, 0, 0.651);
+  /*background-color: rgba(255, 166, 0, 0.651);*/
 }
 
 .revision {
-  color: rgb(19, 18, 19);
+  color: rgb(128, 0, 128);
   font-weight: bold;
-  background-color: rgba(128, 0, 128, 0.575);
+  /*background-color: rgba(128, 0, 128, 0.575);*/
 }
 
 .aprobado {
-  color: rgb(0, 0, 0);
+  color: rgb(0, 128, 128);
   font-weight: bold;
-  background-color: rgba(0, 128, 128, 0.582);
+  /*background-color: rgba(0, 128, 128, 0.582);*/
 }
 
 /*Estilos para la tabla*/
@@ -448,7 +447,7 @@ th {
   top: 0;
   z-index: 1;
   background-color: #005ba2;
-  color: #000000;
+  color: white;
 }
 
 @media (max-width: 768px) {

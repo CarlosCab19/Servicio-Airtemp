@@ -108,12 +108,12 @@ export class VistaUsuarioComponent implements OnInit{
   closeOffcanvas() {
     this.isOffcanvasOpen = false;
   }
-  Nuevo(){
-    this.verNuevo=true;
-    this.verTabla=false;
-    this.verMaterial=false;
-    this.masInfo=false;
-    this.verCotizados=false;
+  Nuevo(valor:boolean){
+    this.verNuevo=valor;
+    this.verTabla=!valor;
+    this.verMaterial=!valor;
+    this.masInfo=!valor;
+    this.verCotizados=!valor;
   }
   closeForm(){
     this.verNuevo=false;
