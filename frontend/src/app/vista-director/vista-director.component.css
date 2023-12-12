@@ -369,3 +369,10 @@ input:-webkit-autofill:active {
 .table-container .text-center{
   background-color: #6495ED;
 }
+
+#acciones{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}

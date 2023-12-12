@@ -263,6 +263,10 @@ h2{
   color:#1f1f1f;
   font-weight: bold;
 }
+#editar{
+  background-color: #e7d914;
+  color: black;
+}
 @media (max-width: 768px) {
   /* Estilos adicionales para dispositivos más pequeños */
   th, td {
