@@ -1,5 +1,5 @@
 <!--Encabezado-->
-<nav class="navbar bg-primary" >
+<nav class="navbar" >
   <button class="btn" (click)="toggleOffcanvas()">
     <span class="icon">
         <svg viewBox="0 0 175 80" width="40" height="40">
@@ -33,7 +33,7 @@
 <!-------------->
 <!--Menú desplegable-->
 <div class="offcanvas offcanvas-start" [ngClass]="{ 'show': isOffcanvasOpen }" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
-    <div class="offcanvas-header bg-primary">
+    <div class="offcanvas-header">
       <img src="assets\img-logo\Letras_Airtemp.png" class="logo">
       <button type="button" class="btn-close" (click)="closeOffcanvas()" aria-label="Close"></button>
     </div>
@@ -55,8 +55,8 @@
 <div class="grid text-center">
     <div id="uno" class="g-col-6 g-col-md-4">
       <!--Boton para crear una nueva solicitud-->
-      <button type="button" class="button" (click)="Nuevo()">
-        <span class="button__text">Nuevo</span>
+      <button type="button" class="button" (click)="Nuevo(true)">
+        <span class="button__text">Nueva</span>
         <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2"
           stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg">
           <line y2="19" y1="5" x2="12" x1="12"></line>
@@ -75,10 +75,9 @@
     <!------>
     <div id="cuatro" class="g-col-6 g-col-md-4" *ngIf="verTabla">
       <!--Tabla de las solicitudes de cada usuario-->
-      <h2>SOLICITUDES</h2>
-      <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
+      <h2>Solicitudes</h2>
         <div class="table-container">
-          <table class="responsive-table table-bordered" style="width:100%">
+          <table class="table table-bordered table-hover" style="width:100%">
               <thead>
                 <tr>
                   <th>Folio</th>
@@ -114,9 +113,7 @@
               </tbody>
           </table>
       </div>
-      </div>
     </div>
-
 </div>
 
 

@@ -5,32 +5,13 @@ body {
   margin: 0;
   padding: 0;
 }
-
-/*Estilos para la tabla*/
-.card{
-  height: 50%;
-  width: 90%;
-  margin: auto;
-  margin-top: 20px;
-  margin-block-end: 20px;
-}
-.responsive-table {
-  width: 100%;
-  border-collapse: collapse;
-  background-color: #fff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.responsive-table th,
-.responsive-table td {
-  padding: 10px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
-.responsive-table th {
-  background-color: #87CEEB;
-  color: #000000;
+.table-responsive{
+  margin: 3% 10%;
+  background-color: #b9e0fe;
+  height: 100%;
+  width: 80%;
+  padding: 20px;
+  border-radius: 10px;
 }
 
 /*estilos para el titulo*/
@@ -38,8 +19,9 @@ h2{
   font-weight: bold;
   text-align: center;
   margin-top: 20px;
-  background-color: #6495ED;
   color: black;
+  border-radius: 5px;
+  Font-family: Franklin Gothic, Arial Bold;
 }
 #see{
   cursor: pointer;
@@ -66,7 +48,7 @@ h2{
   border-radius: 5px;
 }
 
-
+/*estilos para la tabla de solicitudes cotizadas*/
 .table-container {
   overflow-x: auto;
   max-height: 400px; /* Ajusta la altura máxima según tus necesidades */
@@ -89,7 +71,8 @@ th {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  background-color: #8FBC8B; /* Cambia el color de fondo según tus preferencias */
+  background-color: #005ba2;
+  color: #ededed;
   z-index: 1;
 }
 
@@ -97,5 +80,8 @@ th {
   /* Estilos adicionales para dispositivos más pequeños */
   th, td {
     font-size: 12px; /* Ajusta el tamaño de la fuente para dispositivos pequeños */
+  }
+  h2{
+    font-size: 15px;
   }
 }

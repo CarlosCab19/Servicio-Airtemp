@@ -1,42 +1,35 @@
 
-<div class="container">
-  <div class="datos">
-    <!--Se muestra la informacion de la solicitud, los materiales-->
-    <section class="section">
-      <div class="encabezado">
-        <div class="col" id="datos">
-          <label id="folio">FOLIO: </label>
-          <input type="text" class="form-control" value="{{folio}}" style="width: 20%;" disabled>
+<body>
+  <section class="material">
+    <!--Datos del material-->
+    <section class="bodydatos">
+      <div class="close">
+        <svg (click)="closeCotizacion(true)" id="close" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="-2 -2 24 24"><path fill="#000000" d="m11.414 10l2.829-2.828a1 1 0 1 0-1.415-1.415L10 8.586L7.172 5.757a1 1 0 0 0-1.415 1.415L8.586 10l-2.829 2.828a1 1 0 0 0 1.415 1.415L10 11.414l2.828 2.829a1 1 0 0 0 1.415-1.415L11.414 10zM4 0h12a4 4 0 0 1 4 4v12a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V4a4 4 0 0 1 4-4z"/></svg>
+      </div>
+      <div class="row">
+        <label for="material" class="form-label" style="text-align: center; font-weight: bold; font-size: 20px; text-decoration: underline;" class="form-label">Material</label>
+        <div class="col">
+          <label for="descripcion" class="form-label" style="font-weight: bold;">Descripción</label>
+          <input type="text" id="decripcion" class="form-control" placeholder="{{descripcion}}" disabled>
         </div>
-        <div class="close">
-          <svg (click)="closeCotizacion(true)" id="close" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="-2 -2 24 24"><path fill="#000000" d="m11.414 10l2.829-2.828a1 1 0 1 0-1.415-1.415L10 8.586L7.172 5.757a1 1 0 0 0-1.415 1.415L8.586 10l-2.829 2.828a1 1 0 0 0 1.415 1.415L10 11.414l2.828 2.829a1 1 0 0 0 1.415-1.415L11.414 10zM4 0h12a4 4 0 0 1 4 4v12a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V4a4 4 0 0 1 4-4z"/></svg>
+        <div class="col">
+          <label for="familia" class="form-label" style="font-weight: bold;">Familia</label>
+          <input type="text" id="familia" class="form-control" placeholder="{{familia}}" disabled>
         </div>
       </div>
       <div class="row">
-        <label id="seccion">Material</label>
+        <label for="material" class="form-label" style="text-align: center; font-weight: bold; font-size: 20px; text-decoration: underline;" class="form-label">Características</label>
         <div class="col">
-          <label id="nombre">Descripcion: </label>
-          <input type="text" class="form-control" value="{{descripcion}}" style="width: 100%;" disabled>
-        </div>
-        <div class="col">
-          <label id="nombre">Familia: </label>
-          <input type="text" class="form-control" value="{{familia}}" style="width: 100%;" disabled>
-        </div>
-      </div>
-      <div class="rowpp">
-        <label id="seccion">Caracteristicas</label>
-        <div class="rowp">
           <ul *ngFor="let items of caractermaterial">
-            <li><input type="text" class="form-control" value="{{items.caracteristica}}: {{items.valor}}" style="width: min-content;" disabled></li>
+            <li><input type="text" class="form-control" id="caracteristicas" value="{{items.caracteristica}}: {{items.valor}}"  disabled></li>
           </ul>
         </div>
       </div>
     </section>
-  </div>
-  <div class="cotizacion">
-    <section>
-      <!--Boton para agragar nueva cotizacion-->
-      <button class="btn btn-primary" id="add" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  </section>
+  <section class="tablaForm">
+    <section class="bodytabla">
+      <button class="btn" id="add" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Cotizar
       </button>
       <div class="table-container">
@@ -46,12 +39,13 @@
             <tr>
               <th scope="col">Fabricación</th>
               <th scope="col">LME   </th>
-              <th scope="col">Premium   </th>
-              <th scope="col">Total</th>
+              <th scope="col">Premium </th>
+              <th scope="col">Icoterm</th>
               <th scope="col">Adicional</th>
+              <th scope="col">Total</th>
               <th scope="col">Nota</th>
               <th scope="col">Comprobante</th>
-              <th scope="col">Acciones</th>
+              <th scope="col">Eliminar</th>
             </tr>
           </thead>
           <tbody>
@@ -59,8 +53,9 @@
               <td>{{cotizaciones.fabricacion | currency:monedaSimbolos[cotizaciones.moneda]:'symbol'}}</td>
               <td>{{cotizaciones.lme | currency:monedaSimbolos[cotizaciones.moneda]:'symbol'}}</td>
               <td>{{cotizaciones.premium | currency:monedaSimbolos[cotizaciones.moneda]:'symbol'}}</td>
-              <td>{{cotizaciones.total | currency:monedaSimbolos[cotizaciones.moneda]:'symbol'}}</td>
               <td>{{cotizaciones.icoterm | currency:monedaSimbolos[cotizaciones.moneda]:'symbol'}}</td>
+              <td>{{cotizaciones.adicional | currency:monedaSimbolos[cotizaciones.moneda]:'symbol'}}</td>
+              <td>{{cotizaciones.total | currency:monedaSimbolos[cotizaciones.moneda]:'symbol'}}</td>
               <td>{{cotizaciones.nota}}</td>
               <td>
                 <svg (click)="subirCompro(cotizaciones.id)" id="accion" data-bs-toggle="modal" data-bs-target="#exampleModalToggle2" xmlns="http://www.w3.org/2000/svg" width="20" height="26.666666666666668" viewBox="0 0 384 512"><path fill="#055e8a" d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm65.18 216.01H224v80c0 8.84-7.16 16-16 16h-32c-8.84 0-16-7.16-16-16v-80H94.82c-14.28 0-21.41-17.29-11.27-27.36l96.42-95.7c6.65-6.61 17.39-6.61 24.04 0l96.42 95.7c10.15 10.07 3.03 27.36-11.25 27.36zM377 105L279.1 7c-4.5-4.5-10.6-7-17-7H256v128h128v-6.1c0-6.3-2.5-12.4-7-16.9z"/></svg>
@@ -71,79 +66,93 @@
           </tbody>
         </table>
       </div>
-
-        <!-- Modal con el formulario de la cotización-->
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Cotización</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <section class="cotizacionlista">
+        <button style="width: 30%;" (click)="cotizacionLista()" id="enviar" class="btn">Cotizacion lista</button>
+      </section>
+    </section>
+  </section>
+</body>
+<!--Modal con el formulario de la cotización-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h1 class="modal-title fs-5" id="exampleModalLabel">Cotización</h1>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <form (ngSubmit)="submit(form.value)" #form="ngForm">
+        <div class="row">
+          <div class="col">
+            <label for="inputMoneda" class="col-sm-6 col-form-label" style="font-weight: bold;">Moneda:</label>
+            <select class="form-select border border-info" id="inputMoneda" [(ngModel)]="cotizar.moneda" name="moneda" (change)="onTipoMonedaSelected()" required>
+              <option value="" disabled selected>Seleccionar</option>
+              <option value="pesos_mexicanos">Peso mexicano</option>
+              <option value="dolares_usa">Dólar estadounidense</option>
+              <option value="euro">Euro</option>
+            </select>
           </div>
-          <div class="modal-body">
-            <form (ngSubmit)="submit(form.value)" #form="ngForm">
-              <div class="input-group">
-                <span class="input-group-text"><strong>Tipo de Moneda:</strong></span>
-                <select class="form-select" id="inputGroupSelect01" [(ngModel)]="cotizar.moneda" name="moneda" (change)="onTipoMonedaSelected()" required>
-                  <option value="" disabled selected>Seleccinar tipo de moneda</option>
-                  <option value="pesos_mexicanos">Peso mexicano</option>
-                  <option value="dolares_usa">Dólar estadounidense</option>
-                  <option value="euro">Euro</option>
-                </select>
-              </div>
-              <div class="input-group"> <!--*ngIf="['Aluminio', 'Plástico'].includes(familia)"-->
-                <span class="input-group-text"><strong>Fabricación:</strong></span>
-                <input #name="ngModel" name="fabricacion" [(ngModel)]="cotizar.fabricacion" required type="number" aria-label="First name" class="form-control">
-                <span class="input-group-text"><strong>LME:</strong></span>
-                <input #name="ngModel" name="lme" [(ngModel)]="cotizar.lme" required type="number" aria-label="Last name" class="form-control">
-              </div>
-              <div class="input-group">
-                <span class="input-group-text"><strong>Premium:</strong></span>
-                <input #name="ngModel" name="premium" [(ngModel)]="cotizar.premium" required type="number" aria-label="First name" class="form-control">
-                <span class="input-group-text"><strong>Total:</strong></span>
-                <input #name="ngModel" name="total" [(ngModel)]="cotizar.total" required type="number" aria-label="Last name" class="form-control">
-              </div>
-              <div class="input-group">
-                <span class="input-group-text"><strong>Icoterm:</strong></span>
-                <input #name="ngModel" name="icoterm" [(ngModel)]="cotizar.icoterm" required type="number" aria-label="First name" class="form-control">
-                <span class="input-group-text"><strong>Costo adicional:</strong></span>
-                <input #name="ngModel" name="adicional" [(ngModel)]="cotizar.adicional" required type="number" aria-label="First name" class="form-control">
-              </div>
-              <div class="input-group">
-                <span class="input-group-text"><strong>Nota:</strong></span>
-                <textarea name="nota" [(ngModel)]="cotizar.nota" class="form-control fst-italic" aria-label="With textarea" placeholder="Ingresar una nota si lo requiere"></textarea>
-              </div>
-              <div class="input-group">
-                <span class="input-group-text"><strong>Fecha del plazo de la cotización:</strong></span>
-                <input  name="vence" type="date" id="fechaVencimiento" [(ngModel)]="cotizar.vence" required>
-              </div>
-              <div class="input-group">
-                <button data-bs-toggle="modal" data-bs-target="#exampleModalToggle2" class="btn btn-primary" id="enviar" type="submit" [disabled]="!form.valid">Agregar Cotización</button>
-              </div>
-              <br>
-            </form>
+          <div class="col">
+            <label for="inputvence" class="col-sm-4 col-form-label" style="font-weight: bold;">Plazo:</label>
+            <input type="date" #name="ngModel" [(ngModel)]="cotizar.vence" required name="vence" class="form-control border border-info" name="vence" id="fechaVencimiento" style="width: 100%;">
+          </div>
+          <div class="col">
+            <label for="inputnota" class="col-sm-4 col-form-label" style="font-weight: bold;">Nota:</label>
+            <textarea name="nota" [(ngModel)]="cotizar.nota" class="form-control border border-info" aria-label="textarea" placeholder="Ingresar si lo requiere" id="textareanota" rows="1"></textarea>
           </div>
         </div>
+        <div class="row">
+          <div class="col">
+            <label for="inputfabricacion" class="col-sm-4 col-form-label" style="font-weight: bold;">Fabricación:</label>
+            <input type="number" #name="ngModel" name="fabricacion" [(ngModel)]="cotizar.fabricacion" required class="form-control border border-info" id="inputfricacion">
+          </div>
+          <div class="col">
+            <label for="inputlme" class="col-sm-4 col-form-label" style="font-weight: bold;">LME:</label>
+            <input type="number" #name="ngModel" name="lme" [(ngModel)]="cotizar.lme" required class="form-control border border-info" id="inputlme">
+          </div>
+          <div class="col">
+            <label for="inputpremium" class="col-sm-4 col-form-label" style="font-weight: bold;">Premium:</label>
+            <input type="number" #name="ngModel" name="premium" [(ngModel)]="cotizar.premium" required class="form-control border border-info" id="inputpremium">
+          </div>
         </div>
-      </div>
-      <!--Modal para subir el documento o comprobante en pdf-->
+        <div class="row">
+          <div class="col">
+            <label for="inputicoterm" class="col-sm-4 col-form-label" style="font-weight: bold;">Icoterm:</label>
+            <input type="number" #name="ngModel" name="icoterm" [(ngModel)]="cotizar.icoterm" required class="form-control border border-info" id="inputicoterm">
+          </div>
+          <div class="col">
+            <label for="inputadicional" class="col-sm-8 col-form-label" style="font-weight: bold;">Costo adicional:</label>
+            <input type="number" #name="ngModel" name="adicional" [(ngModel)]="cotizar.adicional" required class="form-control border border-info" id="inputadicional">
+          </div>
+          <div class="col">
+            <label for="inputtotal" class="col-sm-4 col-form-label" style="font-weight: bold;">Total:</label>
+            <input type="number" #name="ngModel" name="total" [(ngModel)]="cotizar.total" required class="form-control border border-info" id="inputtotal">
+          </div>
+        </div>
+        <button data-bs-toggle="modal" data-bs-target="#exampleModalToggle2" class="btn btn-primary" id="enviar" type="submit" [disabled]="!form.valid">Agregar Cotización</button>
+      </form>
+    </div>
+  </div>
+  </div>
+</div>
+<!--Modal para subir el documento o comprobante en pdf-->
       <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Subir Comprobante</h1>
+              <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Comprobante</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+              <p class="fst-italic text-decoration-underline text-primary">*Subir comprobante solo si es necesario.</p>
               <form>
                 <input type="file" (change)="manejarArchivoInput($event)" id="inputArchivo">
                 <button id="subir" (click)="subirArchivo()" data-bs-dismiss="modal">Subir Archivo</button>
               </form>
             </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Terminar</button>
+            </div>
           </div>
         </div>
       </div>
-    </section>
-    <button style="width: 30%;" (click)="cotizacionLista()" id="enviar" class="btn btn-primary">Cotizacion lista</button>
-  </div>
-</div>

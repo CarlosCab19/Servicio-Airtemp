@@ -10,22 +10,22 @@
             <!-- CONTENEDOR DERECHO -->
             <div class="col-md-12 main-content-container">
                   <img class="letrasAirtemp" src="assets/img-logo/Letras_Airtemp.png">
-                <form class="formulario" #forma="ngForm" (ngSubmit)="onSubmit(forma)">
+                <form class="formulario" #form="ngForm" (ngSubmit)="onSubmit(form)">
                   <div class="alert alert-danger" *ngIf="error">
                     <strong>Alerta!</strong> Usuario o Contraseña Inválida o Usuario Inactivo.
                   </div>
-                    <a class="login">Log in</a>
+                    <a class="login">Iniciar Sesión</a>
                     <div class="inputBox">
                         <input #name="ngModel" name="usuario" [(ngModel)]="usuario" id="usuario"  type="text" required="required">
-                        <span class="user">Username</span>
+                        <span class="user">Usuario</span>
                     </div>
 
                     <div class="inputBox">
                         <input #name="ngModel" name="contra" [(ngModel)]="contra"  id="contra" type="password" required="required">
-                        <span>Password</span>
+                        <span>Contraseña</span>
                     </div>
 
-                    <button type="submit" class="enter">Enter</button>
+                    <button type="submit" class="enter">Ingresar</button>
                   </form>
             </div>
         </div>

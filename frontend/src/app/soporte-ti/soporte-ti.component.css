@@ -1,6 +1,8 @@
 /* Importa Font Awesome */
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
-
+.navbar{
+  background-color: #07294a;
+}
 .btnNav {
   width: 150px;
   height: 50px;
@@ -53,6 +55,7 @@
 }
 .offcanvas-header{
   height: 86px;
+  background-color:#07294a;
 }
 .logo{
   height: 100%;
@@ -68,8 +71,8 @@
   border: none;
   display: flex;
   padding: 0.75rem 1.5rem;
-  background-color: #488aec;
-  color: #000000;
+  background-color: #005ba2;
+  color: #f5f9fb;
   font-size: 0.75rem;
   line-height: 1rem;
   font-weight: 700;
@@ -103,10 +106,9 @@
 /*Estilos para la tabla solicitudes*/
 .table-container {
   overflow-x: auto;
-  max-height: 450px; /* Ajusta la altura máxima según tus necesidades */
-  /*background-color: #488aec;*/
+  max-height: 430px; /* Ajusta la altura máxima según tus necesidades */
   max-width: 100%;
-  margin: 3% 15%;
+  margin: 1% 15%;
 }
 
 table {
@@ -114,21 +116,29 @@ table {
   max-width: 100%;
   margin-bottom: 1rem;
   border-collapse: collapse;
+  border: 2px solid #989898;
 }
 
 th, td {
   padding: 0.75rem;
   text-align: center;
   border: 1px solid #dee2e6;
+
 }
 
 th {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  background-color: #f8f9fa; /* Cambia el color de fondo según tus preferencias */
   z-index: 1;
   background-color: #005ba2;
+  color: #ededed;
+}
+/*btn para nuevo personal*/
+.nuevoPersonal .btn{
+  background-color: #005ba2;
+  color: #f5f9fb;
+  font-weight: bold;
 }
 
 /*para el buscador*/
@@ -136,10 +146,10 @@ th {
 .form {
   margin-right: 25px;
   --input-text-color: #fff;
-  --input-bg-color: #005ba2;
+  --input-bg-color:#ffffff;
   --focus-input-bg-color: transparent;
-  --text-color: #949faa;
-  --active-color: #1b9bee;
+  --text-color: #000000;
+  --active-color: #b9e0fe;
   --width-of-input: 200px;
   --inline-padding-of-input: 1.2em;
   --gap: 0.9rem;
@@ -244,11 +254,22 @@ input:-webkit-autofill:active {
   -webkit-transition-delay: 9999s;
 }
 .nuevoPersonal{
-  margin: 2% 5%;
+  margin: 1% 7%;
+  padding: 0;
 }
 h2{
-  /*background-color: #005ba2;*/
   color: black;
+  margin: 0;
+  padding: 0;
+  margin-left: 15%;
+  width: 70%;
+  border-radius: 5px;
+  Font-family: Franklin Gothic, Arial Bold;
+}
+.table-container .btn{
+  background-color: #7bc9fe;
+  color:#1f1f1f;
+  font-weight: bold;
 }
 
 @media (max-width: 768px) {

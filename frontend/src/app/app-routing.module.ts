@@ -6,10 +6,7 @@ import { FormSolicitudCComponent } from './vista-usuario/form-solicitud-c/form-s
 import { VistaAnalistaComponent } from './vista-analista/vista-analista.component';
 import { FormCotizacionComponent } from './vista-analista/form-cotizacion/form-cotizacion.component';
 import { VistaDirectorComponent } from './vista-director/vista-director.component';
-import { RechazadaComponent } from './vista-analista/rechazada/rechazada.component';
-import { SoliAprobadaComponent } from './soli-aprobada/soli-aprobada.component';
 import { CotizadoComponent } from './vista-analista/cotizado/cotizado.component';
-import { VencidaComponent } from './vista-analista/vencida/vencida.component';
 import { SoporteTIComponent } from './soporte-ti/soporte-ti.component';
 import { EditPersonalComponent } from './soporte-ti/edit-personal/edit-personal.component';
 import { AddPersonalComponent } from './soporte-ti/add-personal/add-personal.component';
@@ -30,17 +27,15 @@ const routes: Routes = [
   //{path:'formCotizacion',component:FormCotizacionComponent},
   {path:'director/:id',component:VistaDirectorComponent},
   //{path:'cotizacionRechazada',component:RechazadaComponent},
-  //{path:'aprobados',component:SoliAprobadaComponent},
   //{path:'cotizado',component:CotizadoComponent},
   {path:'soporte/:id',component:SoporteTIComponent},
   {path:'editPersonal/:id',component:EditPersonalComponent},
   {path:'addPersonal',component:AddPersonalComponent},
   //{path:'infoSolicitud',component:MasinfoSoliComponent},
   //{path:'solinueva',component:SoliNuevaComponent},
-  //{path:'vencidas',component:VencidaComponent},
-  //{path:'realizar',component:RealizarCotizacionComponent},
+  {path:'realizar',component:RealizarCotizacionComponent},
   //{path:'apro',component:AprobadoAComponent},
-  //{path:'solicitudes',component:SolicitudesComponent},
+  {path:'solicitudes',component:SolicitudesComponent},
 
 ];
 

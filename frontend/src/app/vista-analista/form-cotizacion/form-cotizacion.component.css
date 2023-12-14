@@ -10,31 +10,26 @@
   flex: 1;
   padding: 10px;
   text-align: center;
-  background-color: rgba(104, 194, 247, 0.979);
+  background-color: #7bc9fe;
   border-radius: 3%;
 }
 .material {
   flex: 1;
   padding: 10px;
   text-align: center;
-  background-color: rgb(104, 194, 247, 0.979);
+  background-color: #7bc9fe;
   border-radius: 3%;
 }
+.material .btn{
+  background-color: #005ba2;
+  color: #ededed;
+  font-weight: bold;
+}
 .titulo-con-linea {
-  position: relative;
+  /*position: relative;*/
   font-weight: bold;
 }
 
-.titulo-con-linea::after {
-  content: "";
-  display: block;
-  width: 100%;
-  height: 3px; /* Ancho y altura de la línea */
-  background-color: #ffffff; /* Color de la línea */
-  position: absolute;
-  bottom: 0;
-  left: 0;
-}
 
 @media (max-width: 768px) {
   .container {
@@ -201,6 +196,7 @@ span{
 #close{
   display: flex;
   cursor: pointer;
+  margin-left: 90%;
 }
 
 .custom-btn {
@@ -249,4 +245,13 @@ input[type="date"] {
   border: 1px solid #ccc; /* Añade un borde al campo de fecha */
   border-radius: 5px; /* Agrega bordes redondeados al campo de fecha */
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Agrega una sombra suave */
+}
+
+th {
+  top: 0;
+  background-color: #005ba2;
+  color: #ededed;
+}
+h2{
+  Font-family: Franklin Gothic, Arial Bold;
 }

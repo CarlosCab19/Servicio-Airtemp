@@ -1,28 +1,81 @@
 
-.container {
+/*--------------------estos estilos---------------------------------------*/
+body {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  margin: 1% 3%;
 }
 
-.container > * {
-  background-color: rgba(104, 194, 247, 0.979);
-  border-radius: 10px;
+.material {
+  width: 40%; /* Ocupa la mitad del ancho en pantallas grandes */
+  box-sizing: border-box; /* Incluye padding y border en el ancho total */
   padding: 10px;
-  text-align: center;
-  width: 48%; /* Ajusta el ancho de las columnas como desees */
-  margin: 10px; /* Agrega un pequeño margen entre elementos */
 }
-#add{
-  margin-left: 80%;
-  margin-block-end: 5px;
+
+.tablaForm {
+  width: 60%; /* Ocupa la mitad del ancho en pantallas grandes */
+  box-sizing: border-box; /* Incluye padding y border en el ancho total */
+  padding: 10px;
+}
+.tablaForm #add{
+  background-color: #005ba2;
+  color: #ebebeb;
+  font-weight: bold;
+  margin-left: 90%;
+  margin-block-end: 2%;
+}
+.bodytabla{
+  border-radius: 10px;
+  background-color: #7bc9fe;
+  padding: 3%;
+}
+.bodydatos{
+  border-radius: 10px;
+  background-color: #7bc9fe;
+  padding: 7%;
+}
+.row {
+  border: 1px solid #f5f9fb; /* Añade un borde de 1 píxel sólido de color gris claro */
+  padding: 10px; /* Agrega un espacio interno alrededor del contenido del row */
+  border-radius: 5px;
+}
+.cotizacionlista{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 #enviar{
-  margin-top: 10px;
+  margin-top: 3%;
+  background-color: #005ba2;
+  color: #ededed;
+  font-weight: bold;
 }
-.encabezado{
-  display: flex;
+/*estilos para la tabla*/
+.table-container {
+  overflow-y: auto;
+  max-height: 400px; /* Ajusta la altura máxima según tus necesidades */
 }
+
+table {
+  margin-bottom: 1rem;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 0.75rem;
+  border: 1px solid #ededed;
+  width: 500px;
+  font-size: 15px;
+}
+th {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: #005ba2;
+  color: #ededed;
+  z-index: 1;
+}
+/*para los iconos*/
 #close{
   cursor: pointer;
 }
@@ -30,27 +83,10 @@
   cursor: pointer;
   margin-right: 20px;
 }
-.col{
-  display: flex;
-}
-#folio{
-  font-weight: bold;
-  margin-right: 5px;
-}
-#seccion{
-  font-weight: bold;
-  text-decoration: underline;
-  margin-block-end: 10px;
-}
-ul{
-  list-style: none;
-}
-#nombre{
-  font-weight: bold;
-  margin-right: 5px;
-}
+
+/*modal para subir el comprobante*/
 .modal-header{
-  background-color: rgba(104, 194, 247, 0.979);
+  background-color: #7bc9fe;
 }
 .modal-title{
   font-weight: bold;
@@ -63,33 +99,19 @@ ul{
 #subir{
   background-color:rgba(6, 110, 170, 0.979);
   border-radius: 5px;
-  color: rgb(0, 0, 0);
+  color: white;
   padding: 5px 10px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
+  font-weight: bold;
 }
 #inputArchivo {
   display: block;
   margin: 10px auto;
   padding: 8px;
   font-size: 16px;
-}
-
-
-#subir:hover {
-  background-color: rgba(104, 194, 247, 0.979);
-}
-.rowpp {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
-}
-
-.rowp {
-  display: flex;
-  flex-wrap: wrap;
 }
 
 ul {
@@ -104,45 +126,16 @@ li {
   padding: 5px;
 }
 
-.table-container {
-  overflow-y: auto;
-  max-height: 350px; /* Ajusta la altura máxima según tus necesidades */
-}
-
-table {
-  margin-bottom: 1rem;
-  border-collapse: collapse;
-}
-
-th, td {
-  padding: 0.75rem;
-  border: 1px solid #9a9a9b;
-  width: 500px;
-}
-th {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  background-color: #8FBC8B; /* Cambia el color de fondo según tus preferencias */
-  z-index: 1;
-}
-
 @media (max-width: 768px) {
-  /* Estilos adicionales para dispositivos más pequeños */
+  /* Cuando el ancho de la pantalla es igual o menor a 768px */
+  .material, .tablaForm {
+    width: 100%; /* Ocupa el ancho completo en pantallas más pequeñas */
+  }
+  .tablaForm #add{
+    margin-left: 83%;
+    margin-block-end: 2%;
+  }
   th, td {
     font-size: 12px; /* Ajusta el tamaño de la fuente para dispositivos pequeños */
   }
-  .container > * {
-    width: 100%; /* Cambia a una columna en pantallas más pequeñas */
-  }
 }
-input[type="date"] {
-  width: 30%; /* Ajusta el ancho del campo de fecha al 100% del contenedor */
-  padding: 5px; /* Añade espacio dentro del campo de fecha */
-  font-size: 16px; /* Cambia el tamaño de fuente del campo de fecha */
-  border: 1px solid #ccc; /* Añade un borde al campo de fecha */
-  border-radius: 5px; /* Agrega bordes redondeados al campo de fecha */
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Agrega una sombra suave */
-}
-
-

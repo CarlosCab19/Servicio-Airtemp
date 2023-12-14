@@ -1,5 +1,5 @@
 
-<nav class="navbar bg-primary">
+<nav class="navbar">
   <button class="btnNav" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
     <span class="icon">
         <svg viewBox="0 0 175 80" width="40" height="40">
@@ -31,7 +31,7 @@
 </nav>
 <body>
   <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
-    <div class="offcanvas-header bg-primary">
+    <div class="offcanvas-header">
       <img src="assets\img-logo\Letras_Airtemp.png" class="logo">
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
@@ -50,8 +50,8 @@
         </button>
     </div>
   </div>
+  <h2 class="text-center">SOLICITUDES</h2>
   <section class="table-container">
-    <h2 class="text-center">SOLICITUDES</h2>
     <table class="table table-hover">
       <thead>
         <tr>
@@ -75,8 +75,8 @@
           <td>{{solicitud.id_analista}}</td>
           <td>{{solicitud.id_director}}</td>
           <td [ngStyle]="{'color': solicitud.estatus === 'Aprobado' ? 'blue' : (solicitud.estatus === 'Cotizado' ? 'orange' : 'green'), 'font-weight': solicitud.estatus === 'Aprobado' || solicitud.estatus === 'Cotizado' || solicitud.estatus === 'Rechazado' ? 'bold' : 'bold'}">{{solicitud.estatus}}</td>
-          <td><button (click)="verEditar(solicitud.id)" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Editar</button></td>
-          <td><button (click)="verInformacion(solicitud.id)" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal2">Ver</button></td>
+          <td><button (click)="verEditar(solicitud.id)" class="btn" id="editar" data-bs-toggle="modal" data-bs-target="#exampleModal">Editar</button></td>
+          <td><button (click)="verInformacion(solicitud.id)" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal2">Ver</button></td>
         </tr>
       </tbody>
     </table>
@@ -104,6 +104,7 @@
             <div class="col" *ngIf="solicitud">
               <label for="estatus" class="form-label fw-bold">Estatus</label>
               <select class="form-select" aria-label="Default select example" [(ngModel)]="solicitud.estatus" formControlName="estatus" id="estatus" (change)="onEstatusChanged(solicitud.id)">
+                <option value="Editando">Editando</option>
                 <option value="Nueva">Nueva</option>
                 <option value="Cotizado">Cotizado</option>
                 <option value="Aprobado">Aprobado</option>
@@ -139,10 +140,10 @@
   <!--Modal para ver toda la informacion de la solicitud-->
   <section>
     <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-scrollable modal-lg">
+      <div class="modal-dialog modal-dialog-scrollable modal-xl">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">INFORMACION DE LA SOLICITUD</h1>
+            <h1 class="modal-title fs-5" id="exampleModalLabel">INFORMACION DE LA SOLICITUD</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
@@ -211,7 +212,7 @@
                   </button>
                 </h2>
                 <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                  <div class="accordion-body bg-body-secondary">
+                  <div class="accordion-body p-3 mb-2 bg-body-secondary">
                     <!--Contenido de la solicitud (Analista)-->
                   <div class="accordion accordion-flush" id="accordionFlushExample">
                     <div class="accordion-item4" *ngFor="let material of materiales">

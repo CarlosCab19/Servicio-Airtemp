@@ -1,21 +1,23 @@
 
-body{
+body {
   margin: 0;
   padding: 0;
 }
-main{
-  background-color: #488aec8c;
-  margin: 0% 15%;
-  padding: 3%;
+
+section {
+  background-color: #b9e0fe;
   border-radius: 15px;
-  height: 100%;
+  width: 70%; /* Ajusta el ancho de la sección según tus necesidades */
+  margin: 0% auto; /* Centra la sección verticalmente y aplica un margen en los lados */
+  padding: 2%; /* Agrega un pequeño espacio alrededor del contenido de la sección */
 }
+
+/*
 form{
   display: grid;
   grid-template-columns: repeat(2,1fr);
   grid-gap: 3%;
-  background-color: #e6e1e1;
-  padding: 30px;
+  padding: 10px;
   border-radius: 10px;
 }
 .nuevo{
@@ -45,22 +47,12 @@ form{
   }
 
 }
-
-/* Estilos para agregar una línea inferior al label */
-.form-label {
-  position: relative;
-}
-
-.form-label::after {
-  content: "";
-  display: block;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  border-bottom: 2px solid rgb(1, 60, 255); /* Puedes ajustar el grosor y color según tus preferencias */
-}
 .form-check{
   display: flex;
 }
+.position-relative .btn{
+  background-color: #005ba0;
+  color: #ededed;
+  font-weight: bold;
+}*/
 
