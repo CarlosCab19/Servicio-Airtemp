@@ -39,13 +39,13 @@
         <div class="col-md-6">
           <div class="form-group" >
             <label for="nombres">Nombres:</label>
-            <input formControlName="nombres" [(ngModel)]="personal.nombres" id="name" type="text" class="form-control">
+            <input formControlName="nombres" id="nombres" type="text" class="form-control">
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-group">
             <label for="apellidos">Apellidos:</label>
-            <input formControlName="apellidos" [(ngModel)]="personal.apellidos" id="apellidos" type="text" class="form-control">
+            <input formControlName="apellidos" id="apellidos" type="text" class="form-control">
           </div>
         </div>
       </div>
@@ -53,7 +53,7 @@
         <div class="col-md-6">
           <div class="form-group">
             <label for="departamento">Departamento:</label>
-            <select class="form-select" aria-label="Default select example" [(ngModel)]="personal.departamento" formControlName="departamento" id="departamento">
+            <select class="form-select" aria-label="Default select example" formControlName="departamento" id="departamento">
               <option value="Solicitante">Solicitante</option>
               <option value="Analista">Analista</option>
               <option value="Director">Director</option>
@@ -64,7 +64,7 @@
         <div class="col-md-6">
           <div class="form-group">
             <label for="usuario">Usuario:</label>
-            <input formControlName="usuario" [(ngModel)]="personal.usuario" id="name" type="text" class="form-control" >
+            <input formControlName="usuario" id="usuario" type="text" class="form-control" >
           </div>
         </div>
       </div>
@@ -72,7 +72,7 @@
         <div class="col-md-6">
           <div class="form-group">
             <label for="contra">Estatus:</label>
-            <select class="form-select" aria-label="Default select example" [(ngModel)]="personal.estatus" formControlName="estatus" id="estatus">
+            <select class="form-select" aria-label="Default select example" formControlName="estatus" id="estatus">
               <option value="Activo">Activo</option>
               <option value="Inactivo">Inactivo</option>
             </select>
@@ -81,7 +81,7 @@
         <div class="col-md-6">
           <div class="form-group">
             <label for="contra">Contraseña:</label>
-            <input formControlName="contra" [(ngModel)]="personal.contra" id="name" type="text" class="form-control" >
+            <input formControlName="contra" id="contra" type="text" class="form-control" >
           </div>
         </div>
       </div>

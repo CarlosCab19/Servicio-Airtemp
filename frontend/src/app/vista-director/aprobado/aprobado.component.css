@@ -40,7 +40,7 @@ h2{
   margin-top: 20px;
   color: black;
   border-radius: 5px;
-  Font-family: Franklin Gothic, Arial Bold;
+  font-weight: bold;
 }
 #see{
   cursor: pointer;

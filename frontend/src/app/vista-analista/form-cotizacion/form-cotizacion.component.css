@@ -253,5 +253,6 @@ th {
   color: #ededed;
 }
 h2{
-  Font-family: Franklin Gothic, Arial Bold;
+  font-weight: bold;
+  color: black;
 }
