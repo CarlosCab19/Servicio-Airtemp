@@ -33,7 +33,6 @@ export class AddPersonalComponent implements OnInit{
     console.log(this.form.value);
     this.personalService.create(this.form.value).subscribe(res => {
          console.log('Person created successfully!');
-         /*this.router.navigate(['/soporte/', this.id]);*/
          this.router.navigateByUrl('/soporte/:id');
     })
   }

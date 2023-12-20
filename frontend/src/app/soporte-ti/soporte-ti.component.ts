@@ -11,7 +11,6 @@ import { PersonalService } from '../services/personal.service';
 })
 export class SoporteTIComponent implements OnInit{
   nomSoporte:string='';
-  id:string='1';
   personalN!:Personal;
   idSoporte:string='';
   personals:Personal[]=[];
@@ -25,12 +24,6 @@ export class SoporteTIComponent implements OnInit{
   ngOnInit(): void {
     this.personalService.getAll().subscribe((data: Personal[])=>{
       this.personals = data;
-    });
-    this.id=this.rutaActiva.snapshot.paramMap.get('id') as string;
-    this.personalService.find(this.id).subscribe(response=>{
-      this.personalN=response;
-      this.idSoporte=response.id;
-      this.nomSoporte=response.nombres + " " + response.apellidos;
     });
   }
   deletePerson(id: string){

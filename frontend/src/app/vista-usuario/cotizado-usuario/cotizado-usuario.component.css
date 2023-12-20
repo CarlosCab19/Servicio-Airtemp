@@ -10,7 +10,7 @@ body {
 h2{
   text-align: center;
   color: black;
-  Font-family: Franklin Gothic, Arial Bold;
+  font-weight: bold;
   border-radius: 5px;
 }
 #see{

@@ -14,34 +14,32 @@ export class EditPersonalComponent implements OnInit{
 
   id!:number;
   personal!:Personal;
-  form!:FormGroup;
 
   constructor(public personalService: PersonalService,
     public route: ActivatedRoute,
     public router: Router){}
 
+  form = new FormGroup({
+    nombres:  new FormControl('', [ Validators.required, Validators.pattern('^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ \-\']+') ]),
+    apellidos:  new FormControl('', [ Validators.required, Validators.pattern('^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ \-\']+') ]),
+    departamento: new FormControl('', [ Validators.required, Validators.pattern('^(Solicitante|Analista|Director|Soporte)$') ]),
+    usuario: new FormControl('', [Validators.required, Validators.pattern('^[A-Za-zÁáÉéÍíÓóÚúÜüÑñ0-9]+$')]),
+    contra: new FormControl('', [Validators.required, Validators.pattern('^[A-Za-zÁáÉéÍíÓóÚúÜüÑñ0-9]+$')]),
+    estatus:  new FormControl('', [ Validators.required, Validators.pattern('^(Activo|Inactivo)$') ]),
+  });
+
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
     this.personalService.find(this.id).subscribe((data: Personal)=>{
       this.personal = data;
+      this.form.patchValue(data);
     });
-
-    this.form = new FormGroup({
-      nombres:  new FormControl('', [ Validators.required, Validators.pattern('^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ \-\']+') ]),
-      apellidos:  new FormControl('', [ Validators.required, Validators.pattern('^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ \-\']+') ]),
-      departamento: new FormControl('', [ Validators.required, Validators.pattern('^(Solicitante|Analista|Director|Soporte)$') ]),
-      usuario:  new FormControl('', [ Validators.required, Validators.pattern('^[A-Za-z0-9]+$') ]),
-      contra:  new FormControl('', [ Validators.required, Validators.pattern('^[A-Za-z0-9]+$') ]),
-      estatus:  new FormControl('', [ Validators.required, Validators.pattern('^(Activo|Inactivo)$') ]),
-    });
-
   }
   get f(){
     return this.form.controls;
   }
 
   submit(){
-    console.log(this.form.value);
     this.personalService.update(this.id, this.form.value).subscribe(res => {
          console.log('Person updated successfully!');
          this.router.navigate(['/soporte/', this.id]);
