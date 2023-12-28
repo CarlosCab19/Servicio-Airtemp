@@ -8,7 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class PersonalService {
 
-  private readonly url:string="http://127.0.0.1:8000/api/personal/";
+  private readonly url:string="http://10.1.0.152:8000/api/personal/";
 
   httpOptions = {
     headers: new HttpHeaders({

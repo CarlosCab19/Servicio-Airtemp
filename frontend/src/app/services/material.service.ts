@@ -8,7 +8,7 @@ import { Material } from '../shared/material';
 })
 export class MaterialService {
 
-  private readonly url="http://127.0.0.1:8000/api/material/";
+  private readonly url="http://10.1.0.152:8000/api/material/";
 
   httpOptions = {
     headers: new HttpHeaders({
