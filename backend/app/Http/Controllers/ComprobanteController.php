@@ -52,7 +52,7 @@ class ComprobanteController extends Controller
         }
 
         // Obtén la ruta del archivo
-        $ruta = public_path('comprobantes/' . $comprobante->ruta);
+        $ruta = storage_path('comprobantes/' . $comprobante->ruta);
 
         // Verifica que el archivo exista en la ruta de almacenamiento
         if (!file_exists($ruta)) {

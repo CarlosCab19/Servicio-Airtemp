@@ -8,7 +8,7 @@ import { Caracteristica } from '../shared/material';
 })
 export class CaracterService {
 
-  private readonly url="http://127.0.0.1:8000/api/caracteristica/";
+  private readonly url="http://10.1.0.152:8000/api/caracteristica/";
 
   httpOptions = {
     headers: new HttpHeaders({

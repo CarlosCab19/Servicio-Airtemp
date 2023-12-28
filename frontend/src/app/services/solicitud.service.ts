@@ -8,7 +8,7 @@ import { Observable, Subject, catchError, throwError } from 'rxjs';
 })
 export class SolicitudService {
 
-  private readonly url:string="http://127.0.0.1:8000/api/solicitud/";
+  private readonly url:string="http://10.1.0.152:8000/api/solicitud/";
   private nuevaSoliSubject=new Subject<Solicitud>();
 
   httpOptions = {

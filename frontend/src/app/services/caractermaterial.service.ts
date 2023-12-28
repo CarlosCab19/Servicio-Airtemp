@@ -8,7 +8,7 @@ import { Observable, catchError, throwError } from 'rxjs';
 })
 export class CaractermaterialService {
 
-  private readonly url="http://127.0.0.1:8000/api/caractermaterial/";
+  private readonly url="http://10.1.0.152:8000/api/caractermaterial/";
 
   httpOptions = {
     headers: new HttpHeaders({
